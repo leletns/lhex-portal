@@ -1,0 +1,7 @@
+flask
+pandas
+openai
+gunicorn
+werkzeug
+openpyxl
+requests

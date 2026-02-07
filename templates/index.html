@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L.H.E.X Systems | Inteligência de Capital</title>
+    <meta name="description" content="Auditoria de recuperação e engenharia de vendas. O equilíbrio entre a lógica e a humanidade.">
+
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-green: #00DFA2;
+            --jabuticaba: #240E26;
+            --dark-bg: #050505;
+            --text-main: #e0e0e0;
+            --text-dim: #888;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- BACKGROUND HACKER (SCANLINES) --- */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.2) 50%,
+                rgba(0,0,0,0.2)
+            );
+            background-size: 100% 4px;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* GRID DE FUNDO */
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 223, 162, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 223, 162, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        /* --- NAV --- */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2.5rem 5%;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .logo-container {
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .logo-container:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 15px var(--neon-green));
+        }
+
+        .logo-img {
+            height: 110px;
+            width: auto;
+            filter: drop-shadow(0 0 25px rgba(0, 223, 162, 0.1));
+        }
+
+        .login-link {
+            position: absolute;
+            right: 5%;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            border: 1px solid #333;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: 0.3s;
+            z-index: 11;
+        }
+        .login-link:hover {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 223, 162, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: 20px; }
+            .login-link { position: static; margin-top: 10px; }
+        }
+
+        /* --- HERO --- */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        .status-badge {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0, 223, 162, 0.05);
+            color: var(--neon-green);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 223, 162, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .terminal-window {
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid #333;
+            border-top: 2px solid var(--neon-green);
+            border-radius: 6px;
+            width: 100%;
+            max-width: 750px;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .terminal-header {
+            background: #151515;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #222;
+        }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+        
+        .terminal-content {
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            height: 200px;
+            overflow: hidden;
+            text-align: left;
+            color: #bbb;
+        }
+        .log-line { margin-bottom: 6px; display: flex; opacity: 0.95; }
+        .log-success { color: var(--neon-green); }
+        .log-info { color: #5c9aff; }
+
+        .counter-wrapper { margin-bottom: 5rem; }
+        .counter-label { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.8rem; font-weight: 400; }
+        .counter-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -2px;
+        }
+        .counter-value.pulse { color: var(--neon-green); text-shadow: 0 0 30px rgba(0, 223, 162, 0.4); }
+
+        /* --- CONTENT --- */
+        .section-expl {
+            padding: 2rem 5% 8rem 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-headline {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 4rem;
+            text-align: left;
+            line-height: 1.3;
+            color: #fff;
+        }
+        .section-headline strong { font-weight: 700; color: var(--neon-green); }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+        }
+
+        .product-link { text-decoration: none; display: block; }
+
+        .product-card {
+            background: #0a0a0a;
+            border-left: 1px solid #333;
+            padding: 1rem 1rem 1rem 2rem;
+            transition: 0.4s ease;
+            height: 100%;
+        }
+        .product-card:hover { 
+            border-left-color: var(--neon-green); 
+            transform: translateX(10px); 
+            background: #0f0f0f;
+        }
+
+        .card-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 1.2rem; color: #fff; }
+        .card-desc { color: #a0a0a0; line-height: 1.7; font-size: 0.95rem; font-weight: 300; }
+        
+        .cta-arrow { 
+            margin-top: 20px; 
+            font-size: 0.8rem; 
+            color: var(--neon-green); 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .product-card:hover .cta-arrow { opacity: 1; }
+        .txt-light { color: #e0e0e0; font-weight: 500; }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: auto;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: #020202;
+            padding: 2.5rem 5%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #555;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-left { display: flex; align-items: center; gap: 15px; }
+        .server-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+            cursor: default;
+        }
+        .status-dot {
+            width: 6px; height: 6px; background: var(--neon-green); border-radius: 50%;
+            box-shadow: 0 0 8px var(--neon-green);
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+        .contact-btn { color: #ccc; text-decoration: none; transition: 0.3s; }
+        .contact-btn:hover { color: var(--neon-green); }
+        .footer-right { text-align: right; }
+        
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- STORY MODE OVERLAY --- */
+        #story-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        #story-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .story-text {
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 300;
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.5;
+            display: none;
+        }
+
+        .story-big {
+            font-size: 5rem;
+            font-weight: 800;
+            color: var(--neon-green);
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .close-story {
+            position: absolute;
+            bottom: 50px;
+            color: #555;
+            font-size: 0.8rem;
+            cursor: pointer;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .close-story:hover { color: #fff; }
+
+    </style>
+</head>
+<body>
+
+    <div class="scanlines"></div> <div class="bg-grid"></div>
+
+    <div id="story-overlay" onclick="closeStory()">
+        <div class="story-text" id="s1"><span class="story-big">L</span>LÓGICA<br><span style="font-size: 1rem; color: #888;">MATEMÁTICA PURA. LUCRO LÍQUIDO.</span></div>
+        <div class="story-text" id="s2"><span class="story-big">H</span>HUMANIDADE<br><span style="font-size: 1rem; color: #888;">A VISÃO. A ESSÊNCIA.</span></div>
+        <div class="story-text" id="s3"><span class="story-big">E</span>EQUILÍBRIO<br><span style="font-size: 1rem; color: #888;">O HEXÁGONO. A ESTRUTURA PERFEITA.</span></div>
+        <div class="story-text" id="s4"><span class="story-big">X</span>EXPONENCIAL<br><span style="font-size: 1rem; color: #888;">MULTIPLICAÇÃO DE RESULTADOS.</span></div>
+        <div class="story-text" id="s5" style="color: var(--neon-green);">BEM-VINDO À L.H.E.X SYSTEMS.</div>
+        <div class="close-story">CLIQUE PARA VOLTAR AO COMANDO</div>
+    </div>
+
+    <nav>
+        <div class="logo-container" onclick="playStory()" title="Descubra a Origem">
+           <img src="/static/logo.png" alt="L.H.E.X Systems" class="logo-img">
+        </div>
+        <a href="login.html" class="login-link">ÁREA DO CLIENTE</a>
+    </nav>
+
+    <header class="hero">
+        <div class="status-badge">Sistema Operacional</div>
+        
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+            </div>
+            <div class="terminal-content" id="terminal-output"></div>
+        </div>
+
+        <div class="counter-wrapper">
+            <div class="counter-label">Capital recuperado nas últimas 24h</div>
+            <div class="counter-value" id="money-counter">R$ 0,00</div>
+        </div>
+    </header>
+
+    <section class="section-expl">
+        <div class="section-headline reveal">
+            O equilíbrio perfeito entre a Máquina<br>
+            e a <strong>Humanidade.</strong>
+        </div>
+
+        <div class="products-grid">
+            
+            <a href="lazaro.html" class="product-link reveal">
+                <div class="product-card">
+                    <div class="card-title">Protocolo Lázaro</div>
+                    <p class="card-desc">
+                        Auditoria forense que varre o passado da sua empresa. Eu encontro onde o dinheiro ficou preso e trago de volta para o caixa. <span class="txt-light">O Hexágono da estabilidade financeira.</span>
+                    </p>
+                    <div class="cta-arrow">Conhecer o Sistema →</div>
+                </div>
+            </a>
+
+            <a href="sniper.html" class="product-link reveal">
+                <div class="product-card">
+                    <div class="card-title">Neuro-Sniper (H-Core)</div>
+                    <p class="card-desc">
+                        Tecnologia não vende, <strong>humanidade</strong> vende. Meu sistema usa o "Fator H" para ler as emoções ocultas do seu cliente e gerar a resposta exata que conecta. <span class="txt-light">Não parece um robô. Parece você nos seus melhores dias.</span>
+                    </p>
+                    <div class="cta-arrow">Ver Inteligência →</div>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-left">
+            <div class="server-status"><div class="status-dot"></div><span>Online</span></div>
+            <span id="clock" style="color: #444;">00:00:00</span>
+        </div>
+        <div><a href="mailto:contato@lhexsystems.com" class="contact-btn">contato@lhexsystems.com</a></div>
+        <div class="footer-right"><div>2026 L.H.E.X SYSTEMS</div></div>
+    </footer>
+
+    <script>
+        // --- 1. STORY MODE SCRIPT ---
+        function playStory() {
+            const overlay = document.getElementById('story-overlay');
+            overlay.classList.add('active');
+            
+            document.querySelectorAll('.story-text').forEach(el => el.style.display = 'none');
+
+            // Sequência
+            setTimeout(() => { document.getElementById('s1').style.display = 'block'; }, 500); // L
+            setTimeout(() => { document.getElementById('s1').style.display = 'none'; document.getElementById('s2').style.display = 'block'; }, 2500); // H
+            setTimeout(() => { document.getElementById('s2').style.display = 'none'; document.getElementById('s3').style.display = 'block'; }, 5000); // E
+            setTimeout(() => { document.getElementById('s3').style.display = 'none'; document.getElementById('s4').style.display = 'block'; }, 7500); // X
+            setTimeout(() => { document.getElementById('s4').style.display = 'none'; document.getElementById('s5').style.display = 'block'; }, 10000); // Final
+        }
+
+        function closeStory() {
+            document.getElementById('story-overlay').classList.remove('active');
+            setTimeout(() => { document.querySelectorAll('.story-text').forEach(el => el.style.display = 'none'); }, 500);
+        }
+
+        // --- 2. TERMINAL LOGIC ---
+        let capitalTotal = 0;
+        const terminal = document.getElementById('terminal-output');
+        const counter = document.getElementById('money-counter');
+        const logs = [
+            { t: 'green', msg: '> Glosa recuperada: R$ 450,00 (ID #9921)' },
+            { t: 'info', msg: '> Analisando perfil comportamental (Fator H)...' },
+            { t: 'info', msg: '> Conexão humana estabelecida.' },
+            { t: 'green', msg: '> Contrato fechado: R$ 5.000,00' },
+            { t: 'info', msg: '> Otimizando fluxo de caixa...' },
+            { t: 'green', msg: '> Receita retroativa: R$ 890,00' }
+        ];
+
+        function addLog(text, type) {
+            const row = document.createElement('div');
+            row.className = 'log-line';
+            const time = new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+            let colorClass = type === 'green' ? 'log-success' : 'log-info';
+            row.innerHTML = `<span style="color:#444; margin-right:12px">${time}</span> <span class="${colorClass}">${text}</span>`;
+            terminal.appendChild(row);
+            terminal.scrollTop = terminal.scrollHeight;
+            if (type === 'green') {
+                const valor = parseFloat(text.match(/R\$\s([0-9.]+),/)[1].replace('.', ''));
+                capitalTotal += valor;
+                counter.innerText = capitalTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                counter.classList.add('pulse');
+                setTimeout(() => counter.classList.remove('pulse'), 200);
+            }
+        }
+        let i = 0;
+        setInterval(() => { addLog(logs[i].msg, logs[i].t); i = (i + 1) % logs.length; }, 2500);
+        function updateClock() { document.getElementById('clock').innerText = new Date().toLocaleTimeString('pt-BR') + " BRT"; }
+        setInterval(updateClock, 1000); updateClock();
+        window.addEventListener('scroll', () => { document.querySelectorAll('.reveal').forEach(r => { if(r.getBoundingClientRect().top < window.innerHeight - 80) r.classList.add('active'); }); });
+    </script>
+</body>
+</html>
+
+
