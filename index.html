@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L.H.E.X Systems | Inteligência de Capital</title>
-    <meta name="description" content="Auditoria de recuperação e engenharia de vendas. Eu trago seu dinheiro de volta.">
+    <meta name="description" content="Auditoria de recuperação e engenharia de vendas. O equilíbrio entre a lógica e a humanidade.">
 
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
 
@@ -46,15 +46,41 @@
         nav {
             display: flex;
             justify-content: center;
+            align-items: center;
             padding: 2.5rem 5%;
+            position: relative;
         }
+        
         .logo-img {
             height: 110px;
             width: auto;
             filter: drop-shadow(0 0 25px rgba(0, 223, 162, 0.1));
         }
 
-        /* --- HERO & TERMINAL --- */
+        .login-link {
+            position: absolute;
+            right: 5%;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            border: 1px solid #333;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .login-link:hover {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 223, 162, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: 20px; }
+            .login-link { position: static; margin-top: 10px; }
+        }
+
+        /* --- HERO --- */
         .hero {
             min-height: 85vh;
             display: flex;
@@ -107,13 +133,12 @@
             height: 200px;
             overflow: hidden;
             text-align: left;
-            color: #bbb; /* Texto levemente mais suave */
+            color: #bbb;
         }
         .log-line { margin-bottom: 6px; display: flex; opacity: 0.95; }
         .log-success { color: var(--neon-green); }
         .log-info { color: #5c9aff; }
 
-        /* CONTADOR */
         .counter-wrapper { margin-bottom: 5rem; }
         .counter-label { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.8rem; font-weight: 400; }
         .counter-value {
@@ -125,7 +150,7 @@
         }
         .counter-value.pulse { color: var(--neon-green); text-shadow: 0 0 30px rgba(0, 223, 162, 0.4); }
 
-        /* --- CONTENT SECTION --- */
+        /* --- CONTENT --- */
         .section-expl {
             padding: 2rem 5% 8rem 5%;
             max-width: 1000px;
@@ -148,22 +173,38 @@
             gap: 50px;
         }
 
+        .product-link { text-decoration: none; display: block; }
+
         .product-card {
-            /* Fundo mais limpo, sem gradientes exagerados */
             background: #0a0a0a;
             border-left: 1px solid #333;
-            padding: 1rem 1rem 1rem 2rem; /* Espaçamento focado na esquerda */
+            padding: 1rem 1rem 1rem 2rem;
             transition: 0.4s ease;
+            height: 100%;
         }
-        .product-card:hover { border-left-color: var(--neon-green); transform: translateX(5px); }
+        .product-card:hover { 
+            border-left-color: var(--neon-green); 
+            transform: translateX(10px); 
+            background: #0f0f0f;
+        }
 
-        .card-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 1.2rem; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .card-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 1.2rem; color: #fff; }
         .card-desc { color: #a0a0a0; line-height: 1.7; font-size: 0.95rem; font-weight: 300; }
         
-        /* Highlight sutil no texto */
+        .cta-arrow { 
+            margin-top: 20px; 
+            font-size: 0.8rem; 
+            color: var(--neon-green); 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .product-card:hover .cta-arrow { opacity: 1; }
         .txt-light { color: #e0e0e0; font-weight: 500; }
 
-        /* --- FOOTER INTERATIVO --- */
+        /* --- FOOTER --- */
         footer {
             margin-top: auto;
             border-top: 1px solid rgba(255,255,255,0.05);
@@ -180,7 +221,6 @@
         }
 
         .footer-left { display: flex; align-items: center; gap: 15px; }
-
         .server-status {
             display: flex;
             align-items: center;
@@ -188,7 +228,6 @@
             padding: 6px 12px;
             background: rgba(255, 255, 255, 0.02);
             border-radius: 4px;
-            transition: 0.3s;
             cursor: default;
         }
         .status-dot {
@@ -197,24 +236,10 @@
             animation: pulse-dot 2s infinite;
         }
         @keyframes pulse-dot { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
-
-        .contact-btn {
-            color: #ccc;
-            text-decoration: none;
-            transition: 0.3s;
-            border-bottom: 1px solid transparent;
-        }
-        .contact-btn:hover { color: var(--neon-green); border-bottom-color: var(--neon-green); }
-
+        .contact-btn { color: #ccc; text-decoration: none; transition: 0.3s; }
+        .contact-btn:hover { color: var(--neon-green); }
         .footer-right { text-align: right; }
-
-        @media (max-width: 768px) {
-            footer { flex-direction: column; text-align: center; gap: 30px; }
-            .footer-right { text-align: center; }
-            .counter-value { font-size: 2.5rem; }
-            .section-headline { font-size: 1.5rem; }
-        }
-
+        
         .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
@@ -225,6 +250,7 @@
 
     <nav>
         <img src="logo.png" alt="L.H.E.X Systems" class="logo-img">
+        <a href="login.html" class="login-link">ÁREA DO CLIENTE</a>
     </nav>
 
     <header class="hero">
@@ -245,57 +271,52 @@
 
     <section class="section-expl">
         <div class="section-headline reveal">
-            Eu não vendo software.<br>
-            Eu entrego <strong>lucro líquido.</strong>
+            O equilíbrio perfeito entre a Máquina<br>
+            e a <strong>Humanidade.</strong>
         </div>
 
         <div class="products-grid">
-            <div class="product-card reveal">
-                <div class="card-title">Protocolo Lázaro</div>
-                <p class="card-desc">
-                    Auditoria forense que varre o passado da sua empresa. Eu encontro onde o dinheiro ficou preso — seja em glosas, erros de sistema ou falhas humanas — e trago de volta para o caixa. <span class="txt-light">Sem burocracia, apenas matemática.</span>
-                </p>
-            </div>
+            
+            <a href="lazaro.html" class="product-link reveal">
+                <div class="product-card">
+                    <div class="card-title">Protocolo Lázaro</div>
+                    <p class="card-desc">
+                        Auditoria forense que varre o passado da sua empresa. Eu encontro onde o dinheiro ficou preso e trago de volta para o caixa. <span class="txt-light">O Hexágono da estabilidade financeira.</span>
+                    </p>
+                    <div class="cta-arrow">Conhecer o Sistema →</div>
+                </div>
+            </a>
 
-            <div class="product-card reveal">
-                <div class="card-title">Neuro-Sniper</div>
-                <p class="card-desc">
-                    A maioria usa chatbots que irritam o cliente. Meu sistema lê o perfil comportamental de quem está do outro lado e cria a abordagem exata para fechar contratos de alto valor. <span class="txt-light">Não é atendimento, é conversão.</span>
-                </p>
-            </div>
+            <a href="sniper.html" class="product-link reveal">
+                <div class="product-card">
+                    <div class="card-title">Neuro-Sniper (H-Core)</div>
+                    <p class="card-desc">
+                        Tecnologia não vende, <strong>humanidade</strong> vende. Meu sistema usa o "Fator H" para ler as emoções ocultas do seu cliente e gerar a resposta exata que conecta. <span class="txt-light">Não parece um robô. Parece você nos seus melhores dias.</span>
+                    </p>
+                    <div class="cta-arrow">Ver Inteligência →</div>
+                </div>
+            </a>
+
         </div>
     </section>
 
     <footer>
         <div class="footer-left">
-            <div class="server-status">
-                <div class="status-dot"></div>
-                <span>Online</span>
-            </div>
+            <div class="server-status"><div class="status-dot"></div><span>Online</span></div>
             <span id="clock" style="color: #444;">00:00:00</span>
         </div>
-
-        <div>
-            <a href="mailto:contato@lhexsystems.com" class="contact-btn">contato@lhexsystems.com</a>
-        </div>
-
-        <div class="footer-right">
-            <div>2026 L.H.E.X SYSTEMS</div>
-            <div style="color: #333; margin-top: 4px;">Rio de Janeiro</div>
-        </div>
+        <div><a href="mailto:contato@lhexsystems.com" class="contact-btn">contato@lhexsystems.com</a></div>
+        <div class="footer-right"><div>2026 L.H.E.X SYSTEMS</div></div>
     </footer>
 
     <script>
-        // --- 1. TERMINAL LÓGICA ---
         let capitalTotal = 0;
         const terminal = document.getElementById('terminal-output');
         const counter = document.getElementById('money-counter');
-
-        // Logs mais técnicos e menos "vendedor"
         const logs = [
             { t: 'green', msg: '> Glosa recuperada: R$ 450,00 (ID #9921)' },
-            { t: 'info', msg: '> Analisando perfil comportamental...' },
-            { t: 'info', msg: '> Gatilho de autoridade ativado.' },
+            { t: 'info', msg: '> Analisando perfil comportamental (Fator H)...' },
+            { t: 'info', msg: '> Conexão humana estabelecida.' },
             { t: 'green', msg: '> Contrato fechado: R$ 5.000,00' },
             { t: 'info', msg: '> Otimizando fluxo de caixa...' },
             { t: 'green', msg: '> Receita retroativa: R$ 890,00' }
@@ -304,14 +325,11 @@
         function addLog(text, type) {
             const row = document.createElement('div');
             row.className = 'log-line';
-            // Hora sem segundos para ficar mais limpo
             const time = new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
             let colorClass = type === 'green' ? 'log-success' : 'log-info';
-
             row.innerHTML = `<span style="color:#444; margin-right:12px">${time}</span> <span class="${colorClass}">${text}</span>`;
             terminal.appendChild(row);
             terminal.scrollTop = terminal.scrollHeight;
-
             if (type === 'green') {
                 const valor = parseFloat(text.match(/R\$\s([0-9.]+),/)[1].replace('.', ''));
                 capitalTotal += valor;
@@ -320,27 +338,11 @@
                 setTimeout(() => counter.classList.remove('pulse'), 200);
             }
         }
-
         let i = 0;
-        setInterval(() => {
-            addLog(logs[i].msg, logs[i].t);
-            i = (i + 1) % logs.length;
-        }, 2500);
-
-        // --- 2. RELÓGIO ---
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('clock').innerText = now.toLocaleTimeString('pt-BR') + " BRT";
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // --- 3. SCROLL REVEAL ---
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('.reveal').forEach(r => {
-                if(r.getBoundingClientRect().top < window.innerHeight - 80) r.classList.add('active');
-            });
-        });
+        setInterval(() => { addLog(logs[i].msg, logs[i].t); i = (i + 1) % logs.length; }, 2500);
+        function updateClock() { document.getElementById('clock').innerText = new Date().toLocaleTimeString('pt-BR') + " BRT"; }
+        setInterval(updateClock, 1000); updateClock();
+        window.addEventListener('scroll', () => { document.querySelectorAll('.reveal').forEach(r => { if(r.getBoundingClientRect().top < window.innerHeight - 80) r.classList.add('active'); }); });
     </script>
 </body>
 </html>
