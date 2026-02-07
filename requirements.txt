@@ -1,6 +1,6 @@
 flask
 pandas
-openai
+google-generativeai
 gunicorn
 werkzeug
 openpyxl
