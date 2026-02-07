@@ -3,267 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L.H.E.X Systems | High Ticket Intelligence</title>
-    <meta name="description" content="Engenharia de Vendas Preditivas e Auditoria Algorítmica. Onde a IA encontra a intuição humana.">
+    <title>L.H.E.X Systems | Protocolo Lázaro Ativo</title>
+    <meta name="description" content="Sistema de Recuperação Algorítmica de Capital. A cada segundo, dinheiro esquecido volta para o caixa.">
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
+            --neon-green: #00DFA2;
+            --dark-bg: #0a0a0a; /* Preto profundo */
             --jabuticaba: #240E26;
-            --mint-green: #00DFA2;
-            /* PALETA OFF-WHITE DE LUXO */
-            --bg-bone: #FAF9F6; /* Fundo principal quente */
-            --white-pure: #FFFFFF; /* Para destaque dos cards */
-            --text-grey: #6B7280;
+            --text-main: #e0e0e0;
+            --terminal-bg: #111;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            background-color: var(--bg-bone);
-            color: var(--jabuticaba);
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* ANIMAÇÕES DE ENTRADA SUAVES */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .reveal {
-            opacity: 0;
-            animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
-
-        /* NAV - IMPECÁVEL */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 8%;
-            position: absolute;
-            width: 100%;
-            top: 0;
-            z-index: 10;
-        }
-
-        /* LOGO AUMENTADA E IMPONENTE */
-        .logo-img {
-            height: 85px; /* Aumentado significativamente */
-            width: auto;
-            filter: drop-shadow(0 4px 6px rgba(36, 14, 38, 0.1)); /* Sombra sutil na logo */
-        }
-
-        .login-btn {
-            text-decoration: none;
-            color: var(--jabuticaba);
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            padding: 10px 20px;
-            border: 2px solid transparent;
-            transition: 0.3s;
-        }
-        
-        .login-btn:hover {
-            border-color: var(--jabuticaba);
-        }
-
-        /* HERO SECTION - O PALCO */
-        .hero {
-            min-height: 95vh; /* Ajuste para telas grandes */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+
+        /* FUNDO MATRIX SUTIL */
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 223, 162, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 223, 162, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* NAV CENTRALIZADA COM LOGO GIGANTE */
+        nav {
+            display: flex;
             justify-content: center;
-            padding: 100px 8% 0 8%; /* Mais espaço no topo por causa da logo grande */
-            /* Gradiente Off-White sutil */
-            background: linear-gradient(135deg, var(--bg-bone) 0%, #F2F0E6 100%);
+            padding: 3rem 5%;
         }
 
-        .hero h1 {
-            font-size: 5rem;
-            line-height: 1.05;
-            font-weight: 800;
-            color: var(--jabuticaba);
-            max-width: 1000px;
-            margin-bottom: 2rem;
-            letter-spacing: -1.5px;
-            animation-delay: 0.2s;
+        .logo-img {
+            height: 120px; /* GIGANTE */
+            width: auto;
+            filter: drop-shadow(0 0 15px rgba(0, 223, 162, 0.2));
         }
 
-        .hero h1 span {
-            /* Gradiente Jabuticaba para Verde Menta no texto */
-            background: linear-gradient(90deg, var(--jabuticaba), var(--mint-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* HERO SECTION - O SUSPENSE */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 5%;
         }
 
-        .hero p {
-            font-size: 1.4rem;
-            color: var(--text-grey);
-            max-width: 650px;
-            margin-bottom: 3.5rem;
+        h1.title {
+            font-size: 2rem; /* Título menor, mais elegante */
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        h2.subtitle {
+            font-size: 1.2rem;
             font-weight: 400;
-            animation-delay: 0.4s;
+            color: var(--neon-green);
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
         }
 
-        /* BOTÃO PREMIUM */
-        .btn-primary {
-            display: inline-block;
-            padding: 20px 50px;
-            background-color: var(--jabuticaba);
-            color: var(--white-pure);
+        /* O TERMINAL DE DINHEIRO (O SHOW) */
+        .terminal-container {
+            background: var(--terminal-bg);
+            border: 1px solid #333;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 223, 162, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .terminal-header {
+            background: #222;
+            padding: 10px;
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid #333;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: #555; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            height: 250px;
+            overflow-y: auto;
+            color: #ccc;
+            text-align: left;
+        }
+
+        /* EFEITO DE DIGITAÇÃO */
+        .typing-line {
+            margin-bottom: 5px;
+            display: flex;
+        }
+        .typing-line span.green { color: var(--neon-green); }
+        .typing-line span.blue { color: #4D96FF; }
+        .typing-line span.money { color: var(--neon-green); font-weight: bold; }
+
+        /* CONTADOR GIGANTE */
+        .money-counter-box {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .money-label {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .money-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            text-shadow: 0 0 20px rgba(0, 223, 162, 0.3);
+        }
+
+        /* BOTÃO DE AÇÃO CYBERPUNK */
+        .btn-cyber {
+            padding: 18px 40px;
+            background: transparent;
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
             text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
             font-weight: 700;
             font-size: 1.1rem;
-            letter-spacing: 0.5px;
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            box-shadow: 0 15px 35px rgba(36, 14, 38, 0.25);
-            animation-delay: 0.6s;
-            width: fit-content;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 223, 162, 0.3);
-            background-color: var(--mint-green);
-            color: var(--jabuticaba);
-        }
-
-        /* SEÇÃO DE AUTORIDADE (CARDS FLUTUANTES) */
-        .protocols {
-            padding: 8rem 8%;
-            background-color: var(--bg-bone);
-        }
-
-        .section-header {
-            margin-bottom: 4rem;
-            max-width: 800px;
-        }
-
-        .section-header h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--jabuticaba);
-            letter-spacing: -1px;
-        }
-
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
-        }
-
-        .card {
-            background: var(--white-pure); /* Branco puro para destacar do fundo off-white */
-            padding: 3.5rem;
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            border: 1px solid rgba(36, 14, 38, 0.05);
-            position: relative;
-            top: 0;
-        }
-
-        .card:hover {
-            border-color: var(--mint-green);
-            box-shadow: 0 30px 60px rgba(36, 14, 38, 0.08);
-            top: -15px; /* Efeito de levitação suave */
-        }
-
-        .card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.2rem;
-            font-weight: 700;
-            color: var(--jabuticaba);
-        }
-
-        .card p {
-            color: var(--text-grey);
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 6px 14px;
-            background: rgba(36, 14, 38, 0.05);
-            color: var(--jabuticaba);
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* MOBILE OPTIMIZATION */
-        @media (max-width: 992px) {
-            .hero h1 { font-size: 3.5rem; }
-            .logo-img { height: 65px; }
+        .btn-cyber:hover {
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px var(--neon-green);
         }
 
+        /* FOOTER ASSINATURA */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 1px solid #222;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        footer a {
+            color: var(--neon-green);
+            text-decoration: none;
+        }
+
+        /* RESPONSIVO */
         @media (max-width: 768px) {
-            .hero { padding: 120px 5% 0 5%; text-align: left; }
-            .hero h1 { font-size: 2.8rem; }
-            .hero p { font-size: 1.1rem; }
-            nav { padding: 1.5rem 5%; }
-            .logo-img { height: 55px; }
-            .protocols { padding: 5rem 5%; }
-            .card { padding: 2.5rem; }
+            .logo-img { height: 90px; }
+            h1.title { font-size: 1.5rem; }
+            .money-value { font-size: 2.5rem; }
+            .terminal-body { height: 200px; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="reveal">
+    <div class="bg-grid"></div>
+
+    <nav>
         <img src="logo.png" alt="L.H.E.X Systems" class="logo-img"> 
-        
-        <a href="mailto:contato@lhexsystems.com" class="login-btn">ACCESS LOGIN</a>
     </nav>
 
     <section class="hero">
-        <h1 class="reveal">A INTELIGÊNCIA QUE <br><span>O MERCADO NÃO ESPERAVA.</span></h1>
-        <p class="reveal">Interseção entre Auditoria Financeira Algorítmica e Neuro-Engenharia de Vendas. Transformamos dados esquecidos em capital líquido imediato.</p>
+        <h1 class="title">Protocolo Lázaro</h1>
+        <h2 class="subtitle">Status: <span style="color: var(--neon-green);">ATIVO & RECUPERANDO</span></h2>
+
+        <div class="terminal-container">
+            <div class="terminal-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <div class="terminal-body" id="terminal-output">
+                </div>
+        </div>
+
+        <div class="money-counter-box">
+            <div class="money-label">Capital Recuperado (Tempo Real)</div>
+            <div class="money-value" id="money-counter">R$ 0,00</div>
+        </div>
         
-        <div class="reveal">
-            <a href="mailto:contato@lhexsystems.com?subject=Solicitação%20de%20Demo%20High-Ticket&body=Olá,%20gostaria%20de%20agendar%20uma%20demonstração%20dos%20protocolos%20L.H.E.X." class="btn-primary">
-                INICIAR PROTOCOLO
-            </a>
-        </div>
+        <a href="mailto:contato@lhexsystems.com?subject=Acesso%20ao%20Protocolo%20Lázaro&body=Quero%20conectar%20minha%20empresa%20ao%20sistema." class="btn-cyber">
+            > CONECTAR MINHA BASE
+        </a>
     </section>
 
-    <section class="protocols">
-        <div class="section-header reveal">
-            <span class="badge">Tecnologia Proprietária</span>
-            <h2>Sistemas Ativos.</h2>
-        </div>
-
-        <div class="grid-cards reveal">
-            <div class="card">
-                <span class="badge">Vendas</span>
-                <h3>Neuro-Sniper™</h3>
-                <p>Nosso algoritmo proprietário analisa padrões psicométricos em conversas antigas para prever e executar fechamentos de vendas High-Ticket com precisão cirúrgica.</p>
-            </div>
-
-            <div class="card">
-                <span class="badge">Financeiro</span>
-                <h3>Auditor Lázaro</h3>
-                <p>Auditoria forense automatizada que varre XMLs e extratos bancários de anos passados, identificando e recuperando receitas perdidas em glosas sistêmicas.</p>
-            </div>
-
-            <div class="card">
-                <span class="badge">Infraestrutura</span>
-                <h3>Black Box API</h3>
-                <p>Soberania de dados. Infraestrutura dedicada e criptografada. Seus dados operam em ambiente isolado, sem dependência de plataformas de terceiros.</p>
-            </div>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 3rem; background: var(--bg-bone); color: var(--text-grey); font-size: 0.85rem; letter-spacing: 1px;">
-        <p style="font-weight: 600;">&copy; 2026 L.H.E.X SYSTEMS. RIO DE JANEIRO / GLOBAL.</p>
+    <footer>
+        2026 // L.H.E.X SYSTEMS // <a href="mailto:contato@lhexsystems.com">contato@lhexsystems.com</a>
     </footer>
 
+    <script>
+        // Configuração do "Show"
+        let totalRecuperado = 0;
+        const moneyElement = document.getElementById('money-counter');
+        const terminalElement = document.getElementById('terminal-output');
+
+        // Formata o dinheiro (R$)
+        const formatMoney = (value) => {
+            return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        };
+
+        // Frases do terminal (Parece que está trabalhando de verdade)
+        const logMessages = [
+            { type: 'blue', text: '[AUDITOR] Varrendo XMLs do período 2023-2024...' },
+            { type: 'green', text: '[SUCCESS] Glosa ID #99482 identificada. Valor: R$ 450,32.' },
+            { type: 'blue', text: '[NEURO] Analisando padrão de rejeição do convênio X...' },
+            { type: 'green', text: '[SUCCESS] Divergência de taxa encontrada. Valor: R$ 1.200,50.' },
+            { type: 'blue', text: '[AUDITOR] Cruzando dados bancários com faturamento...' },
+            { type: 'green', text: '[SUCCESS] Pagamento não processado (Erro 404). Valor: R$ 3.500,00.' },
+            { type: 'blue', text: '[SYSTEM] Otimizando rotas de cobrança...' },
+            { type: 'green', text: '[SUCCESS] Receita esquecida recuperada. Valor: R$ 890,15.' }
+        ];
+
+        // Função que escreve no terminal
+        const addLog = (message) => {
+            const line = document.createElement('div');
+            line.className = 'typing-line';
+            
+            const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            
+            if (message.type === 'green') {
+                // Extrai o valor em R$ da mensagem para somar no contador
+                const valorMatch = message.text.match(/R\$\s?([0-9.]+,[0-9]{2})/);
+                if (valorMatch) {
+                    let valorLimpo = valorMatch[1].replace('.', '').replace(',', '.');
+                    totalRecuperado += parseFloat(valorLimpo);
+                    moneyElement.innerText = formatMoney(totalRecuperado);
+                }
+                line.innerHTML = `<span style="color:#666">[${timestamp}]</span>&nbsp;<span class="green">>${message.text}</span>`;
+            } else {
+                line.innerHTML = `<span style="color:#666">[${timestamp}]</span>&nbsp;<span class="blue">${message.text}</span>`;
+            }
+            
+            terminalElement.appendChild(line);
+            // Mantém o scroll sempre no final
+            terminalElement.scrollTop = terminalElement.scrollHeight;
+        };
+
+        // Inicia o "Show"
+        let msgIndex = 0;
+        
+        // Primeira mensagem logo de cara
+        addLog({ type: 'blue', text: 'INICIANDO PROTOCOLO LÁZARO V2.6...' });
+
+        // Loop infinito de dinheiro subindo
+        setInterval(() => {
+            addLog(logMessages[msgIndex]);
+            msgIndex = (msgIndex + 1) % logMessages.length;
+        }, 2500); // Uma nova linha a cada 2.5 segundos
+
+    </script>
 </body>
 </html>
