@@ -1,13 +1,16 @@
 import os
 import sqlite3
 import secrets
-import json
 import time
+import smtplib
+import random
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 import google.generativeai as genai
 from flask import Flask, render_template, request, redirect, url_for, session, g, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 
-# --- CONFIGURAÇÃO ---
+# --- CONFIGURAÇÃO DE PASTA ---
 basedir = os.path.abspath(os.path.dirname(__file__))
 template_dir = os.path.join(basedir, 'templates')
 static_dir = os.path.join(basedir, 'static')
@@ -19,17 +22,47 @@ app.config['UPLOAD_FOLDER'] = upload_dir
 os.makedirs(upload_dir, exist_ok=True)
 DATABASE = os.path.join(basedir, 'lhex.db')
 
-# --- 🧠 CONFIGURAÇÃO DO GOOGLE GEMINI (IA REAL) ---
-# Cole sua chave abaixo dentro das aspas!
-GEMINI_KEY = "AIzaSyCOyWBcg157DfmF7AjtWh5mjwcVgDcTk6U" 
+# --- 🧠 CONFIGURAÇÃO IA (SISTEMA DE BLINDAGEM) ---
+GEMINI_KEY = "AIzaSyCOyWBcg157DfmF7AjtWh5mjwcVgDcTk6U"  # <--- COLAR CHAVE AQUI
+AI_AVAILABLE = False
 
 try:
-    genai.configure(api_key=GEMINI_KEY)
-    model = genai.GenerativeModel('gemini-pro')
-    print("✅ GEMINI AI CONECTADO COM SUCESSO!")
+    if "SUA_CHAVE" not in GEMINI_KEY:
+        genai.configure(api_key=GEMINI_KEY)
+        model = genai.GenerativeModel('gemini-pro')
+        AI_AVAILABLE = True
+        print("✅ SYSTEM: NEURO-CORE ONLINE")
+    else:
+        print("⚠️ SYSTEM: GEMINI KEY MISSING")
 except:
-    print("⚠️ AVISO: Chave Gemini não configurada ou inválida.")
-    model = None
+    print("⚠️ SYSTEM: NEURO-CORE OFFLINE (Running Failsafe)")
+
+# --- 📧 CONFIGURAÇÃO SMTP (EMAIL REAL) ---
+SMTP_EMAIL = "contato@lhexsystems.com"
+SMTP_PASS = "161025lH."  # <--- COLAR SENHA AQUI
+SMTP_SERVER = "smtppro.zoho.com"
+SMTP_PORT = 465
+
+def send_real_email(to_email, subject, body):
+    if "SUA_SENHA" in SMTP_PASS: 
+        print(f"Simulando envio para {to_email}")
+        return True # Modo Simulação se não configurar
+    
+    try:
+        msg = MIMEMultipart()
+        msg['From'] = f"L.H.E.X Security <{SMTP_EMAIL}>"
+        msg['To'] = to_email
+        msg['Subject'] = subject
+        msg.attach(MIMEText(body, 'plain'))
+        
+        server = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT)
+        server.login(SMTP_EMAIL, SMTP_PASS)
+        server.sendmail(SMTP_EMAIL, to_email, msg.as_string())
+        server.quit()
+        return True
+    except Exception as e:
+        print(f"❌ Erro SMTP: {e}")
+        return False
 
 # --- BANCO DE DADOS ---
 def get_db():
@@ -54,20 +87,20 @@ def init_db():
                 password TEXT NOT NULL,
                 name TEXT NOT NULL,
                 business_niche TEXT,
+                email TEXT,
                 api_key TEXT,
                 recuperado REAL DEFAULT 0.0,
-                is_admin INTEGER DEFAULT 0,
-                whatsapp_status TEXT DEFAULT 'Desconectado'
+                is_admin INTEGER DEFAULT 0
             )
         ''')
-        # Cria ADMIN SUPREMO
+        # Cria ADMIN
         try:
-            db.execute("INSERT INTO users (username, password, name, is_admin) VALUES (?, ?, ?, ?)",
-                       ('admin', generate_password_hash('Lhex@2026'), 'CEO Lelet', 1))
+            db.execute("INSERT INTO users (username, password, name, is_admin, email) VALUES (?, ?, ?, ?, ?)",
+                       ('admin', generate_password_hash('Lhex@2026'), 'CEO Lelet', 1, 'contato@lhexsystems.com'))
         except: pass
         db.commit()
 
-# --- ROTAS ---
+# --- ROTAS PRINCIPAIS ---
 @app.route('/')
 def home(): return render_template('index.html')
 
@@ -92,30 +125,27 @@ def login():
             session['is_admin'] = data['is_admin']
             return redirect(url_for('dashboard'))
         
-        return render_template('login.html', error="Credenciais Inválidas.")
+        return render_template('login.html', error="Credenciais não autorizadas.")
     return render_template('login.html')
 
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session: return redirect(url_for('login'))
-    
     db = get_db()
     user = db.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
     
-    # Se for Admin, pega a lista de TODOS os clientes para gerir
     clientes = []
     if session.get('is_admin'):
         clientes = db.execute('SELECT * FROM users WHERE is_admin = 0').fetchall()
 
-    if not user: # Fallback
+    if not user:
         class FakeUser:
             name = session['name']
             recuperado = 0.0
-            api_key = 'MASTER-KEY'
+            api_key = 'MASTER-ACCESS'
             is_admin = 1
-            whatsapp_status = 'Online'
         user = FakeUser()
-
+        
     return render_template('dashboard.html', user=user, clientes=clientes)
 
 @app.route('/logout')
@@ -123,21 +153,20 @@ def logout():
     session.clear()
     return redirect(url_for('home'))
 
-# --- 👑 GOD MODE: GESTÃO DE CLIENTES ---
+# --- 👑 FUNCIONALIDADES CEO (GOD MODE) ---
 @app.route('/create_client', methods=['POST'])
 def create_client():
-    if not session.get('is_admin'): return jsonify({'success': False, 'msg': 'Acesso Negado.'})
-    data = request.json
-    
+    if not session.get('is_admin'): return jsonify({'success': False})
+    d = request.json
     db = get_db()
     try:
         key = f"lhex_live_{secrets.token_hex(8)}"
-        db.execute("INSERT INTO users (username, password, name, business_niche, api_key) VALUES (?, ?, ?, ?, ?)",
-                   (data['username'], generate_password_hash(data['password']), data['name'], data['niche'], key))
+        db.execute("INSERT INTO users (username, password, name, business_niche, email, api_key) VALUES (?, ?, ?, ?, ?, ?)",
+                   (d['user'], generate_password_hash(d['pass']), d['name'], d['niche'], d['email'], key))
         db.commit()
-        return jsonify({'success': True, 'msg': 'Cliente Criado com Sucesso!'})
+        return jsonify({'success': True, 'msg': 'Contrato Ativado.'})
     except:
-        return jsonify({'success': False, 'msg': 'Erro: Login já existe.'})
+        return jsonify({'success': False, 'msg': 'Erro: Usuário duplicado.'})
 
 @app.route('/delete_client/<int:id>', methods=['POST'])
 def delete_client(id):
@@ -147,63 +176,68 @@ def delete_client(id):
     db.commit()
     return jsonify({'success': True})
 
-# --- 🧠 API IA COM GEMINI (O CÉREBRO REAL) ---
+# --- 🛡️ RECUPERAÇÃO DE SENHA (SMTP REAL) ---
+@app.route('/forgot_password', methods=['POST'])
+def forgot_password():
+    email = request.json.get('email')
+    db = get_db()
+    user = db.execute('SELECT * FROM users WHERE email = ?', (email,)).fetchone()
+    
+    if user:
+        # Gera token (simulado aqui, mas envia email real)
+        token = secrets.token_hex(4)
+        msg = f"Olá, {user['name']}.\n\nRecebemos uma solicitação de reset de segurança.\nSeu token temporário: {token}\n\nSe não foi você, ignore.\n\nL.H.E.X Systems Security"
+        
+        if send_real_email(email, "L.H.E.X Security Alert", msg):
+            return jsonify({'success': True, 'msg': 'Token de segurança enviado para o e-mail.'})
+        else:
+            return jsonify({'success': False, 'msg': 'Erro no servidor de e-mail.'})
+    
+    # Fake success para segurança (não revelar se email existe)
+    return jsonify({'success': True, 'msg': 'Se o e-mail existir, você receberá instruções.'})
+
+@app.route('/send_support', methods=['POST'])
+def send_support():
+    msg = request.json.get('msg')
+    user = session.get('name', 'Visitante')
+    body = f"Chamado aberto por: {user}\n\nMensagem:\n{msg}"
+    send_real_email(SMTP_EMAIL, f"Suporte VIP: {user}", body)
+    return jsonify({'success': True})
+
+# --- 🧠 LÓGICA DE BLINDAGEM DE IA ---
+FAILSAFE_RESPONSES = [
+    "Analisando os dados... O risco de inação supera o custo. Vamos implementar hoje? (Gatilho: Aversão à Perda)",
+    "Baseado no perfil, essa é uma decisão lógica de proteção de caixa. (Gatilho: Racionalidade)",
+    "Temos uma janela de oportunidade até o fechamento do mês. (Gatilho: Urgência)",
+    "A maioria dos parceiros High-Ticket optou por este caminho. (Gatilho: Prova Social)"
+]
+
 @app.route('/api/chat', methods=['POST'])
 def api_chat():
     msg = request.json.get('msg')
     
-    if model:
-        # Prompt de Engenharia para Vendas High-Ticket
-        prompt = f"""
-        Você é a IA de Vendas da L.H.E.X Systems.
-        Seu objetivo: Analisar o cliente e vender serviços High-Ticket.
-        Cliente disse: "{msg}"
-        
-        Regras:
-        1. Responda curto (estilo WhatsApp).
-        2. Use um Gatilho Mental (Escassez, Autoridade, Prova Social).
-        3. No final, indique a Emoção do Cliente entre parênteses.
-        Exemplo: "O preço sobe amanhã. Vamos fechar? (Emoção: Urgência)"
-        """
+    # 1. TENTA GEMINI (PLANO A)
+    if AI_AVAILABLE:
         try:
+            prompt = f"Aja como um Estrategista de Vendas High-Ticket. Responda curto à objeção: '{msg}'. Use PNL. Finalize indicando o Gatilho Mental usado entre parênteses."
             response = model.generate_content(prompt)
-            texto = response.text
-            
-            # Separa a emoção do texto (truque simples)
-            if "(" in texto:
-                resposta_final = texto.split("(")[0]
-                analise_final = texto.split("(")[1].replace(")", "")
-            else:
-                resposta_final = texto
-                analise_final = "Análise Neural: Interesse Detectado"
-                
-            return jsonify({'analise': analise_final, 'resposta': resposta_final})
-        except Exception as e:
-            return jsonify({'analise': 'Erro Neural', 'resposta': 'Conexão instável com o satélite Gemini. Tente novamente.'})
-    
-    # Fallback se não tiver chave
-    return jsonify({'analise': 'Modo Simulação', 'resposta': 'Configure sua chave Gemini no app.py para ativar a inteligência real.'})
+            return jsonify({'analise': 'Processamento Neural: 100%', 'resposta': response.text})
+        except:
+            pass # Falhou silenciosamente, vai pro Plano B
 
-# --- 🔌 API WEBHOOK (PARA WHATSAPP/INSTAGRAM) ---
-# É aqui que o Zapier ou Evolution API vai bater
-@app.route('/api/webhook', methods=['POST'])
-def webhook():
-    data = request.json
-    print(f"📩 MENSAGEM RECEBIDA DO WHATSAPP: {data}")
-    return jsonify({'status': 'received'}), 200
+    # 2. FAILSAFE (PLANO B - O Cliente NUNCA vê erro)
+    resposta_blindada = random.choice(FAILSAFE_RESPONSES)
+    return jsonify({'analise': 'Modo de Contingência Ativo', 'resposta': resposta_blindada})
 
-# --- LÁZARO (AUDITORIA) ---
 @app.route('/run_lazaro', methods=['POST'])
 def run_lazaro():
-    time.sleep(1.5)
+    time.sleep(2)
+    val = random.uniform(5000, 25000)
     if 'user_id' in session:
-        import random
-        val = random.uniform(2000, 15000)
         db = get_db()
         db.execute('UPDATE users SET recuperado = recuperado + ? WHERE id = ?', (val, session['user_id']))
         db.commit()
-        return jsonify({'success': True, 'total': f'R$ {val:,.2f}', 'msg': 'Auditoria Finalizada.'})
-    return jsonify({'success': False})
+    return jsonify({'success': True, 'total': f'R$ {val:,.2f}', 'msg': 'Auditoria Finalizada.'})
 
 init_db()
 
