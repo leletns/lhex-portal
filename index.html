@@ -6,216 +6,241 @@
     <title>L.H.E.X Systems | High Ticket Intelligence</title>
     <meta name="description" content="Engenharia de Vendas Preditivas e Auditoria Algorítmica. Onde a IA encontra a intuição humana.">
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --jabuticaba: #240E26; /* O tom escuro dos olhos */
-            --jabuticaba-light: #4A2B4D;
-            --mint-green: #00DFA2; /* O verde do outline */
-            --bg-platinum: #F5F7FA;
-            --white: #FFFFFF;
-            --text-grey: #5A6A7E;
+            --jabuticaba: #240E26;
+            --mint-green: #00DFA2;
+            /* PALETA OFF-WHITE DE LUXO */
+            --bg-bone: #FAF9F6; /* Fundo principal quente */
+            --white-pure: #FFFFFF; /* Para destaque dos cards */
+            --text-grey: #6B7280;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
         
         body {
-            background-color: var(--bg-platinum);
+            background-color: var(--bg-bone);
             color: var(--jabuticaba);
             overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* ANIMAÇÕES DE ENTRADA */
+        /* ANIMAÇÕES DE ENTRADA SUAVES */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .reveal {
             opacity: 0;
-            animation: fadeInUp 1s ease forwards;
+            animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        /* NAV - ELEGÂNCIA TOTAL */
+        /* NAV - IMPECÁVEL */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 8%;
+            padding: 1.5rem 8%;
             position: absolute;
             width: 100%;
             top: 0;
             z-index: 10;
         }
 
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--jabuticaba);
-            letter-spacing: -1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo-icon {
-            color: var(--mint-green);
-            font-size: 2rem;
+        /* LOGO AUMENTADA E IMPONENTE */
+        .logo-img {
+            height: 85px; /* Aumentado significativamente */
+            width: auto;
+            filter: drop-shadow(0 4px 6px rgba(36, 14, 38, 0.1)); /* Sombra sutil na logo */
         }
 
-        /* HERO SECTION - ONDE SE VENDE O SONHO */
+        .login-btn {
+            text-decoration: none;
+            color: var(--jabuticaba);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            padding: 10px 20px;
+            border: 2px solid transparent;
+            transition: 0.3s;
+        }
+        
+        .login-btn:hover {
+            border-color: var(--jabuticaba);
+        }
+
+        /* HERO SECTION - O PALCO */
         .hero {
-            height: 100vh;
+            min-height: 95vh; /* Ajuste para telas grandes */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 8%;
-            background: linear-gradient(135deg, #FFFFFF 0%, #F0F2F5 100%);
-            position: relative;
+            padding: 100px 8% 0 8%; /* Mais espaço no topo por causa da logo grande */
+            /* Gradiente Off-White sutil */
+            background: linear-gradient(135deg, var(--bg-bone) 0%, #F2F0E6 100%);
         }
 
         .hero h1 {
-            font-size: 4.5rem;
-            line-height: 1.1;
+            font-size: 5rem;
+            line-height: 1.05;
             font-weight: 800;
             color: var(--jabuticaba);
-            max-width: 900px;
-            margin-bottom: 1.5rem;
+            max-width: 1000px;
+            margin-bottom: 2rem;
+            letter-spacing: -1.5px;
             animation-delay: 0.2s;
         }
 
         .hero h1 span {
-            color: var(--mint-green);
-            /* Gradiente no texto */
-            background: linear-gradient(90deg, var(--mint-green), #00A87A);
+            /* Gradiente Jabuticaba para Verde Menta no texto */
+            background: linear-gradient(90deg, var(--jabuticaba), var(--mint-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--text-grey);
-            max-width: 600px;
-            margin-bottom: 3rem;
+            max-width: 650px;
+            margin-bottom: 3.5rem;
             font-weight: 400;
             animation-delay: 0.4s;
         }
 
-        /* BOTÃO HIGH TICKET */
+        /* BOTÃO PREMIUM */
         .btn-primary {
             display: inline-block;
-            padding: 18px 45px;
+            padding: 20px 50px;
             background-color: var(--jabuticaba);
-            color: var(--white);
+            color: var(--white-pure);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            border-radius: 50px; /* Arredondado moderno */
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(36, 14, 38, 0.2);
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 15px 35px rgba(36, 14, 38, 0.25);
             animation-delay: 0.6s;
             width: fit-content;
+            border: none;
         }
 
         .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 223, 162, 0.4);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 223, 162, 0.3);
             background-color: var(--mint-green);
             color: var(--jabuticaba);
         }
 
-        /* SEÇÃO DE AUTORIDADE (PROTOCOLOS) */
+        /* SEÇÃO DE AUTORIDADE (CARDS FLUTUANTES) */
         .protocols {
-            padding: 6rem 8%;
-            background-color: var(--white);
+            padding: 8rem 8%;
+            background-color: var(--bg-bone);
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            max-width: 800px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--jabuticaba);
+            letter-spacing: -1px;
         }
 
         .grid-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
         }
 
         .card {
-            background: var(--bg-platinum);
-            padding: 3rem;
-            border-radius: 20px;
-            transition: 0.3s;
-            border: 1px solid transparent;
+            background: var(--white-pure); /* Branco puro para destacar do fundo off-white */
+            padding: 3.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            border: 1px solid rgba(36, 14, 38, 0.05);
+            position: relative;
+            top: 0;
         }
 
         .card:hover {
             border-color: var(--mint-green);
-            background: var(--white);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(36, 14, 38, 0.08);
+            top: -15px; /* Efeito de levitação suave */
         }
 
         .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
             color: var(--jabuticaba);
         }
 
         .card p {
             color: var(--text-grey);
-            font-size: 0.95rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
         }
 
         .badge {
             display: inline-block;
-            padding: 5px 12px;
-            background: rgba(0, 223, 162, 0.1);
-            color: #00A87A;
-            font-size: 0.8rem;
+            padding: 6px 14px;
+            background: rgba(36, 14, 38, 0.05);
+            color: var(--jabuticaba);
+            font-size: 0.75rem;
             font-weight: 800;
-            border-radius: 4px;
-            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
             text-transform: uppercase;
         }
 
         /* MOBILE OPTIMIZATION */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            nav { padding: 1.5rem 5%; }
-            .hero { padding: 0 5%; }
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3.5rem; }
+            .logo-img { height: 65px; }
         }
 
-        /* LOGO IMAGE STYLING */
-        .logo-img {
-            height: 50px; /* Ajuste conforme necessário */
-            width: auto;
+        @media (max-width: 768px) {
+            .hero { padding: 120px 5% 0 5%; text-align: left; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.1rem; }
+            nav { padding: 1.5rem 5%; }
+            .logo-img { height: 55px; }
+            .protocols { padding: 5rem 5%; }
+            .card { padding: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
     <nav class="reveal">
-        <div class="logo-text">
-            <img src="logo.png" alt="L.H.E.X" class="logo-img"> 
-        </div>
-        <a href="mailto:contato@lhexsystems.com" style="text-decoration: none; color: var(--jabuticaba); font-weight: 600;">ACCESS LOGIN</a>
+        <img src="logo.png" alt="L.H.E.X Systems" class="logo-img"> 
+        
+        <a href="mailto:contato@lhexsystems.com" class="login-btn">ACCESS LOGIN</a>
     </nav>
 
     <section class="hero">
-        <h1 class="reveal">A INTELIGÊNCIA QUE O MERCADO <br><span>NÃO ESPERAVA.</span></h1>
-        <p class="reveal">Somos a interseção entre Auditoria Financeira Algorítmica e Neuro-Engenharia de Vendas. Transformamos dados esquecidos em capital líquido imediato.</p>
+        <h1 class="reveal">A INTELIGÊNCIA QUE <br><span>O MERCADO NÃO ESPERAVA.</span></h1>
+        <p class="reveal">Interseção entre Auditoria Financeira Algorítmica e Neuro-Engenharia de Vendas. Transformamos dados esquecidos em capital líquido imediato.</p>
         
-        <a href="mailto:contato@lhexsystems.com?subject=Solicitação%20de%20Demo%20L.H.E.X&body=Olá,%20gostaria%20de%20ver%20o%20Neuro-Sniper%20em%20ação." class="btn-primary reveal">
-            INICIAR PROTOCOLO
-        </a>
+        <div class="reveal">
+            <a href="mailto:contato@lhexsystems.com?subject=Solicitação%20de%20Demo%20High-Ticket&body=Olá,%20gostaria%20de%20agendar%20uma%20demonstração%20dos%20protocolos%20L.H.E.X." class="btn-primary">
+                INICIAR PROTOCOLO
+            </a>
+        </div>
     </section>
 
     <section class="protocols">
-        <div style="margin-bottom: 3rem;">
+        <div class="section-header reveal">
             <span class="badge">Tecnologia Proprietária</span>
-            <h2 style="font-size: 2.5rem; color: var(--jabuticaba);">Sistemas Ativos</h2>
+            <h2>Sistemas Ativos.</h2>
         </div>
 
-        <div class="grid-cards">
+        <div class="grid-cards reveal">
             <div class="card">
                 <span class="badge">Vendas</span>
                 <h3>Neuro-Sniper™</h3>
@@ -225,19 +250,19 @@
             <div class="card">
                 <span class="badge">Financeiro</span>
                 <h3>Auditor Lázaro</h3>
-                <p>Auditoria forense automatizada que varre XMLs e extratos bancários de anos passados, identificando e recuperando receitas perdidas em glosas e falhas sistêmicas.</p>
+                <p>Auditoria forense automatizada que varre XMLs e extratos bancários de anos passados, identificando e recuperando receitas perdidas em glosas sistêmicas.</p>
             </div>
 
             <div class="card">
-                <span class="badge">Exclusividade</span>
+                <span class="badge">Infraestrutura</span>
                 <h3>Black Box API</h3>
-                <p>Infraestrutura soberana e criptografada. Seus dados não passam por terceiros. Servidores dedicados para clientes que exigem sigilo absoluto.</p>
+                <p>Soberania de dados. Infraestrutura dedicada e criptografada. Seus dados operam em ambiente isolado, sem dependência de plataformas de terceiros.</p>
             </div>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 2rem; background: var(--jabuticaba); color: rgba(255,255,255,0.4); font-size: 0.8rem;">
-        <p>&copy; 2026 L.H.E.X SYSTEMS. RIO DE JANEIRO / GLOBAL.</p>
+    <footer style="text-align: center; padding: 3rem; background: var(--bg-bone); color: var(--text-grey); font-size: 0.85rem; letter-spacing: 1px;">
+        <p style="font-weight: 600;">&copy; 2026 L.H.E.X SYSTEMS. RIO DE JANEIRO / GLOBAL.</p>
     </footer>
 
 </body>
