@@ -2,33 +2,90 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Acesso Restrito | L.H.E.X</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Acesso Seguro | L.H.E.X</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { background: #050505; color: #fff; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
-        .box { background: #111; padding: 40px; border-radius: 12px; border: 1px solid #333; text-align: center; width: 320px; position: relative; z-index: 10; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
-        input { width: 100%; padding: 12px; margin-bottom: 15px; background: #000; border: 1px solid #333; color: #fff; border-radius: 6px; box-sizing: border-box; transition: 0.3s; }
-        input:focus { border-color: #00DFA2; outline: none; box-shadow: 0 0 10px rgba(0, 223, 162, 0.2); }
-        button { width: 100%; padding: 12px; background: #00DFA2; color: #000; border: none; font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.3s; letter-spacing: 1px; }
-        button:hover { background: #fff; box-shadow: 0 0 20px rgba(255,255,255,0.4); }
-        .forgot { font-size: 0.7rem; color: #666; margin-top: 15px; cursor: pointer; text-decoration: underline; }
-        .error { color: #ff5f56; font-size: 0.8rem; margin-bottom: 10px; }
+        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
+        
+        .container { position: relative; width: 380px; }
+        
+        .login-box { background: #0a0a0a; padding: 40px; border-radius: 12px; border: 1px solid #222; text-align: center; box-shadow: 0 0 60px rgba(0,0,0,0.8); position: relative; z-index: 10; transition: 0.5s; }
+        .login-box:hover { border-color: #333; }
+        
+        .logo { width: 60px; margin-bottom: 20px; opacity: 0.8; }
+        
+        input { width: 100%; padding: 15px; margin-bottom: 15px; background: #050505; border: 1px solid #222; color: #fff; border-radius: 6px; box-sizing: border-box; font-size: 0.9rem; transition: 0.3s; }
+        input:focus { border-color: #00DFA2; outline: none; background: #080808; }
+        
+        button { width: 100%; padding: 15px; background: #00DFA2; color: #000; border: none; font-weight: 600; border-radius: 6px; cursor: pointer; transition: 0.3s; letter-spacing: 1px; }
+        button:hover { background: #fff; box-shadow: 0 0 25px rgba(0, 223, 162, 0.4); }
+        
+        .options { margin-top: 20px; display: flex; justify-content: space-between; font-size: 0.75rem; color: #666; }
+        .options span { cursor: pointer; transition: 0.3s; }
+        .options span:hover { color: #fff; text-decoration: underline; }
+
+        /* MODAL DE ESQUECI SENHA */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 20; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal { background: #111; padding: 40px; border: 1px solid #00DFA2; border-radius: 12px; width: 350px; text-align: center; }
+        .btn-outline { background: transparent; border: 1px solid #333; color: #fff; margin-top: 10px; }
+        .btn-outline:hover { border-color: #fff; background: transparent; color: #fff; box-shadow: none; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <img src="/static/logo.png" width="80" style="margin-bottom: 20px;">
-        <h2 style="margin: 0 0 20px 0; letter-spacing: 2px;">L.H.E.X</h2>
-        
-        {% if error %} <div class="error">⚠️ {{ error }}</div> {% endif %}
+    <div class="container">
+        <div class="login-box">
+            <img src="/static/logo.png" class="logo">
+            <h2 style="font-weight: 400; letter-spacing: 3px; margin: 0 0 30px 0;">L.H.E.X ACCESS</h2>
+            
+            {% if error %} <div style="color: #ff5f56; font-size: 0.8rem; margin-bottom: 15px;">{{ error }}</div> {% endif %}
 
-        <form method="POST">
-            <input type="text" name="username" placeholder="ID de Acesso" required>
-            <input type="password" name="password" placeholder="Chave de Segurança" required>
-            <button type="submit">ENTRAR NO SISTEMA</button>
-        </form>
+            <form method="POST">
+                <input type="text" name="username" placeholder="ID de Acesso" required>
+                <input type="password" name="password" placeholder="Chave de Segurança" required>
+                <button type="submit">AUTENTICAR</button>
+            </form>
 
-        <div class="forgot" onclick="alert('Entre em contato com o suporte L.H.E.X para resetar suas credenciais de segurança.')">Esqueci minha senha</div>
+            <div class="options">
+                <span onclick="openModal()">Esqueci minha senha</span>
+                <span onclick="alert('Suporte VIP: contato@lhexsystems.com')">Preciso de Ajuda</span>
+            </div>
+        </div>
     </div>
+
+    <div class="modal-overlay" id="resetModal">
+        <div class="modal">
+            <h3 style="color: #00DFA2; margin-top: 0;">REDEFINIÇÃO</h3>
+            <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px;">Digite seu e-mail cadastrado. Enviaremos um link seguro.</p>
+            <input type="email" id="resetEmail" placeholder="seu@email.com">
+            <button onclick="sendReset()">ENVIAR LINK</button>
+            <button class="btn-outline" onclick="closeModal()">CANCELAR</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() { document.getElementById('resetModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('resetModal').style.display = 'none'; }
+        
+        function sendReset() {
+            const email = document.getElementById('resetEmail').value;
+            if(!email) return alert("Por favor, digite um e-mail.");
+            
+            // Feedback visual
+            const btn = document.querySelector('#resetModal button');
+            btn.innerText = "ENVIANDO...";
+            
+            fetch('/forgot_password', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({email: email})
+            })
+            .then(r => r.json())
+            .then(d => {
+                alert(d.msg);
+                closeModal();
+                btn.innerText = "ENVIAR LINK";
+            });
+        }
+    </script>
 </body>
 </html>
