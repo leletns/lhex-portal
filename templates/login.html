@@ -5,25 +5,30 @@
     <title>Acesso Restrito | L.H.E.X</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { background: #050505; color: #fff; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .box { background: #111; padding: 40px; border-radius: 12px; border: 1px solid #333; text-align: center; width: 300px; box-shadow: 0 0 50px rgba(0, 223, 162, 0.1); }
-        input { width: 100%; padding: 12px; margin-bottom: 15px; background: #000; border: 1px solid #333; color: #fff; border-radius: 6px; box-sizing: border-box; }
-        input:focus { border-color: #00DFA2; outline: none; }
-        button { width: 100%; padding: 12px; background: #00DFA2; color: #000; border: none; font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.3s; }
-        button:hover { background: #fff; }
-        .error { color: #ff5f56; font-size: 0.8rem; margin-bottom: 15px; }
+        body { background: #050505; color: #fff; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
+        .box { background: #111; padding: 40px; border-radius: 12px; border: 1px solid #333; text-align: center; width: 320px; position: relative; z-index: 10; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
+        input { width: 100%; padding: 12px; margin-bottom: 15px; background: #000; border: 1px solid #333; color: #fff; border-radius: 6px; box-sizing: border-box; transition: 0.3s; }
+        input:focus { border-color: #00DFA2; outline: none; box-shadow: 0 0 10px rgba(0, 223, 162, 0.2); }
+        button { width: 100%; padding: 12px; background: #00DFA2; color: #000; border: none; font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.3s; letter-spacing: 1px; }
+        button:hover { background: #fff; box-shadow: 0 0 20px rgba(255,255,255,0.4); }
+        .forgot { font-size: 0.7rem; color: #666; margin-top: 15px; cursor: pointer; text-decoration: underline; }
+        .error { color: #ff5f56; font-size: 0.8rem; margin-bottom: 10px; }
     </style>
 </head>
 <body>
     <div class="box">
         <img src="/static/logo.png" width="80" style="margin-bottom: 20px;">
         <h2 style="margin: 0 0 20px 0; letter-spacing: 2px;">L.H.E.X</h2>
-        {% if error %}<div class="error">{{ error }}</div>{% endif %}
+        
+        {% if error %} <div class="error">⚠️ {{ error }}</div> {% endif %}
+
         <form method="POST">
-            <input type="text" name="username" placeholder="Usuário" required>
-            <input type="password" name="password" placeholder="Senha" required>
-            <button type="submit">ENTRAR</button>
+            <input type="text" name="username" placeholder="ID de Acesso" required>
+            <input type="password" name="password" placeholder="Chave de Segurança" required>
+            <button type="submit">ENTRAR NO SISTEMA</button>
         </form>
+
+        <div class="forgot" onclick="alert('Entre em contato com o suporte L.H.E.X para resetar suas credenciais de segurança.')">Esqueci minha senha</div>
     </div>
 </body>
 </html>
