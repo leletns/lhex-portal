@@ -3,54 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L.H.E.X | Intelligence</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <title>L.H.E.X | Future Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
         
-        /* BACKGROUND MATRIX */
-        .bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.2; background: repeating-linear-gradient(0deg, transparent, transparent 1px, #00DFA2 1px, transparent 2px); background-size: 100% 4px; animation: scroll 10s linear infinite; }
-        @keyframes scroll { from { background-position: 0 0; } to { background-position: 0 100%; } }
-
-        /* CONTEÚDO */
-        .container { text-align: center; z-index: 2; padding: 20px; }
-        .logo-img { width: 140px; animation: pulse 3s infinite; filter: drop-shadow(0 0 15px rgba(0, 223, 162, 0.5)); margin-bottom: 20px; }
+        /* HERO SECTION (A Primeira Impressão) */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; background: radial-gradient(circle at center, #111 0%, #000 90%); z-index: 2; }
         
-        h1 { font-size: 3.5rem; letter-spacing: 8px; margin: 0; background: linear-gradient(90deg, #fff, #00DFA2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .subtitle { font-family: 'JetBrains Mono'; color: #888; margin-top: 10px; font-size: 0.9rem; letter-spacing: 2px; }
-
-        /* LIVE FEED (DEMONSTRAÇÃO DE TEMPO REAL) */
-        .live-feed { margin-top: 40px; width: 300px; height: 40px; overflow: hidden; position: relative; border-left: 2px solid #00DFA2; padding-left: 15px; text-align: left; }
-        .feed-item { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #00DFA2; animation: slideUp 6s infinite; }
+        .logo-hero { width: 180px; filter: drop-shadow(0 0 30px rgba(0, 223, 162, 0.2)); animation: float 6s ease-in-out infinite; }
         
-        @keyframes slideUp { 
-            0% { transform: translateY(40px); opacity: 0; } 
-            10% { transform: translateY(0); opacity: 1; } 
-            90% { transform: translateY(0); opacity: 1; } 
-            100% { transform: translateY(-40px); opacity: 0; } 
-        }
+        h1 { font-size: 5rem; letter-spacing: 20px; margin: 30px 0; background: linear-gradient(90deg, #fff, #00DFA2, #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 200%; animation: shine 6s linear infinite; }
+        
+        .subtitle { font-family: 'JetBrains Mono'; color: #666; font-size: 0.9rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 50px; }
+        
+        .btn-start { padding: 18px 60px; background: transparent; border: 1px solid #00DFA2; color: #00DFA2; font-family: 'JetBrains Mono'; cursor: pointer; transition: 0.4s; letter-spacing: 2px; font-weight: bold; position: relative; overflow: hidden; }
+        .btn-start:hover { background: #00DFA2; color: #000; box-shadow: 0 0 50px rgba(0, 223, 162, 0.6); }
 
-        .btn-enter { margin-top: 50px; padding: 15px 40px; background: transparent; border: 1px solid #00DFA2; color: #00DFA2; font-family: 'JetBrains Mono'; cursor: pointer; transition: 0.3s; letter-spacing: 3px; font-weight: bold; }
-        .btn-enter:hover { background: #00DFA2; color: #000; box-shadow: 0 0 40px #00DFA2; }
+        .scroll-hint { position: absolute; bottom: 40px; color: #444; font-size: 0.7rem; letter-spacing: 2px; animation: bounce 2s infinite; }
 
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        /* CARDS SECTION (O Storytelling) */
+        .section-cards { padding: 120px 20px; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; position: relative; z-index: 2; }
+        
+        .glass-card { background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(10px); border: 1px solid #333; padding: 50px; border-radius: 20px; transition: 0.5s; position: relative; overflow: hidden; }
+        .glass-card:hover { transform: translateY(-15px); border-color: #00DFA2; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .glass-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); transition: 0.5s; }
+        .glass-card:hover::before { left: 100%; }
+
+        .icon-title { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+        .glass-card h3 { color: #fff; font-size: 1.5rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 15px; }
+        .glass-card p { color: #888; line-height: 1.8; font-size: 0.95rem; }
+
+        /* ANIMATIONS */
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes shine { 0% { background-position: 0%; } 100% { background-position: 200%; } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+
+        .grid-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px); background-size: 60px 60px; z-index: 0; pointer-events: none; }
     </style>
 </head>
 <body>
-    <div class="bg"></div>
-    
-    <div class="container">
-        <img src="/static/logo.png" class="logo-img" alt="LHEX">
+    <div class="grid-bg"></div>
+
+    <div class="hero">
+        <img src="/static/logo.png" class="logo-hero">
         <h1>L.H.E.X</h1>
-        <div class="subtitle">LÓGICA • HUMANIDADE • EXCELÊNCIA • X-FACTOR</div>
+        <div class="subtitle">AUDITORIA FORENSE & INTELIGÊNCIA ARTIFICIAL</div>
+        <button class="btn-start" onclick="window.location.href='/login'">ACESSAR O SISTEMA</button>
+        <div class="scroll-hint">DESCUBRA A TECNOLOGIA</div>
+    </div>
 
-        <div class="live-feed">
-            <div class="feed-item">● NEXUS AI: Conectado ao Satélite...</div>
-            <div class="feed-item" style="animation-delay: 2s;">● AUDITORIA LÁZARO: Processando R$ 14mi...</div>
-            <div class="feed-item" style="animation-delay: 4s;">● NEURO-SNIPER: Detectando Emoções...</div>
+    <div class="section-cards">
+        <div class="glass-card">
+            <span class="icon-title">🧬</span>
+            <h3>O GÊNESIS</h3>
+            <p>Nascemos de uma falha no mercado: dados são abundantes, mas insights são raros. A L.H.E.X funde auditoria matemática precisa com análise comportamental humana.</p>
         </div>
-
-        <button class="btn-enter" onclick="window.location.href='/login'">INICIAR SISTEMA</button>
+        <div class="glass-card">
+            <span class="icon-title">🚀</span>
+            <h3>O PROPÓSITO</h3>
+            <p>Recuperar o que é seu por direito. Nossa IA varre anos de transações financeiras para encontrar capital perdido e transformá-lo em fluxo de caixa imediato.</p>
+        </div>
+        <div class="glass-card">
+            <span class="icon-title">👁️</span>
+            <h3>POR QUE AGORA?</h3>
+            <p>O mercado não perdoa ineficiência. Quem não usa IA para auditar e vender está deixando dinheiro na mesa. Nós somos a sua vantagem competitiva injusta.</p>
+        </div>
+    </div>
+    
+    <div style="text-align: center; padding: 50px; color: #444; font-size: 0.7rem; font-family: 'JetBrains Mono';">
+        L.H.E.X SYSTEMS © 2026 • RIO DE JANEIRO • SILICON VALLEY MINDSET
     </div>
 </body>
 </html>
