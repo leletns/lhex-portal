@@ -2,35 +2,28 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acesso Restrito | L.H.E.X</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { background: #000; color: #fff; display: flex; height: 100vh; justify-content: center; align-items: center; font-family: 'Montserrat', sans-serif; margin: 0; overflow: hidden; }
-        .bg { position: absolute; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at center, #111 0%, #000 100%); }
-        .login-box { width: 350px; padding: 40px; border: 1px solid #222; background: rgba(10,10,10,0.8); backdrop-filter: blur(10px); text-align: center; position: relative; }
-        .login-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: #00DFA2; box-shadow: 0 0 15px #00DFA2; }
-        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 3px; margin-bottom: 30px; display: block; color: #fff; text-decoration: none; }
-        input { width: 100%; background: #050505; border: 1px solid #333; padding: 15px; color: #fff; margin-bottom: 15px; font-family: 'JetBrains Mono'; font-size: 0.9rem; outline: none; transition: 0.3s; }
-        input:focus { border-color: #00DFA2; box-shadow: 0 0 10px rgba(0, 223, 162, 0.1); }
-        .btn { width: 100%; background: #00DFA2; color: #000; padding: 15px; font-weight: 800; border: none; cursor: pointer; transition: 0.3s; letter-spacing: 1px; }
-        .btn:hover { background: #fff; }
-        .footer { margin-top: 20px; font-size: 0.7rem; color: #444; font-family: 'JetBrains Mono'; }
-        .icon { font-size: 2rem; margin-bottom: 1rem; color: #333; display: block; }
+        body { background: #050505; color: #fff; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .box { background: #111; padding: 40px; border-radius: 12px; border: 1px solid #333; text-align: center; width: 300px; box-shadow: 0 0 50px rgba(0, 223, 162, 0.1); }
+        input { width: 100%; padding: 12px; margin-bottom: 15px; background: #000; border: 1px solid #333; color: #fff; border-radius: 6px; box-sizing: border-box; }
+        input:focus { border-color: #00DFA2; outline: none; }
+        button { width: 100%; padding: 12px; background: #00DFA2; color: #000; border: none; font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #fff; }
+        .error { color: #ff5f56; font-size: 0.8rem; margin-bottom: 15px; }
     </style>
 </head>
 <body>
-    <div class="bg"></div>
-    <div class="login-box">
-        <span class="icon">🔒</span>
-        <a href="index.html" class="logo">L.H.E.X</a>
-        <form onsubmit="event.preventDefault(); alert('Acesso Negado. Credenciais inválidas ou IP não autorizado.');">
-            <input type="text" placeholder="ID CORPORATIVO">
-            <input type="password" placeholder="CHAVE DE ACESSO">
-            <button class="btn">ENTRAR NO SISTEMA</button>
+    <div class="box">
+        <img src="/static/logo.png" width="80" style="margin-bottom: 20px;">
+        <h2 style="margin: 0 0 20px 0; letter-spacing: 2px;">L.H.E.X</h2>
+        {% if error %}<div class="error">{{ error }}</div>{% endif %}
+        <form method="POST">
+            <input type="text" name="username" placeholder="Usuário" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <button type="submit">ENTRAR</button>
         </form>
-        <div class="footer">CONEXÃO SEGURA 256-BIT<br>IP LOGGED: <span id="ip">...</span></div>
     </div>
-    <script>document.getElementById('ip').innerText = (Math.floor(Math.random()*255)+"."+Math.floor(Math.random()*255)+".XXX.XXX");</script>
 </body>
 </html>
