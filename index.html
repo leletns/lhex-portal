@@ -3,194 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L.H.E.X Systems | Protocolo Lázaro Ativo</title>
-    <meta name="description" content="Sistema de Recuperação Algorítmica de Capital. A cada segundo, dinheiro esquecido volta para o caixa.">
+    <title>L.H.E.X Systems | A Ressurreição do Capital</title>
+    <meta name="description" content="Engenharia de Vendas Preditivas e Auditoria Algorítmica. Onde a IA encontra a intuição humana.">
 
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --neon-green: #00DFA2;
-            --dark-bg: #0a0a0a; /* Preto profundo */
-            --jabuticaba: #240E26;
+            --jabuticaba: #240E26; /* Roxo profundo */
+            --jabuticaba-glow: #4a1a52;
+            --dark-bg: #050505; /* Preto quase absoluto */
+            --card-bg: #0f0f0f;
             --text-main: #e0e0e0;
-            --terminal-bg: #111;
+            --text-dim: #888;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        html { scroll-behavior: smooth; }
+
         body {
             background-color: var(--dark-bg);
             color: var(--text-main);
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
-        /* FUNDO MATRIX SUTIL */
+        /* --- BACKGROUND MATRIX SUTIL --- */
         .bg-grid {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(0, 223, 162, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 223, 162, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(rgba(36, 14, 38, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(36, 14, 38, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
             z-index: -1;
             pointer-events: none;
         }
 
-        /* NAV CENTRALIZADA COM LOGO GIGANTE */
+        /* --- NAV --- */
         nav {
             display: flex;
             justify-content: center;
-            padding: 3rem 5%;
+            padding: 2rem 5%;
+            position: relative;
+            z-index: 10;
         }
 
         .logo-img {
-            height: 120px; /* GIGANTE */
+            height: 100px;
             width: auto;
-            filter: drop-shadow(0 0 15px rgba(0, 223, 162, 0.2));
+            filter: drop-shadow(0 0 20px rgba(0, 223, 162, 0.15));
+            transition: transform 0.3s;
         }
+        .logo-img:hover { transform: scale(1.02); }
 
-        /* HERO SECTION - O SUSPENSE */
+        /* --- HERO: O TERMINAL (O SHOW) --- */
         .hero {
-            flex: 1;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
             padding: 2rem 5%;
+            text-align: center;
         }
 
-        h1.title {
-            font-size: 2rem; /* Título menor, mais elegante */
-            font-weight: 300;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 1rem;
-            color: rgba(255,255,255,0.7);
-        }
-
-        h2.subtitle {
-            font-size: 1.2rem;
-            font-weight: 400;
+        .status-badge {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0, 223, 162, 0.1);
             color: var(--neon-green);
-            margin-bottom: 3rem;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 223, 162, 0.3);
             letter-spacing: 2px;
         }
 
-        /* O TERMINAL DE DINHEIRO (O SHOW) */
-        .terminal-container {
-            background: var(--terminal-bg);
+        /* TERMINAL ESTILO HACKER ELITE */
+        .terminal-window {
+            background: rgba(10, 10, 10, 0.95);
             border: 1px solid #333;
-            border-radius: 10px;
+            border-top: 2px solid var(--neon-green);
+            border-radius: 8px;
             width: 100%;
-            max-width: 800px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 223, 162, 0.1);
+            max-width: 750px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
             margin-bottom: 3rem;
+            overflow: hidden;
+            position: relative;
         }
 
         .terminal-header {
-            background: #222;
-            padding: 10px;
+            background: #151515;
+            padding: 8px 15px;
             display: flex;
+            align-items: center;
             gap: 8px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #222;
         }
 
-        .dot { width: 12px; height: 12px; border-radius: 50%; background: #555; }
-        .dot.red { background: #ff5f56; }
-        .dot.yellow { background: #ffbd2e; }
-        .dot.green { background: #27c93f; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+        .terminal-title { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #555; margin-left: 10px; }
 
-        .terminal-body {
+        .terminal-content {
             padding: 20px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            height: 250px;
-            overflow-y: auto;
-            color: #ccc;
+            font-size: 0.85rem;
+            height: 220px;
+            overflow-y: hidden; /* Auto scroll via JS */
             text-align: left;
+            color: #ccc;
+            position: relative;
+        }
+        
+        /* Scanline Effect */
+        .terminal-content::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            z-index: 2;
+            pointer-events: none;
         }
 
-        /* EFEITO DE DIGITAÇÃO */
-        .typing-line {
-            margin-bottom: 5px;
-            display: flex;
-        }
-        .typing-line span.green { color: var(--neon-green); }
-        .typing-line span.blue { color: #4D96FF; }
-        .typing-line span.money { color: var(--neon-green); font-weight: bold; }
+        .log-line { margin-bottom: 6px; display: flex; opacity: 0.9; }
+        .log-time { color: #555; margin-right: 10px; }
+        .log-success { color: var(--neon-green); }
+        .log-info { color: #4D96FF; }
+        .log-warn { color: #FFB800; }
 
-        /* CONTADOR GIGANTE */
-        .money-counter-box {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .money-label {
-            font-size: 1rem;
-            color: #888;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .money-value {
+        /* CONTADOR DE DINHEIRO */
+        .counter-wrapper { margin-bottom: 4rem; }
+        .counter-label { font-size: 0.9rem; letter-spacing: 3px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 0.5rem; }
+        .counter-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 700;
-            color: var(--neon-green);
-            text-shadow: 0 0 20px rgba(0, 223, 162, 0.3);
+            color: var(--white);
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+            transition: color 0.2s;
+        }
+        .counter-value.pulse { color: var(--neon-green); }
+
+        .scroll-indicator {
+            font-size: 0.8rem; color: var(--text-dim);
+            animation: bounce 2s infinite;
+            margin-top: auto;
+            padding-bottom: 2rem;
+        }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+
+        /* --- A EXPLICAÇÃO (O CONTEÚDO) --- */
+        .section-expl {
+            padding: 6rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        /* BOTÃO DE AÇÃO CYBERPUNK */
-        .btn-cyber {
-            padding: 18px 40px;
-            background: transparent;
-            border: 2px solid var(--neon-green);
-            color: var(--neon-green);
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: left;
+            border-left: 4px solid var(--neon-green);
+            padding-left: 20px;
+        }
+        .section-title span { color: var(--text-dim); font-weight: 300; display: block; font-size: 1rem; letter-spacing: 2px; margin-bottom: 5px; }
+
+        /* GRID DOS PRODUTOS */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, #0f0f0f, #141414);
+            border: 1px solid #222;
+            padding: 3rem;
+            border-radius: 12px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
         }
 
-        .btn-cyber:hover {
-            background: var(--neon-green);
-            color: var(--dark-bg);
-            box-shadow: 0 0 30px var(--neon-green);
+        .product-card:hover {
+            border-color: var(--jabuticaba-glow);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
+        
+        /* Glow effect on hover */
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+            transition: 0.5s;
+        }
+        .product-card:hover::before { left: 100%; }
 
-        /* FOOTER ASSINATURA */
-        footer {
-            padding: 2rem;
+        .card-icon { font-size: 2rem; margin-bottom: 1.5rem; color: var(--neon-green); }
+        .card-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; color: #fff; }
+        .card-desc { color: #aaa; line-height: 1.7; font-size: 1rem; margin-bottom: 2rem; }
+        
+        .highlight { color: var(--neon-green); font-weight: 600; }
+        .highlight-purple { color: #b666d2; font-weight: 600; }
+
+        /* MANIFESTO */
+        .manifesto {
             text-align: center;
+            padding: 8rem 5%;
+            background: linear-gradient(to bottom, var(--dark-bg), #080808);
+        }
+        .manifesto h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+        .manifesto p { max-width: 700px; margin: 0 auto; color: #888; font-size: 1.1rem; line-height: 1.8; }
+
+        /* FOOTER ELEGANTE */
+        footer {
+            border-top: 1px solid #111;
+            padding: 4rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-size: 0.9rem;
-            color: #666;
-            border-top: 1px solid #222;
-            font-family: 'JetBrains Mono', monospace;
+            color: #444;
+            background: #020202;
         }
 
-        footer a {
-            color: var(--neon-green);
-            text-decoration: none;
-        }
+        .footer-logo { font-weight: 800; color: #fff; letter-spacing: 1px; }
+        .contact-link { color: var(--neon-green); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .contact-link:hover { border-color: var(--neon-green); }
 
-        /* RESPONSIVO */
+        /* MOBILE */
         @media (max-width: 768px) {
-            .logo-img { height: 90px; }
-            h1.title { font-size: 1.5rem; }
-            .money-value { font-size: 2.5rem; }
-            .terminal-body { height: 200px; font-size: 0.8rem; }
+            .counter-value { font-size: 2.5rem; }
+            .section-title { font-size: 1.8rem; }
+            footer { flex-direction: column; gap: 20px; text-align: center; }
+            .logo-img { height: 70px; }
         }
+        
+        /* Reveal Animation Class */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
     </style>
 </head>
 <body>
@@ -198,97 +259,144 @@
     <div class="bg-grid"></div>
 
     <nav>
-        <img src="logo.png" alt="L.H.E.X Systems" class="logo-img"> 
+        <img src="logo.png" alt="L.H.E.X Systems" class="logo-img">
     </nav>
 
-    <section class="hero">
-        <h1 class="title">Protocolo Lázaro</h1>
-        <h2 class="subtitle">Status: <span style="color: var(--neon-green);">ATIVO & RECUPERANDO</span></h2>
-
-        <div class="terminal-container">
+    <header class="hero">
+        <div class="status-badge">● SISTEMA ONLINE</div>
+        
+        <div class="terminal-window">
             <div class="terminal-header">
-                <div class="dot red"></div>
-                <div class="dot yellow"></div>
-                <div class="dot green"></div>
+                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                <span class="terminal-title">user@lhex-server:~ sudo run protocol_lazarus</span>
             </div>
-            <div class="terminal-body" id="terminal-output">
+            <div class="terminal-content" id="terminal-output">
                 </div>
         </div>
 
-        <div class="money-counter-box">
-            <div class="money-label">Capital Recuperado (Tempo Real)</div>
-            <div class="money-value" id="money-counter">R$ 0,00</div>
+        <div class="counter-wrapper">
+            <div class="counter-label">Capital Recuperado Hoje</div>
+            <div class="counter-value" id="money-counter">R$ 0,00</div>
         </div>
-        
-        <a href="mailto:contato@lhexsystems.com?subject=Acesso%20ao%20Protocolo%20Lázaro&body=Quero%20conectar%20minha%20empresa%20ao%20sistema." class="btn-cyber">
-            > CONECTAR MINHA BASE
+
+        <div class="scroll-indicator">
+            ▼ DESCUBRA O PODER
+        </div>
+    </header>
+
+    <section class="section-expl">
+        <div class="section-title reveal">
+            <span>TECNOLOGIA PROPRIETÁRIA</span>
+            NÓS NÃO VENDEMOS SOFTWARE.<br>VENDEMOS LUCRO LÍQUIDO.
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card reveal">
+                <div class="card-icon">⚡</div>
+                <div class="card-title">Protocolo Lázaro</div>
+                <p class="card-desc">
+                    Por que "Lázaro"? Porque nós <span class="highlight">ressuscitamos dinheiro morto</span>. 
+                    <br><br>
+                    Clínicas e empresas perdem milhões anualmente em "glosas", erros de sistema e clientes que param de responder. O Protocolo Lázaro é uma auditoria forense automatizada que varre o passado, encontra onde o dinheiro ficou preso e o traz de volta para o caixa.
+                </p>
+            </div>
+
+            <div class="product-card reveal">
+                <div class="card-icon">🧠</div>
+                <div class="card-title">Neuro-Sniper™</div>
+                <p class="card-desc">
+                    A primeira IA de <span class="highlight-purple">Engenharia Social Ativa</span> do mercado.
+                    <br><br>
+                    A concorrência usa "Chatbots" que respondem perguntas. O Neuro-Sniper lê a mente do cliente. Ele analisa o perfil psicológico (DISC) baseado na escrita, identifica medos e desejos ocultos, e gera o script de venda perfeito para aquele indivíduo específico.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="manifesto reveal">
+        <h2>O Fim da Concorrência Amadora</h2>
+        <p>
+            Enquanto o mercado brinca de "atendimento humanizado", nós operamos com <strong style="color: #fff;">precisão cirúrgica</strong>.
+            Nossos sistemas não dormem, não pedem férias e não erram contas. 
+            A L.H.E.X Systems é a vantagem desleal que coloca sua empresa anos à frente no jogo.
+        </p>
+        <br><br>
+        <a href="mailto:contato@lhexsystems.com?subject=Acesso%20L.H.E.X&body=Quero%20uma%20demonstração%20do%20potencial%20da%20minha%20empresa." 
+           style="color: var(--neon-green); font-weight: 800; text-decoration: none; font-size: 1.2rem; border: 1px solid var(--neon-green); padding: 15px 30px; border-radius: 5px; transition: 0.3s; display: inline-block;">
+           > SOLICITAR ACESSO AGORA
         </a>
     </section>
 
     <footer>
-        2026 // L.H.E.X SYSTEMS // <a href="mailto:contato@lhexsystems.com">contato@lhexsystems.com</a>
+        <div class="footer-logo">L.H.E.X SYSTEMS // 2026</div>
+        <div>
+            <a href="mailto:contato@lhexsystems.com" class="contact-link">contato@lhexsystems.com</a>
+        </div>
+        <div style="color: #333;">RIO DE JANEIRO, BR</div>
     </footer>
 
     <script>
-        // Configuração do "Show"
-        let totalRecuperado = 0;
-        const moneyElement = document.getElementById('money-counter');
-        const terminalElement = document.getElementById('terminal-output');
+        // --- 1. LÓGICA DO TERMINAL E DINHEIRO ---
+        let capitalTotal = 0;
+        const terminal = document.getElementById('terminal-output');
+        const counter = document.getElementById('money-counter');
 
-        // Formata o dinheiro (R$)
-        const formatMoney = (value) => {
-            return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        };
-
-        // Frases do terminal (Parece que está trabalhando de verdade)
-        const logMessages = [
-            { type: 'blue', text: '[AUDITOR] Varrendo XMLs do período 2023-2024...' },
-            { type: 'green', text: '[SUCCESS] Glosa ID #99482 identificada. Valor: R$ 450,32.' },
-            { type: 'blue', text: '[NEURO] Analisando padrão de rejeição do convênio X...' },
-            { type: 'green', text: '[SUCCESS] Divergência de taxa encontrada. Valor: R$ 1.200,50.' },
-            { type: 'blue', text: '[AUDITOR] Cruzando dados bancários com faturamento...' },
-            { type: 'green', text: '[SUCCESS] Pagamento não processado (Erro 404). Valor: R$ 3.500,00.' },
-            { type: 'blue', text: '[SYSTEM] Otimizando rotas de cobrança...' },
-            { type: 'green', text: '[SUCCESS] Receita esquecida recuperada. Valor: R$ 890,15.' }
+        const logs = [
+            { t: 'green', msg: '[LÁZARO] Glosa recuperada: R$ 450,00 (Convênio Alpha)' },
+            { t: 'info', msg: '[NEURO] Analisando perfil do lead: "Cético / Analítico"...' },
+            { t: 'info', msg: '[NEURO] Gatilho mental acionado: Autoridade + Escassez.' },
+            { t: 'green', msg: '[NEURO] Venda High-Ticket fechada: R$ 5.000,00.' },
+            { t: 'warn', msg: '[AUDITOR] Divergência em taxa XML encontrada.' },
+            { t: 'green', msg: '[LÁZARO] Taxa corrigida e cobrada: R$ 1.200,50.' },
+            { t: 'info', msg: '[SYSTEM] Otimizando banco de dados...' },
+            { t: 'green', msg: '[LÁZARO] Receita retroativa identificada: R$ 890,00.' }
         ];
 
-        // Função que escreve no terminal
-        const addLog = (message) => {
-            const line = document.createElement('div');
-            line.className = 'typing-line';
+        function addLog(text, type) {
+            const row = document.createElement('div');
+            row.className = 'log-line';
+            const time = new Date().toLocaleTimeString('pt-BR');
             
-            const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            
-            if (message.type === 'green') {
-                // Extrai o valor em R$ da mensagem para somar no contador
-                const valorMatch = message.text.match(/R\$\s?([0-9.]+,[0-9]{2})/);
-                if (valorMatch) {
-                    let valorLimpo = valorMatch[1].replace('.', '').replace(',', '.');
-                    totalRecuperado += parseFloat(valorLimpo);
-                    moneyElement.innerText = formatMoney(totalRecuperado);
-                }
-                line.innerHTML = `<span style="color:#666">[${timestamp}]</span>&nbsp;<span class="green">>${message.text}</span>`;
-            } else {
-                line.innerHTML = `<span style="color:#666">[${timestamp}]</span>&nbsp;<span class="blue">${message.text}</span>`;
+            // Define a cor baseada no tipo
+            let colorClass = 'log-info';
+            if(type === 'green') colorClass = 'log-success';
+            if(type === 'warn') colorClass = 'log-warn';
+
+            row.innerHTML = `<span class="log-time">[${time}]</span> <span class="${colorClass}">${text}</span>`;
+            terminal.appendChild(row);
+            terminal.scrollTop = terminal.scrollHeight; // Auto scroll
+
+            // Se for dinheiro (green), soma no contador
+            if (type === 'green') {
+                const valor = parseFloat(text.match(/R\$\s([0-9.]+),/)[1].replace('.', ''));
+                capitalTotal += valor;
+                counter.innerText = capitalTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                
+                // Efeito visual no contador
+                counter.classList.add('pulse');
+                setTimeout(() => counter.classList.remove('pulse'), 200);
             }
-            
-            terminalElement.appendChild(line);
-            // Mantém o scroll sempre no final
-            terminalElement.scrollTop = terminalElement.scrollHeight;
-        };
+        }
 
-        // Inicia o "Show"
-        let msgIndex = 0;
-        
-        // Primeira mensagem logo de cara
-        addLog({ type: 'blue', text: 'INICIANDO PROTOCOLO LÁZARO V2.6...' });
-
-        // Loop infinito de dinheiro subindo
+        let i = 0;
         setInterval(() => {
-            addLog(logMessages[msgIndex]);
-            msgIndex = (msgIndex + 1) % logMessages.length;
-        }, 2500); // Uma nova linha a cada 2.5 segundos
+            addLog(logs[i].msg, logs[i].t);
+            i = (i + 1) % logs.length;
+        }, 2200); // Velocidade das mensagens
 
+        // --- 2. ANIMAÇÃO DE SCROLL (REVEAL) ---
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var j = 0; j < reveals.length; j++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[j].getBoundingClientRect().top;
+                var revealpoint = 150;
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[j].classList.add('active');
+                }
+            }
+        }
     </script>
 </body>
 </html>
