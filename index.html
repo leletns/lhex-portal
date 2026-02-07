@@ -3,24 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L.H.E.X Systems | A Ressurreição do Capital</title>
-    <meta name="description" content="Engenharia de Vendas Preditivas e Auditoria Algorítmica. Onde a IA encontra a intuição humana.">
+    <title>L.H.E.X Systems | Inteligência de Capital</title>
+    <meta name="description" content="Auditoria de recuperação e engenharia de vendas. Eu trago seu dinheiro de volta.">
 
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --neon-green: #00DFA2;
-            --jabuticaba: #240E26; /* Roxo profundo */
-            --jabuticaba-glow: #4a1a52;
-            --dark-bg: #050505; /* Preto quase absoluto */
-            --card-bg: #0f0f0f;
+            --jabuticaba: #240E26;
+            --dark-bg: #050505;
             --text-main: #e0e0e0;
             --text-dim: #888;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         html { scroll-behavior: smooth; }
 
         body {
@@ -28,9 +25,12 @@
             color: var(--text-main);
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* --- BACKGROUND MATRIX SUTIL --- */
+        /* --- BACKGROUND --- */
         .bg-grid {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -46,22 +46,17 @@
         nav {
             display: flex;
             justify-content: center;
-            padding: 2rem 5%;
-            position: relative;
-            z-index: 10;
+            padding: 2.5rem 5%;
         }
-
         .logo-img {
-            height: 100px;
+            height: 110px;
             width: auto;
-            filter: drop-shadow(0 0 20px rgba(0, 223, 162, 0.15));
-            transition: transform 0.3s;
+            filter: drop-shadow(0 0 25px rgba(0, 223, 162, 0.1));
         }
-        .logo-img:hover { transform: scale(1.02); }
 
-        /* --- HERO: O TERMINAL (O SHOW) --- */
+        /* --- HERO & TERMINAL --- */
         .hero {
-            min-height: 90vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -71,27 +66,26 @@
 
         .status-badge {
             font-family: 'JetBrains Mono', monospace;
-            background: rgba(0, 223, 162, 0.1);
+            background: rgba(0, 223, 162, 0.05);
             color: var(--neon-green);
-            padding: 5px 15px;
+            padding: 6px 14px;
             border-radius: 4px;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
-            border: 1px solid rgba(0, 223, 162, 0.3);
-            letter-spacing: 2px;
+            font-size: 0.75rem;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 223, 162, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* TERMINAL ESTILO HACKER ELITE */
         .terminal-window {
             background: rgba(10, 10, 10, 0.95);
             border: 1px solid #333;
             border-top: 2px solid var(--neon-green);
-            border-radius: 8px;
+            border-radius: 6px;
             width: 100%;
             max-width: 750px;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
             margin-bottom: 3rem;
-            overflow: hidden;
             position: relative;
         }
 
@@ -103,155 +97,126 @@
             gap: 8px;
             border-bottom: 1px solid #222;
         }
-
         .dot { width: 10px; height: 10px; border-radius: 50%; }
         .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
-        .terminal-title { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #555; margin-left: 10px; }
-
+        
         .terminal-content {
             padding: 20px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
-            height: 220px;
-            overflow-y: hidden; /* Auto scroll via JS */
+            height: 200px;
+            overflow: hidden;
             text-align: left;
-            color: #ccc;
-            position: relative;
+            color: #bbb; /* Texto levemente mais suave */
         }
-        
-        /* Scanline Effect */
-        .terminal-content::after {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
-            background-size: 100% 4px;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .log-line { margin-bottom: 6px; display: flex; opacity: 0.9; }
-        .log-time { color: #555; margin-right: 10px; }
+        .log-line { margin-bottom: 6px; display: flex; opacity: 0.95; }
         .log-success { color: var(--neon-green); }
-        .log-info { color: #4D96FF; }
-        .log-warn { color: #FFB800; }
+        .log-info { color: #5c9aff; }
 
-        /* CONTADOR DE DINHEIRO */
-        .counter-wrapper { margin-bottom: 4rem; }
-        .counter-label { font-size: 0.9rem; letter-spacing: 3px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 0.5rem; }
+        /* CONTADOR */
+        .counter-wrapper { margin-bottom: 5rem; }
+        .counter-label { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.8rem; font-weight: 400; }
         .counter-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 700;
-            color: var(--white);
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-            transition: color 0.2s;
+            color: var(--text-main);
+            letter-spacing: -2px;
         }
-        .counter-value.pulse { color: var(--neon-green); }
+        .counter-value.pulse { color: var(--neon-green); text-shadow: 0 0 30px rgba(0, 223, 162, 0.4); }
 
-        .scroll-indicator {
-            font-size: 0.8rem; color: var(--text-dim);
-            animation: bounce 2s infinite;
-            margin-top: auto;
-            padding-bottom: 2rem;
-        }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
-
-        /* --- A EXPLICAÇÃO (O CONTEÚDO) --- */
+        /* --- CONTENT SECTION --- */
         .section-expl {
-            padding: 6rem 5%;
-            max-width: 1200px;
+            padding: 2rem 5% 8rem 5%;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 3rem;
+        .section-headline {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 4rem;
             text-align: left;
-            border-left: 4px solid var(--neon-green);
-            padding-left: 20px;
+            line-height: 1.3;
+            color: #fff;
         }
-        .section-title span { color: var(--text-dim); font-weight: 300; display: block; font-size: 1rem; letter-spacing: 2px; margin-bottom: 5px; }
+        .section-headline strong { font-weight: 700; color: var(--neon-green); }
 
-        /* GRID DOS PRODUTOS */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
         }
 
         .product-card {
-            background: linear-gradient(145deg, #0f0f0f, #141414);
-            border: 1px solid #222;
-            padding: 3rem;
-            border-radius: 12px;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
+            /* Fundo mais limpo, sem gradientes exagerados */
+            background: #0a0a0a;
+            border-left: 1px solid #333;
+            padding: 1rem 1rem 1rem 2rem; /* Espaçamento focado na esquerda */
+            transition: 0.4s ease;
         }
+        .product-card:hover { border-left-color: var(--neon-green); transform: translateX(5px); }
 
-        .product-card:hover {
-            border-color: var(--jabuticaba-glow);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
+        .card-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 1.2rem; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .card-desc { color: #a0a0a0; line-height: 1.7; font-size: 0.95rem; font-weight: 300; }
         
-        /* Glow effect on hover */
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
-            transition: 0.5s;
-        }
-        .product-card:hover::before { left: 100%; }
+        /* Highlight sutil no texto */
+        .txt-light { color: #e0e0e0; font-weight: 500; }
 
-        .card-icon { font-size: 2rem; margin-bottom: 1.5rem; color: var(--neon-green); }
-        .card-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; color: #fff; }
-        .card-desc { color: #aaa; line-height: 1.7; font-size: 1rem; margin-bottom: 2rem; }
-        
-        .highlight { color: var(--neon-green); font-weight: 600; }
-        .highlight-purple { color: #b666d2; font-weight: 600; }
-
-        /* MANIFESTO */
-        .manifesto {
-            text-align: center;
-            padding: 8rem 5%;
-            background: linear-gradient(to bottom, var(--dark-bg), #080808);
-        }
-        .manifesto h2 { font-size: 2rem; margin-bottom: 1.5rem; }
-        .manifesto p { max-width: 700px; margin: 0 auto; color: #888; font-size: 1.1rem; line-height: 1.8; }
-
-        /* FOOTER ELEGANTE */
+        /* --- FOOTER INTERATIVO --- */
         footer {
-            border-top: 1px solid #111;
-            padding: 4rem 5%;
+            margin-top: auto;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: #020202;
+            padding: 2.5rem 5%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #555;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.9rem;
-            color: #444;
-            background: #020202;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .footer-logo { font-weight: 800; color: #fff; letter-spacing: 1px; }
-        .contact-link { color: var(--neon-green); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: 0.3s; }
-        .contact-link:hover { border-color: var(--neon-green); }
+        .footer-left { display: flex; align-items: center; gap: 15px; }
 
-        /* MOBILE */
+        .server-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+            transition: 0.3s;
+            cursor: default;
+        }
+        .status-dot {
+            width: 6px; height: 6px; background: var(--neon-green); border-radius: 50%;
+            box-shadow: 0 0 8px var(--neon-green);
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+        .contact-btn {
+            color: #ccc;
+            text-decoration: none;
+            transition: 0.3s;
+            border-bottom: 1px solid transparent;
+        }
+        .contact-btn:hover { color: var(--neon-green); border-bottom-color: var(--neon-green); }
+
+        .footer-right { text-align: right; }
+
         @media (max-width: 768px) {
+            footer { flex-direction: column; text-align: center; gap: 30px; }
+            .footer-right { text-align: center; }
             .counter-value { font-size: 2.5rem; }
-            .section-title { font-size: 1.8rem; }
-            footer { flex-direction: column; gap: 20px; text-align: center; }
-            .logo-img { height: 70px; }
+            .section-headline { font-size: 1.5rem; }
         }
-        
-        /* Reveal Animation Class */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
 
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
@@ -263,116 +228,94 @@
     </nav>
 
     <header class="hero">
-        <div class="status-badge">● SISTEMA ONLINE</div>
+        <div class="status-badge">Sistema Operacional</div>
         
         <div class="terminal-window">
             <div class="terminal-header">
                 <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                <span class="terminal-title">user@lhex-server:~ sudo run protocol_lazarus</span>
             </div>
-            <div class="terminal-content" id="terminal-output">
-                </div>
+            <div class="terminal-content" id="terminal-output"></div>
         </div>
 
         <div class="counter-wrapper">
-            <div class="counter-label">Capital Recuperado Hoje</div>
+            <div class="counter-label">Capital recuperado nas últimas 24h</div>
             <div class="counter-value" id="money-counter">R$ 0,00</div>
-        </div>
-
-        <div class="scroll-indicator">
-            ▼ DESCUBRA O PODER
         </div>
     </header>
 
     <section class="section-expl">
-        <div class="section-title reveal">
-            <span>TECNOLOGIA PROPRIETÁRIA</span>
-            NÓS NÃO VENDEMOS SOFTWARE.<br>VENDEMOS LUCRO LÍQUIDO.
+        <div class="section-headline reveal">
+            Eu não vendo software.<br>
+            Eu entrego <strong>lucro líquido.</strong>
         </div>
 
         <div class="products-grid">
             <div class="product-card reveal">
-                <div class="card-icon">⚡</div>
                 <div class="card-title">Protocolo Lázaro</div>
                 <p class="card-desc">
-                    Por que "Lázaro"? Porque nós <span class="highlight">ressuscitamos dinheiro morto</span>. 
-                    <br><br>
-                    Clínicas e empresas perdem milhões anualmente em "glosas", erros de sistema e clientes que param de responder. O Protocolo Lázaro é uma auditoria forense automatizada que varre o passado, encontra onde o dinheiro ficou preso e o traz de volta para o caixa.
+                    Auditoria forense que varre o passado da sua empresa. Eu encontro onde o dinheiro ficou preso — seja em glosas, erros de sistema ou falhas humanas — e trago de volta para o caixa. <span class="txt-light">Sem burocracia, apenas matemática.</span>
                 </p>
             </div>
 
             <div class="product-card reveal">
-                <div class="card-icon">🧠</div>
-                <div class="card-title">Neuro-Sniper™</div>
+                <div class="card-title">Neuro-Sniper</div>
                 <p class="card-desc">
-                    A primeira IA de <span class="highlight-purple">Engenharia Social Ativa</span> do mercado.
-                    <br><br>
-                    A concorrência usa "Chatbots" que respondem perguntas. O Neuro-Sniper lê a mente do cliente. Ele analisa o perfil psicológico (DISC) baseado na escrita, identifica medos e desejos ocultos, e gera o script de venda perfeito para aquele indivíduo específico.
+                    A maioria usa chatbots que irritam o cliente. Meu sistema lê o perfil comportamental de quem está do outro lado e cria a abordagem exata para fechar contratos de alto valor. <span class="txt-light">Não é atendimento, é conversão.</span>
                 </p>
             </div>
         </div>
     </section>
 
-    <section class="manifesto reveal">
-        <h2>O Fim da Concorrência Amadora</h2>
-        <p>
-            Enquanto o mercado brinca de "atendimento humanizado", nós operamos com <strong style="color: #fff;">precisão cirúrgica</strong>.
-            Nossos sistemas não dormem, não pedem férias e não erram contas. 
-            A L.H.E.X Systems é a vantagem desleal que coloca sua empresa anos à frente no jogo.
-        </p>
-        <br><br>
-        <a href="mailto:contato@lhexsystems.com?subject=Acesso%20L.H.E.X&body=Quero%20uma%20demonstração%20do%20potencial%20da%20minha%20empresa." 
-           style="color: var(--neon-green); font-weight: 800; text-decoration: none; font-size: 1.2rem; border: 1px solid var(--neon-green); padding: 15px 30px; border-radius: 5px; transition: 0.3s; display: inline-block;">
-           > SOLICITAR ACESSO AGORA
-        </a>
-    </section>
-
     <footer>
-        <div class="footer-logo">L.H.E.X SYSTEMS // 2026</div>
-        <div>
-            <a href="mailto:contato@lhexsystems.com" class="contact-link">contato@lhexsystems.com</a>
+        <div class="footer-left">
+            <div class="server-status">
+                <div class="status-dot"></div>
+                <span>Online</span>
+            </div>
+            <span id="clock" style="color: #444;">00:00:00</span>
         </div>
-        <div style="color: #333;">RIO DE JANEIRO, BR</div>
+
+        <div>
+            <a href="mailto:contato@lhexsystems.com" class="contact-btn">contato@lhexsystems.com</a>
+        </div>
+
+        <div class="footer-right">
+            <div>2026 L.H.E.X SYSTEMS</div>
+            <div style="color: #333; margin-top: 4px;">Rio de Janeiro</div>
+        </div>
     </footer>
 
     <script>
-        // --- 1. LÓGICA DO TERMINAL E DINHEIRO ---
+        // --- 1. TERMINAL LÓGICA ---
         let capitalTotal = 0;
         const terminal = document.getElementById('terminal-output');
         const counter = document.getElementById('money-counter');
 
+        // Logs mais técnicos e menos "vendedor"
         const logs = [
-            { t: 'green', msg: '[LÁZARO] Glosa recuperada: R$ 450,00 (Convênio Alpha)' },
-            { t: 'info', msg: '[NEURO] Analisando perfil do lead: "Cético / Analítico"...' },
-            { t: 'info', msg: '[NEURO] Gatilho mental acionado: Autoridade + Escassez.' },
-            { t: 'green', msg: '[NEURO] Venda High-Ticket fechada: R$ 5.000,00.' },
-            { t: 'warn', msg: '[AUDITOR] Divergência em taxa XML encontrada.' },
-            { t: 'green', msg: '[LÁZARO] Taxa corrigida e cobrada: R$ 1.200,50.' },
-            { t: 'info', msg: '[SYSTEM] Otimizando banco de dados...' },
-            { t: 'green', msg: '[LÁZARO] Receita retroativa identificada: R$ 890,00.' }
+            { t: 'green', msg: '> Glosa recuperada: R$ 450,00 (ID #9921)' },
+            { t: 'info', msg: '> Analisando perfil comportamental...' },
+            { t: 'info', msg: '> Gatilho de autoridade ativado.' },
+            { t: 'green', msg: '> Contrato fechado: R$ 5.000,00' },
+            { t: 'info', msg: '> Otimizando fluxo de caixa...' },
+            { t: 'green', msg: '> Receita retroativa: R$ 890,00' }
         ];
 
         function addLog(text, type) {
             const row = document.createElement('div');
             row.className = 'log-line';
-            const time = new Date().toLocaleTimeString('pt-BR');
-            
-            // Define a cor baseada no tipo
-            let colorClass = 'log-info';
-            if(type === 'green') colorClass = 'log-success';
-            if(type === 'warn') colorClass = 'log-warn';
+            // Hora sem segundos para ficar mais limpo
+            const time = new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+            let colorClass = type === 'green' ? 'log-success' : 'log-info';
 
-            row.innerHTML = `<span class="log-time">[${time}]</span> <span class="${colorClass}">${text}</span>`;
+            row.innerHTML = `<span style="color:#444; margin-right:12px">${time}</span> <span class="${colorClass}">${text}</span>`;
             terminal.appendChild(row);
-            terminal.scrollTop = terminal.scrollHeight; // Auto scroll
+            terminal.scrollTop = terminal.scrollHeight;
 
-            // Se for dinheiro (green), soma no contador
             if (type === 'green') {
                 const valor = parseFloat(text.match(/R\$\s([0-9.]+),/)[1].replace('.', ''));
                 capitalTotal += valor;
                 counter.innerText = capitalTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                
-                // Efeito visual no contador
                 counter.classList.add('pulse');
                 setTimeout(() => counter.classList.remove('pulse'), 200);
             }
@@ -382,21 +325,22 @@
         setInterval(() => {
             addLog(logs[i].msg, logs[i].t);
             i = (i + 1) % logs.length;
-        }, 2200); // Velocidade das mensagens
+        }, 2500);
 
-        // --- 2. ANIMAÇÃO DE SCROLL (REVEAL) ---
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var j = 0; j < reveals.length; j++) {
-                var windowheight = window.innerHeight;
-                var revealtop = reveals[j].getBoundingClientRect().top;
-                var revealpoint = 150;
-                if (revealtop < windowheight - revealpoint) {
-                    reveals[j].classList.add('active');
-                }
-            }
+        // --- 2. RELÓGIO ---
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString('pt-BR') + " BRT";
         }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // --- 3. SCROLL REVEAL ---
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.reveal').forEach(r => {
+                if(r.getBoundingClientRect().top < window.innerHeight - 80) r.classList.add('active');
+            });
+        });
     </script>
 </body>
 </html>
