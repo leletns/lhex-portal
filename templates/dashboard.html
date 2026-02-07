@@ -25,18 +25,22 @@
         .card-val { font-size: 2.5rem; font-weight: 800; color: #fff; }
         .neon-txt { color: var(--neon); text-shadow: 0 0 15px rgba(0, 223, 162, 0.3); }
 
-        /* INPUTS DO ADMIN */
+        /* TABELA DE GESTÃO */
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #222; font-size: 0.9rem; }
+        th { color: #888; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
+        tr:hover { background: #111; }
+        .btn-del { color: #ff5f56; cursor: pointer; font-weight: bold; border: none; background: none; }
+
         .admin-input { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; margin-bottom: 10px; border-radius: 6px; box-sizing: border-box; }
         .btn-action { background: var(--neon); color: #000; padding: 12px 30px; border: none; font-weight: bold; cursor: pointer; border-radius: 6px; width: 100%; transition: 0.3s; }
-        .btn-action:hover { background: #fff; }
-
+        
         /* CHAT */
-        .chat-box { height: 450px; background: #0a0a0a; border: 1px solid #333; border-radius: 12px; display: flex; flex-direction: column; }
+        .chat-box { height: 400px; background: #0a0a0a; border: 1px solid #333; border-radius: 12px; display: flex; flex-direction: column; }
         .msgs { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
         .bubble { max-width: 80%; padding: 12px 18px; border-radius: 12px; font-size: 0.9rem; line-height: 1.5; }
         .in { background: #222; align-self: flex-start; border-top-left-radius: 0; }
         .out { background: rgba(0, 223, 162, 0.1); border: 1px solid var(--neon); align-self: flex-end; border-top-right-radius: 0; color: #fff; }
-        .ai-typing { font-style: italic; color: #666; font-size: 0.8rem; margin-left: 10px; display: none; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -46,23 +50,24 @@
         <div class="logo" onclick="location.reload()">L.H.E.X</div>
         
         <div style="margin-bottom: 30px; padding: 15px; background: #111; border-radius: 8px;">
-            <div style="font-size: 0.7rem; color: #666;">USUÁRIO CONECTADO</div>
+            <div style="font-size: 0.7rem; color: #666;">USUÁRIO</div>
             <div style="font-weight: bold; color: #fff;">{{ user.name }}</div>
-            {% if user.is_admin %} <div style="color: var(--purple); font-size: 0.7rem; margin-top: 5px;">● ACESSO CEO</div> {% endif %}
+            {% if user.is_admin %} <div style="color: var(--purple); font-size: 0.7rem; margin-top: 5px;">● CEO MODE</div> {% endif %}
         </div>
 
         <div class="menu-item active" onclick="switchTab('home', this)">📊 Visão Geral</div>
         <div class="menu-item" onclick="switchTab('lazaro', this)">⚡ Protocolo Lázaro</div>
-        <div class="menu-item" onclick="switchTab('sniper', this)">🧠 Neuro-Sniper</div>
-        <div class="menu-item" onclick="switchTab('nexus', this)">🔌 Nexus API</div>
+        <div class="menu-item" onclick="switchTab('sniper', this)">🧠 Neuro-Sniper AI</div>
+        <div class="menu-item" onclick="switchTab('nexus', this)">🔌 Integrações</div>
         
         {% if user.is_admin %}
         <div class="menu-item" onclick="switchTab('admin', this)" style="border-left-color: var(--purple);">
-            👑 Gestão de Clientes <span class="admin-tag">CEO</span>
+            👑 Gestão de Clientes
         </div>
         {% endif %}
 
-        <div class="menu-item" style="margin-top: auto; color: #ff5f56;" onclick="window.location='/logout'">🚪 Sair</div>
+        <div class="menu-item" style="margin-top: auto;" onclick="window.location='mailto:contato@lhexsystems.com'">📩 Suporte VIP</div>
+        <div class="menu-item" style="color: #ff5f56;" onclick="window.location='/logout'">🚪 Sair</div>
     </div>
 
     <div class="main">
@@ -71,62 +76,85 @@
             <h2>Command Center</h2>
             <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                    <div class="card-label">CAPITAL RECUPERADO TOTAL</div>
+                    <div class="card-label">CAPITAL RECUPERADO</div>
                     <div class="card-val neon-txt">R$ {{ "{:,.2f}".format(user.recuperado).replace(',','X').replace('.',',').replace('X','.') }}</div>
                 </div>
-                <div style="text-align: right;">
-                    <div class="card-label">SERVIDORES</div>
-                    <div style="color: var(--neon); font-weight: bold;">● 100% ONLINE</div>
+                <div>
+                    <div class="card-label">STATUS WHATSAPP</div>
+                    <div style="color: var(--neon); font-weight: bold;">● {{ user.whatsapp_status }}</div>
                 </div>
             </div>
-            <div class="card" style="height: 350px;"><canvas id="chart"></canvas></div>
+            <div class="card" style="height: 300px;"><canvas id="chart"></canvas></div>
         </div>
 
         <div id="lazaro" class="tab-content">
-            <h2>Auditoria Forense (Upload)</h2>
+            <h2>Auditoria Forense</h2>
             <div class="card" style="border: 2px dashed #333; text-align: center; cursor: pointer; padding: 60px;" onclick="document.getElementById('file').click()">
                 <div style="font-size: 3rem; margin-bottom: 20px;">📂</div>
-                <h3>ARRASTE ARQUIVOS .CSV / .XLSX</h3>
-                <p style="color: #666;">Análise automática de fluxo de caixa.</p>
+                <h3>UPLOAD DE PLANILHA</h3>
+                <p style="color: #666;">Arraste aqui seus arquivos financeiros.</p>
                 <input type="file" id="file" hidden onchange="runLazaro()">
             </div>
         </div>
 
         <div id="sniper" class="tab-content">
-            <h2 style="color: var(--purple);">Neuro-Sniper Console</h2>
+            <h2 style="color: var(--purple);">Neuro-Sniper (Powered by Gemini)</h2>
             <div class="chat-box">
                 <div class="msgs" id="msgs">
-                    <div class="bubble in">Sistema L.H.E.X pronto. Qual a objeção do cliente?</div>
+                    <div class="bubble in">IA Conectada. Cole a mensagem do cliente aqui.</div>
                 </div>
-                <div class="ai-typing" id="typing">L.H.E.X digitando...</div>
                 <div style="padding: 15px; background: #111; display: flex; gap: 10px;">
-                    <input type="text" id="chatInput" class="admin-input" placeholder="Ex: Cliente achou caro..." style="margin: 0;" onkeypress="if(event.key==='Enter') sendChat()">
-                    <button class="btn-action" style="width: auto;" onclick="sendChat()">ENVIAR</button>
+                    <input type="text" id="chatInput" class="admin-input" placeholder="Mensagem do cliente..." style="margin: 0;" onkeypress="if(event.key==='Enter') sendChat()">
+                    <button class="btn-action" style="width: auto;" onclick="sendChat()">ANALISAR</button>
                 </div>
             </div>
             <div class="card" style="margin-top: 20px;">
-                <div class="card-label">RAIO-X EMOCIONAL</div>
-                <div id="analise-txt" style="color: #888; font-family: 'JetBrains Mono';">Aguardando dados...</div>
+                <div class="card-label">ANÁLISE NEURAL</div>
+                <div id="analise-txt" style="color: #888; font-family: 'JetBrains Mono';">Aguardando...</div>
             </div>
         </div>
 
         <div id="admin" class="tab-content">
-            <h2 style="color: var(--purple);">Gestão de Clientes (GOD MODE)</h2>
-            <div class="card" style="max-width: 500px;">
-                <div class="card-label">CADASTRAR NOVO CLIENTE</div>
-                <input type="text" id="cli_user" class="admin-input" placeholder="Login (Ex: dr_roberto)">
-                <input type="text" id="cli_pass" class="admin-input" placeholder="Senha Provisória">
-                <input type="text" id="cli_name" class="admin-input" placeholder="Nome Completo (Ex: Dr. Roberto)">
-                <input type="text" id="cli_niche" class="admin-input" placeholder="Nicho (Ex: Estética)">
+            <h2 style="color: var(--purple);">Gestão de Carteira</h2>
+            
+            <div class="card">
+                <div class="card-label">CLIENTES ATIVOS</div>
+                <table>
+                    <thead><tr><th>NOME</th><th>LOGIN</th><th>NICHO</th><th>RECUPERADO</th><th>AÇÃO</th></tr></thead>
+                    <tbody>
+                        {% for cli in clientes %}
+                        <tr>
+                            <td>{{ cli.name }}</td>
+                            <td>{{ cli.username }}</td>
+                            <td>{{ cli.business_niche }}</td>
+                            <td>R$ {{ "{:,.2f}".format(cli.recuperado) }}</td>
+                            <td><button class="btn-del" onclick="delClient({{ cli.id }})">EXCLUIR</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card" style="max-width: 400px;">
+                <div class="card-label">NOVO CONTRATO</div>
+                <input type="text" id="c_user" class="admin-input" placeholder="Login">
+                <input type="text" id="c_pass" class="admin-input" placeholder="Senha">
+                <input type="text" id="c_name" class="admin-input" placeholder="Nome do Doutor(a)">
+                <input type="text" id="c_niche" class="admin-input" placeholder="Nicho">
                 <button class="btn-action" onclick="createClient()">CRIAR ACESSO</button>
             </div>
         </div>
         
         <div id="nexus" class="tab-content">
-            <h2>Nexus API</h2>
+            <h2>Integração Omnichannel</h2>
             <div class="card">
-                <div class="card-label">SUA CHAVE</div>
-                <code>{{ user.api_key or 'Gere uma chave no painel admin' }}</code>
+                <div class="card-label">STATUS DA CONEXÃO</div>
+                <p>WhatsApp Business API: <span style="color: #ff5f56;">Aguardando QR Code</span></p>
+                <p>Instagram Direct: <span style="color: #ff5f56;">Aguardando Token</span></p>
+                <hr style="border-color: #222; margin: 20px 0;">
+                <div class="card-label">ENDPOINT WEBHOOK (Para TI)</div>
+                <code style="display: block; background: #000; padding: 10px; color: var(--neon);">https://lhexsystems.com/api/webhook</code>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">Configure este link no seu provedor (Evolution/Twilio) para receber mensagens.</p>
             </div>
         </div>
 
@@ -140,59 +168,52 @@
             el.classList.add('active');
         }
 
-        // CHAT INTELIGENTE (SEM REPETIÇÃO)
+        // CHAT COM GEMINI
         function sendChat() {
             const txt = document.getElementById('chatInput').value;
             if(!txt) return;
-            
             document.getElementById('msgs').innerHTML += `<div class="bubble out">${txt}</div>`;
             document.getElementById('chatInput').value = '';
-            document.getElementById('typing').style.display = 'block';
-            document.getElementById('msgs').scrollTop = document.getElementById('msgs').scrollHeight;
+            document.getElementById('analise-txt').innerText = "Gemini AI Processando...";
 
             fetch('/api/chat', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({msg: txt}) })
             .then(res => res.json())
             .then(data => {
-                document.getElementById('typing').style.display = 'none';
                 document.getElementById('analise-txt').innerText = data.analise;
                 document.getElementById('msgs').innerHTML += `<div class="bubble in" style="border-left: 3px solid var(--purple)">${data.resposta}</div>`;
-                document.getElementById('msgs').scrollTop = document.getElementById('msgs').scrollHeight;
+                document.getElementById('msgs').scrollTop = 9999;
             });
         }
 
-        // LÁZARO
+        // FUNÇÕES ADMIN
+        function createClient() {
+            const body = {
+                username: document.getElementById('c_user').value,
+                password: document.getElementById('c_pass').value,
+                name: document.getElementById('c_name').value,
+                niche: document.getElementById('c_niche').value
+            };
+            fetch('/create_client', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body) })
+            .then(r => r.json()).then(d => { alert(d.msg); location.reload(); });
+        }
+
+        function delClient(id) {
+            if(confirm('Tem certeza? Isso apagará os dados do cliente.')) {
+                fetch('/delete_client/'+id, { method: 'POST' }).then(() => location.reload());
+            }
+        }
+
         function runLazaro() {
-            alert("Iniciando varredura forense...");
             const fd = new FormData();
             fd.append('file', document.getElementById('file').files[0]);
-            fetch('/run_lazaro', { method: 'POST', body: fd }).then(r=>r.json()).then(d => {
-                alert(d.msg + " Valor: " + d.total);
-                location.reload();
-            });
+            fetch('/run_lazaro', { method: 'POST', body: fd }).then(r=>r.json()).then(d => { alert(d.msg); location.reload(); });
         }
 
-        // CRIAR CLIENTE (GOD MODE)
-        function createClient() {
-            const u = document.getElementById('cli_user').value;
-            const p = document.getElementById('cli_pass').value;
-            const n = document.getElementById('cli_name').value;
-            const ni = document.getElementById('cli_niche').value;
-            
-            fetch('/create_client', { 
-                method: 'POST', 
-                headers: {'Content-Type': 'application/json'}, 
-                body: JSON.stringify({username: u, password: p, name: n, niche: ni}) 
-            })
-            .then(r => r.json())
-            .then(d => alert(d.msg));
-        }
-
-        // GRÁFICO
         new Chart(document.getElementById('chart'), {
             type: 'line',
             data: {
                 labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-                datasets: [{ label: 'Performance', data: [12000, 19000, 15000, 25000, 32000, {{ user.recuperado }}], borderColor: '#00DFA2', backgroundColor: 'rgba(0,223,162,0.1)', fill: true }]
+                datasets: [{ label: 'Performance', data: [10000, 20000, 15000, 30000, 45000, {{ user.recuperado }}], borderColor: '#00DFA2', backgroundColor: 'rgba(0,223,162,0.1)', fill: true }]
             },
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: '#222' } }, y: { grid: { color: '#222' } } } }
         });
