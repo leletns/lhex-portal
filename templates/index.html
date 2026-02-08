@@ -3,138 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L.H.E.X | The Future of Intelligence</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+<meta property="og:title" content="L.H.E.X | Intelligence Systems">
+<meta property="og:description" content="Automação, Inteligência Artificial e Gestão High Ticket. O futuro da sua operação.">
+<meta property="og:image" content="{{ logo_url }}">
+<meta property="og:url" content="https://lhexsystems.com">
+<meta name="theme-color" content="#000000">
+
+<title>L.H.E.X | Future Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
 <style>
-    /* BASE */
-    body { background: #000; color: #fff; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
+    body { background: #000; color: #fff; font-family: 'Inter', sans-serif; margin: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
     
-    /* HERO SECTION */
-    .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; background: radial-gradient(circle at center, #111 0%, #000 70%); }
-    .hero h1 { font-size: 8rem; margin: 0; letter-spacing: -5px; background: linear-gradient(180deg, #fff, #444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: fadeUp 1.5s ease-out; }
-    .hero p { color: #888; letter-spacing: 8px; font-size: 1rem; text-transform: uppercase; margin-top: 10px; animation: fadeUp 2s ease-out; }
-    .hero .btn { margin-top: 60px; padding: 20px 80px; background: #fff; color: #000; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1rem; letter-spacing: 2px; transition: 0.5s; animation: fadeUp 2.5s ease-out; }
-    .hero .btn:hover { background: #00DFA2; box-shadow: 0 0 50px rgba(0, 223, 162, 0.5); transform: scale(1.05); }
-
-    /* ACRONYM SECTION (L.H.E.X) */
-    .section { padding: 100px 20px; max-width: 1000px; margin: 0 auto; }
-    .letter-box { display: flex; align-items: center; margin-bottom: 80px; opacity: 0; transform: translateY(50px); transition: 1s; }
-    .letter-box.visible { opacity: 1; transform: translateY(0); }
+    /* LOGO INTERATIVA */
+    .logo-container { margin-bottom: 40px; transition: 0.5s; cursor: pointer; position: relative; }
+    .logo-img { width: 150px; opacity: 0.9; transition: 0.5s; filter: drop-shadow(0 0 10px rgba(255,255,255,0.1)); }
     
-    .big-letter { font-size: 8rem; font-weight: 700; color: #111; margin-right: 40px; position: relative; -webkit-text-stroke: 1px #333; }
-    .big-letter::after { content: attr(data-letter); position: absolute; left: 0; color: #00DFA2; height: 0%; overflow: hidden; transition: 1s; }
-    .letter-box:hover .big-letter::after { height: 100%; }
+    .logo-container:hover .logo-img { transform: scale(1.1); filter: drop-shadow(0 0 30px rgba(0, 223, 162, 0.6)); opacity: 1; }
     
-    .content h3 { font-size: 2rem; margin: 0; color: #fff; }
-    .content p { color: #888; font-size: 1.1rem; line-height: 1.6; max-width: 500px; }
-
-    /* O QUE VENDEMOS */
-    .services { background: #050505; padding: 100px 20px; text-align: center; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 60px auto 0; }
-    .card { background: #0a0a0a; padding: 40px; border: 1px solid #222; border-radius: 20px; transition: 0.3s; }
-    .card:hover { border-color: #00DFA2; transform: translateY(-10px); }
-    .card i { font-size: 2rem; color: #00DFA2; margin-bottom: 20px; }
-    .card h4 { font-size: 1.5rem; margin: 0 0 10px 0; }
-    .card p { color: #666; font-size: 0.9rem; }
-
-    /* FOOTER */
-    footer { padding: 50px; text-align: center; border-top: 1px solid #111; color: #444; font-size: 0.8rem; }
-    footer a { color: #888; text-decoration: none; margin: 0 10px; transition: 0.3s; }
-    footer a:hover { color: #00DFA2; }
-
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+    h1 { font-size: 5rem; margin: 0; letter-spacing: -3px; background: linear-gradient(180deg, #fff, #444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    p { color: #666; letter-spacing: 5px; font-size: 0.9rem; text-transform: uppercase; margin-top: 10px; margin-bottom: 60px; }
+    
+    .btn { padding: 20px 70px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); color: #fff; border-radius: 50px; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; transition: 0.4s; backdrop-filter: blur(10px); }
+    .btn:hover { background: #fff; color: #000; box-shadow: 0 0 40px rgba(255,255,255,0.3); letter-spacing: 3px; }
+    
+    footer { position: absolute; bottom: 30px; font-size: 0.7rem; color: #333; }
 </style>
 </head>
 <body>
-
-    <div class="hero">
-        <img src="/static/logo.png" width="100" style="opacity:0.8; margin-bottom:30px">
-        <h1>L.H.E.X</h1>
-        <p>Intelligence Systems</p>
-        <a href="/login" class="btn">ENTRAR NO SISTEMA</a>
-        <div style="margin-top:20px">
-            <a href="#about" style="color:#444; text-decoration:none; font-size:2rem"><i class="fas fa-chevron-down"></i></a>
-        </div>
+    <div class="logo-container" onclick="this.classList.toggle('active')">
+        <img src="/static/logo.png" class="logo-img">
     </div>
-
-    <div id="about" class="section">
-        
-        <div class="letter-box">
-            <div class="big-letter" data-letter="L">L</div>
-            <div class="content">
-                <h3>LÓGICA (Logic)</h3>
-                <p>A Inteligência Artificial pura. Algoritmos de decisão que eliminam o erro humano e maximizam o lucro da sua operação clínica ou jurídica.</p>
-            </div>
-        </div>
-
-        <div class="letter-box">
-            <div class="big-letter" data-letter="H">H</div>
-            <div class="content">
-                <h3>HUMANIDADE (Humanity)</h3>
-                <p>A tecnologia serve às pessoas. Nosso SDR (Robô de Vendas) conversa com empatia no WhatsApp, criando conexão real antes da venda.</p>
-            </div>
-        </div>
-
-        <div class="letter-box">
-            <div class="big-letter" data-letter="E">E</div>
-            <div class="content">
-                <h3>EXPONENCIAL (Exponential)</h3>
-                <p>Escala sem limites. Enquanto você dorme, a L.H.E.X trabalha, prospecta, atende e fecha contratos. Crescimento geométrico.</p>
-            </div>
-        </div>
-
-        <div class="letter-box">
-            <div class="big-letter" data-letter="X">X</div>
-            <div class="content">
-                <h3>X-FACTOR (O Segredo)</h3>
-                <p>O que nos separa da concorrência. A união secreta entre Design de Elite, Copywriting Persuasivo e Automação Invisível.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="services">
-        <h2 style="font-size:3rem; margin-bottom:10px">O ECOSSISTEMA</h2>
-        <p style="color:#666">Nossas soluções para dominar o mercado.</p>
-        
-        <div class="grid">
-            <div class="card">
-                <i class="fas fa-brain"></i>
-                <h4>Clone Digital (IA)</h4>
-                <p>Gerador de conteúdo High Ticket. Textos e Imagens de luxo criados em segundos para seu Instagram.</p>
-            </div>
-            <div class="card">
-                <i class="fab fa-whatsapp"></i>
-                <h4>SDR Autônomo</h4>
-                <p>Atendimento via WhatsApp 24/7. O robô que qualifica o lead e agenda a consulta sozinho.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-search-dollar"></i>
-                <h4>Auditoria Financeira</h4>
-                <p>Análise de dados bancários e recuperação de impostos através de varredura algorítmica.</p>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>L.H.E.X SYSTEMS © 2026 • RIO DE JANEIRO</p>
-        <div style="margin-top:20px">
-            <a href="mailto:{{ email }}">SUPORTE TÉCNICO</a>
-            <a href="/login">ÁREA DO CLIENTE</a>
-        </div>
-    </footer>
-
-    <script>
-        // Animação ao Rolar (Scroll Reveal)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.3 });
-
-        document.querySelectorAll('.letter-box').forEach(el => observer.observe(el));
-    </script>
+    
+    <h1>L.H.E.X</h1>
+    <p>Intelligence Systems</p>
+    
+    <a href="/login" class="btn">ACESSAR PAINEL</a>
+    
+    <footer>SECURED BY L.H.E.X ARCHITECTURE</footer>
 </body>
 </html>
