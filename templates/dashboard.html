@@ -1,88 +1,138 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8"><title>L.H.E.X | Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8"><title>L.H.E.X | Command Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <style>
-    body { background: #000; color: #fff; font-family: 'Inter', sans-serif; display: flex; height: 100vh; margin: 0; overflow: hidden; }
-    .sidebar { width: 260px; background: #050505; border-right: 1px solid #111; padding: 30px 20px; display: flex; flex-direction: column; }
-    .main { flex: 1; padding: 40px; overflow-y: auto; background: radial-gradient(circle at top right, #111, #000); }
-    .card { background: rgba(20,20,20,0.6); border: 1px solid #222; padding: 30px; border-radius: 16px; margin-bottom: 25px; backdrop-filter: blur(10px); }
-    input, select, textarea { background: #080808; border: 1px solid #333; color: #fff; padding: 15px; width: 100%; border-radius: 10px; box-sizing: border-box; font-family: 'Inter'; font-size: 0.9rem; transition: 0.3s; }
-    input:focus, textarea:focus { border-color: #00DFA2; outline: none; }
-    button { background: #00DFA2; color: #000; padding: 15px; border: none; font-weight: bold; width: 100%; cursor: pointer; border-radius: 10px; font-size: 1rem; transition: 0.3s; margin-top: 10px; }
-    button:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 223, 162, 0.2); }
-    h2 { font-size: 1.5rem; margin-top: 0; }
-    .status { font-size: 0.8rem; padding: 5px 12px; border-radius: 20px; background: #111; border: 1px solid #333; display: inline-block; margin-top: auto; }
+    body { background: #050505; color: #fff; font-family: 'Inter', sans-serif; display: flex; height: 100vh; margin: 0; overflow: hidden; }
+    
+    /* SIDEBAR DE LUXO */
+    .sidebar { width: 260px; background: #000; border-right: 1px solid #1a1a1a; padding: 30px 20px; display: flex; flex-direction: column; z-index: 2; }
+    .logo { font-size: 1.5rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 50px; color: #fff; display: flex; align-items: center; gap: 10px; }
+    .menu-item { padding: 15px; color: #666; cursor: pointer; border-radius: 10px; transition: 0.3s; display: flex; align-items: center; gap: 10px; font-size: 0.9rem; }
+    .menu-item:hover, .menu-item.active { background: #111; color: #fff; }
+    .menu-item.active i { color: #00DFA2; }
+    
+    /* ÁREA PRINCIPAL */
+    .main { flex: 1; padding: 40px; overflow-y: auto; background: radial-gradient(circle at top right, #111 0%, #000 100%); position: relative; }
+    
+    /* CARTÕES DE VIDRO */
+    .card { background: rgba(20,20,20,0.7); border: 1px solid #333; padding: 30px; border-radius: 16px; margin-bottom: 25px; backdrop-filter: blur(20px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: 0.3s; }
+    .card:hover { border-color: #555; }
+    
+    input, select, textarea { background: #0a0a0a; border: 1px solid #333; color: #fff; padding: 15px; width: 100%; border-radius: 10px; box-sizing: border-box; font-family: 'Inter'; font-size: 0.9rem; transition: 0.3s; outline: none; }
+    input:focus, select:focus, textarea:focus { border-color: #00DFA2; background: #111; }
+    
+    /* BOTÃO NEON */
+    .btn-main { background: #fff; color: #000; padding: 15px; border: none; font-weight: bold; width: 100%; cursor: pointer; border-radius: 10px; font-size: 0.9rem; transition: 0.3s; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; }
+    .btn-main:hover { background: #00DFA2; box-shadow: 0 0 30px rgba(0, 223, 162, 0.4); transform: translateY(-2px); }
+    
+    /* TERMINAL DE IA (O TRUQUE VISUAL) */
+    .ai-terminal { font-family: 'Courier New', monospace; color: #00DFA2; font-size: 0.8rem; margin-top: 15px; display: none; }
+    .blink { animation: blink 1s infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* BOTÃO SUPORTE */
+    .btn-support { margin-top: auto; background: #111; color: #888; border: 1px solid #333; padding: 10px; border-radius: 8px; text-align: center; text-decoration: none; font-size: 0.8rem; transition: 0.3s; display: block; }
+    .btn-support:hover { border-color: #fff; color: #fff; }
 </style>
 </head>
 <body>
 
 <div class="sidebar">
-    <div style="font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; color: #fff; margin-bottom: 40px;">L.H.E.X</div>
-    <div style="color: #666; font-size: 0.8rem; margin-bottom: 5px;">USUÁRIO</div>
-    <div style="color: #fff; font-weight: 600; margin-bottom: 30px;">{{ name }}</div>
+    <div class="logo"><i class="fas fa-cube" style="color:#00DFA2"></i> L.H.E.X</div>
     
-    <div style="color: #00DFA2; background: #111; padding: 12px; border-radius: 8px; margin-bottom: 10px; font-size: 0.9rem;">🎨 SOCIAL MEDIA IA</div>
-    <div style="color: #666; padding: 12px; font-size: 0.9rem;">🤖 SDR WHATSAPP</div>
+    <div class="menu-item active"><i class="fas fa-brain"></i> Social Intelligence</div>
+    <div class="menu-item"><i class="fas fa-robot"></i> SDR WhatsApp</div>
+    <div class="menu-item"><i class="fas fa-chart-line"></i> Analytics</div>
     
-    <div class="status">SISTEMA: {{ status }}</div>
-    <a href="/logout" style="color: #444; text-decoration: none; font-size: 0.8rem; margin-top: 20px;">SAIR</a>
+    <a href="mailto:{{ email }}" class="btn-support">
+        <i class="fas fa-headset"></i> SUPORTE VIP
+    </a>
+    <a href="/logout" style="color: #444; font-size: 0.8rem; text-decoration: none; text-align: center; margin-top: 15px;">SAIR</a>
 </div>
 
 <div class="main">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h1 style="font-size: 2rem; margin: 0;">Painel de Controle</h1>
+        <div style="font-size: 0.8rem; color: #666;">STATUS SERVIDOR: {{ status }}</div>
+    </div>
+
     <div class="card">
-        <h2 style="color: #00DFA2;">Criar Conteúdo High Ticket</h2>
-        <p style="color: #888; margin-bottom: 20px;">Utilize a IA Generativa para criar posts virais com imagens exclusivas.</p>
+        <h2 style="color: #fff; font-size: 1.2rem; margin-top: 0;"><i class="fas fa-magic" style="color:#00DFA2; margin-right:10px"></i> Criar Conteúdo High Ticket</h2>
+        <p style="color: #888; font-size: 0.9rem; margin-bottom: 25px;">Utilize nossa Rede Neural para gerar copy persuasiva e imagens exclusivas em 8k.</p>
         
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
             <div>
-                <label style="color:#666; font-size:0.8rem">TEMA DO POST</label>
-                <input id="tema" placeholder="Ex: Harmonização Facial, Direito Trabalhista...">
+                <label style="color:#666; font-size:0.7rem; margin-bottom: 5px; display:block">TEMA DO CONTEÚDO</label>
+                <input id="tema" placeholder="Ex: Harmonização Facial, Investimentos, Direito...">
             </div>
             <div>
-                <label style="color:#666; font-size:0.8rem">TOM DE VOZ</label>
+                <label style="color:#666; font-size:0.7rem; margin-bottom: 5px; display:block">INTENÇÃO</label>
                 <select id="tom">
-                    <option>💎 Luxuoso & Autoritário</option>
-                    <option>🔥 Vendas & Urgência</option>
-                    <option>💡 Educativo & Técnico</option>
+                    <option>💎 Luxo & Autoridade</option>
+                    <option>🔥 Venda Agressiva</option>
+                    <option>💡 Educativo</option>
                 </select>
             </div>
         </div>
-        <button onclick="gerar()" id="btnG">GERAR CONTEÚDO ✨</button>
+        
+        <button onclick="gerar()" id="btnG" class="btn-main">INICIAR GERAÇÃO</button>
+        
+        <div id="terminal" class="ai-terminal">
+            > Conectando ao servidor neural...<br>
+            > Analisando 1.5 milhão de tendências...<br>
+            > Gerando imagem fotorrealista (Flux Model)...<br>
+            > <span class="blink">_</span>
+        </div>
     </div>
 
-    <div class="card" id="resultado" style="display:none; animation: fadeIn 0.5s;">
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:30px">
+    <div class="card" id="resultado" style="display:none;">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:30px;">
             <div>
-                <h3 style="margin-top:0">Imagem Gerada (Pollinations)</h3>
-                <img id="imgRes" src="" style="width:100%; border-radius:10px; border:1px solid #333">
+                <h3 style="margin-top:0; font-size:1rem; color:#00DFA2">IMAGEM EXCLUSIVA</h3>
+                <img id="imgRes" src="" style="width:100%; border-radius:10px; border:1px solid #333; margin-top: 10px;">
             </div>
             <div>
-                <h3 style="margin-top:0">Legenda (Gemini)</h3>
+                <h3 style="margin-top:0; font-size:1rem; color:#00DFA2">LEGENDA OTIMIZADA</h3>
                 <textarea id="txtRes" rows="12"></textarea>
-                <button onclick="copiar()" style="background:#fff; color:#000">COPIAR TEXTO</button>
+                <button onclick="copiar()" style="background:#222; color:#fff; padding:10px; border:1px solid #444; width:100%; border-radius:8px; cursor:pointer; margin-top:10px">COPIAR TEXTO</button>
             </div>
         </div>
     </div>
 
     <div class="card">
-        <h3>📲 Conectar WhatsApp Business</h3>
-        <p style="color:#888">Escaneie o QR Code para ativar o SDR Automático.</p>
-        <button onclick="conectar()" style="background:#222; color:#fff; border:1px solid #444; width:auto; padding:10px 30px;">GERAR QR CODE</button>
-        <br>
-        <img id="qrCode" src="" style="display:none; width:200px; margin-top:20px; border: 5px solid #fff;">
+        <h2 style="font-size: 1.2rem; margin-top: 0;"><i class="fab fa-whatsapp" style="color:#00DFA2; margin-right:10px"></i> Conexão SDR</h2>
+        <div style="display: flex; gap: 20px; align-items: center;">
+            <div style="flex: 1;">
+                <p style="color: #888; font-size: 0.9rem;">Escaneie para ativar o robô de vendas no seu WhatsApp Business.</p>
+                <button onclick="conectar()" style="background:#111; color:#fff; border:1px solid #333; padding:10px 20px; border-radius:8px; cursor:pointer;">GERAR QR CODE</button>
+            </div>
+            <div id="qrArea" style="display: none;">
+                <img id="qrCode" src="" style="width:150px; border: 5px solid #fff; border-radius: 10px;">
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
 function gerar(){
-    const b = document.getElementById('btnG'); b.innerText = "A INTELIGÊNCIA ESTÁ CRIANDO... 🧠"; b.style.opacity = "0.7";
+    const b = document.getElementById('btnG');
+    const term = document.getElementById('terminal');
+    
+    // EFEITO VISUAL DE IA PENSANDO
+    b.style.display = 'none';
+    term.style.display = 'block';
+    
     fetch('/api/gerar', {
-        method:'POST', headers:{'Content-Type':'application/json'},
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
         body:JSON.stringify({tema:document.getElementById('tema').value, tom:document.getElementById('tom').value})
     }).then(r=>r.json()).then(d=>{
-        b.innerText = "GERAR CONTEÚDO ✨"; b.style.opacity = "1";
+        b.style.display = 'block';
+        term.style.display = 'none';
+        
         if(d.success){
             document.getElementById('resultado').style.display='block';
             document.getElementById('imgRes').src=d.imagem;
@@ -91,14 +141,20 @@ function gerar(){
         } else { alert("Erro: "+d.erro); }
     })
 }
+
 function conectar(){
     fetch('/api/connect_zap', {method:'POST'}).then(r=>r.json()).then(d=>{
-        if(d.qr){ document.getElementById('qrCode').src=d.qr; document.getElementById('qrCode').style.display='block'; }
-        else { alert("Erro ao conectar WhatsApp. Verifique o servidor."); }
+        if(d.qr){
+            document.getElementById('qrArea').style.display='block';
+            document.getElementById('qrCode').src=d.qr;
+        } else { alert("Erro ao conectar."); }
     })
 }
+
 function copiar(){
-    document.getElementById('txtRes').select(); document.execCommand('copy'); alert("Texto copiado!");
+    document.getElementById('txtRes').select();
+    document.execCommand('copy');
+    alert("Copiado para a área de transferência.");
 }
 </script>
 </body>
