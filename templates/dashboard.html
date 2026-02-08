@@ -1,249 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Command Center | L.H.E.X</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        :root { --neon: #00DFA2; --dark: #050505; --card: #0f0f0f; --border: #222; }
-        body { background: var(--dark); color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
-        
-        .sidebar { width: 260px; background: #000; border-right: 1px solid var(--border); padding: 25px; display: flex; flex-direction: column; }
-        .logo-box { text-align: center; margin-bottom: 30px; cursor: pointer; }
-        .logo-box img { width: 45px; }
-        
-        .nav-item { padding: 12px; cursor: pointer; color: #666; border-radius: 6px; margin-bottom: 5px; font-weight: 500; display: flex; align-items: center; gap: 10px; transition: 0.2s; font-size: 0.85rem; }
-        .nav-item:hover, .nav-item.active { background: #111; color: #fff; border-left: 3px solid var(--neon); }
-        .nav-item i { width: 18px; }
-
-        .main { flex: 1; padding: 40px; overflow-y: auto; background: #080808; }
-        .tab-content { display: none; animation: fade 0.3s; }
-        .tab-content.active { display: block; }
-        @keyframes fade { from{opacity:0} to{opacity:1} }
-
-        .card { background: var(--card); border: 1px solid var(--border); padding: 25px; border-radius: 8px; margin-bottom: 20px; }
-        .card-title { font-size: 0.7rem; color: #555; font-family: 'JetBrains Mono'; margin-bottom: 10px; text-transform: uppercase; }
-        .big-val { font-size: 2rem; font-weight: 700; color: #fff; }
-        .neon-txt { color: var(--neon); }
-
-        /* TABELA */
-        table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; color: #555; font-size: 0.7rem; padding: 10px; border-bottom: 1px solid #222; }
-        td { padding: 15px 10px; border-bottom: 1px solid #1a1a1a; font-size: 0.85rem; color: #ccc; }
-        
-        .input-stark { width: 100%; background: #000; border: 1px solid #333; padding: 12px; color: #fff; margin-bottom: 10px; border-radius: 4px; }
-        .btn-stark { width: 100%; background: var(--neon); color: #000; border: none; padding: 12px; font-weight: bold; cursor: pointer; border-radius: 4px; }
-
-        /* QR CODE AREA */
-        .qr-area { text-align: center; padding: 40px; display: none; }
-        .qr-img { border: 5px solid #fff; border-radius: 10px; }
-        .status-badge { padding: 5px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
-        .status-off { background: #222; color: #666; }
-        .status-on { background: rgba(0,223,162,0.1); color: var(--neon); border: 1px solid var(--neon); }
-
-        /* SUPORTE */
-        .support-modal { position: fixed; bottom: 80px; right: 30px; width: 300px; background: #111; border: 1px solid #333; padding: 20px; border-radius: 12px; display: none; z-index: 100; box-shadow: 0 10px 50px rgba(0,0,0,0.8); }
-        .fab { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: var(--neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 100; box-shadow: 0 0 20px rgba(0,223,162,0.3); }
-    </style>
+<meta charset="UTF-8"><title>L.H.E.X | Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    body { background: #000; color: #fff; font-family: 'Inter', sans-serif; display: flex; height: 100vh; margin: 0; overflow: hidden; }
+    .sidebar { width: 260px; background: #050505; border-right: 1px solid #111; padding: 30px 20px; display: flex; flex-direction: column; }
+    .main { flex: 1; padding: 40px; overflow-y: auto; background: radial-gradient(circle at top right, #111, #000); }
+    .card { background: rgba(20,20,20,0.6); border: 1px solid #222; padding: 30px; border-radius: 16px; margin-bottom: 25px; backdrop-filter: blur(10px); }
+    input, select, textarea { background: #080808; border: 1px solid #333; color: #fff; padding: 15px; width: 100%; border-radius: 10px; box-sizing: border-box; font-family: 'Inter'; font-size: 0.9rem; transition: 0.3s; }
+    input:focus, textarea:focus { border-color: #00DFA2; outline: none; }
+    button { background: #00DFA2; color: #000; padding: 15px; border: none; font-weight: bold; width: 100%; cursor: pointer; border-radius: 10px; font-size: 1rem; transition: 0.3s; margin-top: 10px; }
+    button:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 223, 162, 0.2); }
+    h2 { font-size: 1.5rem; margin-top: 0; }
+    .status { font-size: 0.8rem; padding: 5px 12px; border-radius: 20px; background: #111; border: 1px solid #333; display: inline-block; margin-top: auto; }
+</style>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="logo-box" onclick="location.reload()"><img src="/static/logo.png"></div>
-        <div style="padding: 0 10px 30px 10px;">
-            <div style="font-size: 0.65rem; color: #444;">OPERADOR</div>
-            <div style="font-weight: 700;">{{ user.name }}</div>
-        </div>
-        <div class="nav-item active" onclick="tab('home', this)"><i data-lucide="layout-dashboard"></i> Visão Geral</div>
-        <div class="nav-item" onclick="tab('lazaro', this)"><i data-lucide="file-search"></i> Auditoria Lázaro</div>
-        <div class="nav-item" onclick="tab('nexus', this)"><i data-lucide="smartphone"></i> Conexão WhatsApp</div>
-        <div class="nav-item" onclick="tab('sniper', this)"><i data-lucide="brain-circuit"></i> Neuro-Sniper AI</div>
-        {% if user.is_admin %}
-        <div class="nav-item" onclick="tab('admin', this)" style="color: #b666d2;"><i data-lucide="shield-alert"></i> Gestão CEO</div>
-        {% endif %}
-        <div class="nav-item" style="margin-top: auto; color: #ff5f56;" onclick="window.location='/logout'"><i data-lucide="log-out"></i> Sair</div>
-    </div>
 
-    <div class="main">
-        <div id="home" class="tab-content active">
-            <h2>COMMAND CENTER</h2>
-            <div style="display: flex; gap: 20px;">
-                <div class="card" style="flex: 1;">
-                    <div class="card-title">RECUPERADO</div>
-                    <div class="big-val neon-txt">R$ {{ "{:,.2f}".format(user.recuperado).replace(',','X').replace('.',',').replace('X','.') }}</div>
-                </div>
-                <div class="card" style="flex: 1;">
-                    <div class="card-title">STATUS WHATSAPP</div>
-                    <div style="margin-top: 5px;">
-                        {% if 'Conectado' in user.whatsapp_status %}
-                        <span class="status-badge status-on">● ONLINE</span>
-                        {% else %}
-                        <span class="status-badge status-off">● DESCONECTADO</span>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            <div class="card" style="height: 400px;"><canvas id="chart"></canvas></div>
-        </div>
+<div class="sidebar">
+    <div style="font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; color: #fff; margin-bottom: 40px;">L.H.E.X</div>
+    <div style="color: #666; font-size: 0.8rem; margin-bottom: 5px;">USUÁRIO</div>
+    <div style="color: #fff; font-weight: 600; margin-bottom: 30px;">{{ name }}</div>
+    
+    <div style="color: #00DFA2; background: #111; padding: 12px; border-radius: 8px; margin-bottom: 10px; font-size: 0.9rem;">🎨 SOCIAL MEDIA IA</div>
+    <div style="color: #666; padding: 12px; font-size: 0.9rem;">🤖 SDR WHATSAPP</div>
+    
+    <div class="status">SISTEMA: {{ status }}</div>
+    <a href="/logout" style="color: #444; text-decoration: none; font-size: 0.8rem; margin-top: 20px;">SAIR</a>
+</div>
 
-        <div id="lazaro" class="tab-content">
-            <h2>AUDITORIA FINANCEIRA</h2>
-            <div class="card" style="text-align: center; padding: 60px; cursor: pointer; border: 1px dashed #333;" onclick="document.getElementById('file').click()">
-                <i data-lucide="upload-cloud" style="width: 40px; margin-bottom: 20px;"></i>
-                <h3>UPLOAD DE PLANILHA</h3>
-                <p style="color: #666; font-size: 0.8rem;">.XLSX, .CSV, .OFX</p>
-                <input type="file" id="file" hidden onchange="runLazaro()">
-            </div>
-        </div>
-
-        <div id="nexus" class="tab-content">
-            <h2>CONEXÃO WHATSAPP BUSINESS</h2>
-            <div class="card">
-                <div class="card-title">CONFIGURAÇÃO DA INSTÂNCIA</div>
-                <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px;">Escaneie o QR Code para vincular o Neuro-Sniper ao seu WhatsApp.</p>
-                
-                <div id="start-area">
-                    <button class="btn-stark" style="width: 200px;" onclick="genQR()">GERAR QR CODE</button>
-                </div>
-
-                <div id="qr-display" class="qr-area">
-                    <div class="card-title">ESCANEIE AGORA</div>
-                    <img id="qr-img" src="" width="200" class="qr-img">
-                    <p style="color: var(--neon); margin-top: 15px; font-size: 0.8rem;">Aguardando leitura...</p>
-                </div>
-                
-                <div id="connected-msg" style="display: none; text-align: center; padding: 40px;">
-                    <i data-lucide="check-circle" style="color: var(--neon); width: 50px; height: 50px;"></i>
-                    <h3 style="color: #fff;">DISPOSITIVO PAREADO</h3>
-                    <p style="color: #666;">O L.H.E.X agora está monitorando suas conversas.</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="sniper" class="tab-content">
-            <h2 style="color: #b666d2;">NEURO-SNIPER AI</h2>
-            <div class="card" style="height: 500px; display: flex; flex-direction: column; padding: 0;">
-                <div id="chatLog" style="flex: 1; padding: 20px; overflow-y: auto; background: #0a0a0a;">
-                    <div style="background: #1a1a1a; padding: 10px; border-radius: 6px; display: inline-block; color: #888; font-size: 0.85rem;">Sistema pronto. Cole a mensagem do cliente.</div>
-                </div>
-                <div style="padding: 20px; background: #111; border-top: 1px solid #222; display: flex; gap: 10px;">
-                    <input type="text" id="chatInput" class="input-stark" placeholder="Mensagem..." style="margin: 0;" onkeypress="if(event.key==='Enter') sendChat()">
-                    <button class="btn-stark" style="width: auto; padding: 0 30px;" onclick="sendChat()">ANALISAR</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="admin" class="tab-content">
-            <h2 style="color: #b666d2;">GESTÃO CEO</h2>
-            <div class="card">
-                <table>
-                    <thead><tr><th>CLIENTE</th><th>EMAIL</th><th>RECUPERADO</th><th>AÇÃO</th></tr></thead>
-                    <tbody>
-                        {% for cli in clientes %}
-                        <tr>
-                            <td>{{ cli.name }}<br><span style="font-size:0.7rem; color:#555">{{ cli.username }}</span></td>
-                            <td>{{ cli.email }}</td>
-                            <td>R$ {{ "{:,.2f}".format(cli.recuperado) }}</td>
-                            <td><i data-lucide="trash-2" style="width: 16px; color: #ff5f56; cursor: pointer;" onclick="delClient({{ cli.id }})"></i></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div class="card" style="max-width: 400px;">
-                <div class="card-title">NOVO CLIENTE</div>
-                <input type="text" id="n_user" class="input-stark" placeholder="Login">
-                <input type="text" id="n_pass" class="input-stark" placeholder="Senha">
-                <input type="text" id="n_name" class="input-stark" placeholder="Nome">
-                <input type="email" id="n_email" class="input-stark" placeholder="Email">
-                <button class="btn-stark" onclick="createClient()">CADASTRAR</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="fab" onclick="toggleSup()"><i data-lucide="life-buoy"></i></div>
-    <div class="support-modal" id="supWin">
-        <h4 style="margin: 0 0 10px 0;">Suporte VIP</h4>
-        <textarea id="supMsg" class="input-stark" style="height: 80px;" placeholder="Problema..."></textarea>
-        <button class="btn-stark" onclick="sendTicket()">ENVIAR</button>
-    </div>
-
-    <script>
-        lucide.createIcons();
-
-        function tab(id, el) {
-            document.querySelectorAll('.tab-content').forEach(d => d.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(m => m.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            el.classList.add('active');
-        }
-
-        // WHATSAPP FLOW
-        function genQR() {
-            document.getElementById('start-area').style.display = 'none';
-            document.getElementById('qr-display').style.display = 'block';
-            
-            fetch('/connect_whatsapp', {method: 'POST'})
-            .then(r => r.json())
-            .then(d => {
-                document.getElementById('qr-img').src = d.qr_code;
-                // Simula conexão após 5 segundos
-                setTimeout(() => {
-                    fetch('/check_connection', {method: 'POST'})
-                    .then(r => r.json())
-                    .then(() => {
-                        document.getElementById('qr-display').style.display = 'none';
-                        document.getElementById('connected-msg').style.display = 'block';
-                    });
-                }, 8000);
-            });
-        }
-
-        function sendChat() {
-            const txt = document.getElementById('chatInput').value;
-            if(!txt) return;
-            const log = document.getElementById('chatLog');
-            log.innerHTML += `<div style="background: #222; padding: 10px; border-radius: 6px; margin-bottom: 10px;">${txt}</div>`;
-            document.getElementById('chatInput').value = '';
-            
-            fetch('/api/chat', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({msg: txt}) })
-            .then(r => r.json()).then(d => {
-                log.innerHTML += `<div style="background: rgba(0, 223, 162, 0.1); border: 1px solid var(--neon); padding: 10px; border-radius: 6px; margin-bottom: 10px;">
-                    <div style="font-size: 0.7rem; color: var(--neon); margin-bottom: 5px;">${d.analise}</div>${d.resposta}
-                </div>`;
-                log.scrollTop = 9999;
-            });
-        }
-
-        function runLazaro() {
-            const fd = new FormData();
-            fd.append('file', document.getElementById('file').files[0]);
-            fetch('/run_lazaro', { method: 'POST', body: fd }).then(r=>r.json()).then(d => { alert(d.msg + " Total: " + d.total); location.reload(); });
-        }
-
-        function createClient() {
-            const b = { username: document.getElementById('n_user').value, password: document.getElementById('n_pass').value, name: document.getElementById('n_name').value, email: document.getElementById('n_email').value, niche: "Geral" };
-            fetch('/create_client', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(b) })
-            .then(r => r.json()).then(d => { alert(d.msg); location.reload(); });
-        }
-
-        function toggleSup() { const w = document.getElementById('supWin'); w.style.display = w.style.display == 'block' ? 'none' : 'block'; }
+<div class="main">
+    <div class="card">
+        <h2 style="color: #00DFA2;">Criar Conteúdo High Ticket</h2>
+        <p style="color: #888; margin-bottom: 20px;">Utilize a IA Generativa para criar posts virais com imagens exclusivas.</p>
         
-        function sendTicket() {
-            const msg = document.getElementById('supMsg').value;
-            fetch('/send_support', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({msg:msg})})
-            .then(() => { alert('Enviado! Verifique seu e-mail.'); toggleSup(); });
-        }
-        
-        function delClient(id) { if(confirm('Excluir?')) fetch('/delete_client/'+id, {method:'POST'}).then(()=>location.reload()); }
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <label style="color:#666; font-size:0.8rem">TEMA DO POST</label>
+                <input id="tema" placeholder="Ex: Harmonização Facial, Direito Trabalhista...">
+            </div>
+            <div>
+                <label style="color:#666; font-size:0.8rem">TOM DE VOZ</label>
+                <select id="tom">
+                    <option>💎 Luxuoso & Autoritário</option>
+                    <option>🔥 Vendas & Urgência</option>
+                    <option>💡 Educativo & Técnico</option>
+                </select>
+            </div>
+        </div>
+        <button onclick="gerar()" id="btnG">GERAR CONTEÚDO ✨</button>
+    </div>
 
-        new Chart(document.getElementById('chart'), {
-            type: 'line',
-            data: { labels: ['S', 'T', 'Q', 'Q', 'S', 'S'], datasets: [{ label: 'Performance', data: [10000, 22000, 15000, 30000, 42000, {{ user.recuperado }}], borderColor: '#00DFA2', backgroundColor: 'rgba(0,223,162,0.05)', fill: true, tension: 0.4 }] },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: '#1a1a1a' } }, y: { grid: { color: '#1a1a1a' } } } }
-        });
-    </script>
+    <div class="card" id="resultado" style="display:none; animation: fadeIn 0.5s;">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:30px">
+            <div>
+                <h3 style="margin-top:0">Imagem Gerada (Pollinations)</h3>
+                <img id="imgRes" src="" style="width:100%; border-radius:10px; border:1px solid #333">
+            </div>
+            <div>
+                <h3 style="margin-top:0">Legenda (Gemini)</h3>
+                <textarea id="txtRes" rows="12"></textarea>
+                <button onclick="copiar()" style="background:#fff; color:#000">COPIAR TEXTO</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>📲 Conectar WhatsApp Business</h3>
+        <p style="color:#888">Escaneie o QR Code para ativar o SDR Automático.</p>
+        <button onclick="conectar()" style="background:#222; color:#fff; border:1px solid #444; width:auto; padding:10px 30px;">GERAR QR CODE</button>
+        <br>
+        <img id="qrCode" src="" style="display:none; width:200px; margin-top:20px; border: 5px solid #fff;">
+    </div>
+</div>
+
+<script>
+function gerar(){
+    const b = document.getElementById('btnG'); b.innerText = "A INTELIGÊNCIA ESTÁ CRIANDO... 🧠"; b.style.opacity = "0.7";
+    fetch('/api/gerar', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({tema:document.getElementById('tema').value, tom:document.getElementById('tom').value})
+    }).then(r=>r.json()).then(d=>{
+        b.innerText = "GERAR CONTEÚDO ✨"; b.style.opacity = "1";
+        if(d.success){
+            document.getElementById('resultado').style.display='block';
+            document.getElementById('imgRes').src=d.imagem;
+            document.getElementById('txtRes').value=d.conteudo;
+            document.getElementById('resultado').scrollIntoView({behavior:"smooth"});
+        } else { alert("Erro: "+d.erro); }
+    })
+}
+function conectar(){
+    fetch('/api/connect_zap', {method:'POST'}).then(r=>r.json()).then(d=>{
+        if(d.qr){ document.getElementById('qrCode').src=d.qr; document.getElementById('qrCode').style.display='block'; }
+        else { alert("Erro ao conectar WhatsApp. Verifique o servidor."); }
+    })
+}
+function copiar(){
+    document.getElementById('txtRes').select(); document.execCommand('copy'); alert("Texto copiado!");
+}
+</script>
 </body>
 </html>
