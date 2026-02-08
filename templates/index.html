@@ -1,60 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L.H.E.X | Intelligence</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-    <style>
-        body { background-color: #050505; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
-        
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: radial-gradient(circle at center, #111 0%, #000 100%); }
-        .logo-img { width: 140px; margin-bottom: 20px; filter: drop-shadow(0 0 15px rgba(0,223,162,0.3)); }
-        
-        h1 { font-size: 4rem; letter-spacing: 12px; margin: 0; background: linear-gradient(90deg, #fff, #00DFA2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .subtitle { font-family: 'JetBrains Mono'; color: #666; font-size: 0.8rem; letter-spacing: 4px; margin-top: 15px; margin-bottom: 40px; }
-        
-        .btn-start { padding: 15px 50px; background: transparent; border: 1px solid #00DFA2; color: #00DFA2; font-family: 'JetBrains Mono'; cursor: pointer; transition: 0.3s; font-weight: bold; letter-spacing: 2px; }
-        .btn-start:hover { background: #00DFA2; color: #000; box-shadow: 0 0 30px rgba(0,223,162,0.5); }
-        
-        .scroll-down { position: absolute; bottom: 30px; font-size: 0.7rem; color: #444; animation: bounce 2s infinite; }
-        
-        /* CARDS */
-        .info-section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: #0f0f0f; border: 1px solid #222; padding: 40px; border-radius: 12px; transition: 0.3s; }
-        .card:hover { border-color: #00DFA2; transform: translateY(-5px); }
-        .card h3 { color: #fff; margin-bottom: 15px; letter-spacing: 1px; }
-        .card p { color: #888; font-size: 0.9rem; line-height: 1.6; }
-
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
-        
-        footer { text-align: center; padding: 40px; color: #333; font-size: 0.6rem; font-family: 'JetBrains Mono'; letter-spacing: 1px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L.H.E.X | Future Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
+<style>
+    body { background: #000; color: #fff; font-family: 'Inter', sans-serif; margin: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
+    h1 { font-size: 5rem; margin: 0; background: linear-gradient(180deg, #fff, #444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -3px; }
+    p { color: #888; letter-spacing: 4px; font-size: 0.9rem; margin-top: 10px; text-transform: uppercase; }
+    .btn { margin-top: 50px; padding: 15px 50px; border: 1px solid #333; background: rgba(255,255,255,0.05); color: #fff; border-radius: 50px; cursor: pointer; transition: 0.4s; font-size: 0.9rem; letter-spacing: 1px; backdrop-filter: blur(10px); }
+    .btn:hover { background: #fff; color: #000; box-shadow: 0 0 30px rgba(255,255,255,0.3); }
+    .footer { position: absolute; bottom: 30px; font-size: 0.7rem; color: #333; }
+</style>
 </head>
 <body>
-    <div class="hero">
-        <img src="/static/logo.png" class="logo-img">
-        <h1>L.H.E.X</h1>
-        <div class="subtitle">AUDITORIA FORENSE & INTELIGÊNCIA ARTIFICIAL</div>
-        <button class="btn-start" onclick="window.location.href='/login'">ACESSAR O SISTEMA</button>
-        <div class="scroll-down">CONHEÇA A TECNOLOGIA</div>
-    </div>
-
-    <div class="info-section">
-        <div class="card">
-            <h3>PROPÓSITO</h3>
-            <p>Transformar incerteza em capital. Nossa tecnologia audita transações passadas para financiar o crescimento futuro do seu negócio.</p>
-        </div>
-        <div class="card">
-            <h3>INTELIGÊNCIA</h3>
-            <p>Não somos um chatbot. Somos um cérebro digital treinado em negociação de alta performance e análise forense bancária.</p>
-        </div>
-        <div class="card">
-            <h3>RESULTADO</h3>
-            <p>Dados transformados em domínio. Recuperação de ativos e aumento de conversão de leads em tempo real.</p>
-        </div>
-    </div>
-
-    <footer>L.H.E.X SYSTEMS © 2026 • ORIGINAL TECHNOLOGY • ALL RIGHTS RESERVED</footer>
+    <div style="opacity:0.8; margin-bottom:20px"><img src="/static/logo.png" width="80"></div>
+    <h1>L.H.E.X</h1>
+    <p>Intelligence Systems</p>
+    <button class="btn" onclick="window.location.href='/login'">ACESSAR SISTEMA</button>
+    <div class="footer">SECURED BY L.H.E.X ARCHITECTURE</div>
 </body>
 </html>
