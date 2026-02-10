@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta property="og:title" content="L.H.E.X | Intelligence Systems">
-    <meta property="og:description" content="O sistema que redefine o mercado. Inteligência Artificial e Gestão High Ticket.">
+    <meta property="og:title" content="L.H.E.X | System Architecture">
+    <meta property="og:description" content="Gestão High Ticket e Inteligência Artificial. O futuro da sua operação.">
     <meta property="og:image" content="preview.png">
     
-    <title>L.H.E.X | The Future</title>
+    <title>L.H.E.X | Neural Interface</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -16,254 +16,251 @@
     <style>
         /* --- CORE SYSTEM --- */
         :root {
-            --neon-green: #00FFAA;
-            --neon-purple: #BD00FF;
-            --bg-dark: #05000A;
-            --glass: rgba(255, 255, 255, 0.05);
+            --neon: #00FFAA;
+            --purple: #BD00FF;
+            --bg: #030005;
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
         
         body { 
-            background-color: var(--bg-dark); 
+            background-color: var(--bg); 
             color: #fff; 
             overflow-x: hidden; 
+        }
+
+        /* --- BACKGROUND VIVO --- */
+        .grid-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
+            background-image: 
+                linear-gradient(var(--glass) 1px, transparent 1px),
+                linear-gradient(90deg, var(--glass) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.2;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            animation: moveGrid 20s infinite linear;
+        }
+
+        @keyframes moveGrid { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
+
+        /* --- HERO SECTION (O REATOR) --- */
+        .hero {
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* --- BACKGROUND ATMOSPHERE --- */
-        .ambient-glow {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(circle at 20% 20%, rgba(189, 0, 255, 0.15), transparent 40%),
-                        radial-gradient(circle at 80% 80%, rgba(0, 255, 170, 0.1), transparent 40%);
-        }
-
-        /* --- LOGO INTERATIVA (O REATOR) --- */
-        .logo-container {
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
             position: relative;
+            z-index: 10;
+        }
+
+        .logo-reactor {
+            width: 380px; /* GIGANTE */
+            filter: drop-shadow(0 0 30px rgba(189, 0, 255, 0.4));
+            animation: pulseReactor 4s infinite ease-in-out;
             cursor: pointer;
             transition: 0.5s;
-            margin-bottom: 40px;
-        }
-        
-        .logo-img { 
-            width: 180px; 
-            filter: drop-shadow(0 0 20px rgba(189, 0, 255, 0.3));
-            animation: breathe 4s infinite ease-in-out;
-            transition: 0.3s;
         }
 
-        .logo-container:hover .logo-img {
-            filter: drop-shadow(0 0 50px rgba(0, 255, 170, 0.6));
-            transform: scale(1.05);
+        .logo-reactor:hover {
+            transform: scale(1.05) rotate(2deg);
+            filter: drop-shadow(0 0 80px rgba(0, 255, 170, 0.6));
+        }
+
+        .brand-name {
+            font-size: 2rem;
+            font-weight: 100; /* SUPER FINO */
+            letter-spacing: 20px; /* ESPAÇADO */
+            margin-top: 20px;
+            background: linear-gradient(90deg, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
         }
 
         .click-hint {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            opacity: 0; transition: 0.3s; pointer-events: none;
-            font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
-            color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green);
-        }
-        
-        .logo-container:hover .click-hint { opacity: 1; margin-top: 120px; }
-
-        /* --- TYPOGRAPHY --- */
-        h1 {
-            font-weight: 200; /* SUPER FINO */
-            font-size: 3.5rem;
-            letter-spacing: 15px;
-            text-transform: uppercase;
-            background: linear-gradient(90deg, #fff, #aaa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            margin-top: 30px;
+            color: var(--neon);
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            animation: blink 2s infinite;
+            cursor: pointer;
         }
 
-        .systems {
-            color: var(--neon-green);
-            font-weight: 300;
-            letter-spacing: 8px;
-            font-size: 1.5rem;
-            margin-bottom: 60px;
-            text-shadow: 0 0 20px rgba(0, 255, 170, 0.4);
+        /* --- PAINEL HOLOGRÁFICO (SIMULAÇÃO) --- */
+        .simulation-section {
+            min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 50px 20px;
+            position: relative;
         }
 
-        /* --- BUTTONS (GLASS) --- */
-        .nav-grid {
-            display: flex; gap: 30px;
-            perspective: 1000px;
+        .hud-container {
+            width: 100%; max-width: 1000px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+            opacity: 0; transform: translateY(50px); transition: 1s;
         }
+        .hud-container.active { opacity: 1; transform: translateY(0); }
 
-        .btn-glass {
-            padding: 15px 40px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(0,0,0,0.3);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
+        .hud-card {
+            background: rgba(10, 5, 20, 0.6);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
-            transition: 0.4s;
+        }
+        .hud-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--neon);
+            box-shadow: 0 0 10px var(--neon);
+            animation: scanline 3s infinite linear;
+        }
+
+        .hud-title { font-size: 0.8rem; color: #666; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
+        .hud-value { font-size: 2.5rem; font-weight: 200; color: #fff; }
+        .hud-status { font-size: 0.7rem; color: var(--neon); margin-top: 5px; }
+
+        /* --- ECOSSISTEMA (CARDS INTERATIVOS) --- */
+        .features-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;
+            max-width: 1200px; margin: 50px auto; padding: 0 20px;
+            opacity: 0; transition: 1.5s;
+        }
+        
+        .f-card {
+            border: 1px solid rgba(255,255,255,0.1); padding: 30px;
+            text-align: center; transition: 0.3s; cursor: default;
+        }
+        .f-card:hover { border-color: var(--purple); background: rgba(189, 0, 255, 0.05); }
+        .f-card h3 { font-size: 3rem; font-weight: 100; margin-bottom: 10px; }
+        .f-card h4 { color: var(--neon); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 10px; }
+        .f-card p { font-size: 0.8rem; color: #888; line-height: 1.6; }
+
+        /* --- FOOTER --- */
+        .cta-bar {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 20px; z-index: 100;
+            background: rgba(0,0,0,0.8); padding: 10px 20px; border-radius: 50px; border: 1px solid #333;
             backdrop-filter: blur(10px);
         }
 
-        .btn-glass::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
+        .btn-neon {
+            color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px;
+            padding: 10px 20px; border-radius: 30px; transition: 0.3s; text-transform: uppercase;
         }
-
-        .btn-glass:hover {
-            border-color: var(--neon-green);
-            box-shadow: 0 0 30px rgba(0, 255, 170, 0.2);
-            transform: translateY(-5px);
-        }
-        
-        .btn-glass:hover::before { left: 100%; }
-
-        .btn-purple:hover { 
-            border-color: var(--neon-purple); 
-            box-shadow: 0 0 30px rgba(189, 0, 255, 0.3); 
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            position: absolute; bottom: 30px;
-            text-align: center; font-size: 0.8rem; color: #666; font-weight: 300;
-        }
-        .email-link { color: #fff; text-decoration: none; border-bottom: 1px solid #333; transition: 0.3s; margin-left: 10px; }
-        .email-link:hover { color: var(--neon-green); border-color: var(--neon-green); }
-
-        /* --- MODAL (THE VAULT) --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            display: none; justify-content: center; align-items: center;
-            opacity: 0; transition: 0.5s;
-        }
-
-        .modal-content {
-            width: 90%; max-width: 800px;
-            background: #000;
-            border: 1px solid var(--neon-purple);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 0 100px rgba(189, 0, 255, 0.2);
-            position: relative;
-            transform: scale(0.8); transition: 0.5s;
-        }
-
-        .close-btn {
-            position: absolute; top: 20px; right: 20px; color: #fff; font-size: 1.5rem; cursor: pointer; transition: 0.3s;
-        }
-        .close-btn:hover { color: var(--neon-green); }
-
-        .video-placeholder {
-            width: 100%; height: 400px;
-            background: radial-gradient(circle, #220033, #000);
-            border-radius: 10px;
-            display: flex; justify-content: center; align-items: center;
-            margin-bottom: 20px; border: 1px dashed #333;
-        }
+        .btn-neon:hover { background: var(--neon); color: #000; box-shadow: 0 0 20px rgba(0,255,170,0.4); }
+        .btn-email { border: 1px solid #444; }
 
         /* ANIMATIONS */
-        @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
-        
+        @keyframes pulseReactor { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px rgba(189, 0, 255, 0.2)); } 50% { transform: scale(1.02); filter: drop-shadow(0 0 50px rgba(189, 0, 255, 0.5)); } }
+        @keyframes scanline { 0% { left: -100%; } 100% { left: 100%; } }
+        @keyframes blink { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
         /* MOBILE */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; letter-spacing: 5px; }
-            .nav-grid { flex-direction: column; width: 80%; }
-            .logo-img { width: 140px; }
+            .logo-reactor { width: 250px; }
+            .brand-name { font-size: 1.5rem; letter-spacing: 10px; }
+            .hud-container { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .cta-bar { width: 90%; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="ambient-glow"></div>
+    <div class="grid-bg"></div>
 
-    <div class="logo-container" onclick="openVault()">
-        <img src="logo.png" alt="LHEX REATOR" class="logo-img">
-        <div class="click-hint">ACESSAR O SISTEMA</div>
+    <div class="hero">
+        <img src="logo.png" alt="REACTOR" class="logo-reactor" onclick="activateSystem()">
+        <div class="brand-name">L.H.E.X</div>
+        <div class="click-hint" onclick="activateSystem()">[ CLIQUE PARA INICIAR SISTEMA ]</div>
     </div>
 
-    <h1>L.H.E.X</h1>
-    <div class="systems">SYSTEMS</div>
+    <div class="simulation-section" id="sim-interface">
+        <h2 style="font-weight: 200; letter-spacing: 5px; margin-bottom: 40px; text-align: center;">
+            STATUS DA OPERAÇÃO <span style="color:var(--neon)">EM TEMPO REAL</span>
+        </h2>
 
-    <div class="nav-grid">
-        <a href="#manifesto" onclick="openVault()" class="btn-glass btn-purple">Manifesto</a>
-        <a href="#features" onclick="openVault()" class="btn-glass btn-purple">Ecossistema</a>
-        <a href="dashboard.html" class="btn-glass" style="border-color: var(--neon-green); color: var(--neon-green);">Área do Cliente</a>
-    </div>
-
-    <div class="modal-overlay" id="vaultModal">
-        <div class="modal-content">
-            <i class="fas fa-times close-btn" onclick="closeVault()"></i>
-            
-            <h2 style="color:#fff; font-weight:200; letter-spacing:5px; margin-bottom:20px">BEM-VINDO À NOVA ERA</h2>
-            
-            <div class="video-placeholder">
-                <div style="text-align: center;">
-                    <i class="fas fa-play-circle" style="font-size: 4rem; color: var(--neon-green); margin-bottom: 20px; cursor: pointer;"></i>
-                    <p style="color: #888; letter-spacing: 2px;">ASSISTIR DEMONSTRAÇÃO</p>
-                </div>
+        <div class="hud-container" id="hud">
+            <div class="hud-card">
+                <div class="hud-title">SDR IA ATIVO</div>
+                <div class="hud-value" id="leads-count">0</div>
+                <div class="hud-status">LEADS PROCESSADOS HOJE</div>
             </div>
+            <div class="hud-card">
+                <div class="hud-title">EFICIÊNCIA DE AGENDA</div>
+                <div class="hud-value" id="efficiency">0%</div>
+                <div class="hud-status">OTIMIZAÇÃO DE HORÁRIOS</div>
+            </div>
+            <div class="hud-card">
+                <div class="hud-title">PREVISÃO DE RECEITA</div>
+                <div class="hud-value" style="color:var(--neon)">R$ <span id="revenue">0</span></div>
+                <div class="hud-status">PIPELINE ATIVO</div>
+            </div>
+        </div>
 
-            <p style="color: #aaa; line-height: 1.8; margin-bottom: 30px; font-weight: 300;">
-                O L.H.E.X não é apenas um software. É uma inteligência algorítmica desenhada para escalar operações High Ticket. 
-                Nós entregamos previsibilidade onde antes havia caos.
-            </p>
-
-            <a href="mailto:contato@lhexsystems.com" class="btn-glass" style="background: var(--neon-green); color: #000; font-weight: 600;">
-                FALAR COM CONSULTOR
-            </a>
+        <div class="features-grid" id="feat-grid">
+            <div class="f-card">
+                <h3>L</h3>
+                <h4>LÓGICA</h4>
+                <p>1.5M de dados processados para prever cancelamentos antes que aconteçam.</p>
+            </div>
+            <div class="f-card">
+                <h3>H</h3>
+                <h4>HUMANIDADE</h4>
+                <p>IA generativa que acolhe, entende e converte com empatia real.</p>
+            </div>
+            <div class="f-card">
+                <h3>E</h3>
+                <h4>EXPONENCIAL</h4>
+                <p>Escala infinita. Sua clínica aberta e vendendo 24 horas por dia.</p>
+            </div>
+            <div class="f-card">
+                <h3>X</h3>
+                <h4>X-FACTOR</h4>
+                <p>Design e Posicionamento High Ticket que blindam sua marca.</p>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>L.H.E.X SYSTEMS © 2026 • RIO DE JANEIRO</p>
-        <p style="margin-top:10px">CONTRATAÇÕES EXCLUSIVAS: <a href="mailto:contato@lhexsystems.com" class="email-link">contato@lhexsystems.com</a></p>
-    </footer>
+    <div class="cta-bar">
+        <a href="dashboard.html" class="btn-neon">Área do Cliente</a>
+        <a href="mailto:contato@lhexsystems.com" class="btn-neon btn-email">Falar com Consultor</a>
+    </div>
 
     <script>
-        function openVault() {
-            const modal = document.getElementById('vaultModal');
-            const content = modal.querySelector('.modal-content');
+        function activateSystem() {
+            // Rola suavemente para a simulação
+            document.getElementById('sim-interface').scrollIntoView({ behavior: 'smooth' });
             
-            modal.style.display = 'flex';
-            // Pequeno delay para animação funcionar
+            // Ativa visualmente os painéis
             setTimeout(() => {
-                modal.style.opacity = '1';
-                content.style.transform = 'scale(1)';
-            }, 10);
+                document.getElementById('hud').classList.add('active');
+                document.getElementById('feat-grid').style.opacity = '1';
+                startNumbers();
+            }, 800);
         }
 
-        function closeVault() {
-            const modal = document.getElementById('vaultModal');
-            const content = modal.querySelector('.modal-content');
-            
-            modal.style.opacity = '0';
-            content.style.transform = 'scale(0.8)';
-            
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 500);
-        }
+        function startNumbers() {
+            // Animação dos números (Fake Data Simulation)
+            let leads = 0;
+            let eff = 0;
+            let rev = 0;
 
-        // Fechar se clicar fora
-        document.getElementById('vaultModal').addEventListener('click', function(e) {
-            if (e.target === this) closeVault();
-        });
+            const interval = setInterval(() => {
+                // Leads sobe rápido
+                if(leads < 142) { leads += 2; document.getElementById('leads-count').innerText = leads; }
+                
+                // Eficiência vai até 98%
+                if(eff < 98) { eff += 1; document.getElementById('efficiency').innerText = eff + '%'; }
+                
+                // Revenue sobe aos poucos
+                if(rev < 450) { rev += 5; document.getElementById('revenue').innerText = rev + 'k'; }
+
+                if(leads >= 142 && eff >= 98 && rev >= 450) clearInterval(interval);
+            }, 30);
+        }
     </script>
 </body>
 </html>
