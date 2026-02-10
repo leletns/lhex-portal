@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta property="og:title" content="L.H.E.X | System Architecture">
-    <meta property="og:description" content="A inteligência que rege o High Ticket.">
+    <meta property="og:title" content="L.H.E.X | Intelligence Systems">
+    <meta property="og:description" content="A arquitetura invisível de clínicas milionárias.">
     <meta property="og:image" content="preview.png">
     
-    <title>L.H.E.X | The Architecture</title>
+    <title>L.H.E.X | The Future</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -19,9 +19,9 @@
             --neon: #00FFAA;
             --purple: #BD00FF;
             --alert: #FF3366;
-            --bg: #020005;
-            --glass: rgba(255, 255, 255, 0.02);
-            --border: rgba(255, 255, 255, 0.05);
+            --bg: #000000;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
@@ -32,289 +32,266 @@
             overflow-x: hidden; 
         }
 
-        /* --- BACKGROUND PARTICLES --- */
-        .particles {
+        /* --- BACKGROUND VIVO --- */
+        .ambient-light {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.3;
+            background: radial-gradient(circle at 50% 50%, #0a0010 0%, #000 70%);
         }
 
         /* --- SECTION 1: O REATOR (HERO) --- */
         .hero {
             height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            position: relative;
-            z-index: 10;
+            position: relative; z-index: 10;
         }
 
         .logo-reactor {
-            width: 400px; /* GIGANTE */
-            filter: drop-shadow(0 0 30px rgba(189, 0, 255, 0.2));
-            animation: breathe 5s infinite ease-in-out;
-            cursor: pointer;
-            transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            width: 380px;
+            filter: drop-shadow(0 0 40px rgba(189, 0, 255, 0.15));
+            animation: pulse 4s infinite ease-in-out;
+            cursor: pointer; transition: 0.5s;
         }
-
-        .logo-reactor:hover {
-            transform: scale(1.1);
-            filter: drop-shadow(0 0 100px rgba(0, 255, 170, 0.5));
-        }
+        .logo-reactor:hover { transform: scale(1.05); filter: drop-shadow(0 0 80px rgba(0, 255, 170, 0.3)); }
 
         .brand-text {
-            font-size: 3rem; font-weight: 100; letter-spacing: 25px; margin-top: 30px;
-            background: linear-gradient(to right, #fff, #444); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 4rem; font-weight: 100; letter-spacing: 30px; margin-top: 40px;
+            background: linear-gradient(90deg, #fff, #666); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             opacity: 0; animation: fadeUp 2s forwards 0.5s;
         }
 
-        .scroll-hint {
-            position: absolute; bottom: 40px;
-            font-size: 0.7rem; letter-spacing: 5px; color: #666;
-            animation: bounce 2s infinite; opacity: 0.5;
+        .tagline {
+            font-size: 0.9rem; letter-spacing: 5px; color: var(--neon); margin-top: 10px;
+            text-transform: uppercase; opacity: 0; animation: fadeUp 2s forwards 1s;
         }
 
-        /* --- SECTION 2: A INTELIGÊNCIA (TERMINAL) --- */
+        .scroll-down {
+            position: absolute; bottom: 30px; font-size: 2rem; color: #333; animation: bounce 2s infinite;
+        }
+
+        /* --- SECTION 2: O CONCEITO (EXPLICATION) --- */
+        .section-concept {
+            padding: 100px 20px; text-align: center;
+            background: linear-gradient(to bottom, #000, #050505);
+        }
+        
+        .concept-title {
+            font-size: 2.5rem; font-weight: 200; margin-bottom: 20px; color: #fff;
+        }
+        .concept-desc {
+            max-width: 700px; margin: 0 auto 80px; font-size: 1.1rem; line-height: 1.8; color: #888; font-weight: 300;
+        }
+
+        /* --- GRID L.H.E.X (O OURO) --- */
+        .lhex-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+            max-width: 1400px; margin: 0 auto;
+            border-top: 1px solid #222; border-bottom: 1px solid #222;
+        }
+
+        .lhex-card {
+            padding: 60px 30px; border-right: 1px solid #222; text-align: left;
+            transition: 0.4s; position: relative; overflow: hidden;
+        }
+        .lhex-card:last-child { border-right: none; }
+        .lhex-card:hover { background: #080808; }
+        
+        .letter-big { font-size: 5rem; font-weight: 100; color: #333; margin-bottom: 20px; transition: 0.3s; }
+        .lhex-card:hover .letter-big { color: var(--neon); transform: translateX(10px); }
+        
+        .card-title { font-size: 1.2rem; font-weight: 400; color: #fff; margin-bottom: 15px; letter-spacing: 2px; }
+        .card-text { font-size: 0.85rem; color: #666; line-height: 1.6; }
+
+        /* --- SECTION 3: A PROVA (TERMINAL) --- */
         .section-demo {
-            min-height: 100vh; padding: 100px 20px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: linear-gradient(to bottom, var(--bg), #050010);
-        }
-
-        .terminal-window {
-            width: 100%; max-width: 800px;
-            background: rgba(10, 10, 10, 0.9);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            box-shadow: 0 0 50px rgba(0, 255, 170, 0.05);
-            padding: 20px;
-            font-family: 'Courier New', monospace;
-            position: relative;
-        }
-
-        .terminal-header {
-            display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px;
-        }
-        .dot { width: 10px; height: 10px; border-radius: 50%; background: #333; }
-        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
-
-        .terminal-body {
-            color: var(--neon); font-size: 0.9rem; line-height: 1.6; min-height: 200px;
-        }
-        .cursor { display: inline-block; width: 8px; height: 15px; background: var(--neon); animation: blink 1s infinite; }
-
-        .section-title {
-            font-size: 2rem; font-weight: 200; letter-spacing: 5px; margin-bottom: 50px; text-align: center;
-            color: #fff;
-        }
-
-        /* --- SECTION 3: OS NÚMEROS (DATA) --- */
-        .section-stats {
-            padding: 100px 0;
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-            background: var(--border); /* Linhas finas */
+            padding: 100px 20px; background: #020005; display: flex; flex-direction: column; align-items: center;
         }
         
-        .stat-box {
-            background: var(--bg); padding: 80px 20px; text-align: center;
-            transition: 0.3s;
+        .terminal-box {
+            width: 100%; max-width: 800px; background: rgba(10,10,10,0.9);
+            border: 1px solid #333; padding: 30px; border-radius: 5px;
+            font-family: 'Courier New', monospace; position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
         }
-        .stat-box:hover { background: #080808; }
         
-        .stat-number { font-size: 4rem; font-weight: 100; color: #fff; margin-bottom: 10px; }
-        .stat-label { font-size: 0.8rem; letter-spacing: 3px; color: var(--purple); text-transform: uppercase; }
+        .typing-area { color: var(--neon); font-size: 0.9rem; line-height: 1.8; min-height: 250px; }
+        .cursor { display: inline-block; width: 8px; height: 16px; background: var(--neon); animation: blink 1s infinite; }
 
-        /* --- SECTION 4: O COFRE (CLIENT AREA) --- */
+        /* --- SECTION 4: AREA RESTRITA (LOGIN) --- */
         .section-locked {
-            height: 80vh;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: radial-gradient(circle, #0a000f, #000);
-            position: relative; overflow: hidden;
-            border-top: 1px solid #222;
+            height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: radial-gradient(circle, #0f0014, #000); border-top: 1px solid #222;
         }
 
-        .lock-icon {
-            font-size: 4rem; color: #333; margin-bottom: 20px; transition: 0.5s;
+        .lock-btn {
+            background: transparent; border: 1px solid #444; color: #fff;
+            padding: 20px 60px; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase;
+            border-radius: 50px; cursor: pointer; transition: 0.3s; margin-top: 30px;
         }
-        .section-locked:hover .lock-icon { color: var(--alert); transform: scale(1.1); text-shadow: 0 0 20px var(--alert); }
-
-        .locked-title { font-size: 2rem; font-weight: 100; letter-spacing: 8px; color: #666; margin-bottom: 10px; }
-        .locked-desc { font-size: 0.9rem; color: #444; max-width: 400px; text-align: center; line-height: 1.6; margin-bottom: 40px; }
-
-        .btn-request {
-            padding: 20px 50px;
-            border: 1px solid #333; color: #fff; text-decoration: none;
-            border-radius: 50px; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase;
-            transition: 0.5s; position: relative; overflow: hidden;
-        }
-        .btn-request::before {
-            content: ''; position: absolute; top:0; left:-100%; width:100%; height:100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transition:0.5s;
-        }
-        .btn-request:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
-        .btn-request:hover::before { left: 100%; }
-
-        .btn-login-secret {
-            margin-top: 20px; font-size: 0.7rem; color: #333; text-decoration: none; border-bottom: 1px solid #111;
-        }
-        .btn-login-secret:hover { color: var(--neon); border-color: var(--neon); }
+        .lock-btn:hover { border-color: var(--alert); color: var(--alert); box-shadow: 0 0 30px rgba(255, 51, 102, 0.2); }
 
         /* --- FOOTER --- */
-        footer {
-            padding: 50px; text-align: center; border-top: 1px solid #111;
-            font-size: 0.7rem; color: #444; letter-spacing: 2px;
-        }
+        footer { padding: 40px; text-align: center; color: #333; font-size: 0.7rem; border-top: 1px solid #111; }
 
         /* ANIMATIONS */
-        @keyframes breathe { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(189,0,255,0.2)); } 50% { transform: scale(1.02); filter: drop-shadow(0 0 60px rgba(189,0,255,0.4)); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         /* MOBILE */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+            .lhex-grid { grid-template-columns: 1fr; border: none; }
+            .lhex-card { border-right: none; border-bottom: 1px solid #222; padding: 40px 20px; }
+            .brand-text { font-size: 2.5rem; letter-spacing: 15px; }
             .logo-reactor { width: 280px; }
-            .brand-text { font-size: 2rem; letter-spacing: 10px; }
-            .section-stats { grid-template-columns: 1fr; gap: 0; }
-            .stat-box { border-bottom: 1px solid #111; padding: 40px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="particles"></div>
+    <div class="ambient-light"></div>
 
-    <section class="hero" onclick="startJourney()">
-        <img src="logo.png" alt="REACTOR" class="logo-reactor">
+    <section class="hero">
+        <img src="logo.png" alt="L.H.E.X REACTOR" class="logo-reactor">
         <h1 class="brand-text">L.H.E.X</h1>
-        <div class="scroll-hint">SYSTEM ARCHITECTURE</div>
+        <p class="tagline">INTELLIGENCE SYSTEMS</p>
+        <i class="fas fa-chevron-down scroll-down"></i>
+    </section>
+
+    <section class="section-concept">
+        <h2 class="concept-title">NÃO É SOFTWARE. É ARQUITETURA.</h2>
+        <p class="concept-desc">
+            Clínicas de High Ticket não falham por falta de leads. Falham por caos operacional.
+            O L.H.E.X é a infraestrutura invisível que organiza, atende e converte em escala massiva.
+        </p>
+
+        <div class="lhex-grid">
+            <div class="lhex-card">
+                <div class="letter-big">L</div>
+                <h3 class="card-title">LOGIC (Lógica)</h3>
+                <p class="card-text">
+                    Eliminamos o "feeling". Decisões baseadas em 1.5 milhão de pontos de dados. O sistema prevê quem vai comprar antes mesmo do "Olá".
+                </p>
+            </div>
+            <div class="lhex-card">
+                <div class="letter-big">H</div>
+                <h3 class="card-title">HUMANITY (Humanidade)</h3>
+                <p class="card-text">
+                    IA que não soa como robô. Empatia sintética avançada que entende medo, desejo e objeção. Seu cliente se sente acolhido, não processado.
+                </p>
+            </div>
+            <div class="lhex-card">
+                <div class="letter-big">E</div>
+                <h3 class="card-title">EXPONENTIAL (Exponencial)</h3>
+                <p class="card-text">
+                    Escalar receita sem escalar folha de pagamento. Uma única instância do L.H.E.X faz o trabalho de 10 SDRs humanos, sem dormir, sem errar.
+                </p>
+            </div>
+            <div class="lhex-card">
+                <div class="letter-big">X</div>
+                <h3 class="card-title">X-FACTOR (O Segredo)</h3>
+                <p class="card-text">
+                    O toque de Midas. Branding, posicionamento e experiência do usuário que justificam cobrar 5x, 10x mais pelo seu procedimento.
+                </p>
+            </div>
+        </div>
     </section>
 
     <section class="section-demo" id="demo">
-        <h2 class="section-title">NEURAL <span style="color:var(--neon)">CORE</span></h2>
+        <h2 style="font-weight:200; letter-spacing:5px; margin-bottom:40px; color:#fff">OPERAÇÃO <span style="color:var(--neon)">EM TEMPO REAL</span></h2>
         
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="dot red"></div>
-                <div class="dot yellow"></div>
-                <div class="dot green"></div>
+        <div class="terminal-box">
+            <div style="border-bottom:1px solid #333; padding-bottom:10px; margin-bottom:20px; display:flex; gap:10px">
+                <div style="width:10px; height:10px; background:#ff5f56; border-radius:50%"></div>
+                <div style="width:10px; height:10px; background:#ffbd2e; border-radius:50%"></div>
+                <div style="width:10px; height:10px; background:#27c93f; border-radius:50%"></div>
             </div>
-            <div class="terminal-body" id="console-output">
+            <div class="typing-area" id="terminal-text">
                 <span class="cursor"></span>
             </div>
-        </div>
-        <p style="margin-top:20px; color:#444; font-size:0.7rem; letter-spacing:2px;">*DADOS REAIS DE PROCESSAMENTO DO ALGORITMO L.H.E.X</p>
-    </section>
-
-    <section class="section-stats" id="stats">
-        <div class="stat-box">
-            <div class="stat-number" data-target="1500000">0</div>
-            <div class="stat-label">DADOS PROCESSADOS</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-number" data-target="24">0</div>
-            <div class="stat-label">HORAS DE OPERAÇÃO/DIA</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-number" data-target="98">0%</div>
-            <div class="stat-label">TAXA DE RETENÇÃO</div>
         </div>
     </section>
 
     <section class="section-locked">
-        <i class="fas fa-lock lock-icon"></i>
-        <h2 class="locked-title">RESTRICTED ACCESS</h2>
-        <p class="locked-desc">
-            O painel de controle L.H.E.X é exclusivo para clínicas parceiras com faturamento High Ticket verificado.
-        </p>
+        <i class="fas fa-fingerprint" style="font-size:3rem; color:#333; margin-bottom:20px"></i>
+        <h2 style="font-weight:200; letter-spacing:8px; color:#fff">RESTRICTED ACCESS</h2>
+        <p style="color:#555; font-size:0.9rem; margin-bottom:10px">AMBIENTE CRIPTOGRAFADO</p>
         
-        <a href="mailto:contato@lhexsystems.com?subject=Solicitação de Acesso - L.H.E.X" class="btn-request">
-            Solicitar Credencial
+        <button class="lock-btn" onclick="attemptLogin()">
+            <i class="fas fa-lock" style="margin-right:10px"></i> ACESSAR SISTEMA
+        </button>
+
+        <a href="mailto:contato@lhexsystems.com" style="margin-top:40px; color:#444; font-size:0.7rem; text-decoration:none; border-bottom:1px solid #222">
+            SOLICITAR CREDENCIAL DE PARCEIRO
         </a>
-        
-        <a href="dashboard.html" class="btn-login-secret">Login Administrativo</a>
     </section>
 
     <footer>
-        L.H.E.X SYSTEMS CORPORATION © 2026<br>
-        RIO DE JANEIRO • NEW YORK • DUBAI
+        L.H.E.X SYSTEMS © 2026 • RIO DE JANEIRO<br>
+        DESIGNED FOR THE 1%
     </footer>
 
     <script>
-        // --- FUNÇÃO DE DIGITAÇÃO (SIMULA A IA) ---
-        const terminalText = [
-            "> INICIANDO PROTOCOLO L.H.E.X v4.0...",
-            "> CONECTANDO AO CRM DA CLÍNICA...",
-            "> [SUCESSO] BANCO DE DADOS SINCRONIZADO.",
-            "> ANALISANDO 45 NOVOS LEADS...",
-            "> LEAD DETECTADO: 'MARIA' (INTERESSE: LIPO LAD)",
-            "> IA ENVIANDO MENSAGEM: 'Olá Maria, vi que você busca transformação...'",
-            "> RESPOSTA DA LEAD: 'Sim, mas tenho medo do pós.'",
-            "> IA ANALISANDO SENTIMENTO: [MEDO/OBJEÇÃO]",
-            "> IA CONTORNANDO: 'Entendo perfeitamente. Por isso usamos a técnica...'",
-            "> [CONVERSÃO] LEAD AGENDOU AVALIAÇÃO.",
-            "> STATUS: AGUARDANDO PRÓXIMA OPORTUNIDADE..."
+        // --- SENHA DE PROTEÇÃO ---
+        function attemptLogin() {
+            // A SENHA É: lhex2026
+            const password = prompt("IDENTIFICAÇÃO DE SEGURANÇA REQUERIDA:");
+            
+            if (password === "lhex2026") {
+                // EFEITO SONORO VISUAL
+                document.body.style.background = "#000";
+                alert("ACESSO AUTORIZADO. BEM-VINDO, SÓCIO.");
+                window.location.href = "dashboard.html";
+            } else if (password != null) {
+                alert("ACESSO NEGADO. IP REGISTRADO POR SEGURANÇA.");
+            }
+        }
+
+        // --- SIMULAÇÃO DE IA ---
+        const logs = [
+            "> INICIANDO NEURAL ENGINE v5.2...",
+            "> SINCRONIZANDO COM CRM: BLUE CLINIC...",
+            "> [ALERTA] NOVO LEAD QUALIFICADO DETECTADO (TIKTOK ADS)",
+            "> ANALISANDO PERFIL: RENDA COMPATÍVEL? [SIM]",
+            "> IA INICIANDO ABORDAGEM: 'Olá, vi seu interesse no protocolo...'",
+            "> LEAD RESPONDEU: 'Gostaria de saber valores.'",
+            "> IA CONTORNANDO PREÇO: 'Antes de falar de investimento, preciso entender...'",
+            "> GATILHO DE ESCASSEZ ATIVADO.",
+            "> [SUCESSO] AGENDAMENTO CONFIRMADO PARA 14/02.",
+            "> NOTIFICANDO EQUIPE MÉDICA...",
+            "> GERANDO LINK DE PAGAMENTO ANTECIPADO...",
+            "> STATUS: R$ 2.500,00 RECEBIDOS.",
+            "> AGUARDANDO PRÓXIMA VÍTIMA... (BRINCADEIRA, PRÓXIMO CLIENTE)"
         ];
 
-        function typeWriter(text, i, fnCallback) {
-            if (i < text.length) {
-                document.getElementById("console-output").innerHTML = 
-                    document.getElementById("console-output").innerHTML.replace('<span class="cursor"></span>', '') + 
-                    text.charAt(i) + 
-                    '<span class="cursor"></span>';
-                setTimeout(function() { typeWriter(text, i + 1, fnCallback) }, 30); // Velocidade
-            } else if (typeof fnCallback == 'function') {
-                setTimeout(fnCallback, 700);
+        let i = 0;
+        function typeLog() {
+            if (i < logs.length) {
+                const terminal = document.getElementById("terminal-text");
+                // Remove cursor antigo
+                terminal.innerHTML = terminal.innerHTML.replace('<span class="cursor"></span>', '');
+                // Adiciona nova linha
+                terminal.innerHTML += logs[i] + "<br><span class='cursor'></span>";
+                
+                // Scroll para baixo
+                const box = document.querySelector('.terminal-box');
+                box.scrollTop = box.scrollHeight;
+                
+                i++;
+                setTimeout(typeLog, 1500 + Math.random() * 1000); // Tempo aleatório para parecer real
             }
         }
 
-        function startTerminal(index) {
-            if (index < terminalText.length) {
-                document.getElementById("console-output").innerHTML += "<br>";
-                typeWriter(terminalText[index], 0, function(){
-                    startTerminal(index + 1);
-                });
-            }
-        }
-
-        // --- SCROLL ANIMATION ---
-        function startJourney() {
-            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // --- OBSERVER (DISPARAR ANIMAÇÕES QUANDO APARECER NA TELA) ---
+        // Inicia quando o terminal aparece na tela
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (entry.target.id === 'demo') {
-                        // Limpa e começa a digitar
-                        document.getElementById("console-output").innerHTML = '<span class="cursor"></span>';
-                        startTerminal(0);
-                    }
-                    if (entry.target.id === 'stats') {
-                        // Começa a contar os números
-                        const counters = document.querySelectorAll('.stat-number');
-                        counters.forEach(counter => {
-                            const target = +counter.getAttribute('data-target');
-                            const updateCount = () => {
-                                const count = +counter.innerText.replace('%','');
-                                const speed = target / 100;
-                                if (count < target) {
-                                    counter.innerText = Math.ceil(count + speed) + (target === 98 ? '%' : '');
-                                    setTimeout(updateCount, 20);
-                                } else {
-                                    counter.innerText = target + (target === 98 ? '%' : '');
-                                    if(target > 1000) counter.innerText = "1.5M"; // Formatação especial
-                                }
-                            };
-                            updateCount();
-                        });
-                    }
+                    typeLog();
+                    observer.disconnect(); // Roda só uma vez
                 }
             });
-        }, { threshold: 0.5 });
-
+        });
         observer.observe(document.getElementById('demo'));
-        observer.observe(document.getElementById('stats'));
     </script>
 </body>
 </html>
