@@ -2,26 +2,26 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <meta property="og:title" content="L.H.E.X | Intelligence Systems">
-    <meta property="og:description" content="A arquitetura invisível de clínicas milionárias.">
+    <meta property="og:title" content="L.H.E.X | The Core">
+    <meta property="og:description" content="Acesso Restrito. Inteligência Descentralizada.">
     <meta property="og:image" content="preview.png">
     
-    <title>L.H.E.X | The Future</title>
+    <title>L.H.E.X | System Override</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
     <style>
-        /* --- CORE SYSTEM --- */
+        /* --- SYSTEM OS --- */
         :root {
             --neon: #00FFAA;
-            --purple: #BD00FF;
+            --purple: #7000FF;
             --alert: #FF3366;
             --bg: #000000;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
@@ -29,269 +29,333 @@
         body { 
             background-color: var(--bg); 
             color: #fff; 
-            overflow-x: hidden; 
+            overflow-x: hidden;
+            font-size: 16px;
         }
 
-        /* --- BACKGROUND VIVO --- */
-        .ambient-light {
+        /* --- BACKGROUND MATRIX --- */
+        .neural-net {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #0a0010 0%, #000 70%);
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(112, 0, 255, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 255, 170, 0.05), transparent 25%);
+            animation: pulseBg 10s infinite alternate;
         }
 
-        /* --- SECTION 1: O REATOR (HERO) --- */
+        /* --- SECTION 1: O DESPERTAR (HERO) --- */
         .hero {
             height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             position: relative; z-index: 10;
+            padding: 20px;
+            transition: 1s;
         }
 
         .logo-reactor {
-            width: 380px;
-            filter: drop-shadow(0 0 40px rgba(189, 0, 255, 0.15));
-            animation: pulse 4s infinite ease-in-out;
-            cursor: pointer; transition: 0.5s;
-        }
-        .logo-reactor:hover { transform: scale(1.05); filter: drop-shadow(0 0 80px rgba(0, 255, 170, 0.3)); }
-
-        .brand-text {
-            font-size: 4rem; font-weight: 100; letter-spacing: 30px; margin-top: 40px;
-            background: linear-gradient(90deg, #fff, #666); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            opacity: 0; animation: fadeUp 2s forwards 0.5s;
+            width: 320px;
+            max-width: 80vw;
+            filter: drop-shadow(0 0 0px rgba(255,255,255,0)); /* Começa apagada */
+            opacity: 0.8;
+            cursor: pointer;
+            transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        .tagline {
-            font-size: 0.9rem; letter-spacing: 5px; color: var(--neon); margin-top: 10px;
-            text-transform: uppercase; opacity: 0; animation: fadeUp 2s forwards 1s;
+        /* ESTADO ATIVO (QUANDO CLICA) */
+        .system-active .logo-reactor {
+            filter: drop-shadow(0 0 50px rgba(0, 255, 170, 0.6));
+            transform: scale(1.1);
+            opacity: 1;
         }
 
-        .scroll-down {
-            position: absolute; bottom: 30px; font-size: 2rem; color: #333; animation: bounce 2s infinite;
+        .welcome-text {
+            margin-top: 40px;
+            font-size: 1.2rem; letter-spacing: 5px; color: #fff;
+            min-height: 30px; text-transform: uppercase; text-align: center;
+            font-weight: 200;
+        }
+        
+        .cursor {
+            display: inline-block; width: 2px; height: 15px; background: var(--neon);
+            animation: blink 0.8s infinite;
         }
 
-        /* --- SECTION 2: O CONCEITO (EXPLICATION) --- */
+        .click-hint {
+            position: absolute; bottom: 50px;
+            font-size: 0.7rem; color: #444; letter-spacing: 3px;
+            animation: bounce 2s infinite; pointer-events: none;
+        }
+
+        /* --- SECTION 2: A DEFINIÇÃO (O QUE É?) --- */
         .section-concept {
-            padding: 100px 20px; text-align: center;
+            padding: 80px 20px;
             background: linear-gradient(to bottom, #000, #050505);
+            opacity: 0; transform: translateY(50px); transition: 1.5s;
         }
-        
+        .system-active .section-concept { opacity: 1; transform: translateY(0); }
+
         .concept-title {
-            font-size: 2.5rem; font-weight: 200; margin-bottom: 20px; color: #fff;
+            font-size: 2rem; font-weight: 100; text-align: center; margin-bottom: 60px;
+            letter-spacing: 2px; line-height: 1.4;
         }
-        .concept-desc {
-            max-width: 700px; margin: 0 auto 80px; font-size: 1.1rem; line-height: 1.8; color: #888; font-weight: 300;
+        .highlight { color: var(--neon); font-weight: 400; }
+
+        .grid-cards {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+            max-width: 1000px; margin: 0 auto;
         }
 
-        /* --- GRID L.H.E.X (O OURO) --- */
-        .lhex-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
-            max-width: 1400px; margin: 0 auto;
-            border-top: 1px solid #222; border-bottom: 1px solid #222;
+        .card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            padding: 40px;
+            transition: 0.4s;
+            position: relative; overflow: hidden;
+        }
+        .card:hover { border-color: var(--neon); background: rgba(0, 255, 170, 0.02); }
+
+        .card-icon { font-size: 2rem; color: #333; margin-bottom: 20px; transition: 0.3s; }
+        .card:hover .card-icon { color: var(--neon); transform: scale(1.2); }
+
+        .card h3 { font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 10px; color: #fff; }
+        .card p { font-size: 0.8rem; color: #777; line-height: 1.6; }
+
+        /* --- SECTION 3: O NÚCLEO (TERMINAL) --- */
+        .section-terminal {
+            padding: 100px 20px;
+            background: #020002;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        .lhex-card {
-            padding: 60px 30px; border-right: 1px solid #222; text-align: left;
-            transition: 0.4s; position: relative; overflow: hidden;
-        }
-        .lhex-card:last-child { border-right: none; }
-        .lhex-card:hover { background: #080808; }
-        
-        .letter-big { font-size: 5rem; font-weight: 100; color: #333; margin-bottom: 20px; transition: 0.3s; }
-        .lhex-card:hover .letter-big { color: var(--neon); transform: translateX(10px); }
-        
-        .card-title { font-size: 1.2rem; font-weight: 400; color: #fff; margin-bottom: 15px; letter-spacing: 2px; }
-        .card-text { font-size: 0.85rem; color: #666; line-height: 1.6; }
-
-        /* --- SECTION 3: A PROVA (TERMINAL) --- */
-        .section-demo {
-            padding: 100px 20px; background: #020005; display: flex; flex-direction: column; align-items: center;
-        }
-        
         .terminal-box {
-            width: 100%; max-width: 800px; background: rgba(10,10,10,0.9);
-            border: 1px solid #333; padding: 30px; border-radius: 5px;
-            font-family: 'Courier New', monospace; position: relative;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            width: 100%; max-width: 700px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid #222;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 60px rgba(0,0,0,0.8);
+            font-family: 'Courier New', monospace;
+            position: relative;
         }
         
-        .typing-area { color: var(--neon); font-size: 0.9rem; line-height: 1.8; min-height: 250px; }
-        .cursor { display: inline-block; width: 8px; height: 16px; background: var(--neon); animation: blink 1s infinite; }
-
-        /* --- SECTION 4: AREA RESTRITA (LOGIN) --- */
-        .section-locked {
-            height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: radial-gradient(circle, #0f0014, #000); border-top: 1px solid #222;
+        .terminal-header {
+            display: flex; justify-content: space-between; border-bottom: 1px solid #333; 
+            padding-bottom: 10px; margin-bottom: 15px; font-size: 0.7rem; color: #555;
         }
 
-        .lock-btn {
-            background: transparent; border: 1px solid #444; color: #fff;
-            padding: 20px 60px; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase;
-            border-radius: 50px; cursor: pointer; transition: 0.3s; margin-top: 30px;
+        .log-area { 
+            color: var(--neon); font-size: 0.8rem; line-height: 1.6; height: 200px; overflow: hidden;
+            display: flex; flex-direction: column; justify-content: flex-end;
         }
-        .lock-btn:hover { border-color: var(--alert); color: var(--alert); box-shadow: 0 0 30px rgba(255, 51, 102, 0.2); }
 
-        /* --- FOOTER --- */
-        footer { padding: 40px; text-align: center; color: #333; font-size: 0.7rem; border-top: 1px solid #111; }
+        /* --- SECTION 4: AREA RESTRITA --- */
+        .section-lock {
+            height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: radial-gradient(circle at center, #0a0a0a, #000);
+            position: relative;
+            border-top: 1px solid #111;
+        }
+
+        .lock-status {
+            font-size: 4rem; margin-bottom: 20px; color: #222; transition: 0.5s;
+        }
+        
+        .btn-access {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 15px 40px;
+            letter-spacing: 4px;
+            font-size: 0.7rem;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .btn-access:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
+
+        .contact-link {
+            position: absolute; bottom: 40px;
+            font-size: 0.7rem; color: #444; text-decoration: none;
+            border-bottom: 1px solid #222; padding-bottom: 5px;
+            transition: 0.3s;
+        }
+        .contact-link:hover { color: var(--neon); border-color: var(--neon); }
+
+        /* --- RESPONSIVIDADE (MOBILE FODA) --- */
+        @media (max-width: 768px) {
+            .logo-reactor { width: 260px; }
+            .welcome-text { font-size: 0.9rem; letter-spacing: 3px; height: 50px; }
+            .concept-title { font-size: 1.5rem; }
+            .grid-cards { grid-template-columns: 1fr; }
+            .card { padding: 30px; }
+            .terminal-box { width: 100%; border: none; background: transparent; padding: 0; box-shadow: none; }
+            .log-area { font-size: 0.7rem; }
+        }
 
         /* ANIMATIONS */
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
-        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+        @keyframes pulseBg { from { opacity: 0.5; } to { opacity: 1; } }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        /* MOBILE */
-        @media (max-width: 900px) {
-            .lhex-grid { grid-template-columns: 1fr; border: none; }
-            .lhex-card { border-right: none; border-bottom: 1px solid #222; padding: 40px 20px; }
-            .brand-text { font-size: 2.5rem; letter-spacing: 15px; }
-            .logo-reactor { width: 280px; }
-        }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
     </style>
 </head>
 <body>
 
-    <div class="ambient-light"></div>
+    <div class="neural-net"></div>
 
-    <section class="hero">
-        <img src="logo.png" alt="L.H.E.X REACTOR" class="logo-reactor">
-        <h1 class="brand-text">L.H.E.X</h1>
-        <p class="tagline">INTELLIGENCE SYSTEMS</p>
-        <i class="fas fa-chevron-down scroll-down"></i>
+    <section class="hero" id="hero">
+        <img src="logo.png" alt="L.H.E.X" class="logo-reactor" onclick="initSystem()">
+        <div class="welcome-text" id="welcome-msg"></div>
+        
+        <div class="click-hint" id="hint">
+            [ TOQUE NO NÚCLEO PARA INICIAR ]
+        </div>
     </section>
 
-    <section class="section-concept">
-        <h2 class="concept-title">NÃO É SOFTWARE. É ARQUITETURA.</h2>
-        <p class="concept-desc">
-            Clínicas de High Ticket não falham por falta de leads. Falham por caos operacional.
-            O L.H.E.X é a infraestrutura invisível que organiza, atende e converte em escala massiva.
-        </p>
+    <section class="section-concept" id="concept">
+        <h2 class="concept-title">
+            NÓS NÃO VENDEMOS SOFTWARE.<br>
+            NÓS VENDEMOS <span class="highlight">CONTROLE</span>.
+        </h2>
 
-        <div class="lhex-grid">
-            <div class="lhex-card">
-                <div class="letter-big">L</div>
-                <h3 class="card-title">LOGIC (Lógica)</h3>
-                <p class="card-text">
-                    Eliminamos o "feeling". Decisões baseadas em 1.5 milhão de pontos de dados. O sistema prevê quem vai comprar antes mesmo do "Olá".
-                </p>
+        <div class="grid-cards">
+            <div class="card">
+                <i class="fas fa-brain card-icon"></i>
+                <h3>NEURAL DECISION</h3>
+                <p>O sistema toma decisões complexas baseadas em milhões de variáveis. Ele negocia, converte e escala enquanto você dorme.</p>
             </div>
-            <div class="lhex-card">
-                <div class="letter-big">H</div>
-                <h3 class="card-title">HUMANITY (Humanidade)</h3>
-                <p class="card-text">
-                    IA que não soa como robô. Empatia sintética avançada que entende medo, desejo e objeção. Seu cliente se sente acolhido, não processado.
-                </p>
+            <div class="card">
+                <i class="fas fa-network-wired card-icon"></i>
+                <h3>AUTONOMOUS SCALE</h3>
+                <p>Uma arquitetura capaz de gerenciar 1 ou 10.000 clientes simultaneamente sem perda de performance ou humanidade.</p>
             </div>
-            <div class="lhex-card">
-                <div class="letter-big">E</div>
-                <h3 class="card-title">EXPONENTIAL (Exponencial)</h3>
-                <p class="card-text">
-                    Escalar receita sem escalar folha de pagamento. Uma única instância do L.H.E.X faz o trabalho de 10 SDRs humanos, sem dormir, sem errar.
-                </p>
+            <div class="card">
+                <i class="fas fa-shield-alt card-icon"></i>
+                <h3>BLACK BOX</h3>
+                <p>Seus dados são blindados. Sua operação se torna uma caixa preta impossível de ser copiada pela concorrência.</p>
             </div>
-            <div class="lhex-card">
-                <div class="letter-big">X</div>
-                <h3 class="card-title">X-FACTOR (O Segredo)</h3>
-                <p class="card-text">
-                    O toque de Midas. Branding, posicionamento e experiência do usuário que justificam cobrar 5x, 10x mais pelo seu procedimento.
-                </p>
+            <div class="card">
+                <i class="fas fa-fingerprint card-icon"></i>
+                <h3>ELITE ACCESS</h3>
+                <p>Tecnologia desenvolvida para quem já joga o jogo do High Ticket. Não é para iniciantes.</p>
             </div>
         </div>
     </section>
 
-    <section class="section-demo" id="demo">
-        <h2 style="font-weight:200; letter-spacing:5px; margin-bottom:40px; color:#fff">OPERAÇÃO <span style="color:var(--neon)">EM TEMPO REAL</span></h2>
-        
+    <section class="section-terminal">
         <div class="terminal-box">
-            <div style="border-bottom:1px solid #333; padding-bottom:10px; margin-bottom:20px; display:flex; gap:10px">
-                <div style="width:10px; height:10px; background:#ff5f56; border-radius:50%"></div>
-                <div style="width:10px; height:10px; background:#ffbd2e; border-radius:50%"></div>
-                <div style="width:10px; height:10px; background:#27c93f; border-radius:50%"></div>
+            <div class="terminal-header">
+                <span>L.H.E.X CORE v9.2</span>
+                <span>STATUS: ONLINE</span>
             </div>
-            <div class="typing-area" id="terminal-text">
-                <span class="cursor"></span>
-            </div>
+            <div class="log-area" id="terminal-logs">
+                </div>
         </div>
+        <p style="margin-top:20px; color:#333; font-size:0.6rem; letter-spacing:2px; text-transform:uppercase;">
+            *Simulação de tráfego de dados em tempo real
+        </p>
     </section>
 
-    <section class="section-locked">
-        <i class="fas fa-fingerprint" style="font-size:3rem; color:#333; margin-bottom:20px"></i>
-        <h2 style="font-weight:200; letter-spacing:8px; color:#fff">RESTRICTED ACCESS</h2>
-        <p style="color:#555; font-size:0.9rem; margin-bottom:10px">AMBIENTE CRIPTOGRAFADO</p>
+    <section class="section-lock">
+        <i class="fas fa-lock lock-status" id="lock-icon"></i>
+        <h2 style="font-weight:200; letter-spacing:5px; margin-bottom:10px; color:#fff">RESTRICTED AREA</h2>
         
-        <button class="lock-btn" onclick="attemptLogin()">
-            <i class="fas fa-lock" style="margin-right:10px"></i> ACESSAR SISTEMA
+        <button class="btn-access" onclick="requestAccess()">
+            Login Administrativo
         </button>
 
-        <a href="mailto:contato@lhexsystems.com" style="margin-top:40px; color:#444; font-size:0.7rem; text-decoration:none; border-bottom:1px solid #222">
-            SOLICITAR CREDENCIAL DE PARCEIRO
+        <a href="mailto:contato@lhexsystems.com?subject=Solicitação de Acesso - L.H.E.X" class="contact-link">
+            contato@lhexsystems.com
         </a>
     </section>
 
-    <footer>
-        L.H.E.X SYSTEMS © 2026 • RIO DE JANEIRO<br>
-        DESIGNED FOR THE 1%
-    </footer>
-
     <script>
-        // --- SENHA DE PROTEÇÃO ---
-        function attemptLogin() {
-            // A SENHA É: lhex2026
-            const password = prompt("IDENTIFICAÇÃO DE SEGURANÇA REQUERIDA:");
+        let systemStarted = false;
+
+        // --- 1. FUNÇÃO QUE "LIGA" O SITE ---
+        function initSystem() {
+            if(systemStarted) return;
+            systemStarted = true;
+
+            // Ativa efeitos visuais
+            document.body.classList.add('system-active');
+            document.getElementById('hint').style.display = 'none';
             
-            if (password === "lhex2026") {
-                // EFEITO SONORO VISUAL
-                document.body.style.background = "#000";
-                alert("ACESSO AUTORIZADO. BEM-VINDO, SÓCIO.");
-                window.location.href = "dashboard.html";
-            } else if (password != null) {
-                alert("ACESSO NEGADO. IP REGISTRADO POR SEGURANÇA.");
+            // Efeito Sonoro (Mental) - Digitação
+            const text = "BEM-VINDO AO L.H.E.X SYSTEMS";
+            typeWriter(text, 0);
+
+            // Rola a página automaticamente depois de um tempo
+            setTimeout(() => {
+                document.getElementById('concept').scrollIntoView({ behavior: 'smooth' });
+                startTerminal(); // Liga o terminal
+            }, 2500);
+        }
+
+        // --- 2. EFEITO DE DIGITAÇÃO ---
+        function typeWriter(text, i) {
+            if (i < text.length) {
+                document.getElementById("welcome-msg").innerHTML = 
+                    text.substring(0, i+1) + '<span class="cursor"></span>';
+                setTimeout(() => typeWriter(text, i + 1), 50);
             }
         }
 
-        // --- SIMULAÇÃO DE IA ---
+        // --- 3. TERMINAL INFINITO (GENÉRICO) ---
         const logs = [
-            "> INICIANDO NEURAL ENGINE v5.2...",
-            "> SINCRONIZANDO COM CRM: BLUE CLINIC...",
-            "> [ALERTA] NOVO LEAD QUALIFICADO DETECTADO (TIKTOK ADS)",
-            "> ANALISANDO PERFIL: RENDA COMPATÍVEL? [SIM]",
-            "> IA INICIANDO ABORDAGEM: 'Olá, vi seu interesse no protocolo...'",
-            "> LEAD RESPONDEU: 'Gostaria de saber valores.'",
-            "> IA CONTORNANDO PREÇO: 'Antes de falar de investimento, preciso entender...'",
-            "> GATILHO DE ESCASSEZ ATIVADO.",
-            "> [SUCESSO] AGENDAMENTO CONFIRMADO PARA 14/02.",
-            "> NOTIFICANDO EQUIPE MÉDICA...",
-            "> GERANDO LINK DE PAGAMENTO ANTECIPADO...",
-            "> STATUS: R$ 2.500,00 RECEBIDOS.",
-            "> AGUARDANDO PRÓXIMA VÍTIMA... (BRINCADEIRA, PRÓXIMO CLIENTE)"
+            "Conectando aos nós globais...",
+            "Criptografando túnel de dados (256-bit)...",
+            "Analisando padrões de mercado...",
+            "Otimizando algoritmos de conversão...",
+            "Detectando oportunidade de receita: ALTA...",
+            "Sincronizando banco de dados neural...",
+            "Executando protocolo 'Ghost Protocol'...",
+            "Aguardando input do operador...",
+            "Monitorando ativos digitais...",
+            "Escalabilidade vertical: ATIVA."
         ];
 
-        let i = 0;
-        function typeLog() {
-            if (i < logs.length) {
-                const terminal = document.getElementById("terminal-text");
-                // Remove cursor antigo
-                terminal.innerHTML = terminal.innerHTML.replace('<span class="cursor"></span>', '');
-                // Adiciona nova linha
-                terminal.innerHTML += logs[i] + "<br><span class='cursor'></span>";
+        function startTerminal() {
+            let i = 0;
+            const logArea = document.getElementById('terminal-logs');
+            
+            setInterval(() => {
+                const line = document.createElement('div');
+                line.style.marginBottom = '5px';
+                // Pega um log aleatório ou sequencial
+                const randomLog = logs[Math.floor(Math.random() * logs.length)];
                 
-                // Scroll para baixo
-                const box = document.querySelector('.terminal-box');
-                box.scrollTop = box.scrollHeight;
+                // Adiciona hora atual
+                const time = new Date().toLocaleTimeString();
                 
-                i++;
-                setTimeout(typeLog, 1500 + Math.random() * 1000); // Tempo aleatório para parecer real
-            }
+                line.innerHTML = `<span style="color:#555">[${time}]</span> > ${randomLog}`;
+                logArea.appendChild(line);
+
+                // Auto Scroll do Terminal
+                logArea.scrollTop = logArea.scrollHeight;
+            }, 1200);
         }
 
-        // Inicia quando o terminal aparece na tela
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    typeLog();
-                    observer.disconnect(); // Roda só uma vez
+        // --- 4. SISTEMA DE LOGIN (Senha: lhex2026) ---
+        function requestAccess() {
+            const icon = document.getElementById('lock-icon');
+            icon.style.color = "#fff"; // Pisca branco
+            
+            setTimeout(() => {
+                const password = prompt("INSIRA A CHAVE DE ACESSO:");
+                
+                if (password === "lhex2026") {
+                    icon.className = "fas fa-lock-open";
+                    icon.style.color = "#00FFAA";
+                    alert("ACESSO CONCEDIDO.");
+                    window.location.href = "dashboard.html";
+                } else if (password != null) {
+                    icon.style.color = "#FF3366"; // Vermelho erro
+                    alert("ACESSO NEGADO. SISTEMA PROTEGIDO.");
+                    setTimeout(() => icon.style.color = "#222", 1000);
                 }
-            });
-        });
-        observer.observe(document.getElementById('demo'));
+            }, 200);
+        }
     </script>
 </body>
 </html>
