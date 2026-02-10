@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta property="og:title" content="L.H.E.X | System Architecture">
-    <meta property="og:description" content="Gestão High Ticket e Inteligência Artificial. O futuro da sua operação.">
+    <meta property="og:description" content="A inteligência que rege o High Ticket.">
     <meta property="og:image" content="preview.png">
     
-    <title>L.H.E.X | Neural Interface</title>
+    <title>L.H.E.X | The Architecture</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -18,8 +18,10 @@
         :root {
             --neon: #00FFAA;
             --purple: #BD00FF;
-            --bg: #030005;
-            --glass: rgba(255, 255, 255, 0.03);
+            --alert: #FF3366;
+            --bg: #020005;
+            --glass: rgba(255, 255, 255, 0.02);
+            --border: rgba(255, 255, 255, 0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
@@ -30,22 +32,15 @@
             overflow-x: hidden; 
         }
 
-        /* --- BACKGROUND VIVO --- */
-        .grid-bg {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
-            background-image: 
-                linear-gradient(var(--glass) 1px, transparent 1px),
-                linear-gradient(90deg, var(--glass) 1px, transparent 1px);
+        /* --- BACKGROUND PARTICLES --- */
+        .particles {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
             background-size: 50px 50px;
-            opacity: 0.2;
-            perspective: 1000px;
-            transform-style: preserve-3d;
-            animation: moveGrid 20s infinite linear;
+            opacity: 0.3;
         }
 
-        @keyframes moveGrid { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
-
-        /* --- HERO SECTION (O REATOR) --- */
+        /* --- SECTION 1: O REATOR (HERO) --- */
         .hero {
             height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -54,213 +49,272 @@
         }
 
         .logo-reactor {
-            width: 380px; /* GIGANTE */
-            filter: drop-shadow(0 0 30px rgba(189, 0, 255, 0.4));
-            animation: pulseReactor 4s infinite ease-in-out;
+            width: 400px; /* GIGANTE */
+            filter: drop-shadow(0 0 30px rgba(189, 0, 255, 0.2));
+            animation: breathe 5s infinite ease-in-out;
             cursor: pointer;
-            transition: 0.5s;
+            transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .logo-reactor:hover {
-            transform: scale(1.05) rotate(2deg);
-            filter: drop-shadow(0 0 80px rgba(0, 255, 170, 0.6));
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 100px rgba(0, 255, 170, 0.5));
         }
 
-        .brand-name {
-            font-size: 2rem;
-            font-weight: 100; /* SUPER FINO */
-            letter-spacing: 20px; /* ESPAÇADO */
-            margin-top: 20px;
-            background: linear-gradient(90deg, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
+        .brand-text {
+            font-size: 3rem; font-weight: 100; letter-spacing: 25px; margin-top: 30px;
+            background: linear-gradient(to right, #fff, #444); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            opacity: 0; animation: fadeUp 2s forwards 0.5s;
         }
 
-        .click-hint {
-            margin-top: 30px;
-            color: var(--neon);
-            font-size: 0.7rem;
-            letter-spacing: 5px;
-            animation: blink 2s infinite;
-            cursor: pointer;
+        .scroll-hint {
+            position: absolute; bottom: 40px;
+            font-size: 0.7rem; letter-spacing: 5px; color: #666;
+            animation: bounce 2s infinite; opacity: 0.5;
         }
 
-        /* --- PAINEL HOLOGRÁFICO (SIMULAÇÃO) --- */
-        .simulation-section {
-            min-height: 100vh;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            padding: 50px 20px;
-            position: relative;
+        /* --- SECTION 2: A INTELIGÊNCIA (TERMINAL) --- */
+        .section-demo {
+            min-height: 100vh; padding: 100px 20px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: linear-gradient(to bottom, var(--bg), #050010);
         }
 
-        .hud-container {
-            width: 100%; max-width: 1000px;
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-            opacity: 0; transform: translateY(50px); transition: 1s;
-        }
-        .hud-container.active { opacity: 1; transform: translateY(0); }
-
-        .hud-card {
-            background: rgba(10, 5, 20, 0.6);
-            border: 1px solid rgba(255,255,255,0.1);
+        .terminal-window {
+            width: 100%; max-width: 800px;
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
+            box-shadow: 0 0 50px rgba(0, 255, 170, 0.05);
+            padding: 20px;
+            font-family: 'Courier New', monospace;
             position: relative;
-            overflow: hidden;
-        }
-        .hud-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-            background: var(--neon);
-            box-shadow: 0 0 10px var(--neon);
-            animation: scanline 3s infinite linear;
         }
 
-        .hud-title { font-size: 0.8rem; color: #666; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
-        .hud-value { font-size: 2.5rem; font-weight: 200; color: #fff; }
-        .hud-status { font-size: 0.7rem; color: var(--neon); margin-top: 5px; }
+        .terminal-header {
+            display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px;
+        }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: #333; }
+        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
 
-        /* --- ECOSSISTEMA (CARDS INTERATIVOS) --- */
-        .features-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;
-            max-width: 1200px; margin: 50px auto; padding: 0 20px;
-            opacity: 0; transition: 1.5s;
+        .terminal-body {
+            color: var(--neon); font-size: 0.9rem; line-height: 1.6; min-height: 200px;
+        }
+        .cursor { display: inline-block; width: 8px; height: 15px; background: var(--neon); animation: blink 1s infinite; }
+
+        .section-title {
+            font-size: 2rem; font-weight: 200; letter-spacing: 5px; margin-bottom: 50px; text-align: center;
+            color: #fff;
+        }
+
+        /* --- SECTION 3: OS NÚMEROS (DATA) --- */
+        .section-stats {
+            padding: 100px 0;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+            background: var(--border); /* Linhas finas */
         }
         
-        .f-card {
-            border: 1px solid rgba(255,255,255,0.1); padding: 30px;
-            text-align: center; transition: 0.3s; cursor: default;
+        .stat-box {
+            background: var(--bg); padding: 80px 20px; text-align: center;
+            transition: 0.3s;
         }
-        .f-card:hover { border-color: var(--purple); background: rgba(189, 0, 255, 0.05); }
-        .f-card h3 { font-size: 3rem; font-weight: 100; margin-bottom: 10px; }
-        .f-card h4 { color: var(--neon); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 10px; }
-        .f-card p { font-size: 0.8rem; color: #888; line-height: 1.6; }
+        .stat-box:hover { background: #080808; }
+        
+        .stat-number { font-size: 4rem; font-weight: 100; color: #fff; margin-bottom: 10px; }
+        .stat-label { font-size: 0.8rem; letter-spacing: 3px; color: var(--purple); text-transform: uppercase; }
+
+        /* --- SECTION 4: O COFRE (CLIENT AREA) --- */
+        .section-locked {
+            height: 80vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: radial-gradient(circle, #0a000f, #000);
+            position: relative; overflow: hidden;
+            border-top: 1px solid #222;
+        }
+
+        .lock-icon {
+            font-size: 4rem; color: #333; margin-bottom: 20px; transition: 0.5s;
+        }
+        .section-locked:hover .lock-icon { color: var(--alert); transform: scale(1.1); text-shadow: 0 0 20px var(--alert); }
+
+        .locked-title { font-size: 2rem; font-weight: 100; letter-spacing: 8px; color: #666; margin-bottom: 10px; }
+        .locked-desc { font-size: 0.9rem; color: #444; max-width: 400px; text-align: center; line-height: 1.6; margin-bottom: 40px; }
+
+        .btn-request {
+            padding: 20px 50px;
+            border: 1px solid #333; color: #fff; text-decoration: none;
+            border-radius: 50px; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase;
+            transition: 0.5s; position: relative; overflow: hidden;
+        }
+        .btn-request::before {
+            content: ''; position: absolute; top:0; left:-100%; width:100%; height:100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transition:0.5s;
+        }
+        .btn-request:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
+        .btn-request:hover::before { left: 100%; }
+
+        .btn-login-secret {
+            margin-top: 20px; font-size: 0.7rem; color: #333; text-decoration: none; border-bottom: 1px solid #111;
+        }
+        .btn-login-secret:hover { color: var(--neon); border-color: var(--neon); }
 
         /* --- FOOTER --- */
-        .cta-bar {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 20px; z-index: 100;
-            background: rgba(0,0,0,0.8); padding: 10px 20px; border-radius: 50px; border: 1px solid #333;
-            backdrop-filter: blur(10px);
+        footer {
+            padding: 50px; text-align: center; border-top: 1px solid #111;
+            font-size: 0.7rem; color: #444; letter-spacing: 2px;
         }
-
-        .btn-neon {
-            color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px;
-            padding: 10px 20px; border-radius: 30px; transition: 0.3s; text-transform: uppercase;
-        }
-        .btn-neon:hover { background: var(--neon); color: #000; box-shadow: 0 0 20px rgba(0,255,170,0.4); }
-        .btn-email { border: 1px solid #444; }
 
         /* ANIMATIONS */
-        @keyframes pulseReactor { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px rgba(189, 0, 255, 0.2)); } 50% { transform: scale(1.02); filter: drop-shadow(0 0 50px rgba(189, 0, 255, 0.5)); } }
-        @keyframes scanline { 0% { left: -100%; } 100% { left: 100%; } }
-        @keyframes blink { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+        @keyframes breathe { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(189,0,255,0.2)); } 50% { transform: scale(1.02); filter: drop-shadow(0 0 60px rgba(189,0,255,0.4)); } }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         /* MOBILE */
         @media (max-width: 768px) {
-            .logo-reactor { width: 250px; }
-            .brand-name { font-size: 1.5rem; letter-spacing: 10px; }
-            .hud-container { grid-template-columns: 1fr; }
-            .features-grid { grid-template-columns: 1fr; }
-            .cta-bar { width: 90%; justify-content: center; }
+            .logo-reactor { width: 280px; }
+            .brand-text { font-size: 2rem; letter-spacing: 10px; }
+            .section-stats { grid-template-columns: 1fr; gap: 0; }
+            .stat-box { border-bottom: 1px solid #111; padding: 40px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="grid-bg"></div>
+    <div class="particles"></div>
 
-    <div class="hero">
-        <img src="logo.png" alt="REACTOR" class="logo-reactor" onclick="activateSystem()">
-        <div class="brand-name">L.H.E.X</div>
-        <div class="click-hint" onclick="activateSystem()">[ CLIQUE PARA INICIAR SISTEMA ]</div>
-    </div>
+    <section class="hero" onclick="startJourney()">
+        <img src="logo.png" alt="REACTOR" class="logo-reactor">
+        <h1 class="brand-text">L.H.E.X</h1>
+        <div class="scroll-hint">SYSTEM ARCHITECTURE</div>
+    </section>
 
-    <div class="simulation-section" id="sim-interface">
-        <h2 style="font-weight: 200; letter-spacing: 5px; margin-bottom: 40px; text-align: center;">
-            STATUS DA OPERAÇÃO <span style="color:var(--neon)">EM TEMPO REAL</span>
-        </h2>
-
-        <div class="hud-container" id="hud">
-            <div class="hud-card">
-                <div class="hud-title">SDR IA ATIVO</div>
-                <div class="hud-value" id="leads-count">0</div>
-                <div class="hud-status">LEADS PROCESSADOS HOJE</div>
+    <section class="section-demo" id="demo">
+        <h2 class="section-title">NEURAL <span style="color:var(--neon)">CORE</span></h2>
+        
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
             </div>
-            <div class="hud-card">
-                <div class="hud-title">EFICIÊNCIA DE AGENDA</div>
-                <div class="hud-value" id="efficiency">0%</div>
-                <div class="hud-status">OTIMIZAÇÃO DE HORÁRIOS</div>
-            </div>
-            <div class="hud-card">
-                <div class="hud-title">PREVISÃO DE RECEITA</div>
-                <div class="hud-value" style="color:var(--neon)">R$ <span id="revenue">0</span></div>
-                <div class="hud-status">PIPELINE ATIVO</div>
+            <div class="terminal-body" id="console-output">
+                <span class="cursor"></span>
             </div>
         </div>
+        <p style="margin-top:20px; color:#444; font-size:0.7rem; letter-spacing:2px;">*DADOS REAIS DE PROCESSAMENTO DO ALGORITMO L.H.E.X</p>
+    </section>
 
-        <div class="features-grid" id="feat-grid">
-            <div class="f-card">
-                <h3>L</h3>
-                <h4>LÓGICA</h4>
-                <p>1.5M de dados processados para prever cancelamentos antes que aconteçam.</p>
-            </div>
-            <div class="f-card">
-                <h3>H</h3>
-                <h4>HUMANIDADE</h4>
-                <p>IA generativa que acolhe, entende e converte com empatia real.</p>
-            </div>
-            <div class="f-card">
-                <h3>E</h3>
-                <h4>EXPONENCIAL</h4>
-                <p>Escala infinita. Sua clínica aberta e vendendo 24 horas por dia.</p>
-            </div>
-            <div class="f-card">
-                <h3>X</h3>
-                <h4>X-FACTOR</h4>
-                <p>Design e Posicionamento High Ticket que blindam sua marca.</p>
-            </div>
+    <section class="section-stats" id="stats">
+        <div class="stat-box">
+            <div class="stat-number" data-target="1500000">0</div>
+            <div class="stat-label">DADOS PROCESSADOS</div>
         </div>
-    </div>
+        <div class="stat-box">
+            <div class="stat-number" data-target="24">0</div>
+            <div class="stat-label">HORAS DE OPERAÇÃO/DIA</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number" data-target="98">0%</div>
+            <div class="stat-label">TAXA DE RETENÇÃO</div>
+        </div>
+    </section>
 
-    <div class="cta-bar">
-        <a href="dashboard.html" class="btn-neon">Área do Cliente</a>
-        <a href="mailto:contato@lhexsystems.com" class="btn-neon btn-email">Falar com Consultor</a>
-    </div>
+    <section class="section-locked">
+        <i class="fas fa-lock lock-icon"></i>
+        <h2 class="locked-title">RESTRICTED ACCESS</h2>
+        <p class="locked-desc">
+            O painel de controle L.H.E.X é exclusivo para clínicas parceiras com faturamento High Ticket verificado.
+        </p>
+        
+        <a href="mailto:contato@lhexsystems.com?subject=Solicitação de Acesso - L.H.E.X" class="btn-request">
+            Solicitar Credencial
+        </a>
+        
+        <a href="dashboard.html" class="btn-login-secret">Login Administrativo</a>
+    </section>
+
+    <footer>
+        L.H.E.X SYSTEMS CORPORATION © 2026<br>
+        RIO DE JANEIRO • NEW YORK • DUBAI
+    </footer>
 
     <script>
-        function activateSystem() {
-            // Rola suavemente para a simulação
-            document.getElementById('sim-interface').scrollIntoView({ behavior: 'smooth' });
-            
-            // Ativa visualmente os painéis
-            setTimeout(() => {
-                document.getElementById('hud').classList.add('active');
-                document.getElementById('feat-grid').style.opacity = '1';
-                startNumbers();
-            }, 800);
+        // --- FUNÇÃO DE DIGITAÇÃO (SIMULA A IA) ---
+        const terminalText = [
+            "> INICIANDO PROTOCOLO L.H.E.X v4.0...",
+            "> CONECTANDO AO CRM DA CLÍNICA...",
+            "> [SUCESSO] BANCO DE DADOS SINCRONIZADO.",
+            "> ANALISANDO 45 NOVOS LEADS...",
+            "> LEAD DETECTADO: 'MARIA' (INTERESSE: LIPO LAD)",
+            "> IA ENVIANDO MENSAGEM: 'Olá Maria, vi que você busca transformação...'",
+            "> RESPOSTA DA LEAD: 'Sim, mas tenho medo do pós.'",
+            "> IA ANALISANDO SENTIMENTO: [MEDO/OBJEÇÃO]",
+            "> IA CONTORNANDO: 'Entendo perfeitamente. Por isso usamos a técnica...'",
+            "> [CONVERSÃO] LEAD AGENDOU AVALIAÇÃO.",
+            "> STATUS: AGUARDANDO PRÓXIMA OPORTUNIDADE..."
+        ];
+
+        function typeWriter(text, i, fnCallback) {
+            if (i < text.length) {
+                document.getElementById("console-output").innerHTML = 
+                    document.getElementById("console-output").innerHTML.replace('<span class="cursor"></span>', '') + 
+                    text.charAt(i) + 
+                    '<span class="cursor"></span>';
+                setTimeout(function() { typeWriter(text, i + 1, fnCallback) }, 30); // Velocidade
+            } else if (typeof fnCallback == 'function') {
+                setTimeout(fnCallback, 700);
+            }
         }
 
-        function startNumbers() {
-            // Animação dos números (Fake Data Simulation)
-            let leads = 0;
-            let eff = 0;
-            let rev = 0;
-
-            const interval = setInterval(() => {
-                // Leads sobe rápido
-                if(leads < 142) { leads += 2; document.getElementById('leads-count').innerText = leads; }
-                
-                // Eficiência vai até 98%
-                if(eff < 98) { eff += 1; document.getElementById('efficiency').innerText = eff + '%'; }
-                
-                // Revenue sobe aos poucos
-                if(rev < 450) { rev += 5; document.getElementById('revenue').innerText = rev + 'k'; }
-
-                if(leads >= 142 && eff >= 98 && rev >= 450) clearInterval(interval);
-            }, 30);
+        function startTerminal(index) {
+            if (index < terminalText.length) {
+                document.getElementById("console-output").innerHTML += "<br>";
+                typeWriter(terminalText[index], 0, function(){
+                    startTerminal(index + 1);
+                });
+            }
         }
+
+        // --- SCROLL ANIMATION ---
+        function startJourney() {
+            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- OBSERVER (DISPARAR ANIMAÇÕES QUANDO APARECER NA TELA) ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'demo') {
+                        // Limpa e começa a digitar
+                        document.getElementById("console-output").innerHTML = '<span class="cursor"></span>';
+                        startTerminal(0);
+                    }
+                    if (entry.target.id === 'stats') {
+                        // Começa a contar os números
+                        const counters = document.querySelectorAll('.stat-number');
+                        counters.forEach(counter => {
+                            const target = +counter.getAttribute('data-target');
+                            const updateCount = () => {
+                                const count = +counter.innerText.replace('%','');
+                                const speed = target / 100;
+                                if (count < target) {
+                                    counter.innerText = Math.ceil(count + speed) + (target === 98 ? '%' : '');
+                                    setTimeout(updateCount, 20);
+                                } else {
+                                    counter.innerText = target + (target === 98 ? '%' : '');
+                                    if(target > 1000) counter.innerText = "1.5M"; // Formatação especial
+                                }
+                            };
+                            updateCount();
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(document.getElementById('demo'));
+        observer.observe(document.getElementById('stats'));
     </script>
 </body>
 </html>
