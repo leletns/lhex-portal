@@ -1,65 +1,261 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>L.H.E.X | Core System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root { --neon: #00FFAA; --bg: #000; --glass: rgba(255, 255, 255, 0.05); }
-        body { background: var(--bg); color: #fff; font-family: 'Montserrat', sans-serif; overflow: hidden; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        
-        .neural-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 50% 50%, #11001c, #000); animation: pulse 10s infinite; }
-        
-        .hero-logo { width: 300px; cursor: pointer; transition: 0.5s; filter: drop-shadow(0 0 20px rgba(0,255,170,0.2)); }
-        .hero-logo:hover { transform: scale(1.05); filter: drop-shadow(0 0 60px rgba(0,255,170,0.6)); }
-        
-        .text-intro { margin-top: 30px; letter-spacing: 5px; font-size: 0.9rem; text-transform: uppercase; color: #888; }
-        
-        /* --- DOCK DE NAVEGAÇÃO (O SEGREDO) --- */
-        .dock-container {
-            position: fixed; bottom: 30px; 
-            background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(15px);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 50px;
-            padding: 15px 30px; display: flex; gap: 30px; z-index: 100;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        
-        .dock-item {
-            color: #666; text-decoration: none; font-size: 1.2rem; transition: 0.3s; position: relative;
-        }
-        .dock-item:hover, .dock-item.active { color: var(--neon); transform: translateY(-5px); }
-        .dock-item::after { content: attr(data-tooltip); position: absolute; top: -40px; left: 50%; transform: translateX(-50%); font-size: 0.6rem; letter-spacing: 2px; opacity: 0; transition: 0.3s; white-space: nowrap; color: #fff; }
-        .dock-item:hover::after { opacity: 1; top: -30px; }
+    <meta name="theme-color" content="#050505">
+    <title>L.H.E.X Systems | Security & Intelligence</title>
+    
+    <meta name="description" content="Advanced Blockchain Security, Asset Recovery & Digital Cloning Intelligence.">
+    <meta property="og:title" content="L.H.E.X Systems">
+    <meta property="og:description" content="System Standby. Authorized Access Only.">
+    <meta property="og:image" content="https://lhexsystems.com/preview.png">
+    <meta property="og:url" content="https://lhexsystems.com">
+    <meta property="og:type" content="website">
 
-        @keyframes pulse { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Corporation",
+      "name": "L.H.E.X Systems",
+      "url": "https://lhexsystems.com",
+      "logo": "https://lhexsystems.com/logo.png",
+      "founder": {
+        "@type": "Person",
+        "name": "Letícia Nascimento Felix",
+        "jobTitle": "Lead Architect & CEO"
+      },
+      "sameAs": [
+        "https://github.com/lhexsystems",
+        "https://twitter.com/lhexsystems"
+      ]
+    }
+    </script>
+
+    <style>
+        /* CORE VARIABLES */
+        :root {
+            --bg-primary: #050505;
+            --bg-secondary: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --accent-green: #00ff9d;
+            --accent-purple: #9d00ff;
+            --border-dim: #222222;
+            --glass-panel: rgba(10, 10, 10, 0.85);
+            --blur-amt: 12px;
+        }
+
+        /* RESET & BASE */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding-bottom: 100px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* COMPONENT: HEADER */
+        .sys-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: var(--glass-panel);
+            backdrop-filter: blur(var(--blur-amt));
+            -webkit-backdrop-filter: blur(var(--blur-amt));
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-dim);
+        }
+
+        .sys-logo {
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #fff, var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        /* LAYOUT: VIEWPORT */
+        .viewport {
+            display: none;
+            padding: 80px 24px 24px 24px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .viewport.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* TYPOGRAPHY */
+        h1 { font-size: 1.8rem; font-weight: 400; margin: 0 0 10px 0; }
+        .h-sub { color: var(--text-secondary); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px; display: block; }
+        .highlight { color: var(--accent-green); }
+
+        /* COMPONENT: TECH CARD */
+        .module-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-dim);
+            border-left: 3px solid var(--accent-green);
+            padding: 24px;
+            margin-bottom: 24px;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-header {
+            color: var(--accent-green);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .module-body { color: #cccccc; font-size: 0.9rem; line-height: 1.6; }
+
+        /* COMPONENT: NAVIGATION (DOCK) */
+        .sys-dock {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+            min-width: 300px;
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid var(--border-dim);
+            border-radius: 100px;
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .dock-item {
+            background: none;
+            border: none;
+            color: #444;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        .dock-item:hover { color: #fff; background: rgba(255,255,255,0.05); }
+        .dock-item.active { color: var(--accent-green); transform: scale(1.1); text-shadow: 0 0 15px rgba(0, 255, 157, 0.4); }
+
+        /* UTILS */
+        .img-container { text-align: center; margin-top: 6vh; }
+        .status-badge { display: inline-block; padding: 4px 12px; border: 1px solid var(--border-dim); border-radius: 50px; font-size: 0.7rem; color: var(--text-secondary); margin-top: 15px; }
     </style>
 </head>
 <body>
-    <div class="neural-bg"></div>
 
-    <img src="logo.png" onclick="enterSystem()" class="hero-logo">
-    <div class="text-intro" id="status">System Standby</div>
+    <header class="sys-header">
+        <div class="sys-logo">L.H.E.X SYSTEMS</div>
+    </header>
 
-    <div class="dock-container">
-        <a href="index.html" class="dock-item active" data-tooltip="CORE"><i class="fas fa-microchip"></i></a>
-        <a href="protocol.html" class="dock-item" data-tooltip="PROTOCOLO"><i class="fas fa-dna"></i></a>
-        <a href="architecture.html" class="dock-item" data-tooltip="ARQUITETURA"><i class="fas fa-layer-group"></i></a>
-        <a href="javascript:void(0)" onclick="login()" class="dock-item" data-tooltip="ACESSO"><i class="fas fa-lock"></i></a>
-    </div>
+    <section id="v-home" class="viewport active">
+        <div class="img-container">
+            <img src="logo.png" alt="System Core" style="width: 100px; height: auto; opacity: 0.9;">
+            <div style="margin-top: 25px;">
+                <span class="h-sub" style="margin:0;">SYSTEM STATUS</span>
+                <h2 style="font-size: 1rem; margin-top: 10px; letter-spacing: 3px;">STANDBY</h2>
+            </div>
+            <div class="status-badge">V5.0.1 STABLE</div>
+        </div>
+    </section>
+
+    <section id="v-protocol" class="viewport">
+        <span class="h-sub">METHODOLOGY</span>
+        <h1>THE <span class="highlight">PROTOCOL</span></h1>
+        
+        <article class="module-card">
+            <div class="module-header">01. DATA INGESTION</div>
+            <div class="module-body">
+                Não começamos com anúncios. Começamos com dados. O L.H.E.X absorve o histórico da operação, mapeia padrões comportamentais de alto valor (High-Net-Worth) e gera um "Clone Digital" do alvo ideal.
+            </div>
+        </article>
+
+        <article class="module-card">
+            <div class="module-header">02. RESONANCE</div>
+            <div class="module-body">
+                O mercado é ruído. Para penetrar, é necessário vibrar na frequência correta. Nossa dissonância cognitiva filtra curiosos e atrai capital qualificado.
+            </div>
+        </article>
+    </section>
+
+    <section id="v-arch" class="viewport">
+        <span class="h-sub">TECH SPECS v5.0</span>
+        <h1>SYSTEM <span class="highlight">ARCHITECTURE</span></h1>
+
+        <article class="module-card">
+            <div class="module-header">🧠 DECISION ENGINE</div>
+            <div class="module-body">
+                O núcleo do sistema. Motor de inferência neural que analisa interações em tempo real (RT). Sem scripts estáticos; adaptação dinâmica baseada em análise de sentimento e latência de resposta.
+            </div>
+        </article>
+
+        <article class="module-card" style="border-left-color: var(--accent-purple);">
+            <div class="module-header" style="color: var(--accent-purple);">🔒 SECURITY LAYER</div>
+            <div class="module-body">
+                Auditoria contínua de contratos inteligentes. Monitoramento de Mempool e vetores de ataque em EVM chains.
+            </div>
+        </article>
+    </section>
+
+    <nav class="sys-dock">
+        <button class="dock-item active" onclick="Sys.route('v-home', this)" aria-label="Dashboard">❖</button>
+        <button class="dock-item" onclick="Sys.route('v-protocol', this)" aria-label="Protocols">DNA</button>
+        <button class="dock-item" onclick="Sys.route('v-arch', this)" aria-label="Architecture">≡</button>
+        <button class="dock-item" aria-label="Secure Access">🔒</button>
+    </nav>
 
     <script>
-        function enterSystem() {
-            document.getElementById('status').innerText = "Accessing Neural Network...";
-            document.getElementById('status').style.color = "#00FFAA";
-            setTimeout(() => { window.location.href = 'protocol.html'; }, 1500);
-        }
-        function login() {
-            let pwd = prompt("CREDENTIALS REQUIRED:");
-            if(pwd === "lhex2026") window.location.href = "dashboard.html";
-            else alert("ACCESS DENIED.");
-        }
+        /**
+         * L.H.E.X Systems Core Controller
+         * v5.0.1 - Single Page Application Router
+         */
+        const Sys = {
+            route: (viewId, trigger) => {
+                // Deactivate current views
+                document.querySelectorAll('.viewport').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.dock-item').forEach(el => el.classList.remove('active'));
+                
+                // Activate target view
+                document.getElementById(viewId).classList.add('active');
+                if(trigger) trigger.classList.add('active');
+                
+                // Haptic feedback simulation (Optional)
+                if(navigator.vibrate) navigator.vibrate(5);
+            },
+            init: () => {
+                console.log("LHEX Systems v5.0 initialized.");
+                console.log("Security protocols active.");
+            }
+        };
+
+        window.onload = Sys.init;
     </script>
 </body>
 </html>
