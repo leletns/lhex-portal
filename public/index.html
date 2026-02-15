@@ -4,330 +4,380 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000">
-    <title>L.H.E.X Systems | Global Intelligence</title>
+    <title>L.H.E.X Systems | Neural Defense Protocol</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;800&family=Space+Grotesk:wght@300;600&display=swap" rel="stylesheet">
 
-    <meta name="description" content="Premier Blockchain Security & AI Intelligence Firm. Est. Brazil.">
     <meta property="og:title" content="L.H.E.X Systems">
+    <meta property="og:description" content="Play the Protocol. Secure the Future.">
     <meta property="og:image" content="https://lhexsystems.com/preview.png">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Corporation",
-      "name": "L.H.E.X Systems",
-      "foundingLocation": {
-        "@type": "Place",
-        "name": "Brazil"
-      },
-      "founder": {
-        "@type": "Person",
-        "name": "Letícia Nascimento "
-      },
-      "slogan": "Intelligence Beyond Code."
-    }
-    </script>
 
     <style>
-        /* --- HIGH TICKET PALETTE --- */
         :root {
-            --bg-deep: #030303;
-            --bg-panel: #0a0a0a;
-            --text-main: #ffffff;
-            --text-muted: #666666;
-            --neon-green: #00ff9d;
-            --neon-purple: #bd00ff;
-            --grid-line: rgba(255, 255, 255, 0.03);
-            --glass: rgba(5, 5, 5, 0.9);
+            --bg: #030303;
+            --panel: #0d0d0d;
+            --neon: #00ff9d;
+            --purple: #bd00ff;
+            --danger: #ff0055;
+            --text: #ffffff;
+            --glass: rgba(10, 10, 10, 0.9);
         }
 
-        /* --- GLOBAL RESET --- */
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * { box-sizing: border-box; user-select: none; -webkit-tap-highlight-color: transparent; }
         
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            font-family: 'JetBrains Mono', monospace; /* Fonte de Código */
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
             margin: 0;
-            overflow-x: hidden;
-            padding-bottom: 120px;
-            background-image: 
-                linear-gradient(var(--grid-line) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-            background-size: 40px 40px; /* Efeito Grid de Fundo */
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; /* Fonte de Título */ text-transform: uppercase; margin: 0; }
-
-        /* --- HEADER & LOGO --- */
-        .cyber-header {
+        /* --- BACKGROUND GRID ANIMADO --- */
+        .cyber-grid {
             position: fixed;
-            top: 0;
-            width: 100%;
-            height: 80px;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            top: 0; left: 0; width: 200vw; height: 200vh;
+            background-image: 
+                linear-gradient(rgba(0, 255, 157, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 157, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            animation: gridMove 20s linear infinite;
+            z-index: -1;
+            pointer-events: none;
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        @keyframes gridMove { 0% { transform: perspective(500px) rotateX(60deg) translateY(0); } 100% { transform: perspective(500px) rotateX(60deg) translateY(50px); } }
 
-        .logo-img {
-            height: 45px; /* Maior no Mobile */
-            width: auto;
-            filter: drop-shadow(0 0 10px rgba(189, 0, 255, 0.4)); /* Glow Roxo */
-            transition: transform 0.3s ease;
-        }
-
-        .logo-text {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.4rem;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, #fff, var(--neon-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* --- VIEWPORTS (PÁGINAS) --- */
-        .viewport {
-            display: none;
-            padding: 100px 20px 20px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .viewport.active { display: block; }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- CARDS & UI ELEMENTS --- */
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 6px 16px;
-            border: 1px solid var(--neon-green);
-            border-radius: 4px;
-            color: var(--neon-green);
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            background: rgba(0, 255, 157, 0.05);
-            box-shadow: 0 0 15px rgba(0, 255, 157, 0.1);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            line-height: 1;
-            margin-bottom: 10px;
-            background: linear-gradient(180deg, #fff, #666);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .tech-card {
-            background: var(--bg-panel);
-            border: 1px solid #222;
-            padding: 30px;
-            margin-bottom: 25px;
-            border-radius: 12px;
-            position: relative;
-            transition: transform 0.2s;
-        }
-        
-        .tech-card:hover { transform: translateY(-2px); border-color: #333; }
-
-        .card-header {
+        /* --- HEADER & LANGUAGE --- */
+        .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #222;
-            padding-bottom: 15px;
+            padding: 20px;
+            z-index: 100;
         }
 
-        .card-title { color: var(--neon-green); font-size: 0.9rem; letter-spacing: 1px; font-weight: 700; }
-        .card-icon { font-size: 1.2rem; }
-        
-        .card-body { 
-            color: #ccc; 
-            font-size: 0.95rem; 
-            line-height: 1.7; 
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 300;
-        }
-
-        /* --- FOOTER TAG --- */
-        .br-tag {
-            text-align: center;
-            margin-top: 40px;
-            color: #444;
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        /* --- NAVIGATION DOCK (MOBILE APP STYLE) --- */
-        .nav-dock {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(20, 20, 20, 0.9);
-            backdrop-filter: blur(15px);
-            border: 1px solid #333;
-            border-radius: 20px;
-            padding: 10px 20px;
+        .lang-selector {
             display: flex;
-            gap: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            z-index: 1000;
+            gap: 10px;
         }
 
-        .nav-btn {
-            background: none;
-            border: none;
-            color: #555;
-            padding: 10px;
-            border-radius: 12px;
+        .lang-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333;
+            color: #666;
+            padding: 5px 10px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .lang-btn.active { border-color: var(--neon); color: #fff; text-shadow: 0 0 10px var(--neon); }
+        .lang-btn:hover { transform: scale(1.1); }
+
+        /* --- LOGO INTERATIVA (O CORAÇÃO) --- */
+        .core-container {
+            flex: 1;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 5px;
+            position: relative;
         }
 
-        .nav-btn span { font-size: 0.6rem; letter-spacing: 1px; font-weight: 700; text-transform: uppercase; }
-        .nav-btn svg { width: 24px; height: 24px; fill: currentColor; }
+        .logo-core {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #222, #000);
+            border: 2px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(0, 255, 157, 0.1);
+            cursor: pointer;
+            transition: all 0.1s;
+            position: relative;
+            z-index: 10;
+        }
 
-        .nav-btn.active { color: #fff; background: rgba(255,255,255,0.08); }
-        .nav-btn.active svg { fill: var(--neon-green); filter: drop-shadow(0 0 8px var(--neon-green)); }
+        .logo-core img { width: 60%; filter: drop-shadow(0 0 5px var(--purple)); }
+
+        .logo-core:active { transform: scale(0.95); }
+        .logo-core.pulse { animation: heartbeat 1.5s infinite; border-color: var(--neon); box-shadow: 0 0 50px rgba(0, 255, 157, 0.3); }
+
+        @keyframes heartbeat { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* --- GAME UI --- */
+        .game-status {
+            text-align: center;
+            margin-top: 30px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .level-badge {
+            background: var(--purple);
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px var(--purple);
+        }
+
+        .mission-text {
+            font-size: 1.2rem;
+            margin-top: 15px;
+            min-height: 60px;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .progress-bar {
+            width: 80%;
+            max-width: 400px;
+            height: 6px;
+            background: #222;
+            border-radius: 10px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--neon);
+            box-shadow: 0 0 10px var(--neon);
+            transition: width 0.1s;
+        }
+
+        .tap-instruction {
+            color: #666;
+            font-size: 0.8rem;
+            animation: blink 2s infinite;
+            margin-top: 10px;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+        /* --- GAME OVER / CONTACT --- */
+        .contact-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .contact-modal.active { display: flex; animation: fadeIn 1s; }
+
+        .ceo-badge {
+            border: 1px solid var(--neon);
+            color: var(--neon);
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+        }
+
+        .contact-btn {
+            background: var(--neon);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* --- CODE MODE (Solidity Style) --- */
+        body.code-mode { font-family: 'Courier New', monospace; color: #0f0; }
+        body.code-mode .logo-core { border-radius: 0; border: 1px dashed #0f0; }
+        body.code-mode .mission-text::before { content: "function execute() { "; color: #666; display: block; font-size: 0.7rem; margin-bottom: 5px; }
+        body.code-mode .mission-text::after { content: " }"; color: #666; display: block; font-size: 0.7rem; margin-top: 5px; }
 
     </style>
 </head>
 <body>
 
-    <header class="cyber-header">
-        <div class="logo-container">
-            <img src="logo.png" alt="L.H.E.X CORE" class="logo-img">
-            <span class="logo-text">L.H.E.X</span>
-        </div>
-    </header>
+    <div class="cyber-grid"></div>
 
-    <section id="v-home" class="viewport active">
-        <div style="text-align: center; margin-top: 40px;">
-            <div class="hero-badge">EST. BRAZIL | GLOBAL REACH</div>
-            <h1 class="section-title">SYSTEM<br>STANDBY</h1>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 15px;">
-                Awaiting Authorization...<br>
-                Secure Connection Established.
-            </p>
+    <div class="top-bar">
+        <div style="font-weight: bold; letter-spacing: 2px;">L.H.E.X</div>
+        <div class="lang-selector">
+            <button class="lang-btn active" onclick="setLang('pt')" title="Brasil">🇧🇷</button>
+            <button class="lang-btn" onclick="setLang('en')" title="USA">🇺🇸</button>
+            <button class="lang-btn" onclick="setLang('es')" title="España">🇪🇸</button>
+            <button class="lang-btn" onclick="setLang('code')" title="Developer Mode">_&lt;/&gt;</button>
+        </div>
+    </div>
+
+    <div class="core-container">
+        <div class="logo-core pulse" id="coreBtn" onclick="gameClick()">
+            <img src="logo.png" alt="LHEX CORE">
+        </div>
+
+        <div class="game-status">
+            <span class="level-badge" id="levelLabel">LEVEL 1: INITIALIZING</span>
             
-            <div style="margin-top: 50px; border-top: 1px solid #222; padding-top: 30px;">
-                <p style="font-size: 0.8rem; color: #444;">ACTIVE MODULES:</p>
-                <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
-                    <span style="color: var(--neon-green);">● AI CORE</span>
-                    <span style="color: var(--neon-purple);">● AUDIT</span>
-                    <span style="color: #fff;">● RECOVERY</span>
-                </div>
+            <h2 class="mission-text" id="missionText">
+                Ingestão de Dados em andamento...<br>
+                Toque no núcleo para processar.
+            </h2>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="fill"></div>
             </div>
+
+            <p class="tap-instruction" id="tapText">/// TAP THE CORE TO HACK ///</p>
         </div>
-        <div class="br-tag">Engineered in Rio de Janeiro</div>
-    </section>
+    </div>
 
-    <section id="v-intel" class="viewport">
-        <div class="hero-badge" style="border-color: var(--neon-purple); color: var(--neon-purple);">INTELLIGENCE</div>
-        <h1 class="section-title">THE<br>PROTOCOL</h1>
-
-        <div class="tech-card">
-            <div class="card-header">
-                <span class="card-title">01. INGESTION</span>
-                <span class="card-icon">📥</span>
-            </div>
-            <div class="card-body">
-                Dados brutos não geram valor. O L.H.E.X processa terabytes de histórico on-chain, identificando padrões comportamentais de grandes detentores (Whales) antes que o mercado reaja.
-            </div>
-        </div>
-
-        <div class="tech-card">
-            <div class="card-header">
-                <span class="card-title">02. DISSONANCE</span>
-                <span class="card-icon">⚡</span>
-            </div>
-            <div class="card-body">
-                Nossa IA filtra o ruído do varejo. Focamos exclusivamente em sinais de alta fidelidade e vetores de ataque institucional.
-            </div>
-        </div>
-    </section>
-
-    <section id="v-arch" class="viewport">
-        <div class="hero-badge">INFRASTRUCTURE</div>
-        <h1 class="section-title">SYSTEM<br>ARCH</h1>
-
-        <div class="tech-card">
-            <div class="card-header">
-                <span class="card-title">NEURAL ENGINE</span>
-                <span class="card-icon">🧠</span>
-            </div>
-            <div class="card-body">
-                Motor de decisão autônomo. Adapta-se em tempo real a novas vulnerabilidades DeFi e oportunidades de arbitragem MEV.
-            </div>
-        </div>
-
-        <div class="tech-card">
-            <div class="card-header">
-                <span class="card-title">ASSET RECOVERY</span>
-                <span class="card-icon">🛡️</span>
-            </div>
-            <div class="card-body">
-                Módulo Whitehat especializado em resgate atômico (Flashbots). Recuperação de fundos comprometidos em milissegundos.
-            </div>
-        </div>
-    </section>
-
-    <nav class="nav-dock">
-        <button class="nav-btn active" onclick="Sys.route('v-home', this)">
-            <svg viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
-            <span>CORE</span>
-        </button>
-        <button class="nav-btn" onclick="Sys.route('v-intel', this)">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-            <span>INTEL</span>
-        </button>
-        <button class="nav-btn" onclick="Sys.route('v-arch', this)">
-            <svg viewBox="0 0 24 24"><path d="M4 6h18V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6zm19 2h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-4v-7h4v7z"/></svg>
-            <span>ARCH</span>
-        </button>
-    </nav>
+    <div class="contact-modal" id="winModal">
+        <div class="ceo-badge">ACCESS GRANTED: LEVEL 7</div>
+        <h1 style="font-size: 2rem; margin-bottom: 10px; color: #fff;">SYSTEM SECURED</h1>
+        <p style="color: #888; max-width: 400px; line-height: 1.6;">
+            A L.H.E.X Systems opera no nível invisível. Você provou sua persistência.
+            <br>Fale diretamente com a fundadora.
+        </p>
+        
+        <a href="mailto:contato@lhexsystems.com" class="contact-btn">✉️ CONTACT CEO</a>
+        <br>
+        <p style="font-size: 0.7rem; color: #444; margin-top: 30px;">
+            CEO: LETÍCIA NASCIMENTO FELIX<br>
+            EST. BRAZIL | GLOBAL OPERATIONS
+        </p>
+    </div>
 
     <script>
-        const Sys = {
-            route: (id, btn) => {
-                document.querySelectorAll('.viewport').forEach(v => v.classList.remove('active'));
-                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-                
-                document.getElementById(id).classList.add('active');
-                btn.classList.add('active');
+        // --- 1. LANGUAGE DATABASE (O Segredo das Baleias) ---
+        const texts = {
+            pt: {
+                l1: "NÍVEL 1: INGESTÃO", m1: "Absorvendo dados do mercado...",
+                l2: "NÍVEL 2: ANÁLISE", m2: "Detectando padrões de Baleias...",
+                l3: "NÍVEL 3: AUDITORIA", m3: "Varrendo Smart Contracts...",
+                l4: "NÍVEL 4: SEGURANÇA", m4: "Neutralizando vetores de ataque...",
+                l5: "NÍVEL 5: RESGATE", m5: "Executando Flashbots Rescue...",
+                l6: "NÍVEL 6: CLONAGEM", m6: "Gerando Digital Twin da operação...",
+                l7: "NÍVEL 7: SUPREMACIA", m7: "Acesso total concedido.",
+                tap: "/// TOQUE NO NÚCLEO ///"
+            },
+            en: {
+                l1: "LEVEL 1: INGESTION", m1: "Absorbing market data...",
+                l2: "LEVEL 2: ANALYSIS", m2: "Detecting Whale patterns...",
+                l3: "LEVEL 3: AUDIT", m3: "Scanning Smart Contracts...",
+                l4: "LEVEL 4: SECURITY", m4: "Neutralizing attack vectors...",
+                l5: "LEVEL 5: RESCUE", m5: "Executing Flashbots Rescue...",
+                l6: "LEVEL 6: CLONING", m6: "Generating Operation Digital Twin...",
+                l7: "LEVEL 7: SUPREMACY", m7: "Full access granted.",
+                tap: "/// TAP THE CORE ///"
+            },
+            es: {
+                l1: "NIVEL 1: INGESTIÓN", m1: "Absorbiendo datos de mercado...",
+                l2: "NIVEL 2: ANÁLISIS", m2: "Detectando patrones de Ballenas...",
+                l3: "NIVEL 3: AUDITORÍA", m3: "Escaneando Smart Contracts...",
+                l4: "NIVEL 4: SEGURIDAD", m4: "Neutralizando vectores de ataque...",
+                l5: "NIVEL 5: RESCATE", m5: "Ejecutando Flashbots Rescue...",
+                l6: "NIVEL 6: CLONACIÓN", m6: "Generando Gemelo Digital...",
+                l7: "NIVEL 7: SUPREMACÍA", m7: "Acceso total concedido.",
+                tap: "/// TOCAR EL NÚCLEO ///"
+            },
+            code: { // LINGUAGEM DOS UNICÓRNIOS
+                l1: "status: INIT", m1: "await Data.ingest(market_feed);",
+                l2: "status: PARSING", m2: "if (whale_detected) { track(); }",
+                l3: "status: AUDITING", m3: "assert(contract.safe == true);",
+                l4: "status: DEFENDING", m4: "block.timestamp > attack_vector;",
+                l5: "status: MEV_EXEC", m5: "Flashbots.bundle(rescue_tx);",
+                l6: "status: CLONING", m6: "return new DigitalTwin(target);",
+                l7: "status: ROOT_ACCESS", m7: "System.grantAdmin(User);",
+                tap: "// click.eventListener_active"
             }
         };
+
+        // --- 2. GAME LOGIC (O Vício) ---
+        let currentLang = 'pt';
+        let level = 1;
+        let clicks = 0;
+        const clicksPerLevel = 10; // Cliques para passar de fase
+        const maxLevel = 7;
+
+        function setLang(lang) {
+            currentLang = lang;
+            
+            // Visual Update
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Mode Check
+            if(lang === 'code') document.body.classList.add('code-mode');
+            else document.body.classList.remove('code-mode');
+
+            updateText();
+        }
+
+        function updateText() {
+            if(level > maxLevel) return;
+            const t = texts[currentLang];
+            document.getElementById('levelLabel').innerText = t[`l${level}`];
+            document.getElementById('missionText').innerText = t[`m${level}`];
+            document.getElementById('tapText').innerText = t.tap;
+        }
+
+        function gameClick() {
+            clicks++;
+            
+            // Animação de "Shockwave"
+            const core = document.getElementById('coreBtn');
+            core.style.transform = "scale(0.9)";
+            core.style.borderColor = "#fff";
+            setTimeout(() => { 
+                core.style.transform = "scale(1)"; 
+                core.style.borderColor = "#333";
+            }, 50);
+
+            // Calcula progresso
+            let progress = (clicks / clicksPerLevel) * 100;
+            document.getElementById('fill').style.width = progress + "%";
+
+            // Level Up
+            if (clicks >= clicksPerLevel) {
+                level++;
+                clicks = 0;
+                document.getElementById('fill').style.width = "0%";
+                
+                if (level > maxLevel) {
+                    winGame();
+                } else {
+                    updateText();
+                    // Feedback de Vibração (Mobile)
+                    if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
+                }
+            }
+        }
+
+        function winGame() {
+            document.getElementById('winModal').classList.add('active');
+            if(navigator.vibrate) navigator.vibrate(200);
+        }
+
+        // Init
+        updateText();
+
     </script>
 </body>
 </html>
