@@ -3,252 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#000000">
-    <title>L.H.E.X Systems | Asset Recovery & Security</title>
+    <meta name="theme-color" content="#030303">
     
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;800&display=swap" rel="stylesheet">
+    <title>L.H.E.X Systems | Global Security Operations</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
 
-    <meta name="description" content="L.H.E.X Systems: Recuperação de criptoativos perdidos e auditoria de segurança. Onde as corretoras param, nós começamos.">
-    
-    <meta property="og:title" content="L.H.E.X Systems | Elite Recovery">
-    <meta property="og:description" content="Nós resolvemos o 'impossível'. Segurança Ofensiva e Resgate.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <meta name="description" content="L.H.E.X Systems. Intervenção técnica em blockchain e recuperação de ativos de alto valor. Operações confidenciais.">
+    <meta property="og:title" content="L.H.E.X Systems">
+    <meta property="og:description" content="Protocolos de Segurança e Recuperação de Ativos. Acesso Restrito.">
     <meta property="og:image" content="https://lhexsystems.com/social-card.jpg">
-    <meta property="og:url" content="https://lhexsystems.com">
-    <meta property="og:type" content="website">
 
     <style>
         :root {
             --bg: #030303;
-            --card: #0a0a0a;
-            --text: #e0e0e0;
-            --neon: #00ff9d; /* Verde L.H.E.X */
-            --code: #ff0055; /* Cor do Modo Código */
-            --border: #222;
+            --panel: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --accent: #00ff9d; /* Verde Neon L.H.E.X */
+            --border-color: #1a1a1a;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
             margin: 0;
-            overflow-x: hidden;
-            transition: background 0.5s;
+            line-height: 1.5;
         }
 
-        /* MODO CÓDIGO (Visual Hacker) */
-        body.code-mode {
-            background-color: #000;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--neon);
-        }
-        
-        body.code-mode .card { border-color: var(--code); border-style: dashed; }
-        body.code-mode h1, body.code-mode h3 { font-family: 'JetBrains Mono', monospace; }
-        body.code-mode .logo-img { filter: grayscale(100%) brightness(200%) sepia(100%) hue-rotate(50deg) saturate(500%); }
-
-        /* --- HEADER --- */
+        /* --- NAVBAR (Sóbria e Funcional) --- */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%;
-            background: rgba(3,3,3,0.95);
-            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            background: rgba(3,3,3,0.98);
+            border-bottom: 1px solid var(--border-color);
             position: sticky; top: 0; z-index: 100;
-            border-bottom: 1px solid var(--border);
         }
 
-        .logo-container img { height: 40px; width: auto; transition: 0.3s; }
-
-        .lang-dock {
-            display: flex; gap: 10px; background: #111;
-            padding: 8px; border-radius: 50px; border: 1px solid #333;
+        .brand-dock {
+            display: flex; align-items: center; gap: 10px;
+            font-family: 'JetBrains Mono', monospace; letter-spacing: -0.5px;
         }
+        
+        /* Mini logo na barra, se quiser, ou remove e deixa só texto */
+        .brand-dock img { height: 24px; width: auto; }
 
+        .lang-dock { display: flex; gap: 15px; align-items: center; }
+
+        /* Bandeiras sérias (Sem parecer desenho animado) */
         .lang-btn {
-            background: none; border: none; font-size: 1.2rem; cursor: pointer;
-            opacity: 0.4; transition: 0.3s; padding: 0 5px;
+            font-size: 1.4rem; cursor: pointer; opacity: 0.4; transition: all 0.2s;
+            filter: saturate(0); /* Deixa cinza */
+            border: none; background: none; padding: 0;
         }
 
-        .lang-btn:hover, .lang-btn.active { opacity: 1; transform: scale(1.2); }
-        .lang-btn.code-btn { font-family: 'JetBrains Mono', monospace; font-weight: bold; color: var(--neon); letter-spacing: -1px; }
+        .lang-btn:hover, .lang-btn.active { opacity: 1; filter: saturate(1); transform: scale(1.1); }
 
-        /* --- HERO --- */
-        .hero {
-            padding: 80px 20px; text-align: center; max-width: 900px; margin: 0 auto;
+        /* O Botão de Código */
+        .code-trigger {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;
+            color: var(--accent); border: 1px solid var(--accent);
+            padding: 4px 8px; border-radius: 4px; cursor: pointer; opacity: 0.7;
+        }
+        .code-trigger.active { background: var(--accent); color: #000; opacity: 1; }
+
+        /* --- HERO (A LOGO É O CENTRO) --- */
+        .hero-section {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-height: 80vh; text-align: center; padding: 40px 20px;
         }
 
-        .hero h1 {
-            font-size: 3rem; line-height: 1.1; margin-bottom: 20px;
-            background: linear-gradient(180deg, #fff, #666);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* AQUI ESTÁ A SUA MARCA GIGANTE */
+        .main-logo {
+            width: 280px; max-width: 80%; height: auto;
+            margin-bottom: 50px;
+            filter: drop-shadow(0 0 40px rgba(0, 255, 157, 0.15)); /* Glow sutil e elegante */
         }
-        
-        body.code-mode .hero h1 { -webkit-text-fill-color: var(--neon); background: none; }
 
-        .hero p { color: #888; font-size: 1.1rem; line-height: 1.6; max-width: 600px; margin: 0 auto 40px auto; }
-
-        .cta-btn {
-            display: inline-block; background: var(--neon); color: #000;
-            padding: 15px 40px; font-weight: 700; text-decoration: none;
-            border-radius: 4px; letter-spacing: 1px; transition: 0.3s;
+        .hero-headline {
+            font-size: 1.8rem; font-weight: 600; margin-bottom: 15px;
+            color: #fff; letter-spacing: -0.5px;
         }
-        
-        .cta-btn:hover { box-shadow: 0 0 30px var(--neon); transform: translateY(-2px); }
 
-        /* --- CARDS --- */
+        .hero-subtext {
+            color: var(--text-secondary); font-size: 1rem; max-width: 500px; margin-bottom: 40px;
+        }
+
+        .cta-button {
+            font-family: 'JetBrains Mono', monospace;
+            background: transparent; color: var(--accent);
+            border: 1px solid var(--accent); padding: 12px 30px;
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
+            text-decoration: none; transition: 0.3s;
+        }
+
+        .cta-button:hover { background: var(--accent); color: #000; }
+
+        /* --- SERVICES GRID (Sem Emojis, Só Dados) --- */
+        .grid-container {
+            padding: 60px 30px; border-top: 1px solid var(--border-color);
+            background: var(--panel);
+        }
+
         .grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px; padding: 40px 5%; max-width: 1400px; margin: 0 auto;
+            gap: 30px; max-width: 1200px; margin: 0 auto;
         }
 
-        .card {
-            background: var(--card); border: 1px solid var(--border);
-            padding: 30px; border-radius: 12px; position: relative; overflow: hidden;
-            transition: 0.3s;
+        .service-card {
+            padding: 30px; border: 1px solid var(--border-color);
+            background: var(--bg); transition: border-color 0.3s;
+        }
+        .service-card:hover { border-color: var(--accent); }
+
+        .card-label {
+            font-family: 'JetBrains Mono', monospace; color: var(--accent);
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 15px; display: block;
         }
 
-        .card:hover { border-color: var(--neon); }
-
-        .icon { font-size: 2rem; margin-bottom: 20px; display: block; }
-        .card h3 { color: #fff; margin-bottom: 10px; font-size: 1.3rem; }
-        .card p { color: #888; font-size: 0.95rem; line-height: 1.6; }
+        .card-title { font-size: 1.2rem; font-weight: 600; margin: 0 0 10px 0; color: #fff; }
+        .card-text { color: var(--text-secondary); font-size: 0.9rem; }
 
         /* --- FOOTER --- */
         .footer {
-            text-align: center; padding: 60px 20px; border-top: 1px solid var(--border);
-            color: #444; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+            text-align: center; padding: 50px 20px; border-top: 1px solid var(--border-color);
+            color: #444; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
         }
+
+        /* MODO CÓDIGO */
+        body.code-mode { font-family: 'JetBrains Mono', monospace !important; background: #000; }
+        body.code-mode .main-logo { filter: grayscale(1) brightness(0.5) sepia(1) hue-rotate(100deg); }
+        body.code-mode .hero-headline { color: var(--accent); }
 
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo-container">
-            <img src="logo.png" alt="L.H.E.X" class="logo-img">
+        <div class="brand-dock">
+            L.H.E.X_SYS
         </div>
-        
         <div class="lang-dock">
             <button class="lang-btn active" onclick="setLang('pt')" title="Brasil">🇧🇷</button>
-            <button class="lang-btn" onclick="setLang('en')" title="USA">🇺🇸</button>
+            <button class="lang-btn" onclick="setLang('en')" title="Global">🇺🇸</button>
             <button class="lang-btn" onclick="setLang('es')" title="España">🇪🇸</button>
-            <button class="lang-btn code-btn" onclick="setLang('code')" title="Source Code">_&lt;/&gt;</button>
+            <button class="code-trigger" onclick="setLang('code')">_SRC</button>
         </div>
     </nav>
 
-    <section class="hero">
-        <h1 id="hero-title">Recuperamos o que a<br>corretora diz ser impossível.</h1>
-        <p id="hero-desc">
-            Enviou para a rede errada? Carteira hackeada? Suporte ignorando você? 
-            Nós operamos na camada invisível do Blockchain para auditar, rastrear e resgatar seus ativos.
-        </p>
-        <a href="mailto:contato@lhexsystems.com" class="cta-btn" id="cta-text">INICIAR RESGATE</a>
+    <main class="hero-section">
+        <img src="logo.png" alt="L.H.E.X CORE" class="main-logo">
+        
+        <h1 class="hero-headline" id="h-title">Intervenção Técnica de Alto Nível.</h1>
+        <p class="hero-subtext" id="h-sub">Especialistas em recuperação de ativos digitais e segurança ofensiva. Operamos onde os protocolos padrão falham.</p>
+        
+        <a href="mailto:contato@lhexsystems.com" class="cta-button" id="h-cta">INICIAR PROTOCOLO</a>
+    </main>
+
+    <section class="grid-container">
+        <div class="grid">
+            <div class="service-card">
+                <span class="card-label">0x01 // AUDIT</span>
+                <h3 class="card-title" id="c1-t">Verificação Formal</h3>
+                <p class="card-text" id="c1-d">Análise matemática de contratos inteligentes para identificar vulnerabilidades lógicas antes do deploy.</p>
+            </div>
+            <div class="service-card">
+                <span class="card-label">0x02 // RECOVERY</span>
+                <h3 class="card-title" id="c2-t">Recuperação Atômica</h3>
+                <p class="card-text" id="c2-d">Utilização de Flashbots para extrair ativos de carteiras comprometidas em um único bloco, sem alertar bots.</p>
+            </div>
+            <div class="service-card">
+                <span class="card-label">0x03 // INTEL</span>
+                <h3 class="card-title" id="c3-t">Inteligência On-Chain</h3>
+                <p class="card-text" id="c3-d">Monitoramento e rastreamento de grandes movimentações de capital para defesa estratégica.</p>
+            </div>
+        </div>
     </section>
-
-    <div class="grid">
-        <div class="card">
-            <span class="icon">🔍</span>
-            <h3 id="c1-title">Auditoria de Erro Humano</h3>
-            <p id="c1-desc">
-                Fundos presos em contratos inteligentes ou pontes (Bridges) mal executadas. 
-                Analisamos o código on-chain para encontrar a função matemática que libera seu dinheiro.
-            </p>
-        </div>
-
-        <div class="card">
-            <span class="icon">⚡</span>
-            <h3 id="c2-title">Resgate Anti-Hacker</h3>
-            <p id="c2-desc">
-                Se sua chave privada vazou, bots roubam qualquer depósito de gás. 
-                Usamos <strong>Flashbots</strong> para criar uma transação "invisível" que saca seus fundos antes dos hackers.
-            </p>
-        </div>
-
-        <div class="card">
-            <span class="icon">🛡️</span>
-            <h3 id="c3-title">Segurança Ofensiva</h3>
-            <p id="c3-desc">
-                Grandes fortunas exigem grandes muralhas. Testamos sua infraestrutura pessoal e empresarial 
-                contra os vetores de ataque mais recentes do mercado.
-            </p>
-        </div>
-    </div>
 
     <footer class="footer">
         L.H.E.X SYSTEMS © 2026<br>
-        <span id="footer-origin">ORIGIN: BRAZIL</span> | CLASS: ELITE<br><br>
-        <span style="opacity:0.5;">POWERED BY TRANSPARENCY</span>
+        ORIGIN: <span id="f-origin">BRAZIL</span> | CLASS: <span style="color: var(--accent);">CONFIDENTIAL</span><br><br>
+        FOUNDER: LETÍCIA NASCIMENTO
     </footer>
 
     <script>
+        // LINGUAGEM SÉRIA E TÉCNICA (Sem papo de IA)
         const content = {
             pt: {
-                h1: "Recuperamos o que a<br>corretora diz ser impossível.",
-                p: "Enviou para a rede errada? Carteira hackeada? Suporte ignorando você? Nós operamos na camada invisível do Blockchain para auditar, rastrear e resgatar seus ativos.",
-                cta: "INICIAR RESGATE",
-                c1t: "Auditoria de Erro Humano", c1d: "Fundos presos em contratos ou pontes mal executadas. Analisamos o código on-chain para encontrar a função matemática que libera seu dinheiro.",
-                c2t: "Resgate Anti-Hacker", c2d: "Se sua chave privada vazou, bots roubam qualquer depósito. Usamos Flashbots para sacar seus fundos antes dos hackers.",
-                c3t: "Segurança Ofensiva", c3d: "Grandes fortunas exigem grandes muralhas. Testamos sua infraestrutura contra os vetores de ataque mais recentes.",
-                origin: "ORIGIN: BRAZIL"
+                ht: "Intervenção Técnica de Alto Nível.",
+                hs: "Especialistas em recuperação de ativos digitais e segurança ofensiva. Operamos onde os protocolos padrão falham.",
+                cta: "INICIAR PROTOCOLO",
+                c1t: "Verificação Formal", c1d: "Análise matemática de contratos inteligentes para identificar vulnerabilidades lógicas antes do deploy.",
+                c2t: "Recuperação Atômica", c2d: "Utilização de Flashbots para extrair ativos de carteiras comprometidas em um único bloco, sem alertar bots.",
+                c3t: "Inteligência On-Chain", c3d: "Monitoramento e rastreamento de grandes movimentações de capital para defesa estratégica.",
+                fo: "BRAZIL"
             },
             en: {
-                h1: "We recover what exchanges<br>claim is impossible.",
-                p: "Sent to the wrong network? Wallet hacked? Support ignoring you? We operate on the invisible Blockchain layer to audit, track, and rescue your assets.",
-                cta: "START RECOVERY",
-                c1t: "Human Error Audit", c1d: "Funds stuck in contracts or bad bridges. We analyze on-chain code to find the mathematical function that releases your money.",
-                c2t: "Anti-Hacker Rescue", c2d: "Leaked private key? Bots steal any gas deposit. We use Flashbots to extract your funds before hackers can react.",
-                c3t: "Offensive Security", c3d: "Big fortunes require big walls. We test your personal and corporate infrastructure against the latest attack vectors.",
-                origin: "ORIGIN: BRAZIL"
+                ht: "High-Level Technical Intervention.",
+                hs: "Specialists in digital asset recovery and offensive security. We operate where standard protocols fail.",
+                cta: "INITIATE PROTOCOL",
+                c1t: "Formal Verification", c1d: "Mathematical analysis of smart contracts to identify logical vulnerabilities prior to deployment.",
+                c2t: "Atomic Recovery", c2d: "Utilization of Flashbots to extract assets from compromised wallets in a single block, bypassing bots.",
+                c3t: "On-Chain Intelligence", c3d: "Monitoring and tracking of large capital movements for strategic defense.",
+                fo: "BRAZIL"
             },
             es: {
-                h1: "Recuperamos lo que el<br>exchange dice imposible.",
-                p: "¿Red equivocada? ¿Billetera hackeada? ¿Soporte ignorándote? Operamos en la capa invisible del Blockchain para auditar y rescatar tus activos.",
-                cta: "INICIAR RESCATE",
-                c1t: "Auditoría de Error", c1d: "Fondos atrapados en contratos. Analizamos el código on-chain para encontrar la función matemática que libera tu dinero.",
-                c2t: "Rescate Anti-Hacker", c2d: "¿Clave privada filtrada? Usamos Flashbots para extraer tus fondos antes de que los hackers puedan reaccionar.",
-                c3t: "Seguridad Ofensiva", c3d: "Grandes fortunas requieren grandes muros. Probamos tu infraestructura contra los vectores de ataque más recientes.",
-                origin: "ORIGEN: BRASIL"
+                ht: "Intervención Técnica de Alto Nivel.",
+                hs: "Especialistas en recuperación de activos digitales y seguridad ofensiva. Operamos donde los protocolos estándar fallan.",
+                cta: "INICIAR PROTOCOLO",
+                c1t: "Verificación Formal", c1d: "Análisis matemático de contratos inteligentes para identificar vulnerabilidades lógicas antes del despliegue.",
+                c2t: "Recuperación Atómica", c2d: "Utilización de Flashbots para extraer activos de billeteras comprometidas en un solo bloque.",
+                c3t: "Inteligencia On-Chain", c3d: "Monitoreo y rastreo de grandes movimientos de capital para defensa estratégica.",
+                fo: "BRASIL"
             },
-            // O MODO CÓDIGO - A TRANSPARÊNCIA RADICAL
             code: {
-                h1: "if (funds == lost) {<br> return L.H.E.X.recover(); }",
-                p: "// We bypass standard support tickets.<br>// We interact directly with the Mempool and Smart Contracts.<br>import Flashbots from 'lhex-core';",
-                cta: "execute_function()",
-                c1t: "function auditError()", c1d: "Analyzing ABI...<br>Scanning for locked_funds...<br>Generating proof_of_ownership...<br>Status: SOLVED.",
-                c2t: "function flashbotsRescue()", c2d: "const bundle = [gasTx, withdrawTx];<br>miner.send(bundle);<br>// Front-running the hacker bot successfully.",
-                c3t: "function pentest()", c3d: "while(true) {<br>  scan_vectors();<br>  patch_vulnerabilities();<br>}<br>// Zero-Day protection active.",
-                origin: "region: 'sa-east-1' (BRAZIL)"
+                ht: "if (critical_failure) { Lhex.intervene(); }",
+                hs: "// Specialized in EVM asset recovery and offensive security operations.<br>// Bypassing standard support layers via direct mempool interaction.",
+                cta: "execute(recovery_tx)",
+                c1t: "function audit(address target)", c1d: "Analyzing bytecode...<br>Checking reentrancy guards...<br>Verifying math logic...<br>Status: SECURE.",
+                c2t: "function flashbotsBundle()", c2d: "const bundle = [gasProviderTx, assetTransferTx];<br>block.coinbase.transfer(bribe);<br>// Private transaction submitted.",
+                c3t: "event WhaleMovement(address indexed from...)", c3d: "Monitoring events...<br>Parsing input data...<br>Deanonymizing flows...<br>Status: TRACKING.",
+                fo: "REGION: SA-EAST-1"
             }
         };
 
         function setLang(lang) {
-            // Visual dos botões
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-
-            // Ativa/Desativa Modo Matrix (Código)
-            if (lang === 'code') {
-                document.body.classList.add('code-mode');
-            } else {
-                document.body.classList.remove('code-mode');
+            // Reseta botões
+            document.querySelectorAll('.lang-btn, .code-trigger').forEach(b => b.classList.remove('active'));
+            
+            // Ativa o botão clicado (se for bandeira ou código)
+            if(event.target.classList.contains('lang-btn') || event.target.classList.contains('code-trigger')) {
+                 event.target.classList.add('active');
             }
 
-            // Troca o Texto
+            // Modo Código
+            if (lang === 'code') document.body.classList.add('code-mode');
+            else document.body.classList.remove('code-mode');
+
+            // Atualiza Texto
             const t = content[lang];
-            document.getElementById('hero-title').innerHTML = t.h1;
-            document.getElementById('hero-desc').innerHTML = t.p;
-            document.getElementById('cta-text').innerText = t.cta;
-            
-            document.getElementById('c1-title').innerText = t.c1t;
-            document.getElementById('c1-desc').innerHTML = t.c1d;
-            document.getElementById('c2-title').innerText = t.c2t;
-            document.getElementById('c2-desc').innerHTML = t.c2d;
-            document.getElementById('c3-title').innerText = t.c3t;
-            document.getElementById('c3-desc').innerHTML = t.c3d;
-            
-            document.getElementById('footer-origin').innerText = t.origin;
+            document.getElementById('h-title').innerHTML = t.ht;
+            document.getElementById('h-sub').innerHTML = t.hs;
+            document.getElementById('h-cta').innerText = t.cta;
+            document.getElementById('c1-t').innerText = t.c1t;
+            document.getElementById('c1-d').innerHTML = t.c1d;
+            document.getElementById('c2-t').innerText = t.c2t;
+            document.getElementById('c2-d').innerHTML = t.c2d;
+            document.getElementById('c3-t').innerText = t.c3t;
+            document.getElementById('c3-d').innerHTML = t.c3d;
+            document.getElementById('f-origin').innerText = t.fo;
         }
     </script>
 </body>
