@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#030303">
-    
     <title>L.H.E.X Systems | Global Security Operations</title>
     
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="favicon.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
     <meta name="description" content="L.H.E.X Systems. Intervenção técnica em blockchain e recuperação de ativos de alto valor. Operações confidenciais.">
     <meta property="og:title" content="L.H.E.X Systems">
@@ -22,7 +22,8 @@
             --panel: #0a0a0a;
             --text-primary: #ffffff;
             --text-secondary: #888888;
-            --accent: #00ff9d; /* Verde Neon L.H.E.X */
+            --accent-green: #5FFFD7; /* Verde exato da sua logo */
+            --accent-purple: #6A0DAD; /* Roxo exato da sua logo */
             --border-color: #1a1a1a;
         }
 
@@ -31,12 +32,13 @@
         body {
             background-color: var(--bg);
             color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
+            /* Aplica a fonte da logo no site todo */
+            font-family: 'Montserrat', sans-serif; 
             margin: 0;
             line-height: 1.5;
         }
 
-        /* --- NAVBAR (Sóbria e Funcional) --- */
+        /* --- NAVBAR (Corrigida) --- */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 30px;
@@ -45,101 +47,84 @@
             position: sticky; top: 0; z-index: 100;
         }
 
+        /* Estilo exato da sua logo no topo */
         .brand-dock {
-            display: flex; align-items: center; gap: 10px;
-            font-family: 'JetBrains Mono', monospace; letter-spacing: -0.5px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: var(--accent-green);
         }
-        
-        /* Mini logo na barra, se quiser, ou remove e deixa só texto */
-        .brand-dock img { height: 24px; width: auto; }
+        .brand-h { color: var(--accent-purple); } /* O 'H' roxo */
+        .brand-sub { font-weight: 400; font-size: 1rem; } /* O 'SYSTEMS' mais fino */
 
-        .lang-dock { display: flex; gap: 15px; align-items: center; }
+        .lang-dock { display: flex; gap: 20px; align-items: center; }
 
-        /* Bandeiras sérias (Sem parecer desenho animado) */
+        /* BOTÕES DE LINGUAGEM (VISÍVEIS AGORA) */
         .lang-btn {
-            font-size: 1.4rem; cursor: pointer; opacity: 0.4; transition: all 0.2s;
-            filter: saturate(0); /* Deixa cinza */
+            font-size: 1.5rem; cursor: pointer; 
+            opacity: 0.7; /* Mais visível */
+            transition: all 0.2s;
             border: none; background: none; padding: 0;
+            filter: none; /* Remove o filtro cinza que estava bugando */
         }
 
-        .lang-btn:hover, .lang-btn.active { opacity: 1; filter: saturate(1); transform: scale(1.1); }
+        .lang-btn:hover, .lang-btn.active { opacity: 1; transform: scale(1.1); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
 
-        /* O Botão de Código */
+        /* Botão de Código destacado */
         .code-trigger {
-            font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;
-            color: var(--accent); border: 1px solid var(--accent);
-            padding: 4px 8px; border-radius: 4px; cursor: pointer; opacity: 0.7;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: bold;
+            color: var(--accent-green); border: 1px solid var(--accent-green);
+            padding: 6px 12px; border-radius: 4px; cursor: pointer; 
+            opacity: 1 !important; background: rgba(95, 255, 215, 0.1);
         }
-        .code-trigger.active { background: var(--accent); color: #000; opacity: 1; }
+        .code-trigger:hover, .code-trigger.active { background: var(--accent-green); color: #000; }
 
-        /* --- HERO (A LOGO É O CENTRO) --- */
+        /* --- HERO (A LOGO COMPLETA É O CENTRO) --- */
         .hero-section {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             min-height: 80vh; text-align: center; padding: 40px 20px;
         }
 
-        /* AQUI ESTÁ A SUA MARCA GIGANTE */
+        /* SUA LOGO GIGANTE */
         .main-logo {
-            width: 280px; max-width: 80%; height: auto;
+            width: 320px; max-width: 90%; height: auto;
             margin-bottom: 50px;
-            filter: drop-shadow(0 0 40px rgba(0, 255, 157, 0.15)); /* Glow sutil e elegante */
+            /* Glow usando as cores da marca */
+            filter: drop-shadow(0 0 30px rgba(106, 13, 173, 0.3)) drop-shadow(0 0 10px rgba(95, 255, 215, 0.2));
         }
 
         .hero-headline {
-            font-size: 1.8rem; font-weight: 600; margin-bottom: 15px;
+            font-size: 2rem; font-weight: 800; margin-bottom: 15px;
             color: #fff; letter-spacing: -0.5px;
         }
 
         .hero-subtext {
-            color: var(--text-secondary); font-size: 1rem; max-width: 500px; margin-bottom: 40px;
+            color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin-bottom: 40px; font-weight: 400;
         }
 
         .cta-button {
-            font-family: 'JetBrains Mono', monospace;
-            background: transparent; color: var(--accent);
-            border: 1px solid var(--accent); padding: 12px 30px;
-            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif; font-weight: 800;
+            background: transparent; color: var(--accent-green);
+            border: 2px solid var(--accent-green); padding: 15px 40px;
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;
             text-decoration: none; transition: 0.3s;
         }
 
-        .cta-button:hover { background: var(--accent); color: #000; }
-
-        /* --- SERVICES GRID (Sem Emojis, Só Dados) --- */
-        .grid-container {
-            padding: 60px 30px; border-top: 1px solid var(--border-color);
-            background: var(--panel);
-        }
-
-        .grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px; max-width: 1200px; margin: 0 auto;
-        }
-
-        .service-card {
-            padding: 30px; border: 1px solid var(--border-color);
-            background: var(--bg); transition: border-color 0.3s;
-        }
-        .service-card:hover { border-color: var(--accent); }
-
-        .card-label {
-            font-family: 'JetBrains Mono', monospace; color: var(--accent);
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
-            margin-bottom: 15px; display: block;
-        }
-
-        .card-title { font-size: 1.2rem; font-weight: 600; margin: 0 0 10px 0; color: #fff; }
-        .card-text { color: var(--text-secondary); font-size: 0.9rem; }
+        .cta-button:hover { background: var(--accent-green); color: #000; box-shadow: 0 0 30px rgba(95, 255, 215, 0.4); }
 
         /* --- FOOTER --- */
         .footer {
             text-align: center; padding: 50px 20px; border-top: 1px solid var(--border-color);
-            color: #444; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+            color: #444; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px;
         }
 
-        /* MODO CÓDIGO */
-        body.code-mode { font-family: 'JetBrains Mono', monospace !important; background: #000; }
-        body.code-mode .main-logo { filter: grayscale(1) brightness(0.5) sepia(1) hue-rotate(100deg); }
-        body.code-mode .hero-headline { color: var(--accent); }
+        /* MODO CÓDIGO (Visual Hacker Matrix) */
+        body.code-mode { font-family: 'JetBrains Mono', monospace !important; background: #000; color: var(--accent-green); }
+        body.code-mode .main-logo { filter: grayscale(1) brightness(2) sepia(1) hue-rotate(120deg) saturate(3); }
+        body.code-mode .navbar, body.code-mode .footer { background: #000; border-color: var(--accent-green); }
+        body.code-mode .hero-headline { color: var(--accent-green); }
+        body.code-mode .hero-subtext { color: var(--accent-green); opacity: 0.7; }
+        body.code-mode .brand-dock { color: var(--accent-green) !important; } .brand-h { color: var(--accent-green) !important; }
 
     </style>
 </head>
@@ -147,7 +132,7 @@
 
     <nav class="navbar">
         <div class="brand-dock">
-            L.H.E.X_SYS
+            L.<span class="brand-h">H</span>.E.X <span class="brand-sub">SYSTEMS</span>
         </div>
         <div class="lang-dock">
             <button class="lang-btn active" onclick="setLang('pt')" title="Brasil">🇧🇷</button>
@@ -158,7 +143,7 @@
     </nav>
 
     <main class="hero-section">
-        <img src="logo.png" alt="L.H.E.X CORE" class="main-logo">
+        <img src="logo.png" alt="L.H.E.X SYSTEMS CORE" class="main-logo">
         
         <h1 class="hero-headline" id="h-title">Intervenção Técnica de Alto Nível.</h1>
         <p class="hero-subtext" id="h-sub">Especialistas em recuperação de ativos digitais e segurança ofensiva. Operamos onde os protocolos padrão falham.</p>
@@ -166,97 +151,53 @@
         <a href="mailto:contato@lhexsystems.com" class="cta-button" id="h-cta">INICIAR PROTOCOLO</a>
     </main>
 
-    <section class="grid-container">
-        <div class="grid">
-            <div class="service-card">
-                <span class="card-label">0x01 // AUDIT</span>
-                <h3 class="card-title" id="c1-t">Verificação Formal</h3>
-                <p class="card-text" id="c1-d">Análise matemática de contratos inteligentes para identificar vulnerabilidades lógicas antes do deploy.</p>
-            </div>
-            <div class="service-card">
-                <span class="card-label">0x02 // RECOVERY</span>
-                <h3 class="card-title" id="c2-t">Recuperação Atômica</h3>
-                <p class="card-text" id="c2-d">Utilização de Flashbots para extrair ativos de carteiras comprometidas em um único bloco, sem alertar bots.</p>
-            </div>
-            <div class="service-card">
-                <span class="card-label">0x03 // INTEL</span>
-                <h3 class="card-title" id="c3-t">Inteligência On-Chain</h3>
-                <p class="card-text" id="c3-d">Monitoramento e rastreamento de grandes movimentações de capital para defesa estratégica.</p>
-            </div>
-        </div>
-    </section>
-
     <footer class="footer">
         L.H.E.X SYSTEMS © 2026<br>
-        ORIGIN: <span id="f-origin">BRAZIL</span> | CLASS: <span style="color: var(--accent);">CONFIDENTIAL</span><br><br>
+        ORIGIN: <span id="f-origin">BRAZIL</span> | CLASS: <span style="color: var(--accent-green);">CONFIDENTIAL</span><br><br>
         FOUNDER: LETÍCIA NASCIMENTO
     </footer>
 
     <script>
-        // LINGUAGEM SÉRIA E TÉCNICA (Sem papo de IA)
         const content = {
             pt: {
                 ht: "Intervenção Técnica de Alto Nível.",
                 hs: "Especialistas em recuperação de ativos digitais e segurança ofensiva. Operamos onde os protocolos padrão falham.",
                 cta: "INICIAR PROTOCOLO",
-                c1t: "Verificação Formal", c1d: "Análise matemática de contratos inteligentes para identificar vulnerabilidades lógicas antes do deploy.",
-                c2t: "Recuperação Atômica", c2d: "Utilização de Flashbots para extrair ativos de carteiras comprometidas em um único bloco, sem alertar bots.",
-                c3t: "Inteligência On-Chain", c3d: "Monitoramento e rastreamento de grandes movimentações de capital para defesa estratégica.",
                 fo: "BRAZIL"
             },
             en: {
                 ht: "High-Level Technical Intervention.",
                 hs: "Specialists in digital asset recovery and offensive security. We operate where standard protocols fail.",
                 cta: "INITIATE PROTOCOL",
-                c1t: "Formal Verification", c1d: "Mathematical analysis of smart contracts to identify logical vulnerabilities prior to deployment.",
-                c2t: "Atomic Recovery", c2d: "Utilization of Flashbots to extract assets from compromised wallets in a single block, bypassing bots.",
-                c3t: "On-Chain Intelligence", c3d: "Monitoring and tracking of large capital movements for strategic defense.",
                 fo: "BRAZIL"
             },
             es: {
                 ht: "Intervención Técnica de Alto Nivel.",
                 hs: "Especialistas en recuperación de activos digitales y seguridad ofensiva. Operamos donde los protocolos estándar fallan.",
                 cta: "INICIAR PROTOCOLO",
-                c1t: "Verificación Formal", c1d: "Análisis matemático de contratos inteligentes para identificar vulnerabilidades lógicas antes del despliegue.",
-                c2t: "Recuperación Atómica", c2d: "Utilización de Flashbots para extraer activos de billeteras comprometidas en un solo bloque.",
-                c3t: "Inteligencia On-Chain", c3d: "Monitoreo y rastreo de grandes movimientos de capital para defensa estratégica.",
                 fo: "BRASIL"
             },
             code: {
                 ht: "if (critical_failure) { Lhex.intervene(); }",
                 hs: "// Specialized in EVM asset recovery and offensive security operations.<br>// Bypassing standard support layers via direct mempool interaction.",
                 cta: "execute(recovery_tx)",
-                c1t: "function audit(address target)", c1d: "Analyzing bytecode...<br>Checking reentrancy guards...<br>Verifying math logic...<br>Status: SECURE.",
-                c2t: "function flashbotsBundle()", c2d: "const bundle = [gasProviderTx, assetTransferTx];<br>block.coinbase.transfer(bribe);<br>// Private transaction submitted.",
-                c3t: "event WhaleMovement(address indexed from...)", c3d: "Monitoring events...<br>Parsing input data...<br>Deanonymizing flows...<br>Status: TRACKING.",
                 fo: "REGION: SA-EAST-1"
             }
         };
 
         function setLang(lang) {
-            // Reseta botões
             document.querySelectorAll('.lang-btn, .code-trigger').forEach(b => b.classList.remove('active'));
-            
-            // Ativa o botão clicado (se for bandeira ou código)
             if(event.target.classList.contains('lang-btn') || event.target.classList.contains('code-trigger')) {
                  event.target.classList.add('active');
             }
 
-            // Modo Código
             if (lang === 'code') document.body.classList.add('code-mode');
             else document.body.classList.remove('code-mode');
 
-            // Atualiza Texto
             const t = content[lang];
             document.getElementById('h-title').innerHTML = t.ht;
             document.getElementById('h-sub').innerHTML = t.hs;
             document.getElementById('h-cta').innerText = t.cta;
-            document.getElementById('c1-t').innerText = t.c1t;
-            document.getElementById('c1-d').innerHTML = t.c1d;
-            document.getElementById('c2-t').innerText = t.c2t;
-            document.getElementById('c2-d').innerHTML = t.c2d;
-            document.getElementById('c3-t').innerText = t.c3t;
-            document.getElementById('c3-d').innerHTML = t.c3d;
             document.getElementById('f-origin').innerText = t.fo;
         }
     </script>
