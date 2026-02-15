@@ -2,231 +2,213 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L.H.E.X Systems | Securing The Unseen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000">
+    <title>L.H.E.X Systems | Global Intelligence</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
 
-    <meta name="description" content="Auditoria EVM, Resgate Flashbots e Inteligência Artificial. Fundada por Letícia Nascimento.">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Corporation",
+      "name": "L.H.E.X Systems",
+      "url": "https://lhexsystems.com",
+      "logo": "https://lhexsystems.com/logo.png",
+      "founder": {
+        "@type": "Person",
+        "name": "Letícia Nascimento"
+      },
+      "description": "Elite Blockchain Security & AI Intelligence. Unlocking value for high-net-worth entities."
+    }
+    </script>
+
     <meta property="og:title" content="L.H.E.X Systems">
+    <meta property="og:description" content="Acesso Restrito. Inteligência Artificial e Segurança Blockchain.">
+    <meta property="og:image" content="https://lhexsystems.com/logo.png"> <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://lhexsystems.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
 
     <style>
         :root {
-            --bg: #020202;
-            --surface: #0a0a0a;
-            --neon: #00ff9d;
+            --bg: #030303;
+            --neon: #00ff9d; /* Verde L.H.E.X */
             --purple: #9d00ff;
-            --text-main: #ffffff;
-            --text-dim: #666666;
-            --glass: rgba(10, 10, 10, 0.8);
+            --glass: rgba(20, 20, 20, 0.8);
+            --text: #ffffff;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
         body {
             background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 0%, #111 0%, transparent 50%);
-        }
-
-        /* --- NAVBAR --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            position: fixed;
-            top: 0; width: 100%;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .logo-wrap { display: flex; align-items: center; gap: 15px; }
-        .logo-img { width: 40px; filter: drop-shadow(0 0 8px var(--purple)); }
-        .logo-text { font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; }
-
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
+            color: var(--text);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            margin-left: 30px;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover { color: var(--neon); }
-        .btn-contact { border: 1px solid var(--neon); padding: 8px 15px; border-radius: 4px; color: var(--neon) !important; }
-        .btn-contact:hover { background: rgba(0,255,157,0.1); }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 100vh;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden; /* Foco total na logo */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 5%;
-            margin-top: 50px;
+            align-items: center;
+            background-image: radial-gradient(circle at center, #111 0%, #000 70%);
         }
 
-        .badge { display: inline-block; padding: 5px 12px; border: 1px solid #333; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--text-dim); margin-bottom: 20px; letter-spacing: 2px; }
+        /* --- BACKGROUND ALIVE --- */
+        .grid-bg {
+            position: absolute;
+            width: 200%; height: 200%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 157, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 157, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: perspective(500px) rotateX(60deg);
+            animation: moveGrid 20s linear infinite;
+            z-index: -1;
+            opacity: 0.6;
+        }
 
-        h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.1; margin-bottom: 20px; }
-        .highlight { background: linear-gradient(90deg, #fff, var(--neon)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @keyframes moveGrid { 0% { transform: perspective(500px) rotateX(60deg) translateY(0); } 100% { transform: perspective(500px) rotateX(60deg) translateY(60px); } }
 
-        p.subtitle { max-width: 600px; color: #888; font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px; }
-
-        /* --- TERMINAL (O GATILHO PSICOLÓGICO) --- */
-        .terminal-box {
-            background: #050505;
-            border: 1px solid #222;
-            border-top: 20px solid #111;
-            border-radius: 8px;
-            padding: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--neon);
-            max-width: 600px;
-            height: 150px;
-            overflow: hidden;
+        /* --- A LOGO MONOLITO (GRANDE E INTERATIVA) --- */
+        .logo-wrapper {
             position: relative;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            z-index: 10;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .terminal-content::after { content: "█"; animation: blink 1s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        /* --- GRID DE SERVIÇOS --- */
-        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 5%; }
-        
-        .card {
-            background: var(--surface);
-            padding: 40px;
-            border: 1px solid #1a1a1a;
-            border-radius: 8px;
-            transition: transform 0.3s, border-color 0.3s;
+        .logo-img {
+            /* AQUI ESTÁ O TAMANHO GRANDE QUE VOCÊ QUER */
+            width: 280px; 
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(157, 0, 255, 0.3)); /* Glow Roxo Inicial */
+            animation: breathe 4s ease-in-out infinite;
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--purple); }
-        .card h3 { font-family: 'JetBrains Mono'; color: #fff; margin-bottom: 15px; font-size: 1.1rem; }
-        .card p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
 
-        /* --- FOOTER --- */
-        footer { text-align: center; padding: 40px; font-family: 'JetBrains Mono'; font-size: 0.8rem; color: #444; border-top: 1px solid #111; }
-
-        /* Botão do Jogo (Easter Egg) */
-        .btn-game { cursor: pointer; background: none; border: none; color: #444; font-family: 'JetBrains Mono'; text-decoration: underline; margin-top: 20px; transition: 0.3s; }
-        .btn-game:hover { color: var(--neon); }
-
+        /* No celular, ajustamos um pouco, mas ainda grande */
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Simples para mobile */
+            .logo-img { width: 220px; }
         }
+
+        .logo-wrapper:hover .logo-img {
+            filter: drop-shadow(0 0 40px var(--neon)); /* Glow Verde ao passar o mouse */
+            transform: scale(1.05);
+        }
+
+        .logo-wrapper:active .logo-img {
+            transform: scale(0.95) rotate(2deg); /* Efeito de clique físico */
+        }
+
+        /* Animação de "Respiração" da Logo */
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(157, 0, 255, 0.3)); }
+            50% { transform: scale(1.02); filter: drop-shadow(0 0 35px rgba(157, 0, 255, 0.5)); }
+        }
+
+        /* --- TEXTOS DE IMPACTO --- */
+        .brand-name {
+            font-family: 'Syncopate', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            margin-top: 40px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+
+        .status-text {
+            color: var(--neon);
+            font-size: 0.8rem;
+            margin-top: 15px;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1s forwards;
+        }
+
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        /* --- MENU OCULTO (Aparece ao clicar na logo) --- */
+        .menu-overlay {
+            position: absolute;
+            bottom: 50px;
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+
+        .menu-overlay.active { opacity: 1; pointer-events: all; }
+
+        .menu-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333;
+            color: #fff;
+            padding: 12px 24px;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+        }
+
+        .menu-btn:hover { background: var(--neon); color: #000; box-shadow: 0 0 20px var(--neon); }
+
+        /* --- EFEITO GLITCH (Ao clicar) --- */
+        .glitch-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+        }
+
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo-wrap">
-            <img src="logo.png" alt="LHEX" class="logo-img">
-            <div class="logo-text">L.H.E.X</div>
-        </div>
-        <div class="nav-links">
-            <a href="#" onclick="translatePage('en')">EN</a>
-            <a href="#" onclick="translatePage('pt')">BR</a>
-            <a href="mailto:contato@lhexsystems.com" class="btn-contact" id="nav-contact">INITIATE RESCUE</a>
-        </div>
-    </nav>
+    <div class="grid-bg"></div>
+    <div class="glitch-overlay" id="flash"></div>
 
-    <section class="hero">
-        <div class="badge">EST. BRAZIL • GLOBAL OPERATIONS</div>
-        <h1 id="title">WE SECURE<br>THE <span class="highlight">UNSEEN.</span></h1>
-        <p class="subtitle" id="subtitle">
-            Auditoria de Contratos Inteligentes EVM, Resgate Atômico (Flashbots) e Modelagem Comportamental com IA.
-            A L.H.E.X Systems opera onde o código encontra o capital.
-        </p>
-        
-        <div class="terminal-box">
-            <div class="terminal-content" id="terminal"></div>
-        </div>
+    <div class="logo-wrapper" onclick="activateSystem()">
+        <img src="logo.png" alt="L.H.E.X CORE" class="logo-img">
+    </div>
 
-        <div>
-            <button class="btn-game" onclick="alert('Neural Link Initiated... (Game Mode Soon)')">>_ Run Protocol_Simulation.exe</button>
-        </div>
-    </section>
+    <div class="brand-name">L.H.E.X SYSTEMS</div>
+    <div class="status-text" id="status">> SYSTEM STANDBY. TOUCH CORE.</div>
 
-    <section class="services">
-        <div class="card">
-            <h3 id="s1-title">01. SMART CONTRACT AUDIT</h3>
-            <p id="s1-desc">Varredura profunda na lógica de negócios EVM. Identificação de falhas de reentrância, manipulação de oráculos e vulnerabilidades de dia-zero antes do deploy.</p>
-        </div>
-        <div class="card">
-            <h3 id="s2-title" style="color: var(--neon);">02. WHITEHAT RESCUE</h3>
-            <p id="s2-desc">Recuperação de ativos comprometidos via Flashbots Bundle. Furamos a fila do mempool para extrair capital de carteiras hackeadas no mesmo bloco.</p>
-        </div>
-        <div class="card">
-            <h3 id="s3-title">03. AI DATA INGESTION</h3>
-            <p id="s3-desc">Mecanismos de IA para mapeamento do comportamento de baleias (Whales). Clonagem digital de perfis institucionais de alta conversão.</p>
-        </div>
-    </section>
-
-    <footer>
-        <p>L.H.E.X SYSTEMS © 2026. ALL RIGHTS RESERVED.</p>
-        <p style="margin-top: 10px; color: #666;">CEO & LEAD ARCHITECT: LETÍCIA NASCIMENTO</p>
-    </footer>
+    <div class="menu-overlay" id="menu">
+        <button class="menu-btn" onclick="window.location.href='mailto:contato@lhexsystems.com'">Initiate Protocol</button>
+        <button class="menu-btn" onclick="alert('Accessing Neural Database...')">Simulate</button>
+    </div>
 
     <script>
-        // --- O GATILHO PSICOLÓGICO: Efeito Máquina de Escrever ---
-        const terminalText = [
-            "L.H.E.X_CORE_v8.0 initialized...",
-            "Connecting to Ethereum Mainnet nodes...",
-            "[SUCCESS] Mempool sync complete.",
-            "Scanning for infinite approval vulnerabilities...",
-            "Listening for high-value targets..."
-        ];
+        function activateSystem() {
+            // 1. Efeito de Flash/Glitch
+            const flash = document.getElementById('flash');
+            flash.style.opacity = '0.1';
+            setTimeout(() => { flash.style.opacity = '0'; }, 100);
 
-        let lineIndex = 0;
-        let charIndex = 0;
-        const terminalEl = document.getElementById("terminal");
+            // 2. Feedback de Vibração (Mobile)
+            if(navigator.vibrate) navigator.vibrate(50);
 
-        function typeWriter() {
-            if (lineIndex < terminalText.length) {
-                if (charIndex < terminalText[lineIndex].length) {
-                    terminalEl.innerHTML += terminalText[lineIndex].charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeWriter, 30);
-                } else {
-                    terminalEl.innerHTML += "<br>";
-                    lineIndex++;
-                    charIndex = 0;
-                    setTimeout(typeWriter, 800);
-                }
-            } else {
-                setTimeout(() => { terminalEl.innerHTML = ""; lineIndex = 0; typeWriter(); }, 5000);
-            }
-        }
-        
-        // Inicia o terminal
-        setTimeout(typeWriter, 1000);
+            // 3. Muda o Status
+            const status = document.getElementById('status');
+            status.innerHTML = "> ACCESS GRANTED. WELCOME, ARCHITECT.";
+            status.style.color = "#bd00ff"; // Fica roxo
 
-        // --- TRADUÇÃO SIMPLES ---
-        const dict = {
-            en: {
-                title: "WE SECURE<br>THE <span class='highlight'>UNSEEN.</span>",
-                subtitle: "EVM Smart Contract Audits, Atomic Rescues (Flashbots), and AI Behavioral Modeling. L.H.E.X Systems operates where code meets capital.",
-                contact: "INITIATE RESCUE"
-            },
-            pt: {
-                title: "NÓS PROTEGEMOS<br>O <span class='highlight'>INVISÍVEL.</span>",
-                subtitle: "Auditoria de Contratos Inteligentes EVM, Resgate Atômico (Flashbots) e Modelagem Comportamental com IA. A L.H.E.X Systems opera onde o código encontra o capital.",
-                contact: "INICIAR RESGATE"
-            }
-        };
+            // 4. Mostra o Menu
+            document.getElementById('menu').classList.add('active');
 
-        function translatePage(lang) {
-            document.getElementById('title').innerHTML = dict[lang].title;
-            document.getElementById('subtitle').innerHTML = dict[lang].subtitle;
-            document.getElementById('nav-contact').innerHTML = dict[lang].contact;
+            // 5. A logo pulsa mais rápido
+            document.querySelector('.logo-img').style.animation = "breathe 1s ease-in-out infinite";
         }
     </script>
 </body>
