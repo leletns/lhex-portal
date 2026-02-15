@@ -2,334 +2,232 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#000000">
-    <title>L.H.E.X Systems | Command Interface</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L.H.E.X Systems | Securing The Unseen</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
 
+    <meta name="description" content="Auditoria EVM, Resgate Flashbots e Inteligência Artificial. Fundada por Letícia Nascimento.">
     <meta property="og:title" content="L.H.E.X Systems">
-    <meta property="og:description" content="Elite Blockchain Security & Asset Recovery.">
-    <meta property="og:image" content="https://lhexsystems.com/preview.png">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Corporation",
-      "name": "L.H.E.X Systems",
-      "founder": {
-        "@type": "Person",
-        "name": "Letícia Nascimento"
-      },
-      "slogan": "We don't guess. We calculate."
-    }
-    </script>
 
     <style>
         :root {
-            --bg: #050505;
-            --panel: #0a0a0a;
-            --neon: #00ff9d; /* Verde L.H.E.X */
+            --bg: #020202;
+            --surface: #0a0a0a;
+            --neon: #00ff9d;
             --purple: #9d00ff;
-            --text: #e0e0e0;
-            --dim: #444;
+            --text-main: #ffffff;
+            --text-dim: #666666;
+            --glass: rgba(10, 10, 10, 0.8);
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
             background-color: var(--bg);
-            color: var(--text);
-            font-family: 'JetBrains Mono', monospace;
-            margin: 0;
+            color: var(--text-main);
+            font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
-            padding-bottom: 100px;
+            background-image: radial-gradient(circle at 50% 0%, #111 0%, transparent 50%);
         }
 
-        /* --- BACKGROUND FX --- */
-        .scanline {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 157, 0.02) 51%);
-            background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 900;
-        }
-
-        /* --- HEADER --- */
-        .god-header {
-            padding: 20px;
+        /* --- NAVBAR --- */
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #222;
-            background: rgba(5,5,5,0.9);
+            padding: 20px 5%;
+            position: fixed;
+            top: 0; width: 100%;
+            background: var(--glass);
             backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
             z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .brand {
-            font-family: 'Syncopate', sans-serif;
-            font-weight: 700;
-            letter-spacing: -1px;
-            font-size: 1.2rem;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .logo-wrap { display: flex; align-items: center; gap: 15px; }
+        .logo-img { width: 40px; filter: drop-shadow(0 0 8px var(--purple)); }
+        .logo-text { font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; }
 
-        .brand span { color: var(--neon); }
-
-        .status-dot {
-            width: 8px; height: 8px;
-            background: var(--neon);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--neon);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-
-        /* --- HERO SECTION (Psychology: Instant Authority) --- */
-        .hero {
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .glitch-text {
-            font-size: 2.5rem;
-            line-height: 1.1;
-            font-family: 'Syncopate', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .sub-hero {
-            color: #888;
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            border-left: 2px solid var(--purple);
-            padding-left: 15px;
+            margin-left: 30px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--neon); }
+        .btn-contact { border: 1px solid var(--neon); padding: 8px 15px; border-radius: 4px; color: var(--neon) !important; }
+        .btn-contact:hover { background: rgba(0,255,157,0.1); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5%;
+            margin-top: 50px;
         }
 
-        /* --- TERMINAL LIVE FEED (The "Work") --- */
-        .terminal-window {
-            background: #000;
-            border: 1px solid #333;
-            border-radius: 6px;
-            padding: 15px;
-            font-size: 0.75rem;
+        .badge { display: inline-block; padding: 5px 12px; border: 1px solid #333; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--text-dim); margin-bottom: 20px; letter-spacing: 2px; }
+
+        h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.1; margin-bottom: 20px; }
+        .highlight { background: linear-gradient(90deg, #fff, var(--neon)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        p.subtitle { max-width: 600px; color: #888; font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px; }
+
+        /* --- TERMINAL (O GATILHO PSICOLÓGICO) --- */
+        .terminal-box {
+            background: #050505;
+            border: 1px solid #222;
+            border-top: 20px solid #111;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
             color: var(--neon);
+            max-width: 600px;
             height: 150px;
             overflow: hidden;
-            margin-bottom: 40px;
             position: relative;
-            box-shadow: 0 0 20px rgba(0, 255, 157, 0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
         }
 
-        .terminal-header {
-            position: absolute; top: 0; left: 0; width: 100%;
-            background: #111; color: #555; padding: 5px 10px;
-            font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px;
-            border-bottom: 1px solid #333;
-        }
+        .terminal-content::after { content: "█"; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        .log-content { margin-top: 20px; opacity: 0.8; }
-        .log-line { margin-bottom: 5px; }
-
-        /* --- MODULES (Cards) --- */
-        .modules-grid {
-            display: grid;
-            gap: 15px;
-        }
-
-        .module-card {
-            background: var(--panel);
-            border: 1px solid #222;
-            padding: 25px;
-            border-radius: 8px;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .module-card:hover { border-color: var(--neon); transform: translateY(-2px); }
+        /* --- GRID DE SERVIÇOS --- */
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 5%; }
         
-        .card-icon { font-size: 1.5rem; margin-bottom: 15px; display: block; }
-        .card-title { font-family: 'Syncopate', sans-serif; font-size: 0.8rem; color: #fff; margin-bottom: 10px; }
-        .card-desc { font-size: 0.8rem; color: #666; line-height: 1.5; }
-
-        /* --- BOTTOM ACTION BAR --- */
-        .action-bar {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 1000;
-            width: 90%;
-            max-width: 400px;
+        .card {
+            background: var(--surface);
+            padding: 40px;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            transition: transform 0.3s, border-color 0.3s;
         }
+        .card:hover { transform: translateY(-5px); border-color: var(--purple); }
+        .card h3 { font-family: 'JetBrains Mono'; color: #fff; margin-bottom: 15px; font-size: 1.1rem; }
+        .card p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
 
-        .btn {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 4px;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
+        /* --- FOOTER --- */
+        footer { text-align: center; padding: 40px; font-family: 'JetBrains Mono'; font-size: 0.8rem; color: #444; border-top: 1px solid #111; }
+
+        /* Botão do Jogo (Easter Egg) */
+        .btn-game { cursor: pointer; background: none; border: none; color: #444; font-family: 'JetBrains Mono'; text-decoration: underline; margin-top: 20px; transition: 0.3s; }
+        .btn-game:hover { color: var(--neon); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simples para mobile */
         }
-
-        .btn-primary {
-            background: var(--neon);
-            color: #000;
-            box-shadow: 0 0 15px rgba(0, 255, 157, 0.2);
-        }
-
-        .btn-secondary {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            border: 1px solid #333;
-        }
-
-        /* --- GAME OVERLAY (Hidden by default) --- */
-        #game-layer {
-            display: none;
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 2000;
-        }
-        #game-layer.active { display: block; }
-
     </style>
 </head>
 <body>
 
-    <div class="scanline"></div>
-
-    <header class="god-header">
-        <div class="brand">
-            <div class="status-dot"></div>
-            L.H.E.X <span>SYS</span>
+    <nav>
+        <div class="logo-wrap">
+            <img src="logo.png" alt="LHEX" class="logo-img">
+            <div class="logo-text">L.H.E.X</div>
         </div>
-        <div style="font-size: 0.7rem; color: #555;">V8.0 STABLE</div>
-    </header>
+        <div class="nav-links">
+            <a href="#" onclick="translatePage('en')">EN</a>
+            <a href="#" onclick="translatePage('pt')">BR</a>
+            <a href="mailto:contato@lhexsystems.com" class="btn-contact" id="nav-contact">INITIATE RESCUE</a>
+        </div>
+    </nav>
 
-    <main class="hero">
-        
-        <h1 class="glitch-text" data-value="WE DON'T GUESS. WE CALCULATE.">WE DON'T GUESS. WE CALCULATE.</h1>
-        
-        <p class="sub-hero">
-            A L.H.E.X Systems opera no vácuo de eficiência do mercado. Auditoria Algorítmica, Recuperação de Ativos e Inteligência Ofensiva. <br><br>
-            <strong>Fundadora:</strong> Letícia Nascimento.
+    <section class="hero">
+        <div class="badge">EST. BRAZIL • GLOBAL OPERATIONS</div>
+        <h1 id="title">WE SECURE<br>THE <span class="highlight">UNSEEN.</span></h1>
+        <p class="subtitle" id="subtitle">
+            Auditoria de Contratos Inteligentes EVM, Resgate Atômico (Flashbots) e Modelagem Comportamental com IA.
+            A L.H.E.X Systems opera onde o código encontra o capital.
         </p>
-
-        <div class="terminal-window">
-            <div class="terminal-header">/// LIVE NEURAL FEED ///</div>
-            <div class="log-content" id="logs">
-                </div>
+        
+        <div class="terminal-box">
+            <div class="terminal-content" id="terminal"></div>
         </div>
 
-        <div class="modules-grid">
-            <div class="module-card">
-                <span class="card-icon">🧠</span>
-                <h3 class="card-title">Neural Engine</h3>
-                <p class="card-desc">Análise de comportamento de baleias em tempo real. Prevemos o movimento antes da transação ser minerada.</p>
-            </div>
-
-            <div class="module-card" style="border-left: 2px solid var(--purple);">
-                <span class="card-icon">🛡️</span>
-                <h3 class="card-title">Flashbots Rescue</h3>
-                <p class="card-desc">Protocolo de recuperação de ativos comprometidos. Execução atômica no mesmo bloco.</p>
-            </div>
-            
-            <div class="module-card">
-                <span class="card-icon">⚡</span>
-                <h3 class="card-title">Smart Audit</h3>
-                <p class="card-desc">Verificação formal de contratos inteligentes para Unicórnios e DAOs.</p>
-            </div>
+        <div>
+            <button class="btn-game" onclick="alert('Neural Link Initiated... (Game Mode Soon)')">>_ Run Protocol_Simulation.exe</button>
         </div>
+    </section>
 
-    </main>
-
-    <div class="action-bar">
-        <button class="btn btn-secondary" onclick="toggleGame()">Simulação</button>
-        <button class="btn btn-primary" onclick="window.location.href='mailto:contato@lhexsystems.com'">Initiate</button>
-    </div>
-
-    <div id="game-layer">
-        <button onclick="toggleGame()" style="position:absolute; top:20px; right:20px; background:none; border:none; color:#fff; font-size:2rem;">×</button>
-        <div style="display:flex; justify-content:center; align-items:center; height:100%; color:var(--neon); font-family:'Syncopate';">
-            [ SIMULATION MODE ACTIVE - LOADING... ]
+    <section class="services">
+        <div class="card">
+            <h3 id="s1-title">01. SMART CONTRACT AUDIT</h3>
+            <p id="s1-desc">Varredura profunda na lógica de negócios EVM. Identificação de falhas de reentrância, manipulação de oráculos e vulnerabilidades de dia-zero antes do deploy.</p>
         </div>
-    </div>
+        <div class="card">
+            <h3 id="s2-title" style="color: var(--neon);">02. WHITEHAT RESCUE</h3>
+            <p id="s2-desc">Recuperação de ativos comprometidos via Flashbots Bundle. Furamos a fila do mempool para extrair capital de carteiras hackeadas no mesmo bloco.</p>
+        </div>
+        <div class="card">
+            <h3 id="s3-title">03. AI DATA INGESTION</h3>
+            <p id="s3-desc">Mecanismos de IA para mapeamento do comportamento de baleias (Whales). Clonagem digital de perfis institucionais de alta conversão.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>L.H.E.X SYSTEMS © 2026. ALL RIGHTS RESERVED.</p>
+        <p style="margin-top: 10px; color: #666;">CEO & LEAD ARCHITECT: LETÍCIA NASCIMENTO</p>
+    </footer>
 
     <script>
-        // 1. EFEITO DE MATRIX (GLITCH TEXT)
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        document.querySelector(".glitch-text").onmouseover = event => {  
-            let iterations = 0;
-            const interval = setInterval(() => {
-                event.target.innerText = event.target.innerText.split("")
-                    .map((letter, index) => {
-                        if(index < iterations) return event.target.dataset.value[index];
-                        return letters[Math.floor(Math.random() * 26)]
-                    })
-                    .join("");
-                if(iterations >= event.target.dataset.value.length) clearInterval(interval);
-                iterations += 1 / 3;
-            }, 30);
-        }
-
-        // 2. FAKE TERMINAL LOGS (Para impressionar Baleias)
-        const logs = [
-            "Scanning Mempool for arbitrage opportunities...",
-            "Target identified: Wallet 0x8a...2b [Whale]",
-            "Audit complete: No critical vulnerabilities found in module A.",
-            "Ingesting market data: ETH/USDC pairs...",
-            "Neural Network optimizing gas fees...",
-            "System healthy. Operating at 99.9% efficiency."
+        // --- O GATILHO PSICOLÓGICO: Efeito Máquina de Escrever ---
+        const terminalText = [
+            "L.H.E.X_CORE_v8.0 initialized...",
+            "Connecting to Ethereum Mainnet nodes...",
+            "[SUCCESS] Mempool sync complete.",
+            "Scanning for infinite approval vulnerabilities...",
+            "Listening for high-value targets..."
         ];
-        
-        const logDiv = document.getElementById('logs');
-        let logIndex = 0;
 
-        setInterval(() => {
-            const line = document.createElement('div');
-            line.className = 'log-line';
-            line.innerText = `> ${logs[logIndex]}`;
-            logDiv.appendChild(line);
-            
-            // Auto scroll
-            if(logDiv.children.length > 5) logDiv.removeChild(logDiv.children[0]);
-            
-            logIndex = (logIndex + 1) % logs.length;
-        }, 1500);
+        let lineIndex = 0;
+        let charIndex = 0;
+        const terminalEl = document.getElementById("terminal");
 
-        // 3. GAME TOGGLE
-        function toggleGame() {
-            const layer = document.getElementById('game-layer');
-            layer.classList.toggle('active');
+        function typeWriter() {
+            if (lineIndex < terminalText.length) {
+                if (charIndex < terminalText[lineIndex].length) {
+                    terminalEl.innerHTML += terminalText[lineIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 30);
+                } else {
+                    terminalEl.innerHTML += "<br>";
+                    lineIndex++;
+                    charIndex = 0;
+                    setTimeout(typeWriter, 800);
+                }
+            } else {
+                setTimeout(() => { terminalEl.innerHTML = ""; lineIndex = 0; typeWriter(); }, 5000);
+            }
         }
+        
+        // Inicia o terminal
+        setTimeout(typeWriter, 1000);
 
-        // Auto-run glitch effect on load
-        window.onload = () => {
-            const h1 = document.querySelector(".glitch-text");
-            h1.onmouseover({ target: h1 });
+        // --- TRADUÇÃO SIMPLES ---
+        const dict = {
+            en: {
+                title: "WE SECURE<br>THE <span class='highlight'>UNSEEN.</span>",
+                subtitle: "EVM Smart Contract Audits, Atomic Rescues (Flashbots), and AI Behavioral Modeling. L.H.E.X Systems operates where code meets capital.",
+                contact: "INITIATE RESCUE"
+            },
+            pt: {
+                title: "NÓS PROTEGEMOS<br>O <span class='highlight'>INVISÍVEL.</span>",
+                subtitle: "Auditoria de Contratos Inteligentes EVM, Resgate Atômico (Flashbots) e Modelagem Comportamental com IA. A L.H.E.X Systems opera onde o código encontra o capital.",
+                contact: "INICIAR RESGATE"
+            }
         };
+
+        function translatePage(lang) {
+            document.getElementById('title').innerHTML = dict[lang].title;
+            document.getElementById('subtitle').innerHTML = dict[lang].subtitle;
+            document.getElementById('nav-contact').innerHTML = dict[lang].contact;
+        }
     </script>
 </body>
 </html>
