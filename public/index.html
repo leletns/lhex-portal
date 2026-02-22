@@ -21,7 +21,7 @@
             --lhex-green: #5FFFD7; 
             --jabuticaba: #4A0E4E; 
             --border: rgba(255, 255, 255, 0.05);
-            --glow-green: rgba(95, 255, 215, 0.15);
+            --glow-green: rgba(95, 255, 215, 0.2);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -38,26 +38,27 @@
             background: transparent; border-bottom: 1px solid var(--border);
             position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);
         }
-        .brand { font-family: 'Montserrat'; font-weight: 700; letter-spacing: 2px; font-size: 1.3rem; color: #fff; }
-        .brand .h-char { color: var(--jabuticaba); text-shadow: 0 0 10px rgba(74, 14, 78, 0.5); font-size: 1.5rem;}
-        .brand .reg { font-size: 0.7rem; color: var(--text-secondary); vertical-align: top;}
+        
+        /* A MARCA L.H.E.X COLORIDA */
+        .brand { font-family: 'Montserrat'; font-weight: 700; letter-spacing: 2px; font-size: 1.5rem; }
+        .brand-l, .brand-e, .brand-x { color: var(--lhex-green); text-shadow: 0 0 10px var(--glow-green); }
+        .brand-h { color: var(--jabuticaba); text-shadow: 0 0 15px rgba(74, 14, 78, 0.8); font-size: 1.8rem; }
+        .brand .reg { font-size: 0.8rem; color: var(--text-secondary); vertical-align: top;}
         
         .lang-dock { display: flex; gap: 20px; }
-        .lang-btn { 
-            font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--text-secondary); 
-            background: none; border: none; cursor: pointer; transition: 0.3s;
-        }
+        .lang-btn { font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--text-secondary); background: none; border: none; cursor: pointer; transition: 0.3s; }
         .lang-btn:hover, .lang-btn.active { color: var(--lhex-green); text-shadow: 0 0 8px var(--glow-green); }
 
         /* HERO SECTION */
         .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
         .hero-logo { 
-            width: 160px; margin-bottom: 40px; cursor: pointer; 
-            filter: drop-shadow(0 0 25px rgba(95, 255, 215, 0.2)); 
+            width: 280px; /* LOGO GIGANTE */
+            margin-bottom: 40px; cursor: pointer; 
+            filter: drop-shadow(0 0 30px rgba(95, 255, 215, 0.3)); 
             animation: float 6s ease-in-out infinite; transition: 0.5s; 
         }
-        .hero-logo:hover { filter: drop-shadow(0 0 45px rgba(95, 255, 215, 0.4)); transform: scale(1.05); }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
+        .hero-logo:hover { filter: drop-shadow(0 0 60px rgba(95, 255, 215, 0.6)); transform: scale(1.05); }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
         .headline { font-size: clamp(2rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; margin-bottom: 25px; max-width: 900px; letter-spacing: -1px; }
         .headline strong { font-weight: 700; color: var(--lhex-green); }
@@ -65,123 +66,65 @@
 
         /* CARDS / SOLUÇÕES */
         .solutions { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto 100px; padding: 0 20px; }
-        .card { 
-            background: var(--panel); border: 1px solid var(--border); padding: 45px; border-radius: 4px;
-            transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: pointer; position: relative; overflow: hidden;
-        }
+        .card { background: var(--panel); border: 1px solid var(--border); padding: 45px; border-radius: 4px; transition: 0.4s; cursor: pointer; position: relative; overflow: hidden; }
         .card:hover { border-color: var(--lhex-green); transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 20px var(--glow-green); }
         .card-header { font-family: 'JetBrains Mono'; color: var(--jabuticaba); font-size: 0.85rem; font-weight: 700; margin-bottom: 25px; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px;}
         .card h3 { font-size: 1.5rem; margin-bottom: 15px; font-weight: 500; letter-spacing: 1px;}
         .card p { color: var(--text-secondary); font-size: 0.95rem; font-weight: 300; line-height: 1.7;}
 
-        /* FAQ VIP */
-        .faq { max-width: 800px; margin: 100px auto; padding: 0 20px; }
-        .faq-title { text-align: center; font-weight: 300; margin-bottom: 60px; font-size: 2rem; letter-spacing: 2px;}
-        .faq-item { border-bottom: 1px solid var(--border); padding: 30px 0; cursor: pointer; }
-        .faq-q { font-size: 1.2rem; font-weight: 400; display: flex; justify-content: space-between; align-items: center; color: #fff; transition: 0.3s;}
-        .faq-q span { color: var(--lhex-green); font-family: 'JetBrains Mono'; font-size: 1.5rem;}
-        .faq-a { height: 0; overflow: hidden; transition: 0.5s ease; color: var(--text-secondary); font-size: 1rem; line-height: 1.8; font-weight: 300; }
-        .faq-item.active .faq-a { height: auto; margin-top: 20px; padding-left: 15px; border-left: 2px solid var(--jabuticaba); }
-        .faq-item.active .faq-q { color: var(--lhex-green); }
-
-        /* FORMULÁRIO DE SELEÇÃO EXCLUSIVA */
+        /* FORMULÁRIO VIP */
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px;}
         .modal.active { display: flex; }
         .modal-box { background: #050508; border: 1px solid var(--border); width: 100%; max-width: 650px; padding: 50px; position: relative; border-top: 3px solid var(--lhex-green); border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.9); }
         .form-header { font-family: 'JetBrains Mono'; color: #fff; margin-bottom: 15px; font-size: 1.3rem; font-weight: 300;}
         .form-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 35px; font-weight: 300; line-height: 1.6;}
-        
         .form-group { margin-bottom: 25px; }
         .form-group label { display: block; font-size: 0.75rem; color: #888; margin-bottom: 10px; font-family: 'JetBrains Mono'; letter-spacing: 1px;}
-        .form-group input, .form-group select, .form-group textarea { 
-            width: 100%; background: rgba(255,255,255,0.02); border: 1px solid var(--border); color: #fff; padding: 15px; 
-            font-family: 'Montserrat'; font-size: 1rem; font-weight: 300; transition: 0.3s;
-        }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(255,255,255,0.02); border: 1px solid var(--border); color: #fff; padding: 15px; font-family: 'Montserrat'; font-size: 1rem; font-weight: 300; transition: 0.3s; }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--lhex-green); background: rgba(0,0,0,0.5); }
-        
         .cta-submit { background: var(--text-primary); color: #000; border: none; padding: 18px; width: 100%; font-weight: 700; font-family: 'JetBrains Mono'; cursor: pointer; margin-top: 15px; transition: 0.3s; letter-spacing: 1px;}
         .cta-submit:hover { background: var(--lhex-green); box-shadow: 0 0 20px var(--glow-green); }
 
-        .fab { position: fixed; bottom: 40px; right: 40px; width: 65px; height: 65px; background: var(--lhex-green); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; color: #000; cursor: pointer; box-shadow: 0 0 25px var(--glow-green); z-index: 999; transition: 0.3s; border: none;}
-        .fab:hover { transform: scale(1.1); background: #fff; }
-
-        .payment-banner { display: flex; justify-content: center; gap: 30px; padding: 40px; opacity: 0.4; font-size: 1.8rem; color: #fff; border-top: 1px solid var(--border);}
-        .payment-banner i { transition: 0.3s; }
-        .payment-banner i:hover { color: var(--lhex-green); transform: translateY(-5px); opacity: 1;}
-
-        /* LOADER E ANIMAÇÃO DE SUCESSO */
-        .lhex-loader {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100px;
-            height: 100px;
-            z-index: 2001;
-        }
-        .lhex-loader.active {
-            display: block;
-        }
-        .lhex-logo-spin {
-            width: 100%;
-            height: 100%;
-            animation: spin 1.5s linear infinite;
-            filter: drop-shadow(0 0 15px var(--lhex-green));
-        }
+        /* LOADER E SUCESSO CORRIGIDOS PARA LOGO.PNG */
+        .lhex-loader { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; z-index: 2001; }
+        .lhex-loader.active { display: block; }
+        .lhex-logo-spin { width: 100%; height: 100%; animation: spin 1.5s linear infinite; filter: drop-shadow(0 0 20px var(--lhex-green)); }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* Animação Sinistra de Sucesso */
-        .success-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 3000;
-            opacity: 0; transition: 0.5s;
-        }
+        .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 3000; opacity: 0; transition: 0.5s; }
         .success-overlay.active { display: flex; opacity: 1; }
+        .success-logo { width: 200px; margin-bottom: 30px; animation: success-spin 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275); filter: drop-shadow(0 0 40px var(--lhex-green)); }
+        @keyframes success-spin { 0% { transform: rotate(0deg) scale(1); } 70% { transform: rotate(720deg) scale(1.2); } 100% { transform: rotate(720deg) scale(1.1); } }
         
-        .success-logo {
-            width: 150px; margin-bottom: 30px;
-            animation: success-spin 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            filter: drop-shadow(0 0 30px var(--lhex-green));
-        }
-        @keyframes success-spin {
-            0% { transform: rotate(0deg) scale(1); filter: drop-shadow(0 0 10px var(--lhex-green)); }
-            70% { transform: rotate(720deg) scale(1.2); filter: drop-shadow(0 0 50px var(--lhex-green)); }
-            100% { transform: rotate(720deg) scale(1.1); filter: drop-shadow(0 0 30px var(--lhex-green)); }
-        }
-
-        .success-pulse {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 0; height: 0; border-radius: 50%; border: 5px solid var(--lhex-green);
-            animation: pulse-success 1s forwards ease-out;
-        }
-        @keyframes pulse-success {
-            0% { width: 0; height: 0; opacity: 1; }
-            100% { width: 600px; height: 600px; opacity: 0; }
-        }
-        
-        .success-text { font-family: 'JetBrains Mono'; font-size: 1.5rem; color: var(--lhex-green); text-align: center; opacity: 0; transform: translateY(20px); animation: fade-up 0.5s forwards 0.8s; }
+        .success-text { font-family: 'JetBrains Mono'; font-size: 1.8rem; color: var(--lhex-green); text-align: center; opacity: 0; transform: translateY(20px); animation: fade-up 0.5s forwards 0.8s; }
         .success-subtext { color: var(--text-secondary); margin-top: 10px; opacity: 0; transform: translateY(20px); animation: fade-up 0.5s forwards 1s; }
         @keyframes fade-up { 100% { opacity: 1; transform: translateY(0); } }
 
-        @media (max-width: 768px) { .headline { font-size: 2.2rem; } .card { padding: 30px; } }
+        /* FOOTER PROFISSIONAL */
+        .footer { border-top: 1px solid var(--border); padding: 50px 20px; text-align: center; background: #030303; margin-top: 50px;}
+        .footer-content { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; align-items: center;}
+        .f-logo { font-family: 'Montserrat'; font-weight: 700; font-size: 1.2rem; margin-bottom: 10px;}
+        .f-links { display: flex; gap: 30px; font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--text-secondary);}
+        .f-links a { color: var(--text-secondary); text-decoration: none; transition: 0.3s;}
+        .f-links a:hover { color: var(--lhex-green); }
+        .f-copy { font-size: 0.75rem; color: #555; margin-top: 20px; letter-spacing: 1px;}
+
     </style>
 </head>
 <body>
 
     <div class="lhex-loader" id="formLoader">
-        <img src="image_1.png" alt="Loading" class="lhex-logo-spin">
+        <img src="logo.png" alt="Loading" class="lhex-logo-spin">
     </div>
 
     <div class="success-overlay" id="successOverlay">
-        <div class="success-pulse"></div>
-        <img src="image_1.png" alt="Success" class="success-logo">
+        <img src="logo.png" alt="Success" class="success-logo">
         <div class="success-text">PROTOCOLO VALIDADO.</div>
-        <div class="success-subtext">A L.H.E.X. entrará em contato.</div>
+        <div class="success-subtext">A L.H.E.X. entrará em contato. Preparando ambiente seguro...</div>
     </div>
 
     <nav class="navbar">
-        <div class="brand">L.<span class="h-char">H</span>.E.X.<span class="reg">®</span></div>
+        <div class="brand"><span class="brand-l">L.</span><span class="brand-h">H</span><span class="brand-e">.E</span><span class="brand-x">.X</span><span class="reg">®</span></div>
         <div class="lang-dock">
             <button class="lang-btn active">PT</button>
             <button class="lang-btn">EN</button>
@@ -192,97 +135,64 @@
         <img src="logo.png" alt="LHEX Core" class="hero-logo" onclick="toggleModal()">
         <h1 class="headline">Arquitetura de Software & <strong>Infraestrutura M2M.</strong></h1>
         <p class="subheadline">Construímos sistemas invioláveis (C/Python) e validamos protocolos de automação financeira. Sua operação, sob seu controle absoluto.</p>
+        <button class="cta-submit" style="max-width: 300px; border-radius: 4px;" onclick="toggleModal()">SOLICITAR AUDITORIA</button>
     </section>
 
     <section class="solutions">
         <div class="card">
             <div class="card-header"><span>01. THE VAULT</span><span>[ HOSTING ]</span></div>
             <h3>Soberania de Dados</h3>
-            <p>Setup completo de infraestrutura em nuvem privada. Protegemos seu capital intelectual retirando sua operação de plataformas terceirizadas (Lock-in) e alocando em servidores dedicados de alta segurança.</p>
+            <p>Setup completo de infraestrutura em nuvem privada. Protegemos seu capital intelectual retirando sua operação de plataformas terceirizadas.</p>
         </div>
         <div class="card">
             <div class="card-header"><span>02. THE CORE</span><span>[ DEV ]</span></div>
-            <h3>Lógica e Validação (C/Python)</h3>
-            <p>Desenvolvimento robusto de scripts, CRMs e back-ends preparados para integrações neurais. Código otimizado em nível bare-metal, construído para não quebrar sob estresse de escala.</p>
+            <h3>Lógica em C/Python</h3>
+            <p>Desenvolvimento robusto de scripts e back-ends preparados para integrações neurais. Código otimizado para não quebrar sob estresse.</p>
         </div>
         <div class="card">
-            <div class="card-header"><span>03. THE PROTOCOL</span><span>[ WEB3/M2M ]</span></div>
-            <div style="position: absolute; top: 20px; right: -30px; background: var(--jabuticaba); color: #fff; font-size: 0.6rem; padding: 5px 30px; transform: rotate(45deg); font-family: 'JetBrains Mono'; font-weight: bold;">R&D</div>
+            <div class="card-header"><span>03. THE PROTOCOL</span><span>[ M2M ]</span></div>
             <h3>Liquidação M2M</h3>
-            <p>Estruturação de fluxos autônomos de pagamento (Machine-to-Machine). Preparação do seu ambiente para operar com Smart Contracts e gateways institucionais sem latência administrativa.</p>
+            <p>Estruturação de fluxos autônomos de pagamento (Machine-to-Machine) via APIs de alta segurança e Smart Contracts.</p>
         </div>
     </section>
-
-    <section class="faq">
-        <h2 class="faq-title">DIRETRIZES OPERACIONAIS</h2>
-        
-        <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-q">Por que o processo de entrada exige aplicação prévia? <span>+</span></div>
-            <div class="faq-a">A L.H.E.X. não atua como agência. Somos parceiros de infraestrutura estratégica. Nosso tempo técnico é altamente focado na elaboração de códigos (C/Python) e arquiteturas complexas. Avaliamos rigorosamente se o nível de maturidade e ambição da sua empresa está alinhado com a potência do que construímos. Você está seguro no colo da exclusividade.</div>
-        </div>
-        <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-q">Qual a segurança jurídica e técnica dos contratos? <span>+</span></div>
-            <div class="faq-a">Trabalhamos com compliance global. As entregas são protegidas por SLAs estritos, e os pagamentos podem ser processados tradicionalmente (Fiduciário) ou via protocolos descentralizados e escrow (Crypto), garantindo que tanto o código quanto o capital transacionem em um ambiente Trustless (livre de quebras de confiança).</div>
-        </div>
-        <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-q">Como sei se minha operação tem perfil para a L.H.E.X.? <span>+</span></div>
-            <div class="faq-a">Se a sua empresa ainda enxerga tecnologia como um "gasto mensal" em vez de um ativo proprietário, nós não somos para você. Atendemos líderes, CEOs e startups que compreendem que ser dono do próprio servidor, banco de dados e lógica algorítmica é a única forma de dominar mercados nos próximos 10 anos.</div>
-        </div>
-    </section>
-
-    <div class="payment-banner">
-        <i class="fab fa-bitcoin" title="Bitcoin"></i>
-        <i class="fa-brands fa-ethereum" title="Ethereum / USDC"></i>
-        <i class="fas fa-university" title="PIX Central Bank"></i>
-        <i class="fas fa-file-contract" title="Smart Contracts"></i>
-    </div>
 
     <div class="modal" id="appModal">
         <div class="modal-box">
             <button class="close-reveal" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: #888; font-size: 1.2rem; cursor: pointer;" onclick="toggleModal()">✕</button>
             <div class="form-header">PROTOCOLO DE ANÁLISE B2B</div>
-            <p class="form-desc">Inicie seu processo de aplicação. Garantimos total confidencialidade dos dados operacionais submetidos.</p>
+            <p class="form-desc">Inicie seu processo de aplicação. Garantimos total confidencialidade dos dados.</p>
             
             <form onsubmit="sendForm(event)">
                 <div class="form-group">
                     <label>IDENTIFICAÇÃO EMPRESARIAL</label>
-                    <input type="text" id="fname" required placeholder="Nome do Responsável / Corporação">
+                    <input type="text" id="fname" required placeholder="Nome do Responsável / Empresa">
                 </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div class="form-group">
-                        <label>CONTATO PRIORITÁRIO</label>
-                        <select id="fcontact_type" style="margin-bottom: 10px;">
-                            <option value="WhatsApp">WhatsApp (Recomendado)</option>
-                            <option value="Email">E-mail Seguro</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>DADOS DE CONTATO (DDI + DDD + NÚMERO)</label>
-                        <input type="text" id="fcontact_info" required placeholder="Ex: +55 (21) 9...">
-                    </div>
-                </div>
-
                 <div class="form-group">
-                    <label>OBJETIVO DA AUDITORIA</label>
-                    <select id="fscope">
-                        <option value="Soberania_Vault">Quero migrar para Infraestrutura Própria (The Vault)</option>
-                        <option value="Logica_PythonC">Desenvolvimento de Sistema Backend (Python/C)</option>
-                        <option value="M2M_Web3">Consultoria em Pagamentos Autônomos (M2M)</option>
-                    </select>
+                    <label>E-MAIL CORPORATIVO</label>
+                    <input type="email" id="femail" required placeholder="seu@email.com">
                 </div>
-
                 <div class="form-group">
-                    <label>CENÁRIO ATUAL E OBJETIVO ESPERADO</label>
-                    <textarea id="fpain" rows="3" required placeholder="Descreva de forma direta por que a L.H.E.X. é necessária agora."></textarea>
+                    <label>CENÁRIO ATUAL E OBJETIVO</label>
+                    <textarea id="fpain" rows="3" required placeholder="Qual o gargalo da sua operação atual?"></textarea>
                 </div>
-
-                <button type="submit" class="cta-submit" id="submitBtn">SUBMETER PARA AUDITORIA TÉCNICA</button>
+                <button type="submit" class="cta-submit" id="submitBtn">TRANSMITIR DADOS (CRIPTOGRAFADO)</button>
             </form>
         </div>
     </div>
 
-    <button class="fab" onclick="toggleModal()">⚡</button>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="f-logo"><span class="brand-l">L.</span><span class="brand-h">H</span><span class="brand-e">.E</span><span class="brand-x">.X</span><span class="reg" style="color:#555">®</span> SYSTEMS</div>
+            <div class="f-links">
+                <a href="mailto:contato@lhexsystems.com"><i class="fas fa-envelope"></i> contato@lhexsystems.com</a>
+                <span><i class="fas fa-globe"></i> Origin: Brazil</span>
+            </div>
+            <div class="f-copy">
+                &copy; 2026 L.H.E.X. Systems Protocol. All rights reserved.<br>
+                Founder & Lead Architect: Letícia Nascimento
+            </div>
+        </div>
+    </footer>
 
     <script>
         function toggleModal() { document.getElementById('appModal').classList.toggle('active'); }
@@ -290,37 +200,33 @@
         function sendForm(e) {
             e.preventDefault();
             
-            // Mostra o Loader
             const loader = document.getElementById('formLoader');
             const submitBtn = document.getElementById('submitBtn');
             loader.classList.add('active');
             submitBtn.disabled = true;
-            submitBtn.textContent = "PROCESSANDO CRIPTOGRAFIA...";
+            submitBtn.textContent = "PROCESSANDO...";
 
             const name = document.getElementById('fname').value;
-            const type = document.getElementById('fcontact_type').value;
-            const info = document.getElementById('fcontact_info').value;
-            const scope = document.getElementById('fscope').value;
+            const email = document.getElementById('femail').value;
             const pain = document.getElementById('fpain').value;
             
-            const msg = `*NOVA APLICAÇÃO EXCLUSIVA [L.H.E.X.®]*%0A%0A🏢 *Empresa/CEO:* ${name}%0A📞 *Via de Contato:* ${type} (${info})%0A🎯 *Escopo:* ${scope}%0A%0A📌 *Diagnóstico Submetido:*%0A"${pain}"%0A%0A_Aguardando validação._`;
-            const whatsappUrl = `https://wa.me/55SEUNUMEROAQUI?text=${msg}`;
+            // SEU NÚMERO AQUI
+            const seuWhatsApp = "5521987587047";
+            const msg = `*NOVA APLICAÇÃO [L.H.E.X.®]*%0A%0A🏢 *Cliente:* ${name}%0A✉️ *E-mail:* ${email}%0A%0A📌 *Demanda:*%0A"${pain}"%0A%0A_Aguardando validação._`;
+            const whatsappUrl = `https://wa.me/${seuWhatsApp}?text=${msg}`;
 
-            // Simula um tempo de processamento antes de redirecionar e mostrar a animação de sucesso
             setTimeout(() => {
                 loader.classList.remove('active');
-                toggleModal(); // Fecha o modal
+                toggleModal();
                 
-                // Mostra a Animação de Sucesso
                 const successOverlay = document.getElementById('successOverlay');
                 successOverlay.classList.add('active');
 
-                // Redireciona após a animação de sucesso
                 setTimeout(() => {
                     window.location.href = whatsappUrl;
-                }, 2500); // Tempo da animação de sucesso + leitura
+                }, 2000); 
 
-            }, 1500); // Tempo do loader
+            }, 1500); 
         }
     </script>
 </body>
