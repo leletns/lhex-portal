@@ -39,7 +39,6 @@
             position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);
         }
         
-        /* A MARCA L.H.E.X COLORIDA */
         .brand { font-family: 'Montserrat'; font-weight: 700; letter-spacing: 2px; font-size: 1.5rem; }
         .brand-l, .brand-e, .brand-x { color: var(--lhex-green); text-shadow: 0 0 10px var(--glow-green); }
         .brand-h { color: var(--jabuticaba); text-shadow: 0 0 15px rgba(74, 14, 78, 0.8); font-size: 1.8rem; }
@@ -52,8 +51,7 @@
         /* HERO SECTION */
         .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
         .hero-logo { 
-            width: 280px; /* LOGO GIGANTE */
-            margin-bottom: 40px; cursor: pointer; 
+            width: 280px; margin-bottom: 40px; cursor: pointer; 
             filter: drop-shadow(0 0 30px rgba(95, 255, 215, 0.3)); 
             animation: float 6s ease-in-out infinite; transition: 0.5s; 
         }
@@ -72,6 +70,16 @@
         .card h3 { font-size: 1.5rem; margin-bottom: 15px; font-weight: 500; letter-spacing: 1px;}
         .card p { color: var(--text-secondary); font-size: 0.95rem; font-weight: 300; line-height: 1.7;}
 
+        /* FAQ VIP */
+        .faq { max-width: 800px; margin: 100px auto; padding: 0 20px; }
+        .faq-title { text-align: center; font-weight: 300; margin-bottom: 60px; font-size: 2rem; letter-spacing: 2px;}
+        .faq-item { border-bottom: 1px solid var(--border); padding: 30px 0; cursor: pointer; }
+        .faq-q { font-size: 1.2rem; font-weight: 400; display: flex; justify-content: space-between; align-items: center; color: #fff; transition: 0.3s;}
+        .faq-q span { color: var(--lhex-green); font-family: 'JetBrains Mono'; font-size: 1.5rem;}
+        .faq-a { height: 0; overflow: hidden; transition: 0.5s ease; color: var(--text-secondary); font-size: 1rem; line-height: 1.8; font-weight: 300; }
+        .faq-item.active .faq-a { height: auto; margin-top: 20px; padding-left: 15px; border-left: 2px solid var(--jabuticaba); }
+        .faq-item.active .faq-q { color: var(--lhex-green); }
+
         /* FORMULÁRIO VIP */
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px;}
         .modal.active { display: flex; }
@@ -85,7 +93,7 @@
         .cta-submit { background: var(--text-primary); color: #000; border: none; padding: 18px; width: 100%; font-weight: 700; font-family: 'JetBrains Mono'; cursor: pointer; margin-top: 15px; transition: 0.3s; letter-spacing: 1px;}
         .cta-submit:hover { background: var(--lhex-green); box-shadow: 0 0 20px var(--glow-green); }
 
-        /* LOADER E SUCESSO CORRIGIDOS PARA LOGO.PNG */
+        /* LOADER E SUCESSO SINISTRO */
         .lhex-loader { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; z-index: 2001; }
         .lhex-loader.active { display: block; }
         .lhex-logo-spin { width: 100%; height: 100%; animation: spin 1.5s linear infinite; filter: drop-shadow(0 0 20px var(--lhex-green)); }
@@ -100,14 +108,18 @@
         .success-subtext { color: var(--text-secondary); margin-top: 10px; opacity: 0; transform: translateY(20px); animation: fade-up 0.5s forwards 1s; }
         @keyframes fade-up { 100% { opacity: 1; transform: translateY(0); } }
 
-        /* FOOTER PROFISSIONAL */
+        /* FOOTER CORRIGIDO E ALINHADO */
         .footer { border-top: 1px solid var(--border); padding: 50px 20px; text-align: center; background: #030303; margin-top: 50px;}
         .footer-content { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; align-items: center;}
+        
+        /* Ajuste fino do H no Footer para não ficar discrepante */
         .f-logo { font-family: 'Montserrat'; font-weight: 700; font-size: 1.2rem; margin-bottom: 10px;}
+        .f-logo .brand-h { font-size: 1.3rem; text-shadow: none; } 
+        
         .f-links { display: flex; gap: 30px; font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--text-secondary);}
         .f-links a { color: var(--text-secondary); text-decoration: none; transition: 0.3s;}
         .f-links a:hover { color: var(--lhex-green); }
-        .f-copy { font-size: 0.75rem; color: #555; margin-top: 20px; letter-spacing: 1px;}
+        .f-copy { font-size: 0.75rem; color: #555; margin-top: 20px; letter-spacing: 1px; line-height: 1.8;}
 
     </style>
 </head>
@@ -120,7 +132,7 @@
     <div class="success-overlay" id="successOverlay">
         <img src="logo.png" alt="Success" class="success-logo">
         <div class="success-text">PROTOCOLO VALIDADO.</div>
-        <div class="success-subtext">A L.H.E.X. entrará em contato. Preparando ambiente seguro...</div>
+        <div class="success-subtext">Acesso concedido. Estabelecendo conexão segura via WhatsApp...</div>
     </div>
 
     <nav class="navbar">
@@ -142,17 +154,38 @@
         <div class="card">
             <div class="card-header"><span>01. THE VAULT</span><span>[ HOSTING ]</span></div>
             <h3>Soberania de Dados</h3>
-            <p>Setup completo de infraestrutura em nuvem privada. Protegemos seu capital intelectual retirando sua operação de plataformas terceirizadas.</p>
+            <p>Setup completo de infraestrutura em nuvem privada. Protegemos seu capital intelectual retirando sua operação de plataformas terceirizadas (Vendor Lock-in).</p>
         </div>
         <div class="card">
             <div class="card-header"><span>02. THE CORE</span><span>[ DEV ]</span></div>
             <h3>Lógica em C/Python</h3>
-            <p>Desenvolvimento robusto de scripts e back-ends preparados para integrações neurais. Código otimizado para não quebrar sob estresse.</p>
+            <p>Desenvolvimento robusto de scripts e back-ends preparados para integrações neurais. Código otimizado bare-metal para não quebrar sob estresse de escala.</p>
         </div>
         <div class="card">
             <div class="card-header"><span>03. THE PROTOCOL</span><span>[ M2M ]</span></div>
             <h3>Liquidação M2M</h3>
-            <p>Estruturação de fluxos autônomos de pagamento (Machine-to-Machine) via APIs de alta segurança e Smart Contracts.</p>
+            <p>Estruturação de fluxos autônomos de pagamento (Machine-to-Machine) via APIs de alta segurança e Smart Contracts. Zero intervenção humana.</p>
+        </div>
+    </section>
+
+    <section class="faq">
+        <h2 class="faq-title">DIRETRIZES DE ARQUITETURA</h2>
+        
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q">Por que a L.H.E.X. exige aprovação prévia? <span>+</span></div>
+            <div class="faq-a">Nós construímos arquitetura proprietária, não SaaS genérico. Nossa largura de banda técnica é reservada para operações que escalam acima de 6 dígitos anuais e compreendem que tecnologia de ponta é o maior ativo de uma empresa, não um centro de custo.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q">Por que não usar Vercel, AWS padrão ou Shopify? <span>+</span></div>
+            <div class="faq-a">A dependência de fornecedores (Vendor Lock-in) é um imposto oculto sobre o seu crescimento. A L.H.E.X. constrói 'The Vault' para que você seja o verdadeiro dono da máquina, do código e dos dados dos seus clientes. Segurança em nível institucional, hospedada no seu próprio cofre digital.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q">O que significa liquidação M2M na prática? <span>+</span></div>
+            <div class="faq-a">Machine-to-Machine. É o ápice da eficiência operacional. Seu Agente IA negocia, nosso backend executa o contrato e o capital é liquidado na sua conta bancária (ou carteira Crypto) em milissegundos. Zero back-office humano. Zero atrito financeiro.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q">Quais as garantias técnicas do código entregue? <span>+</span></div>
+            <div class="faq-a">Fornecemos SLA de 99.9% de uptime na infraestrutura gerenciada. Todo o código (Python/C) é entregue de forma criptografada diretamente no seu repositório privado do GitHub. Aceitamos contratos via Escrow para total neutralidade financeira.</div>
         </div>
     </section>
 
@@ -160,20 +193,24 @@
         <div class="modal-box">
             <button class="close-reveal" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: #888; font-size: 1.2rem; cursor: pointer;" onclick="toggleModal()">✕</button>
             <div class="form-header">PROTOCOLO DE ANÁLISE B2B</div>
-            <p class="form-desc">Inicie seu processo de aplicação. Garantimos total confidencialidade dos dados.</p>
+            <p class="form-desc">Inicie seu processo de aplicação. Ao enviar, os dados serão criptografados e enviados diretamente à Arquiteta Chefe.</p>
             
             <form onsubmit="sendForm(event)">
                 <div class="form-group">
                     <label>IDENTIFICAÇÃO EMPRESARIAL</label>
-                    <input type="text" id="fname" required placeholder="Nome do Responsável / Empresa">
+                    <input type="text" id="fname" required placeholder="Sua Empresa / Nome Completo">
                 </div>
                 <div class="form-group">
-                    <label>E-MAIL CORPORATIVO</label>
-                    <input type="email" id="femail" required placeholder="seu@email.com">
+                    <label>ORÇAMENTO (CAPEX DISPONÍVEL)</label>
+                    <select id="fbudget">
+                        <option value="10k_50k">R$ 10k - 50k (The Vault Setup)</option>
+                        <option value="50k_150k">R$ 50k - 150k (Custom Core Backend)</option>
+                        <option value="150k_Plus">R$ 150k+ (Enterprise M2M Protocol)</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label>CENÁRIO ATUAL E OBJETIVO</label>
-                    <textarea id="fpain" rows="3" required placeholder="Qual o gargalo da sua operação atual?"></textarea>
+                    <label>ESCOPO TÉCNICO DESEJADO</label>
+                    <textarea id="fpain" rows="3" required placeholder="Qual ineficiência operacional a L.H.E.X. deve eliminar hoje?"></textarea>
                 </div>
                 <button type="submit" class="cta-submit" id="submitBtn">TRANSMITIR DADOS (CRIPTOGRAFADO)</button>
             </form>
@@ -185,7 +222,7 @@
             <div class="f-logo"><span class="brand-l">L.</span><span class="brand-h">H</span><span class="brand-e">.E</span><span class="brand-x">.X</span><span class="reg" style="color:#555">®</span> SYSTEMS</div>
             <div class="f-links">
                 <a href="mailto:contato@lhexsystems.com"><i class="fas fa-envelope"></i> contato@lhexsystems.com</a>
-                <span><i class="fas fa-globe"></i> Origin: Brazil</span>
+                <span><i class="fas fa-globe"></i> Origin: Brazil | Global Reach</span>
             </div>
             <div class="f-copy">
                 &copy; 2026 L.H.E.X. Systems Protocol. All rights reserved.<br>
@@ -207,14 +244,15 @@
             submitBtn.textContent = "PROCESSANDO...";
 
             const name = document.getElementById('fname').value;
-            const email = document.getElementById('femail').value;
+            const budget = document.getElementById('fbudget').value;
             const pain = document.getElementById('fpain').value;
             
-            // SEU NÚMERO AQUI
+            // O SEU NÚMERO EXATO E OFICIAL PARA RECEBER OS LEADS
             const seuWhatsApp = "5521987587047";
-            const msg = `*NOVA APLICAÇÃO [L.H.E.X.®]*%0A%0A🏢 *Cliente:* ${name}%0A✉️ *E-mail:* ${email}%0A%0A📌 *Demanda:*%0A"${pain}"%0A%0A_Aguardando validação._`;
+            const msg = `*NOVA APLICAÇÃO [L.H.E.X.®]*%0A%0A🏢 *Empresa/CEO:* ${name}%0A💰 *Capex Previsto:* ${budget}%0A%0A📌 *Escopo Técnico Submetido:*%0A"${pain}"%0A%0A_Aguardando validação._`;
             const whatsappUrl = `https://wa.me/${seuWhatsApp}?text=${msg}`;
 
+            // Efeito visual de processamento de dados do cliente (Gera Ansiedade Positiva)
             setTimeout(() => {
                 loader.classList.remove('active');
                 toggleModal();
@@ -222,6 +260,7 @@
                 const successOverlay = document.getElementById('successOverlay');
                 successOverlay.classList.add('active');
 
+                // Envia para o seu WhatsApp após a animação mágica de 2 segundos
                 setTimeout(() => {
                     window.location.href = whatsappUrl;
                 }, 2000); 
