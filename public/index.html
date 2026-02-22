@@ -3,232 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#030303">
-    <title>L.H.E.X.® Systems | Sovereign M2M Protocol</title>
+    <meta name="theme-color" content="#020202">
+    <title>L.H.E.X.® | Sovereign Infrastructure & Code</title>
     
-    <meta name="description" content="Infraestrutura base para Comércio Autônomo B2B, Liquidação Web3 e Inteligência M2M.">
-    <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="description" content="Engenharia de Software, Infraestrutura Soberana e Lógica de Sistemas B2B.">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta property="og:image" content="https://lhexsystems.com/social-card.jpg">
     
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg: #030303; --panel: #0a0a0a; --text-primary: #ffffff; --text-secondary: #888888;
-            --accent-green: #5FFFD7; --accent-purple: #6A0DAD; --border-color: #1a1a1a;
+            --bg: #020202; --panel: #0a0a0a; --text-primary: #e0e0e0; --text-secondary: #666;
+            --accent: #5FFFD7; --accent-alt: #6A0DAD; --danger: #ff3333; --border: #1a1a1a;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
         body {
             background-color: var(--bg); color: var(--text-primary);
             font-family: 'Montserrat', sans-serif; line-height: 1.6; overflow-x: hidden;
-            background-image: linear-gradient(rgba(0, 10, 0, 0.1) 1px, transparent 1px); background-size: 100% 4px;
+            background-image: radial-gradient(circle at 50% 50%, #0a1015 0%, #020202 100%);
         }
 
-        /* --- NAVBAR --- */
+        /* NAVBAR & LANGS */
         .navbar {
-            display: flex; justify-content: space-between; align-items: center; padding: 25px 5%;
-            background: rgba(3,3,3,0.95); backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(95, 255, 215, 0.1); position: sticky; top: 0; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center; padding: 20px 5%;
+            background: rgba(2,2,2,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 1000;
         }
-        .brand-dock { font-weight: 300; font-size: 1.1rem; letter-spacing: 2px; }
-        .brand-h { color: var(--accent-green); font-weight: 600; }
-
-        /* --- HERO --- */
-        .hero-section {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 80px 20px; text-align: center; min-height: 70vh;
-        }
-        @keyframes float-logo {
-            0%, 100% { transform: translateY(0px); filter: drop-shadow(0 0 15px rgba(95, 255, 215, 0.1)); }
-            50% { transform: translateY(-20px); filter: drop-shadow(0 0 40px rgba(95, 255, 215, 0.4)); }
-        }
-        .main-logo { width: 280px; height: auto; margin-bottom: 40px; animation: float-logo 5s ease-in-out infinite; }
-        .hero-headline { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 300; margin-bottom: 25px; color: #fff; letter-spacing: 1px; max-width: 900px; line-height: 1.2; }
-        .hero-subtext { color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin-bottom: 40px; font-weight: 300; }
+        .brand { font-family: 'JetBrains Mono'; font-weight: 700; letter-spacing: -1px; font-size: 1.2rem; color: #fff; }
+        .brand span { color: var(--accent); }
         
-        .cta-btn-main {
-            background: transparent; border: 1px solid var(--accent-green); color: var(--accent-green);
-            padding: 15px 40px; font-family: 'JetBrains Mono'; font-size: 0.9rem; cursor: pointer; transition: 0.3s; text-transform: uppercase;
+        .lang-dock { display: flex; gap: 15px; }
+        .lang-btn { 
+            font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--text-secondary); 
+            background: transparent; border: 1px solid transparent; cursor: pointer; transition: 0.3s; padding: 5px 10px;
         }
-        .cta-btn-main:hover { background: var(--accent-green); color: #000; box-shadow: 0 0 20px rgba(95, 255, 215, 0.4); }
+        .lang-btn:hover, .lang-btn.active { color: var(--accent); border-color: var(--accent); }
 
-        /* --- FAQ / TERMINAL INTERATIVO --- */
-        .faq-section { max-width: 900px; margin: 60px auto; padding: 0 20px; }
-        .section-title { font-family: 'JetBrains Mono'; color: var(--accent-green); font-size: 1.2rem; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        
-        .faq-item { background: var(--panel); border: 1px solid #222; margin-bottom: 15px; cursor: pointer; transition: 0.3s; }
-        .faq-item:hover { border-color: var(--accent-green); }
-        .faq-question { padding: 20px; font-weight: 600; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; }
-        .faq-answer {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
-            padding: 0 20px; font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--text-secondary); background: #050505;
-        }
-        .faq-item.active .faq-answer { max-height: 300px; padding: 20px; border-top: 1px dashed #333; }
+        /* HERO & LOGO FLUTUANTE */
+        .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
+        .hero-logo { width: 220px; margin-bottom: 40px; cursor: pointer; filter: drop-shadow(0 0 20px rgba(95, 255, 215, 0.2)); animation: float 6s ease-in-out infinite; transition: 0.5s; }
+        .hero-logo:hover { filter: drop-shadow(0 0 50px rgba(95, 255, 215, 0.6)); transform: scale(1.05); }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
-        /* --- MODAL DE QUALIFICAÇÃO VIP --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
-            display: none; justify-content: center; align-items: center; z-index: 3000; overflow-y: auto; padding: 20px;
-        }
-        .modal-overlay.active { display: flex; }
-        .modal-content { background: #030303; border: 1px solid var(--accent-green); padding: 40px; width: 100%; max-width: 650px; position: relative; margin: auto; }
-        .modal-title { font-family: 'JetBrains Mono', monospace; font-weight: 300; font-size: 1.2rem; color: var(--accent-green); margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 10px; }
-        
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .headline { font-size: clamp(1.8rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.2; margin-bottom: 20px; max-width: 900px; }
+        .headline strong { font-weight: 800; background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subheadline { font-size: 1.1rem; color: var(--text-secondary); max-width: 700px; margin-bottom: 40px; font-weight: 300; }
+
+        .payment-icons { display: flex; gap: 20px; opacity: 0.6; justify-content: center; font-size: 1.5rem; color: var(--text-secondary); }
+        .payment-icons i { transition: 0.3s; }
+        .payment-icons i:hover { color: var(--accent); transform: translateY(-3px); }
+
+        /* OVERLAY REVEAL */
+        .reveal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); z-index: 3000; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.5s; }
+        .reveal-overlay.active { opacity: 1; pointer-events: all; }
+        .reveal-block { margin-bottom: 20px; opacity: 0; transform: translateY(20px); }
+        .reveal-block.animate { animation: fadeUp 0.6s forwards; }
+        .reveal-letter { font-family: 'Montserrat'; font-weight: 800; font-size: 3rem; color: var(--accent); margin-right: 15px; }
+        .reveal-def { font-family: 'JetBrains Mono'; font-size: 1.2rem; display: inline-block; overflow: hidden; white-space: nowrap; border-right: 2px solid var(--accent); width: 0; }
+        .reveal-block.animate .reveal-def { animation: typing 1s steps(30, end) forwards, blink-caret .75s step-end infinite; }
+        .close-reveal { position: absolute; top: 30px; right: 30px; font-family: 'JetBrains Mono'; background: none; border: 1px solid var(--accent); color: var(--accent); padding: 10px 20px; cursor: pointer; transition: 0.3s; }
+        .close-reveal:hover { background: var(--accent); color: #000; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes typing { to { width: 100%; } }
+
+        /* SOLUTIONS / SERVICES */
+        .solutions { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto 100px; padding: 0 20px; }
+        .card { background: var(--panel); border: 1px solid var(--border); padding: 40px; transition: 0.4s; cursor: pointer; }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+        .card-header { font-family: 'JetBrains Mono'; color: var(--accent); font-size: 0.8rem; margin-bottom: 20px; display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 10px;}
+        .card h3 { font-size: 1.4rem; margin-bottom: 15px; font-weight: 600; }
+        .card p { color: var(--text-secondary); font-size: 0.95rem; }
+        .card-hidden { max-height: 0; overflow: hidden; transition: 0.5s; font-family: 'JetBrains Mono'; font-size: 0.8rem; color: #fff; margin-top: 15px; }
+        .card.active .card-hidden { max-height: 200px; padding-top: 15px; border-top: 1px dashed #333; }
+
+        /* SIMULATOR */
+        .simulator { background: #050505; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 20px; text-align: center; }
+        .sim-container { max-width: 800px; margin: 0 auto; }
+        .sim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 40px 0; text-align: left; }
+        .input-group label { display: block; font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--accent); margin-bottom: 10px; }
+        .input-group input { width: 100%; background: #000; border: 1px solid #333; color: #fff; padding: 15px; font-family: 'JetBrains Mono'; font-size: 1.1rem; }
+        .sim-btn { background: var(--accent); color: #000; border: none; padding: 15px 40px; font-family: 'JetBrains Mono'; font-weight: bold; cursor: pointer; transition: 0.3s; width: 100%; }
+        .sim-btn:hover { background: #fff; }
+        .sim-result { display: none; margin-top: 40px; text-align: left; background: #000; border: 1px solid #222; padding: 30px; }
+        .result-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-family: 'JetBrains Mono'; font-size: 0.9rem; border-bottom: 1px dashed #222; padding-bottom: 10px;}
+
+        /* FAQ */
+        .faq { max-width: 800px; margin: 100px auto; padding: 0 20px; }
+        .faq-item { border-bottom: 1px solid var(--border); padding: 25px 0; cursor: pointer; }
+        .faq-q { font-size: 1.1rem; font-weight: 400; display: flex; justify-content: space-between; color: #fff; }
+        .faq-a { height: 0; overflow: hidden; transition: 0.4s; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+        .faq-item.active .faq-a { height: auto; margin-top: 15px; }
+        .faq-item.active .faq-q { color: var(--accent); }
+
+        /* MODAL DE APLICAÇÃO VIP */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px;}
+        .modal.active { display: flex; }
+        .modal-box { background: #050505; border: 1px solid var(--accent); width: 100%; max-width: 600px; padding: 40px; position: relative; max-height: 90vh; overflow-y: auto; }
+        .form-header { font-family: 'JetBrains Mono'; color: var(--accent); margin-bottom: 20px; font-size: 1.1rem;}
         .form-group { margin-bottom: 20px; }
-        .form-group.full { grid-column: 1 / -1; }
-        .form-group label { display: block; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 8px; font-family: 'JetBrains Mono'; }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.9rem;
-        }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-green); }
-        
-        .terms-text { font-size: 0.7rem; color: #555; margin-bottom: 20px; font-family: 'JetBrains Mono'; text-align: justify; }
-        .submit-btn { background: var(--accent-green); color: #000; border: none; padding: 15px; width: 100%; font-family: 'JetBrains Mono'; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
-        .submit-btn:hover { background: #fff; box-shadow: 0 0 20px rgba(255,255,255,0.4); }
+        .form-group label { display: block; font-size: 0.75rem; color: #888; margin-bottom: 8px; font-family: 'JetBrains Mono'; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; background: #000; border: 1px solid #333; color: #fff; padding: 12px; font-family: 'Montserrat'; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+        .cta-submit { background: var(--accent); color: #000; border: none; padding: 15px; width: 100%; font-weight: 800; font-family: 'JetBrains Mono'; cursor: pointer; margin-top: 10px; transition: 0.3s;}
+        .cta-submit:hover { background: #fff; }
 
-        /* --- FOOTER & PAYMENTS --- */
-        .footer { text-align: center; padding: 60px 20px; border-top: 1px solid #111; margin-top: 40px; }
-        .payment-methods { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; }
-        .pay-badge { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--text-secondary); border: 1px solid #333; padding: 5px 15px; border-radius: 20px; }
-        .footer-text { color: #444; font-size: 0.7rem; letter-spacing: 2px; }
-        
-        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
+        .fab { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: var(--accent); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; color: #000; cursor: pointer; box-shadow: 0 0 20px rgba(95,255,215,0.4); z-index: 999; transition: 0.3s; border: none;}
+        .fab:hover { transform: scale(1.1); }
+        .footer { text-align: center; padding: 50px 20px; font-size: 0.7rem; color: #444; letter-spacing: 2px; border-top: 1px solid #111;}
+
+        @media (max-width: 768px) { .sim-grid { grid-template-columns: 1fr; } .headline { font-size: 2rem; } }
     </style>
 </head>
 <body>
 
+    <div class="reveal-overlay" id="lhex-overlay">
+        <button class="close-reveal" onclick="toggleReveal()">[ ESC ]</button>
+        <div class="reveal-container">
+            <div class="reveal-block" style="animation-delay: 0.1s;"><span class="reveal-letter">L</span><span class="reveal-def" id="r-l">LOGIC [Engenharia de Backend]</span></div>
+            <div class="reveal-block" style="animation-delay: 0.6s;"><span class="reveal-letter">H</span><span class="reveal-def" id="r-h">HOSTING [Soberania de Dados]</span></div>
+            <div class="reveal-block" style="animation-delay: 1.1s;"><span class="reveal-letter">E</span><span class="reveal-def" id="r-e">EXECUTION [Deploy Contínuo]</span></div>
+            <div class="reveal-block" style="animation-delay: 1.6s;"><span class="reveal-letter">X</span><span class="reveal-def" id="r-x">XENITH [O Ápice da Performance]</span></div>
+        </div>
+    </div>
+
     <nav class="navbar">
-        <div class="brand-dock">L.<span class="brand-h">H</span>.E.X.®</div>
+        <div class="brand">L.H.E.X.<span>®</span></div>
+        <div class="lang-dock">
+            <button class="lang-btn active" onclick="setLang('pt')">[ PT ]</button>
+            <button class="lang-btn" onclick="setLang('en')">[ EN ]</button>
+            <button class="lang-btn" onclick="setLang('code')" style="color:var(--accent-alt)">{ </> }</button>
+        </div>
     </nav>
 
-    <main class="hero-section">
-        <img src="logo.png" alt="L.H.E.X.® CORE" class="main-logo">
-        <h1 class="hero-headline">Infraestrutura Soberana. <br>Liquidação M2M Web3.</h1>
-        <p class="hero-subtext">Eu construo os protocolos fechados onde IA e Smart Contracts substituem a latência humana. Projetado para corporações globais que exigem escalabilidade autônoma.</p>
-        <button class="cta-btn-main" onclick="toggleModal()">Aplicar para Auditoria L.H.E.X.</button>
-    </main>
-
-    <section class="faq-section">
-        <h2 class="section-title">> system.query(base_knowledge)</h2>
-        
-        <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question"><span>01. Como a L.H.E.X.® qualifica seus parceiros?</span> <span>+</span></div>
-            <div class="faq-answer">Não operamos sob demanda genérica. Analisamos sua infraestrutura atual, volume de dados e latência de vendas. Se o nosso ecossistema puder multiplicar sua retenção de capital, enviaremos a chave criptografada para agendamento. Se não houver fit, declinaremos o projeto.</div>
-        </div>
-
-        <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question"><span>02. Qual é o modelo financeiro de implantação?</span> <span>+</span></div>
-            <div class="faq-answer">Operamos no modelo global de alto nível institucional. 50% de liquidação no kick-off (reserva de agenda e setup de infraestrutura dedicada) e 50% na entrega funcional do protocolo.</div>
-        </div>
-
-        <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question"><span>03. O que é Liquidação M2M via Web3?</span> <span>+</span></div>
-            <div class="faq-answer">Machine-to-Machine. Nossos Smart Contracts (The Ledger) permitem que seus sistemas recebam pagamentos, validem ativos e liberem acessos sem intervenção humana, utilizando criptografia e rails financeiros globais (Pix, Crypto, Wire).</div>
+    <section class="hero">
+        <img src="logo.png" alt="LHEX Core" class="hero-logo" onclick="toggleReveal()" title="Decodificar L.H.E.X.">
+        <h1 class="headline" id="h-title">Engenharia de Software & <strong>Infraestrutura Soberana.</strong></h1>
+        <p class="subheadline" id="h-sub">Desenvolvimento de sistemas de alta performance (Python/C) e arquitetura de servidores independentes. Assuma o controle da sua tecnologia.</p>
+        <div class="payment-icons">
+            <i class="fab fa-bitcoin" title="Bitcoin Accepted"></i>
+            <i class="fa-brands fa-ethereum" title="USDC/ETH"></i>
+            <i class="fas fa-university" title="Pix Central Bank"></i>
+            <i class="fab fa-cc-stripe" title="Stripe/Global Cards"></i>
         </div>
     </section>
 
-    <div class="modal-overlay" id="leadModal">
-        <div class="modal-content">
-            <button onclick="toggleModal()" style="position:absolute; top:20px; right:20px; background:none; border:none; color:var(--accent-green); cursor:pointer; font-family:'JetBrains Mono';">[ X ]</button>
-            <div class="modal-title">L.H.E.X.® BOARDING PROTOCOL</div>
-            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 25px;">Preencha o manifesto corporativo. Nossa IA analisará sua estrutura para determinar se sua operação está apta para a nossa infraestrutura.</p>
-            
-            <form id="leadForm" onsubmit="sendProposal(event)">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Corporação / Empresa</label>
-                        <input type="text" id="c_name" required placeholder="Nome legal">
-                    </div>
-                    <div class="form-group">
-                        <label>País / Região</label>
-                        <input type="text" id="c_country" required placeholder="Ex: Brasil, USA">
-                    </div>
-                    <div class="form-group">
-                        <label>E-mail Corporativo</label>
-                        <input type="email" id="c_email" required placeholder="ceo@empresa.com">
-                    </div>
-                    <div class="form-group">
-                        <label>WhatsApp / Telefone (com DDI)</label>
-                        <input type="tel" id="c_phone" required placeholder="+55 21 99999-9999">
-                    </div>
-                    <div class="form-group full">
-                        <label>Preferência de Contato</label>
-                        <select id="c_contact_pref">
-                            <option value="WhatsApp">Protocolo Rápido (WhatsApp)</option>
-                            <option value="Email">Protocolo Formal (E-mail)</option>
-                        </select>
-                    </div>
-                    <div class="form-group full">
-                        <label>Principal Motivo do Contato</label>
-                        <select id="c_reason">
-                            <option value="Automação_IA">Necessito de Agentes IA (Neuro-Sniper) para escalar vendas.</option>
-                            <option value="Infraestrutura">Necessito de The Vault (Hospedagem e Dados Soberanos).</option>
-                            <option value="Web3_M2M">Integração Financeira Web3 e Smart Contracts.</option>
-                            <option value="Full_Protocol">Migração total para o ecossistema L.H.E.X.®</option>
-                        </select>
-                    </div>
-                    <div class="form-group full">
-                        <label>Descreva sua Operação Atual e o Gargalo</label>
-                        <textarea id="c_details" rows="3" required placeholder="Seja direto. Onde sua operação está perdendo dinheiro hoje?"></textarea>
-                    </div>
-                </div>
+    <section class="solutions">
+        <div class="card" onclick="this.classList.toggle('active')">
+            <div class="card-header"><span id="c1-h1">01. THE VAULT</span><span id="c1-h2">[ INFRA ]</span></div>
+            <h3 id="c1-t">Cloud Soberana</h3>
+            <p id="c1-d">Migração e setup de servidores dedicados. Elimine taxas abusivas de plataformas como Vercel/AWS e seja dono do seu ecossistema.</p>
+            <div class="card-hidden">> deploying_coolify... Ambiente configurado. Dados criptografados e blindados sob sua jurisdição corporativa.</div>
+        </div>
+        <div class="card" onclick="this.classList.toggle('active')">
+            <div class="card-header"><span id="c2-h1">02. THE CORE</span><span id="c2-h2">[ PYTHON / C ]</span></div>
+            <h3 id="c2-t">Desenvolvimento de Sistemas</h3>
+            <p id="c2-d">Arquitetura de CRMs personalizados, APIs e ferramentas internas. Lógica limpa, performática e preparada para o Vale do Silício.</p>
+            <div class="card-hidden">> compiling_logic... Código estruturado nos padrões École 42. Menos latência, maior poder de processamento.</div>
+        </div>
+        <div class="card" onclick="this.classList.toggle('active')">
+            <div class="card-header"><span id="c3-h1">03. THE PROTOCOL</span><span id="c3-h2">[ INTEGRATION ]</span></div>
+            <h3 id="c3-t">Automação de Fluxos B2B</h3>
+            <p id="c3-d">Integração de Webhooks, APIs de comunicação (WhatsApp) e processadores de pagamento (M2M ready) no seu back-office.</p>
+            <div class="card-hidden">> API_handshake_successful. Seus sistemas agora conversam entre si. Trabalho manual reduzido a zero.</div>
+        </div>
+    </section>
 
-                <div class="terms-text">
-                    * Ao submeter este manifesto, você compreende que os contratos de arquitetura L.H.E.X.® iniciam em US$ 20.000,00 (ou equivalente regional) com política de 50% upfront settlement.
+    <section class="simulator">
+        <div class="sim-container">
+            <h2 style="font-weight: 300;" id="s-title">Teste de Estresse de Infraestrutura</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.9rem;" id="s-sub">Calcule o custo oculto de depender de plataformas de terceiros (Lock-in).</p>
+            <div class="sim-grid">
+                <div class="input-group">
+                    <label id="s-l1">GASTO MENSAL ATUAL COM SERVIDORES/SaaS (R$)</label>
+                    <input type="number" id="sim-cost" value="2500">
                 </div>
-                
-                <button type="submit" class="submit-btn">ENVIAR APLICAÇÃO CRIPTOGRAFADA</button>
+                <div class="input-group">
+                    <label id="s-l2">TAXAS DE PLATAFORMA SOBRE VENDAS (%)</label>
+                    <input type="number" id="sim-tax" value="5">
+                </div>
+            </div>
+            <button class="sim-btn" onclick="calcInfra()" id="s-btn">EXECUTAR DIAGNÓSTICO</button>
+
+            <div class="sim-result" id="sim-res">
+                <div class="result-row">
+                    <span id="r-loss-txt">SANGRIA FINANCEIRA ANUAL (SaaS/Taxas):</span>
+                    <span style="color: var(--danger); font-weight: bold;" id="r-loss">R$ 0,00</span>
+                </div>
+                <div class="result-row" style="border:none;">
+                    <span id="r-gain-txt">CUSTO DA INFRAESTRUTURA SOBERANA L.H.E.X.:</span>
+                    <span style="color: var(--accent); font-weight: bold;">Fração do valor.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <h2 style="text-align: center; font-weight: 300; margin-bottom: 40px;" id="f-title">NEURAL FAQ</h2>
+        
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q" id="q1">Por que escolher infraestrutura própria (Soberana)? <span>+</span></div>
+            <div class="faq-a" id="a1">Plataformas SaaS terceirizadas criam dependência (Lock-in) e cobram pelo seu sucesso. A L.H.E.X. constrói o seu "Cofre" na DigitalOcean/AWS, configurando bancos de dados e aplicações onde você detém 100% da propriedade e controle, pagando apenas o custo real da máquina.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q" id="q2">Como funcionam os pagamentos e garantias? <span>+</span></div>
+            <div class="faq-a" id="a2">Trabalhamos com Setup Fee (50% no início) e Delivery Fee (50% na entrega e deploy do código). Aceitamos BRL via PIX, USD via Stripe/Deel e Crypto (USDC/ETH/BTC) para transações globais. Todo código desenvolvido é entregue com repositório privado no GitHub.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-q" id="q3">A L.H.E.X. desenvolve Inteligência Artificial? <span>+</span></div>
+            <div class="faq-a" id="a3">A L.H.E.X. prepara a *base* para a IA. Antes de implementar agentes autônomos, sua empresa precisa de APIs estruturadas, código limpo (Python) e dados organizados. Nós construímos o ecossistema perfeito para que futuras IAs possam ser plugadas sem atrito.</div>
+        </div>
+    </section>
+
+    <div class="modal" id="appModal">
+        <div class="modal-box">
+            <button class="close-reveal" style="top: 15px; right: 15px; padding: 5px 10px;" onclick="toggleModal()">X</button>
+            <div class="form-header" id="m-title">> SOLICITAÇÃO DE ARQUITETURA</div>
+            <p style="font-size: 0.8rem; color: #666; margin-bottom: 25px;" id="m-sub">Preencha o manifesto corporativo. Projetos selecionados recebem SLA de elite.</p>
+            
+            <form onsubmit="sendForm(event)">
+                <div class="form-group">
+                    <label id="m-l1">CORPORAÇÃO / NOME</label>
+                    <input type="text" id="fname" required placeholder="Identificação">
+                </div>
+                <div class="form-group" style="display: grid; grid-template-columns: 1fr 2fr; gap: 10px;">
+                    <div>
+                        <label>DDI</label>
+                        <select id="fddi"><option value="+55">+55 (BR)</option><option value="+1">+1 (US)</option><option value="+351">+351 (PT)</option></select>
+                    </div>
+                    <div>
+                        <label id="m-l2">WHATSAPP / TELEFONE</label>
+                        <input type="text" id="fphone" required placeholder="(DDD) Número">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label id="m-l3">ESCOPO DO PROJETO</label>
+                    <select id="fscope" style="background: transparent;">
+                        <option value="Infraestrutura_Vault">The Vault: Configuração de Servidor Privado</option>
+                        <option value="Desenvolvimento_Python">The Core: Criação de Sistema/Script (Python)</option>
+                        <option value="Integracao_API">The Protocol: Automação B2B / APIs</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label id="m-l4">DESCREVA A DEMANDA TÉCNICA</label>
+                    <textarea id="fpain" rows="3" required placeholder="O que precisamos construir ou resolver?"></textarea>
+                </div>
+                <button type="submit" class="cta-submit" id="m-btn">INICIAR TRANSMISSÃO CRIPTOGRAFADA</button>
             </form>
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="payment-methods">
-            <span class="pay-badge">BTC / ETH (Web3)</span>
-            <span class="pay-badge">PIX (Instant)</span>
-            <span class="pay-badge">GLOBAL CREDIT</span>
-            <span class="pay-badge">PICPAY</span>
-        </div>
-        <div class="footer-text">
-            L.H.E.X.® SYSTEMS PROTOCOL | GLOBAL OPERATION<br><br>
-            LEAD ARCHITECT & CEO: LETÍCIA NASCIMENTO
-        </div>
-    </footer>
+    <button class="fab" onclick="toggleModal()" title="Iniciar Projeto">⚡</button>
+    <footer class="footer">L.H.E.X.® SYSTEMS | LEAD ARCHITECT: LETÍCIA NASCIMENTO</footer>
 
     <script>
-        function toggleModal() {
-            document.getElementById('leadModal').classList.toggle('active');
+        // Conteúdo Multi-idioma
+        const data = {
+            pt: {
+                ht: "Engenharia de Software & <strong>Infraestrutura Soberana.</strong>",
+                hs: "Desenvolvimento de sistemas de alta performance (Python/C) e arquitetura de servidores independentes. Assuma o controle da sua tecnologia.",
+                rl: "LOGIC [Engenharia de Backend]", rh: "HOSTING [Soberania de Dados]", re: "EXECUTION [Deploy Contínuo]", rx: "XENITH [O Ápice da Performance]",
+                c1h1: "01. THE VAULT", c1t: "Cloud Soberana", c1d: "Migração e setup de servidores dedicados. Elimine taxas abusivas de plataformas como Vercel/AWS.",
+                c2h1: "02. THE CORE", c2t: "Desenvolvimento de Sistemas", c2d: "Arquitetura de CRMs personalizados, APIs e ferramentas internas. Lógica limpa e performática.",
+                c3h1: "03. THE PROTOCOL", c3t: "Automação de Fluxos B2B", c3d: "Integração de Webhooks, APIs de comunicação (WhatsApp) e processadores de pagamento no seu back-office.",
+                stitle: "Teste de Estresse de Infraestrutura", ssub: "Calcule o custo oculto de depender de plataformas de terceiros (Lock-in).",
+                sl1: "GASTO MENSAL ATUAL COM SERVIDORES/SaaS (R$)", sl2: "TAXAS DE PLATAFORMA SOBRE VENDAS (%)", sbtn: "EXECUTAR DIAGNÓSTICO",
+                rloss: "SANGRIA FINANCEIRA ANUAL (SaaS/Taxas):", rgain: "CUSTO DA INFRAESTRUTURA SOBERANA L.H.E.X.:",
+                ftitle: "NEURAL FAQ", q1: "Por que escolher infraestrutura própria (Soberana)? <span>+</span>", a1: "Plataformas SaaS terceirizadas criam dependência... (Texto mantido em PT)",
+                mtitle: "> SOLICITAÇÃO DE ARQUITETURA", msub: "Preencha o manifesto corporativo. Projetos selecionados recebem SLA de elite.",
+                ml1: "CORPORAÇÃO / NOME", ml2: "WHATSAPP / TELEFONE", ml3: "ESCOPO DO PROJETO", ml4: "DESCREVA A DEMANDA TÉCNICA", mbtn: "INICIAR TRANSMISSÃO CRIPTOGRAFADA"
+            },
+            en: {
+                ht: "Software Engineering & <strong>Sovereign Infrastructure.</strong>",
+                hs: "High-performance systems development (Python/C) and independent server architecture. Take back control of your technology.",
+                rl: "LOGIC [Backend Engineering]", rh: "HOSTING [Data Sovereignty]", re: "EXECUTION [Continuous Deploy]", rx: "XENITH [Peak Performance]",
+                c1h1: "01. THE VAULT", c1t: "Sovereign Cloud", c1d: "Migration and setup of dedicated servers. Eliminate abusive fees from platforms like Vercel/AWS.",
+                c2h1: "02. THE CORE", c2t: "Systems Development", c2d: "Architecture of custom CRMs, APIs, and internal tools. Clean and performant logic.",
+                c3h1: "03. THE PROTOCOL", c3t: "B2B Workflow Automation", c3d: "Integration of Webhooks, communication APIs (WhatsApp), and payment processors into your back-office.",
+                stitle: "Infrastructure Stress Test", ssub: "Calculate the hidden cost of relying on third-party platforms (Vendor Lock-in).",
+                sl1: "CURRENT MONTHLY SPEND ON SERVERS/SaaS (USD)", sl2: "PLATFORM FEES ON SALES (%)", sbtn: "RUN DIAGNOSTIC",
+                rloss: "ANNUAL FINANCIAL BLEED (SaaS/Fees):", rgain: "L.H.E.X. SOVEREIGN INFRASTRUCTURE COST:",
+                ftitle: "NEURAL FAQ", q1: "Why choose sovereign infrastructure? <span>+</span>", a1: "Third-party SaaS platforms create lock-in and charge for your success. We build your 'Vault' where you own 100% of the property.",
+                mtitle: "> ARCHITECTURE REQUEST", msub: "Fill out the corporate manifest. Selected projects receive elite SLA.",
+                ml1: "CORPORATION / NAME", ml2: "WHATSAPP / PHONE", ml3: "PROJECT SCOPE", ml4: "DESCRIBE THE TECHNICAL DEMAND", mbtn: "INITIATE ENCRYPTED TRANSMISSION"
+            },
+            code: {
+                ht: "sys.init(<strong>Sovereign_Architecture</strong>);",
+                hs: "// Compiling Python & C payloads. Establishing secure server environments. Bypassing third-party latency.",
+                rl: "def logic(): pass", rh: "class Vault:", re: "git push origin main", rx: "return 200_OK",
+                c1h1: "module_01", c1t: "deploy.sh", c1d: "sudo apt install nginx docker-compose. Bypassing AWS fees. Absolute root access.",
+                c2h1: "module_02", c2t: "main.py / core.c", c2d: "import algorithms. Structuring custom logic gates. Ecole 42 compliance = True.",
+                c3h1: "module_03", c3t: "api_gateway.json", c3d: "POST /webhook. Seamless B2B data flow and automated financial settlement pipelines.",
+                stitle: "function calc_tech_debt() {", ssub: "// Calculating absolute loss from platform lock-in",
+                sl1: "let monthly_saas_burn = ", sl2: "let vendor_fee_percentage = ", sbtn: "execute(test)",
+                rloss: "console.error('ANNUAL LOSS'): ", rgain: "console.log('L.H.E.X. SOLUTION'): ",
+                ftitle: "/* DOCUMENTATION */", q1: "query(why_sovereign) <span>+</span>", a1: "return 'Total Control. Zero Lock-in.';",
+                mtitle: "> POST /api/v1/apply", msub: "// Awaiting JSON payload...",
+                ml1: '"client_id":', ml2: '"contact_node":', ml3: '"selected_module":', ml4: '"payload_description":', mbtn: "send_request()"
+            }
+        };
+
+        function setLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if(lang === 'code') document.body.style.fontFamily = "'JetBrains Mono', monospace";
+            else document.body.style.fontFamily = "'Montserrat', sans-serif";
+
+            const t = data[lang];
+            document.getElementById('h-title').innerHTML = t.ht; document.getElementById('h-sub').innerText = t.hs;
+            document.getElementById('r-l').innerText = t.rl; document.getElementById('r-h').innerText = t.rh;
+            document.getElementById('r-e').innerText = t.re; document.getElementById('r-x').innerText = t.rx;
+            document.getElementById('c1-h1').innerText = t.c1h1; document.getElementById('c1-t').innerText = t.c1t; document.getElementById('c1-d').innerText = t.c1d;
+            document.getElementById('c2-h1').innerText = t.c2h1; document.getElementById('c2-t').innerText = t.c2t; document.getElementById('c2-d').innerText = t.c2d;
+            document.getElementById('c3-h1').innerText = t.c3h1; document.getElementById('c3-t').innerText = t.c3t; document.getElementById('c3-d').innerText = t.c3d;
+            
+            document.getElementById('s-title').innerText = t.stitle; document.getElementById('s-sub').innerText = t.ssub;
+            document.getElementById('s-l1').innerText = t.sl1; document.getElementById('s-l2').innerText = t.sl2; document.getElementById('s-btn').innerText = t.sbtn;
+            document.getElementById('r-loss-txt').innerText = t.rloss; document.getElementById('r-gain-txt').innerText = t.rgain;
+            
+            document.getElementById('f-title').innerText = t.ftitle; document.getElementById('q1').innerHTML = t.q1; document.getElementById('a1').innerText = t.a1;
+            
+            document.getElementById('m-title').innerText = t.mtitle; document.getElementById('m-sub').innerText = t.msub;
+            document.getElementById('m-l1').innerText = t.ml1; document.getElementById('m-l2').innerText = t.ml2; document.getElementById('m-l3').innerText = t.ml3; document.getElementById('m-l4').innerText = t.ml4; document.getElementById('m-btn').innerText = t.mbtn;
         }
 
-        function sendProposal(e) {
+        function toggleReveal() {
+            const overlay = document.getElementById('lhex-overlay');
+            overlay.classList.toggle('active');
+            if (overlay.classList.contains('active')) {
+                document.querySelectorAll('.reveal-block').forEach(b => {
+                    b.classList.remove('animate'); void b.offsetWidth; b.classList.add('animate');
+                });
+            }
+        }
+
+        function calcInfra() {
+            const cost = document.getElementById('sim-cost').value;
+            const tax = document.getElementById('sim-tax').value;
+            // Cálculo Simples: Custo Anual de Servidor + (Custo Anual * Taxa%) simulando perda.
+            const annualLoss = (cost * 12) + ((cost * 12) * (tax/100));
+            document.getElementById('r-loss').innerText = annualLoss.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('sim-res').style.display = 'block';
+        }
+
+        function toggleModal() { document.getElementById('appModal').classList.toggle('active'); }
+
+        function sendForm(e) {
             e.preventDefault();
-            const name = document.getElementById('c_name').value;
-            const country = document.getElementById('c_country').value;
-            const emailField = document.getElementById('c_email').value;
-            const phone = document.getElementById('c_phone').value;
-            const pref = document.getElementById('c_contact_pref').value;
-            const reason = document.getElementById('c_reason').value;
-            const details = document.getElementById('c_details').value;
-
-            const email = "contato@lhexsystems.com";
-            const subject = encodeURIComponent(`[L.H.E.X.®] Aplicação Recebida: ${name}`);
-            const body = encodeURIComponent(
-                `===== L.H.E.X. BOARDING MANIFEST =====\n\n` +
-                `CORPORAÇÃO: ${name}\n` +
-                `LOCALIZAÇÃO: ${country}\n` +
-                `E-MAIL: ${emailField}\n` +
-                `TELEFONE: ${phone}\n` +
-                `PREFERÊNCIA DE RETORNO: ${pref}\n\n` +
-                `MOTIVO: ${reason}\n` +
-                `DETALHES DA OPERAÇÃO:\n${details}\n\n` +
-                `======================================\n` +
-                `Cliente ciente da política de investimento (50% upfront).`
-            );
-
-            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-            toggleModal();
+            const name = document.getElementById('fname').value;
+            const phone = document.getElementById('fddi').value + document.getElementById('fphone').value;
+            const scope = document.getElementById('fscope').value;
+            const pain = document.getElementById('fpain').value;
+            
+            const msg = `*L.H.E.X. SETUP REQUEST*%0A%0A👤 *Cliente:* ${name}%0A📱 *Contato:* ${phone}%0A🎯 *Escopo:* ${scope}%0A🔧 *Demanda:* ${pain}%0A%0A_Aguardando contato para aprovação de arquitetura._`;
+            window.location.href = `https://wa.me/5521987587047?text=${msg}`;
         }
     </script>
 </body>
