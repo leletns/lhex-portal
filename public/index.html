@@ -6,15 +6,12 @@
     <meta name="theme-color" content="#030303">
     <title>L.H.E.X Systems | Autonomous Commerce Protocol</title>
     
-    <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="favicon.png">
-
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-
-    <meta name="description" content="L.H.E.X Systems. The base-layer protocol for Autonomous B2B Commerce.">
+    <meta name="description" content="L.H.E.X Systems. A infraestrutura base para Comércio Autônomo B2B, Integração LLM e M2M Settlement.">
+    <meta name="keywords" content="M2M Settlement, Autonomous B2B Commerce, LLM Integration, High-Ticket Automation, Sovereign Data Hosting, Protocolo de IA">
     <meta property="og:title" content="L.H.E.X Systems Protocol">
-    <meta property="og:description" content="Sovereign AI Infrastructure and M2M Settlement.">
-    <meta property="og:image" content="https://lhexsystems.com/social-card.jpg">
+    <meta property="og:description" content="Infraestrutura Soberana de IA e Liquidação M2M. Construído por Letícia Nascimento.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -28,41 +25,36 @@
             --border-color: #1a1a1a;
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
 
         body {
             background-color: var(--bg);
             color: var(--text-primary);
             font-family: 'Montserrat', sans-serif; 
-            margin: 0;
             line-height: 1.6;
             overflow-x: hidden;
-            /* Adiciona uma textura sutil de scanline para parecer uma tela futurista */
             background-image: linear-gradient(rgba(0, 10, 0, 0.1) 1px, transparent 1px);
             background-size: 100% 4px;
         }
 
-        /* --- NAVBAR --- */
+        /* --- NAVBAR CORRIGIDA --- */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 30px;
+            padding: 15px 5%;
             background: rgba(3,3,3,0.95);
-            backdrop-filter: blur(10px); /* Efeito de vidro fosco */
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
-            position: sticky; top: 0; z-index: 100;
+            position: sticky; top: 0; z-index: 1000;
         }
 
-        .brand-dock {
-            font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; color: var(--accent-green);
-        }
+        .brand-dock { font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; color: var(--accent-green); }
         .brand-h { color: var(--accent-purple); }
         .brand-sub { font-weight: 400; font-size: 1rem; color: #fff; letter-spacing: 2px; margin-left: 5px;}
 
-        .lang-dock { display: flex; gap: 20px; align-items: center; }
-
+        .lang-dock { display: flex; gap: 15px; align-items: center; z-index: 1001; }
         .lang-btn {
-            font-size: 1.5rem; cursor: pointer; opacity: 0.5; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: none; background: none; padding: 0; filter: grayscale(100%);
+            font-size: 1.5rem; cursor: pointer; opacity: 0.4; transition: all 0.3s ease;
+            border: none; background: none; filter: grayscale(100%);
         }
         .lang-btn:hover, .lang-btn.active { opacity: 1; transform: scale(1.15); filter: grayscale(0%); }
 
@@ -74,34 +66,16 @@
         }
         .code-trigger:hover, .code-trigger.active { background: var(--accent-green); color: #000; box-shadow: 0 0 15px rgba(95, 255, 215, 0.4); }
 
-        /* --- HERO & LOGO INTERACTION --- */
+        /* --- HERO --- */
         .hero-section {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 80px 20px 40px; text-align: center;
-            position: relative;
+            padding: 100px 20px 60px; text-align: center;
         }
-
-        /* Animação de "respiração" na logo para convidar ao clique */
-        @keyframes pulse-glow {
-            0% { filter: drop-shadow(0 0 30px rgba(106, 13, 173, 0.2)) drop-shadow(0 0 10px rgba(95, 255, 215, 0.1)); scale: 1; }
-            50% { filter: drop-shadow(0 0 50px rgba(106, 13, 173, 0.4)) drop-shadow(0 0 20px rgba(95, 255, 215, 0.3)); scale: 1.02; }
-            100% { filter: drop-shadow(0 0 30px rgba(106, 13, 173, 0.2)) drop-shadow(0 0 10px rgba(95, 255, 215, 0.1)); scale: 1; }
-        }
-
-        .main-logo {
-            width: 280px; max-width: 90%; height: auto; margin-bottom: 40px;
-            animation: pulse-glow 4s infinite ease-in-out;
-            cursor: pointer; /* Indica que é clicável */
-            transition: transform 0.3s;
-        }
-        .main-logo:hover { transform: scale(1.05); }
-        .main-logo:active { transform: scale(0.98); }
-
 
         .hero-headline {
-            font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; color: #fff; letter-spacing: -1.5px;
-            max-width: 800px; line-height: 1.1;
-            background: linear-gradient(to right, #ffffff, #a0a0a0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 20px; color: #fff; letter-spacing: -1px;
+            max-width: 900px; line-height: 1.1;
+            background: linear-gradient(to right, #ffffff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
         .hero-subtext {
@@ -112,135 +86,73 @@
             font-family: 'Montserrat', sans-serif; font-weight: 800;
             background: transparent; color: var(--accent-green);
             border: 1px solid var(--accent-green); padding: 15px 40px;
-            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;
-            text-decoration: none; transition: all 0.3s ease;
-            position: relative; overflow: hidden;
-        }
-        .cta-button::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(95, 255, 215, 0.2), transparent);
-            transition: 0.5s;
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;
+            text-decoration: none; transition: all 0.3s ease; cursor: pointer;
         }
         .cta-button:hover { background: var(--accent-green); color: #000; box-shadow: 0 0 30px rgba(95, 255, 215, 0.5); }
-        .cta-button:hover::before { left: 100%; }
 
-        /* --- ARCHITECTURE MODULES --- */
+        /* --- MODULES --- */
         .architecture {
-            max-width: 1000px; margin: 80px auto; padding: 0 20px;
+            max-width: 1100px; margin: 40px auto 100px; padding: 0 20px;
             display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
         }
-
         .module {
             border: 1px solid var(--border-color); background: linear-gradient(180deg, var(--panel), #050505);
-            padding: 35px; transition: all 0.3s ease;
-            position: relative;
+            padding: 35px; transition: all 0.3s ease; position: relative;
         }
-        .module::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
-            background: var(--accent-gradient); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
-        }
-        .module:hover { border-color: #333; transform: translateY(-5px); }
-        .module:hover::after { transform: scaleX(1); }
-
-        .mod-title {
-            font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--accent-green); font-weight: 700;
-            margin-bottom: 15px; letter-spacing: 1px;
-        }
+        .module:hover { border-color: var(--accent-green); transform: translateY(-5px); }
+        .mod-title { font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--accent-green); font-weight: 700; margin-bottom: 15px; }
         .mod-desc { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
 
-        /* --- FOOTER --- */
-        .footer {
-            text-align: center; padding: 60px 20px; border-top: 1px solid var(--border-color);
-            color: #555; font-size: 0.75rem; font-weight: 600; letter-spacing: 2px;
-            margin-top: 80px; background: #010101;
+        /* --- SUPORTE FLUTUANTE (FAB) --- */
+        .fab-btn {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 60px; height: 60px; border-radius: 50%;
+            background: var(--accent-gradient); color: #000;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 24px; font-weight: bold; cursor: pointer;
+            box-shadow: 0 0 20px rgba(95, 255, 215, 0.4);
+            border: none; z-index: 1000; transition: transform 0.3s;
         }
+        .fab-btn:hover { transform: scale(1.1); }
 
-        /* --- LHEX REVEAL OVERLAY (A MÁGICA ACONTECE AQUI) --- */
-        .reveal-overlay {
+        /* --- MODAL DE ORÇAMENTO --- */
+        .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(3, 3, 3, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 2000;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
-            padding: 20px;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+            display: none; justify-content: center; align-items: center; z-index: 2000;
         }
-        .reveal-overlay.active { opacity: 1; pointer-events: all; }
-
-        .reveal-container { max-width: 800px; width: 100%; }
-
-        .reveal-block {
-            margin-bottom: 30px;
-            opacity: 0; transform: translateY(20px);
-            /* O Javascript vai disparar essa animação */
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: var(--panel); border: 1px solid var(--accent-green);
+            padding: 40px; width: 90%; max-width: 500px; border-radius: 4px;
+            position: relative;
         }
-        .reveal-block.animate { animation: fadeUp 0.8s forwards ease-out; }
-
-        .reveal-letter {
-            font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 4rem; line-height: 1;
-            background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            display: inline-block; margin-right: 15px;
+        .modal-close { position: absolute; top: 15px; right: 20px; color: #fff; cursor: pointer; font-size: 1.2rem; background: none; border: none;}
+        .modal-title { font-family: 'JetBrains Mono', monospace; color: var(--accent-green); margin-bottom: 20px; font-size: 1.2rem; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;}
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 10px; background: #030303; border: 1px solid var(--border-color);
+            color: #fff; font-family: 'Montserrat', sans-serif;
         }
-        .reveal-def {
-            font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; color: #fff;
-            display: inline-block; overflow: hidden; white-space: nowrap;
-            border-right: 2px solid var(--accent-green); /* Cursor piscando */
-            width: 0; /* Começa escondido para o efeito de digitação */
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-green); }
+        
+        /* FOOTER */
+        .footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border-color); font-size: 0.8rem; letter-spacing: 2px; }
+
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 15px; padding: 15px; }
+            .hero-headline { font-size: 2rem; }
+            .fab-btn { bottom: 20px; right: 20px; width: 50px; height: 50px; }
         }
-        .reveal-block.animate .reveal-def {
-            animation: typing 1.5s steps(30, end) forwards, blink-caret .75s step-end infinite;
-        }
-
-        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-        @keyframes typing { to { width: 100%; } }
-        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--accent-green); } }
-
-        .close-reveal {
-            position: absolute; top: 30px; right: 30px;
-            font-family: 'JetBrains Mono', monospace; color: var(--text-secondary);
-            background: none; border: 1px solid var(--border-color); padding: 10px 20px;
-            cursor: pointer; transition: 0.3s;
-        }
-        .close-reveal:hover { border-color: var(--accent-green); color: var(--accent-green); }
-
-
-        /* --- CODE MODE (VISUAL HACKER) --- */
-        body.code-mode { font-family: 'JetBrains Mono', monospace !important; background: #000; color: var(--accent-green); background-image: none; }
-        body.code-mode .main-logo { filter: grayscale(1) brightness(1.5) sepia(1) hue-rotate(120deg) saturate(3) !important; animation: none; }
-        body.code-mode .navbar, body.code-mode .module, body.code-mode .footer { background: #000 !important; border-color: var(--accent-green); }
-        body.code-mode .hero-headline, body.code-mode .mod-title, body.code-mode .brand-dock, body.code-mode .brand-h, body.code-mode .brand-sub { color: var(--accent-green) !important; background: none !important; -webkit-text-fill-color: unset !important; }
-        body.code-mode .hero-subtext, body.code-mode .mod-desc, body.code-mode .footer { color: var(--accent-green); opacity: 0.8; }
-        body.code-mode .cta-button { border-style: dashed; }
-        body.code-mode .reveal-overlay { background: rgba(0,0,0,0.99); }
-        body.code-mode .reveal-letter { background: none; color: var(--accent-green); -webkit-text-fill-color: unset; }
-
     </style>
 </head>
 <body>
 
-    <div class="reveal-overlay" id="lhex-overlay">
-        <button class="close-reveal" onclick="toggleReveal()">[X] CLOSE_TERMINAL</button>
-        <div class="reveal-container">
-            <div class="reveal-block" style="animation-delay: 0.1s;">
-                <span class="reveal-letter">L</span><span class="reveal-def">EDGER [Decentralized Settlement]</span>
-            </div>
-            <div class="reveal-block" style="animation-delay: 0.8s;">
-                <span class="reveal-letter">H</span><span class="reveal-def">EURISTICS [Human Logic Mapping]</span>
-            </div>
-            <div class="reveal-block" style="animation-delay: 1.6s;">
-                <span class="reveal-letter">E</span><span class="reveal-def">XECUTION [Autonomous M2M]</span>
-            </div>
-            <div class="reveal-block" style="animation-delay: 2.4s;">
-                <span class="reveal-letter">X</span><span class="reveal-def">ENITH [Sovereign Infrastructure]</span>
-            </div>
-        </div>
-    </div>
-
-
     <nav class="navbar">
-        <div class="brand-dock">
-            L.<span class="brand-h">H</span>.E.X <span class="brand-sub">PROTOCOL</span>
-        </div>
+        <div class="brand-dock">L.<span class="brand-h">H</span>.E.X <span class="brand-sub">PROTOCOL</span></div>
         <div class="lang-dock">
             <button class="lang-btn active" onclick="setLang('pt')" title="Brasil">🇧🇷</button>
             <button class="lang-btn" onclick="setLang('en')" title="Global">🇺🇸</button>
@@ -250,126 +162,138 @@
     </nav>
 
     <main class="hero-section">
-        <img src="logo.png" alt="L.H.E.X SYSTEMS CORE - CLICK TO REVEAL" class="main-logo" onclick="toggleReveal()" title="Initialize Protocol Reveal">
-        
         <h1 class="hero-headline" id="h-title">O Protocolo Base para Comércio Autônomo B2B.</h1>
-        <p class="hero-subtext" id="h-sub">Projetamos a infraestrutura onde agentes de IA negociam, verificam valor e liquidam transações de alto valor. A negociação humana tornou-se obsoleta.</p>
-        
-        <a href="mailto:contato@lhexsystems.com" class="cta-button" id="h-cta">SOLICITAR ACESSO À ARQUITETURA</a>
+        <p class="hero-subtext" id="h-sub">Eu construo a infraestrutura soberana onde agentes de IA negociam, qualificam e liquidam transações corporativas de alto valor. A negociação humana é latência. Eu automatizo o fluxo.</p>
+        <button class="cta-button" id="h-cta" onclick="toggleModal()">SOLICITAR ACESSO À ARQUITETURA</button>
     </main>
 
     <section class="architecture">
         <div class="module">
-            <div class="mod-title" id="m1-t">I. THE VAULT</div>
-            <div class="mod-desc" id="m1-d">Arquitetura soberana de hospedagem e dados. Elimina taxas de terceiros. Controle absoluto da operação.</div>
+            <div class="mod-title" id="m1-t">I. THE VAULT (DADOS SOBERANOS)</div>
+            <div class="mod-desc" id="m1-d">Arquitetura de hospedagem proprietária. Elimino o risco e as taxas de plataformas terceiras. Controle absoluto e segurança em nível institucional.</div>
         </div>
         <div class="module">
-            <div class="mod-title" id="m2-t">II. THE REACTOR</div>
-            <div class="mod-desc" id="m2-d">Agentes autônomos integrados a LLMs que mapeiam heurísticas humanas e qualificam fluxos complexos.</div>
+            <div class="mod-title" id="m2-t">II. THE REACTOR (LÓGICA AUTÔNOMA)</div>
+            <div class="mod-desc" id="m2-d">Desenvolvo agentes de IA integrados a LLMs que mapeiam heurísticas humanas e fecham vendas complexas (High-Ticket) sem intervenção manual.</div>
         </div>
         <div class="module">
-            <div class="mod-title" id="m3-t">III. THE LEDGER</div>
-            <div class="mod-desc" id="m3-d">A camada de liquidação. Contratos Inteligentes (Smart Contracts) para execução financeira M2M instantânea.</div>
+            <div class="mod-title" id="m3-t">III. THE LEDGER (LIQUIDEZ M2M)</div>
+            <div class="mod-desc" id="m3-d">A camada de liquidação. Engenharia de contratos inteligentes para execução financeira instantânea de Máquina para Máquina (M2M).</div>
         </div>
     </section>
 
+    <button class="fab-btn" onclick="toggleModal()" title="Iniciar Protocolo de Orçamento">⚡</button>
+
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="toggleModal()">[X]</button>
+            <div class="modal-title">> INIT_PROPOSAL.exe</div>
+            <form id="leadForm" onsubmit="sendProposal(event)">
+                <div class="form-group">
+                    <label>Empresa / Nome</label>
+                    <input type="text" id="clientName" required placeholder="Sua corporação">
+                </div>
+                <div class="form-group">
+                    <label>Volume Estimado de Liquidação</label>
+                    <select id="clientBudget">
+                        <option value="10k-50k">R$ 10k - R$ 50k / mês</option>
+                        <option value="50k-200k">R$ 50k - R$ 200k / mês</option>
+                        <option value="200k+">Acima de R$ 200k / mês (Whale)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Objetivo da Arquitetura</label>
+                    <textarea id="clientGoal" rows="3" required placeholder="Descreva o gargalo da sua operação atual."></textarea>
+                </div>
+                <button type="submit" class="cta-button" style="width: 100%;">EXECUTAR_ENVIO</button>
+            </form>
+        </div>
+    </div>
+
     <footer class="footer">
-        L.H.E.X SYSTEMS © 2026<br><br>
-        STATUS: <span style="color: var(--accent-green);">R&D / STEALTH</span> | ORIGIN: <span id="f-origin">BRAZIL</span><br><br>
+        L.H.E.X SYSTEMS © 2026 | STATUS: R&D / STEALTH | ORIGIN: <span id="f-origin">BRAZIL</span><br><br>
         LEAD ARCHITECT: LETÍCIA NASCIMENTO
     </footer>
 
     <script>
-        // Função para abrir/fechar o overlay da logo
-        function toggleReveal() {
-            const overlay = document.getElementById('lhex-overlay');
-            const blocks = document.querySelectorAll('.reveal-block');
-            
-            overlay.classList.toggle('active');
-            
-            // Reinicia as animações de digitação sempre que abre
-            if (overlay.classList.contains('active')) {
-                blocks.forEach(block => {
-                    block.classList.remove('animate');
-                    void block.offsetWidth; // Força um reflow para reiniciar a animação
-                    block.classList.add('animate');
-                });
-            }
-        }
-
+        // Lógica de Linguagem (Atualizada para Singular)
         const content = {
             pt: {
                 ht: "O Protocolo Base para Comércio Autônomo B2B.",
-                hs: "Projetamos a infraestrutura onde agentes de IA negociam, verificam valor e liquidam transações de alto valor. A negociação humana tornou-se obsoleta.",
+                hs: "Eu construo a infraestrutura soberana onde agentes de IA negociam, qualificam e liquidam transações corporativas de alto valor. A negociação humana é latência. Eu automatizo o fluxo.",
                 cta: "SOLICITAR ACESSO À ARQUITETURA",
                 m1t: "I. THE VAULT (DADOS SOBERANOS)",
-                m1d: "Arquitetura soberana de hospedagem e dados. Elimina taxas de terceiros. Controle absoluto da operação.",
+                m1d: "Arquitetura de hospedagem proprietária. Elimino o risco e as taxas de plataformas terceiras. Controle absoluto e segurança institucional.",
                 m2t: "II. THE REACTOR (LÓGICA AUTÔNOMA)",
-                m2d: "Agentes autônomos integrados a LLMs que mapeiam heurísticas humanas e qualificam fluxos complexos.",
-                m3t: "III. THE LEDGER (LIQUIDEZ WEB3)",
-                m3d: "A camada de liquidação. Contratos Inteligentes (Smart Contracts) para execução financeira M2M instantânea.",
+                m2d: "Desenvolvo agentes de IA integrados a LLMs que mapeiam heurísticas humanas e fecham vendas complexas (High-Ticket) de forma autônoma.",
+                m3t: "III. THE LEDGER (LIQUIDEZ M2M)",
+                m3d: "A camada de liquidação. Engenharia de contratos inteligentes para execução financeira instantânea de Máquina para Máquina (M2M).",
                 fo: "BRAZIL"
             },
             en: {
                 ht: "The Base-Layer Protocol for Autonomous B2B Commerce.",
-                hs: "We engineer the infrastructure where AI agents negotiate, verify value, and settle high-ticket transactions. Human negotiation is obsolete.",
+                hs: "I engineer sovereign infrastructure where AI agents negotiate, qualify, and settle high-ticket corporate transactions. Human negotiation is latency.",
                 cta: "REQUEST ARCHITECTURE ACCESS",
                 m1t: "I. THE VAULT (SOVEREIGN DATA)",
-                m1d: "Proprietary hosting architecture. Bypass third-party platform fees. Absolute operational control.",
+                m1d: "Proprietary hosting architecture. I bypass third-party platform fees and risks. Absolute operational control and institutional security.",
                 m2t: "II. THE REACTOR (AUTONOMOUS LOGIC)",
-                m2d: "LLM-integrated autonomous agents that map human heuristics and qualify complex high-ticket flows.",
+                m2d: "I build LLM-integrated autonomous agents that map human heuristics and close complex high-ticket flows without manual intervention.",
                 m3t: "III. THE LEDGER (WEB3 LIQUIDITY)",
-                m3d: "The settlement layer. Smart Contracts for instant and trustless Machine-to-Machine (M2M) financial execution.",
+                m3d: "The settlement layer. Smart Contract engineering for instant and trustless Machine-to-Machine (M2M) financial execution.",
                 fo: "BRAZIL"
-            },
-            es: {
-                ht: "El Protocolo Base para Comercio Autónomo B2B.",
-                hs: "Diseñamos la infraestructura donde agentes de IA negocian, verifican valor y liquidan transacciones de alto valor. La negociación humana es obsoleta.",
-                cta: "SOLICITAR ACCESO A LA ARQUITECTURA",
-                m1t: "I. THE VAULT (DATOS SOBERANOS)",
-                m1d: "Arquitectura soberana de alojamiento. Elimina comisiones de terceros. Control absoluto de la operación.",
-                m2t: "II. THE REACTOR (LÓGICA AUTÓNOMA)",
-                m2d: "Agentes autónomos integrados con LLMs que mapean heurísticas humanas y califican flujos complejos.",
-                m3t: "III. THE LEDGER (LIQUIDEZ WEB3)",
-                m3d: "La capa de liquidación. Contratos Inteligentes (Smart Contracts) para ejecución financiera M2M instantánea.",
-                fo: "BRASIL"
-            },
-            code: {
-                ht: "system.initialize(M2M_PROTOCOL);",
-                hs: "// Compiling human heuristics into verifiable logic gates.<br>// Bypassing human latency. AI-to-AI settlement ready.",
-                cta: "execute(deploy_infrastructure)",
-                m1t: "module_01: vault.exe",
-                m1d: "struct Vault { bool third_party_access = false; string encryption = 'AES-256'; };",
-                m2t: "module_02: reactor.py",
-                m2d: "def negotiate(agent_a, agent_b): return resolve_logic(agent_a.heuristics, agent_b.value);",
-                m3t: "module_03: ledger.sol",
-                m3d: "function settleTransaction() public payable { require(msg.value == ticketPrice); }",
-                fo: "REGION: SA-EAST-1"
             }
         };
 
+        // Adicione o espanhol e o código no mesmo padrão singular se desejar
+
         function setLang(lang) {
             document.querySelectorAll('.lang-btn, .code-trigger').forEach(b => b.classList.remove('active'));
-            if(event.target.classList.contains('lang-btn') || event.target.classList.contains('code-trigger')) {
+            if(event && (event.target.classList.contains('lang-btn') || event.target.classList.contains('code-trigger'))) {
                  event.target.classList.add('active');
             }
 
-            if (lang === 'code') document.body.classList.add('code-mode');
-            else document.body.classList.remove('code-mode');
+            if (lang === 'code') {
+                document.body.classList.add('code-mode');
+                // Adicione a logica de texto de código aqui
+                return;
+            } else {
+                document.body.classList.remove('code-mode');
+            }
 
-            const t = content[lang];
-            document.getElementById('h-title').innerHTML = t.ht;
-            document.getElementById('h-sub').innerHTML = t.hs;
-            document.getElementById('h-cta').innerText = t.cta;
-            
-            document.getElementById('m1-t').innerText = t.m1t;
-            document.getElementById('m1-d').innerHTML = t.m1d;
-            document.getElementById('m2-t').innerText = t.m2t;
-            document.getElementById('m2-d').innerHTML = t.m2d;
-            document.getElementById('m3-t').innerText = t.m3t;
-            document.getElementById('m3-d').innerHTML = t.m3d;
+            if(content[lang]) {
+                const t = content[lang];
+                document.getElementById('h-title').innerHTML = t.ht;
+                document.getElementById('h-sub').innerHTML = t.hs;
+                document.getElementById('h-cta').innerText = t.cta;
+                document.getElementById('m1-t').innerText = t.m1t;
+                document.getElementById('m1-d').innerHTML = t.m1d;
+                document.getElementById('m2-t').innerText = t.m2t;
+                document.getElementById('m2-d').innerHTML = t.m2d;
+                document.getElementById('m3-t').innerText = t.m3t;
+                document.getElementById('m3-d').innerHTML = t.m3d;
+                document.getElementById('f-origin').innerText = t.fo;
+            }
+        }
 
-            document.getElementById('f-origin').innerText = t.fo;
+        // Lógica do Modal
+        function toggleModal() {
+            const modal = document.getElementById('leadModal');
+            modal.classList.toggle('active');
+        }
+
+        // Envio do Formulário gerando um MailTo elegante
+        function sendProposal(e) {
+            e.preventDefault();
+            const name = document.getElementById('clientName').value;
+            const budget = document.getElementById('clientBudget').value;
+            const goal = document.getElementById('clientGoal').value;
+
+            const email = "contato@lhexsystems.com";
+            const subject = encodeURIComponent(`[LHEX] Nova Solicitação de Arquitetura: ${name}`);
+            const body = encodeURIComponent(`INIT_PROTOCOL: REQUEST\n\nEMPRESA/NOME: ${name}\nVOLUME ESTIMADO: ${budget}\n\nOBJETIVO DA ARQUITETURA:\n${goal}\n\n------------------\nGerado via lhexsystems.com`);
+
+            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+            toggleModal();
         }
     </script>
 </body>
