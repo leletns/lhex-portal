@@ -231,12 +231,43 @@
         </div>
     </footer>
 
-    <script>
+   <script>
+        // Dicionário de Idiomas
+        const content = {
+            pt: {
+                ht: "Arquitetura de Software & <strong>Infraestrutura M2M.</strong>",
+                hs: "Construímos sistemas invioláveis (C/Python) e validamos protocolos de automação financeira. Sua operação, sob seu controle absoluto.",
+                c1t: "Soberania de Dados", c1d: "Setup completo de infraestrutura em nuvem privada. Protegemos seu capital intelectual retirando sua operação de plataformas terceirizadas (Vendor Lock-in).",
+                c2t: "Lógica em C/Python", c2d: "Desenvolvimento robusto de scripts e back-ends preparados para integrações neurais. Código otimizado bare-metal para não quebrar sob estresse de escala.",
+                c3t: "Liquidação M2M", c3d: "Estruturação de fluxos autônomos de pagamento (Machine-to-Machine) via APIs de alta segurança e Smart Contracts. Zero intervenção humana."
+            },
+            en: {
+                ht: "Software Architecture & <strong>M2M Infrastructure.</strong>",
+                hs: "We build unbreachable systems (C/Python) and validate financial automation protocols. Your operation, under your absolute control.",
+                c1t: "Data Sovereignty", c1d: "Complete private cloud infrastructure setup. We protect your intellectual capital by removing your operation from third-party platforms (Vendor Lock-in).",
+                c2t: "C/Python Logic", c2d: "Robust script and backend development ready for neural integrations. Bare-metal optimized code built not to break under scale stress.",
+                c3t: "M2M Settlement", c3d: "Structuring of autonomous payment flows (Machine-to-Machine) via high-security APIs and Smart Contracts. Zero human intervention."
+            }
+        };
+
+        function setLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const t = content[lang];
+            document.querySelector('.headline').innerHTML = t.ht;
+            document.querySelector('.subheadline').innerText = t.hs;
+            
+            const cards = document.querySelectorAll('.card');
+            cards[0].querySelector('h3').innerText = t.c1t; cards[0].querySelector('p').innerText = t.c1d;
+            cards[1].querySelector('h3').innerText = t.c2t; cards[1].querySelector('p').innerText = t.c2d;
+            cards[2].querySelector('h3').innerText = t.c3t; cards[2].querySelector('p').innerText = t.c3d;
+        }
+
         function toggleModal() { document.getElementById('appModal').classList.toggle('active'); }
 
         function sendForm(e) {
             e.preventDefault();
-            
             const loader = document.getElementById('formLoader');
             const submitBtn = document.getElementById('submitBtn');
             loader.classList.add('active');
@@ -247,26 +278,16 @@
             const budget = document.getElementById('fbudget').value;
             const pain = document.getElementById('fpain').value;
             
-            // O SEU NÚMERO EXATO E OFICIAL PARA RECEBER OS LEADS
             const seuWhatsApp = "5521987587047";
             const msg = `*NOVA APLICAÇÃO [L.H.E.X.®]*%0A%0A🏢 *Empresa/CEO:* ${name}%0A💰 *Capex Previsto:* ${budget}%0A%0A📌 *Escopo Técnico Submetido:*%0A"${pain}"%0A%0A_Aguardando validação._`;
             const whatsappUrl = `https://wa.me/${seuWhatsApp}?text=${msg}`;
 
-            // Efeito visual de processamento de dados do cliente (Gera Ansiedade Positiva)
             setTimeout(() => {
                 loader.classList.remove('active');
                 toggleModal();
-                
                 const successOverlay = document.getElementById('successOverlay');
                 successOverlay.classList.add('active');
-
-                // Envia para o seu WhatsApp após a animação mágica de 2 segundos
-                setTimeout(() => {
-                    window.location.href = whatsappUrl;
-                }, 2000); 
-
+                setTimeout(() => { window.location.href = whatsappUrl; }, 2000); 
             }, 1500); 
         }
     </script>
-</body>
-</html>
