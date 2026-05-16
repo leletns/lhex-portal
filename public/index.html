@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth bg-[#F6FBFF]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#F6FBFF">
+
+    <title>L.H.E.X.® | Tecnologia Silenciosa</title>
+    <meta name="description" content="Organizamos sua operação para que sua empresa cresça sem caos. A tecnologia que trabalha em silêncio para você cuidar do que realmente importa.">
+
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        base: '#F6FBFF',
+                        accent: '#7DD3E8',
+                        jabuticaba: '#5B2A86',
+                        textMain: '#0F172A',
+                        textSec: '#64748B',
+                        borderSubtle: 'rgba(15, 23, 42, 0.04)',
+                        borderStrong: 'rgba(15, 23, 42, 0.08)'
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(15, 23, 42, 0.03)',
+                        'glow': '0 0 50px -10px rgba(125, 211, 232, 0.4)',
+                        'glow-purple': '0 0 50px -10px rgba(91, 42, 134, 0.3)',
+                        'soft-elevate': '0 20px 40px -15px rgba(15, 23, 42, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #F6FBFF; color: #0F172A; overflow-x: hidden; }
+        
+        /* Arc / Apple Glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: var(--glass), inset 0 0 0 1px rgba(255,255,255,0.4);
+        }
+
+        /* Light Premium Custom Cursor */
+        @media (pointer: fine) {
+            body, a, button, .cursor-target { cursor: none !important; }
+            input, select, textarea { cursor: auto !important; }
+            
+            #custom-cursor {
+                position: fixed; top: 0; left: 0; width: 32px; height: 32px;
+                border: 1px solid rgba(15, 23, 42, 0.15); border-radius: 50%;
+                pointer-events: none; z-index: 9999;
+                box-shadow: 0 0 15px -5px rgba(125, 211, 232, 0.3);
+                transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s, border-color 0.4s;
+                will-change: transform, width, height;
+            }
+            #custom-cursor-dot {
+                position: fixed; top: 0; left: 0; width: 4px; height: 4px;
+                background: #5B2A86; border-radius: 50%;
+                pointer-events: none; z-index: 10000;
+                transition: opacity 0.3s;
+                will-change: transform, opacity;
+            }
+            
+            #custom-cursor.hover-active {
+                width: 54px; height: 54px;
+                background-color: rgba(255, 255, 255, 0.6);
+                backdrop-filter: blur(4px);
+                border-color: rgba(125, 211, 232, 0.5);
+            }
+            #custom-cursor-dot.hover-active { opacity: 0; }
+        }
+
+        /* Cinematic Motion System */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px) scale(0.99);
+            transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
+        .delay-100 { transition-delay: 150ms; }
+        .delay-200 { transition-delay: 300ms; }
+
+        /* Floating Ambient Lights */
+        @keyframes ambientDrift {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -40px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        .ambient-light { animation: ambientDrift 25s ease-in-out infinite; will-change: transform; }
+
+        /* The Living Logo */
+        @keyframes breatheGlow {
+            0% { transform: translateY(0px) scale(1); filter: drop-shadow(0 10px 20px rgba(125, 211, 232, 0.2)); }
+            50% { transform: translateY(-8px) scale(1.02); filter: drop-shadow(0 20px 40px rgba(91, 42, 134, 0.15)); }
+            100% { transform: translateY(0px) scale(1); filter: drop-shadow(0 10px 20px rgba(125, 211, 232, 0.2)); }
+        }
+        .logo-alive { animation: breatheGlow 6s ease-in-out infinite; will-change: transform, filter; }
+
+        /* Micro Watermark */
+        .bg-watermark {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 35vw; font-family: 'Outfit', sans-serif; font-weight: 200;
+            color: rgba(15, 23, 42, 0.015); pointer-events: none; z-index: 0;
+            white-space: nowrap; user-select: none;
+        }
+
+        /* Micro Physics for Cards */
+        .hover-physics { transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .hover-physics:hover { transform: translateY(-4px) scale(1.01); box-shadow: var(--soft-elevate); }
+
+        /* Elegant Inputs */
+        input:focus, textarea:focus { 
+            outline: none; border-color: #7DD3E8; 
+            background: rgba(255,255,255,1);
+            box-shadow: 0 0 0 3px rgba(125, 211, 232, 0.15);
+        }
+        
+        /* Gradient Text */
+        .text-gradient {
+            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(135deg, #7DD3E8 0%, #5B2A86 100%);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent/20 selection:text-textMain relative font-sans">
+
+    <div id="custom-cursor" class="hidden md:block"></div>
+    <div id="custom-cursor-dot" class="hidden md:block"></div>
+
+    <div class="bg-watermark">L.H.E.X.</div>
+    <div class="fixed top-[-10%] left-[-5%] w-[40vw] h-[40vw] rounded-full bg-accent/15 blur-[120px] pointer-events-none z-0 ambient-light"></div>
+    <div class="fixed bottom-[-10%] right-[-5%] w-[40vw] h-[40vw] rounded-full bg-jabuticaba/10 blur-[120px] pointer-events-none z-0 ambient-light" style="animation-delay: -12s;"></div>
+
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 transition-all duration-700 bg-white/40 backdrop-blur-xl border-b border-white/60">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="font-display font-medium tracking-[0.2em] text-lg flex items-center cursor-target" onclick="window.scrollTo(0,0)">
+                <span class="text-accent">L.</span><span class="text-jabuticaba text-xl">H</span><span class="text-accent">.E.X.</span>
+            </div>
+            
+            <div class="flex items-center gap-8">
+                <div class="flex gap-4 text-xs font-medium tracking-widest text-textSec">
+                    <button class="lang-btn text-textMain transition-colors duration-300 uppercase cursor-target" onclick="setLang('pt', event)">PT</button>
+                    <button class="lang-btn hover:text-textMain transition-colors duration-300 uppercase cursor-target" onclick="setLang('en', event)">EN</button>
+                </div>
+                <button onclick="toggleModal()" class="hidden md:flex items-center px-6 py-2.5 text-xs font-medium tracking-wide bg-white/80 hover:bg-white border border-borderSubtle rounded-full transition-all duration-500 text-textMain shadow-sm cursor-target">
+                    <span class="cta-nav">Vamos conversar</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative min-h-[95vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-20 z-10">
+        <div class="max-w-5xl mx-auto w-full relative z-10 flex flex-col items-center">
+            
+            <div class="reveal relative flex justify-center mb-16 cursor-target" onclick="toggleModal()">
+                <div class="absolute inset-0 bg-accent/20 blur-[50px] rounded-full w-40 h-40 mx-auto pointer-events-none"></div>
+                <div class="absolute inset-0 bg-jabuticaba/10 blur-[60px] rounded-full w-48 h-48 mx-auto pointer-events-none translate-y-4"></div>
+                
+                <img src="logo.png" alt="L.H.E.X. Logo" class="w-24 md:w-32 relative z-10 logo-alive" onerror="this.style.display='none'">
+                
+                <div class="absolute inset-0 flex items-center justify-center opacity-0">
+                    <span class="font-display font-medium tracking-[0.2em] text-3xl"><span class="text-accent">L.</span><span class="text-jabuticaba">H</span><span class="text-accent">.E.X.</span></span>
+                </div>
+            </div>
+            
+            <h1 class="headline reveal delay-100 font-display text-5xl md:text-7xl lg:text-[5.5rem] font-light tracking-tight text-textMain mb-8 leading-[1.08] max-w-4xl">
+                Organizamos sua operação para que sua empresa <span class="text-gradient font-medium">cresça sem caos.</span>
+            </h1>
+            
+            <p class="subheadline reveal delay-200 text-lg md:text-2xl text-textSec font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+                A tecnologia que trabalha em silêncio para você cuidar do que realmente importa: seus pacientes.
+            </p>
+            
+            <div class="reveal delay-300 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button onclick="toggleModal()" class="cta-main px-10 py-4 bg-textMain text-white rounded-full font-medium text-base tracking-wide hover:bg-jabuticaba transition-all duration-500 shadow-soft-elevate cursor-target">
+                    Iniciar conversa
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-32 px-6 relative z-10" id="comparacao">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal mb-16 text-center">
+                <h2 class="sec1-title font-display text-3xl md:text-4xl font-light tracking-tight text-textMain">
+                    O alívio de ter tudo no lugar.
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-panel p-10 rounded-3xl flex flex-col gap-8 reveal hover-physics">
+                    <div class="flex items-center gap-3">
+                        <div class="w-3 h-3 rounded-full bg-slate-300"></div>
+                        <div class="text-sm font-medium tracking-wide text-textSec uppercase before-title">Sua operação hoje</div>
+                    </div>
+                    <ul class="flex flex-col gap-6 text-textMain font-light">
+                        <li class="flex items-start gap-4">
+                            <span class="text-slate-400 mt-1">✕</span>
+                            <span class="p1-1">Mensagens esquecidas no WhatsApp. Pacientes ficam sem resposta.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-slate-400 mt-1">✕</span>
+                            <span class="p1-2">Sua secretária gasta horas confirmando agendas manualmente.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-slate-400 mt-1">✕</span>
+                            <span class="p1-3">Você não sabe exatamente de onde vêm seus melhores clientes.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-panel p-10 rounded-3xl flex flex-col gap-8 reveal delay-100 hover-physics relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-accent/10 blur-[80px] rounded-full pointer-events-none"></div>
+                    <div class="flex items-center gap-3 relative z-10">
+                        <div class="w-3 h-3 rounded-full bg-accent shadow-glow"></div>
+                        <div class="text-sm font-medium tracking-wide text-jabuticaba uppercase after-title">Com a L.H.E.X.</div>
+                    </div>
+                    <ul class="flex flex-col gap-6 text-textMain font-light relative z-10">
+                        <li class="flex items-start gap-4">
+                            <span class="text-accent mt-1">✓</span>
+                            <span class="p2-1">Atendimento imediato e humano. Nenhum paciente fica esperando.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-accent mt-1">✓</span>
+                            <span class="p2-2">Agendamentos, lembretes e cobranças rodam sozinhos.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-accent mt-1">✓</span>
+                            <span class="p2-3">Dados claros no seu celular. Você no controle total da clínica.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-20 reveal text-center">
+                <h2 class="sec2-title font-display text-4xl md:text-5xl font-light tracking-tight text-textMain">
+                    Como funciona? <br/> <span class="text-textSec font-normal">Absurdamente simples.</span>
+                </h2>
+            </div>
+
+            <div class="flex flex-col gap-12">
+                <div class="reveal flex flex-col md:flex-row gap-6 items-start md:items-center glass-panel p-8 rounded-3xl hover-physics">
+                    <div class="text-5xl font-display font-light text-accent/40 w-16">1</div>
+                    <div>
+                        <h3 class="w1-t text-xl font-medium text-textMain mb-2">Nós ouvimos você</h3>
+                        <p class="w1-d text-textSec font-light">Mapeamos exatamente o que tira sua paz hoje. Onde sua equipe perde tempo e onde você perde dinheiro.</p>
+                    </div>
+                </div>
+                
+                <div class="reveal delay-100 flex flex-col md:flex-row gap-6 items-start md:items-center glass-panel p-8 rounded-3xl hover-physics">
+                    <div class="text-5xl font-display font-light text-jabuticaba/30 w-16">2</div>
+                    <div>
+                        <h3 class="w2-t text-xl font-medium text-textMain mb-2">Construímos seu sistema</h3>
+                        <p class="w2-d text-textSec font-light">Criamos automações silenciosas e sob medida. Sem que você precise aprender a usar ferramentas complicadas.</p>
+                    </div>
+                </div>
+
+                <div class="reveal delay-200 flex flex-col md:flex-row gap-6 items-start md:items-center glass-panel p-8 rounded-3xl hover-physics relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-accent/5 to-jabuticaba/5 opacity-50"></div>
+                    <div class="text-5xl font-display font-medium text-accent w-16 relative z-10">3</div>
+                    <div class="relative z-10">
+                        <h3 class="w3-t text-xl font-medium text-textMain mb-2">Você vê a mágica acontecer</h3>
+                        <p class="w3-d text-textSec font-light">A clínica passa a rodar de forma leve. Clientes são bem atendidos, a agenda enche e sua equipe respira.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 relative z-10 border-t border-white/50 bg-white/20">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 reveal">
+                <h2 class="sec3-title font-display text-3xl md:text-4xl font-light tracking-tight text-textMain">
+                    O que tiramos das suas costas.
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="reveal glass-panel rounded-3xl p-10 flex flex-col hover-physics md:col-span-2">
+                    <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-6 text-accent">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    </div>
+                    <h3 class="b1-t font-display text-2xl font-medium text-textMain mb-3">Atendimento Inicial Impecável</h3>
+                    <p class="b1-d text-textSec font-light leading-relaxed">
+                        Respondemos, acolhemos e triamos pacientes 24 horas por dia, com o mesmo tom de voz acolhedor da sua clínica.
+                    </p>
+                </div>
+                
+                <div class="reveal glass-panel rounded-3xl p-10 flex flex-col hover-physics">
+                    <div class="w-10 h-10 rounded-full bg-jabuticaba/10 flex items-center justify-center mb-6 text-jabuticaba">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </div>
+                    <h3 class="b2-t font-display text-2xl font-medium text-textMain mb-3">Agenda Autônoma</h3>
+                    <p class="b2-d text-textSec font-light leading-relaxed">
+                        Lembretes, confirmações e reagendamentos feitos sem intervenção humana.
+                    </p>
+                </div>
+
+                <div class="reveal glass-panel rounded-3xl p-10 flex flex-col hover-physics md:col-span-3">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center mb-6 text-slate-500">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                    </div>
+                    <h3 class="b3-t font-display text-2xl font-medium text-textMain mb-3">Fidelização Invisível</h3>
+                    <p class="b3-d text-textSec font-light leading-relaxed max-w-2xl">
+                        Enviamos mensagens de pós-consulta, pedimos avaliações e lembramos de retornos de forma automática. Seus pacientes sentem que você lembra deles, enquanto o sistema faz o trabalho.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-40 relative z-10" id="manifesto">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <div class="w-16 h-1 bg-gradient-to-r from-accent to-jabuticaba mx-auto mb-12 rounded-full opacity-50"></div>
+            <p class="mani-text font-display text-3xl md:text-5xl font-light text-textMain leading-tight tracking-tight">
+                "Você não percebe a tecnologia.<br/>
+                <span class="text-textSec">Você sente o alívio.</span>"
+            </p>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 relative z-10 text-center mb-20">
+        <div class="max-w-3xl mx-auto reveal glass-panel rounded-[3rem] p-12 md:p-20 shadow-soft-elevate relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-white/80 to-transparent"></div>
+            <div class="relative z-10">
+                <h2 class="cta-head font-display text-4xl md:text-5xl font-light tracking-tight text-textMain mb-6">
+                    Sua clínica pronta para <span class="font-medium text-gradient">crescer em paz.</span>
+                </h2>
+                <p class="cta-sub text-lg text-textSec font-light mb-10 max-w-xl mx-auto">
+                    Vamos desenhar como a L.H.E.X. pode tirar o peso da operação das suas costas hoje.
+                </p>
+                <button onclick="toggleModal()" class="cta-main px-12 py-5 bg-textMain text-white rounded-full font-medium tracking-wide hover:bg-jabuticaba transition-all duration-500 text-sm cursor-target shadow-lg hover:shadow-glow-purple">
+                    Iniciar conversa
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 relative z-10 text-center md:text-left">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="font-display font-medium tracking-[0.2em] text-sm text-textMain flex items-center cursor-target" onclick="window.scrollTo(0,0)">
+                <span class="text-accent">L.</span><span class="text-jabuticaba">H</span><span class="text-accent">.E.X.</span>
+            </div>
+            <div class="text-xs text-textSec font-light tracking-wide foot-copy">
+                Tecnologia silenciosa para operações premium.
+            </div>
+        </div>
+    </footer>
+
+    <div id="appModal" class="fixed inset-0 z-[100] hidden items-center justify-center px-4 bg-slate-900/10 backdrop-blur-md transition-opacity duration-500 opacity-0 cursor-target">
+        <div class="bg-white/90 backdrop-blur-2xl border border-white w-full max-w-lg rounded-[2rem] shadow-2xl transform scale-[0.98] transition-all duration-500 flex flex-col cursor-auto overflow-hidden" id="modalBox">
+            
+            <div class="px-8 py-6 flex justify-between items-center bg-white/50">
+                <div class="flex items-center gap-3">
+                    <span class="w-2 h-2 bg-accent rounded-full shadow-glow"></span>
+                    <div class="text-xs font-medium tracking-wide text-textMain form-kicker">Convite Privado</div>
+                </div>
+                <button onclick="toggleModal()" class="text-slate-400 hover:text-jabuticaba transition-colors text-xl font-light cursor-target px-2">&times;</button>
+            </div>
+
+            <div class="px-8 pb-10">
+                <h3 class="form-header font-display text-3xl font-light text-textMain mb-3">Vamos conversar.</h3>
+                <p class="form-desc text-textSec font-light text-sm mb-8">Me conte um pouco sobre sua clínica. Nós retornamos pelo WhatsApp para entender como podemos ajudar.</p>
+                
+                <form onsubmit="sendForm(event)" class="flex flex-col gap-5">
+                    <div class="group relative">
+                        <label class="lbl-1 block text-xs font-medium text-textMain mb-2">Seu nome e Clínica</label>
+                        <input type="text" id="fname" required placeholder="Ex.: Ana, Clínica Aurora" class="w-full bg-white/50 border border-slate-200 rounded-xl px-4 py-3.5 text-textMain font-light text-sm placeholder-slate-400 transition-all">
+                    </div>
+                    
+                    <div class="group relative">
+                        <label class="lbl-2 block text-xs font-medium text-textMain mb-2">O que mais toma seu tempo hoje?</label>
+                        <textarea id="fpain" rows="2" required placeholder="Falta de tempo, agenda bagunçada..." class="w-full bg-white/50 border border-slate-200 rounded-xl px-4 py-3.5 text-textMain font-light text-sm placeholder-slate-400 transition-all resize-none no-scrollbar"></textarea>
+                    </div>
+                    
+                    <button type="submit" id="submitBtn" class="cursor-target mt-4 w-full py-4 bg-textMain text-white rounded-xl font-medium text-sm transition-colors hover:bg-jabuticaba tracking-wide shadow-md">
+                        Enviar mensagem
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="loader" class="fixed inset-0 z-[200] hidden items-center justify-center bg-white/80 backdrop-blur-md cursor-target">
+        <div class="flex flex-col items-center gap-5">
+            <div class="w-8 h-8 border-2 border-slate-200 border-t-accent rounded-full animate-spin"></div>
+            <div class="text-sm font-medium text-textMain animate-pulse proc-text">Preparando ambiente...</div>
+        </div>
+    </div>
+
+    <script>
+        // Custom Light Cursor System
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const cursor = document.getElementById('custom-cursor');
+            const dot = document.getElementById('custom-cursor-dot');
+            
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let cursorX = mouseX;
+            let cursorY = mouseY;
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                dot.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
+            });
+
+            const renderCursor = () => {
+                cursorX += (mouseX - cursorX) * 0.12;
+                cursorY += (mouseY - cursorY) * 0.12;
+                cursor.style.transform = `translate3d(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%), 0)`;
+                requestAnimationFrame(renderCursor);
+            };
+            requestAnimationFrame(renderCursor);
+
+            const bindHoverEffects = () => {
+                document.querySelectorAll('a, button, .cursor-target').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursor.classList.add('hover-active');
+                        dot.classList.add('hover-active');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        cursor.classList.remove('hover-active');
+                        dot.classList.remove('hover-active');
+                    });
+                });
+            };
+            bindHoverEffects();
+        }
+
+        // Cinematic Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Bilingual Dictionary (Human, Simple, Premium)
+        const dict = {
+            pt: {
+                head: 'Organizamos sua operação para que sua empresa <span class="text-gradient font-medium">cresça sem caos.</span>',
+                sub: 'A tecnologia que trabalha em silêncio para você cuidar do que realmente importa: seus pacientes.',
+                ctaM: 'Iniciar conversa', ctaS: 'Manifesto', 
+                
+                s1T: 'O alívio de ter tudo no lugar.',
+                befT: 'Sua operação hoje',
+                p11: 'Mensagens esquecidas no WhatsApp. Pacientes ficam sem resposta.',
+                p12: 'Sua equipe gasta horas confirmando agendas manualmente.',
+                p13: 'Você não sabe exatamente de onde vêm seus melhores clientes.',
+                aftT: 'Com a L.H.E.X.',
+                p21: 'Atendimento imediato e humano. Nenhum paciente fica esperando.',
+                p22: 'Agendamentos, lembretes e cobranças rodam sozinhos.',
+                p23: 'Dados claros no seu celular. Você no controle total da clínica.',
+
+                s2T: 'Como funciona? <br/> <span class="text-textSec font-normal">Absurdamente simples.</span>',
+                w1t: 'Nós ouvimos você', w1d: 'Mapeamos exatamente o que tira sua paz hoje. Onde sua equipe perde tempo e onde você perde dinheiro.',
+                w2t: 'Construímos seu sistema', w2d: 'Criamos automações silenciosas e sob medida. Sem que você precise aprender a usar ferramentas complicadas.',
+                w3t: 'Você vê a mágica acontecer', w3d: 'A clínica passa a rodar de forma leve. Clientes são bem atendidos, a agenda enche e sua equipe respira.',
+
+                s3T: 'O que tiramos das suas costas.',
+                b1t: 'Atendimento Inicial Impecável', b1d: 'Respondemos, acolhemos e triamos pacientes 24 horas por dia, com o mesmo tom de voz acolhedor da sua clínica.',
+                b2t: 'Agenda Autônoma', b2d: 'Lembretes, confirmações e reagendamentos feitos sem intervenção humana.',
+                b3t: 'Fidelização Invisível', b3d: 'Enviamos mensagens de pós-consulta, pedimos avaliações e lembramos de retornos de forma automática. Seus pacientes sentem que você lembra deles, enquanto o sistema faz o trabalho.',
+
+                mani: '"Você não percebe a tecnologia.<br/> <span class="text-textSec">Você sente o alívio.</span>"',
+                
+                ctH: 'Sua clínica pronta para <span class="font-medium text-gradient">crescer em paz.</span>',
+                ctS: 'Vamos desenhar como a L.H.E.X. pode tirar o peso da operação das suas costas hoje.',
+                foot: 'Tecnologia silenciosa para operações premium.',
+                
+                fk: 'Convite Privado', fh: 'Vamos conversar.', fd: 'Me conte um pouco sobre sua clínica. Nós retornamos pelo WhatsApp para entender como podemos ajudar.',
+                l1: 'Seu nome e Clínica', l2: 'O que mais toma seu tempo hoje?', btn: 'Enviar mensagem',
+                ph1: 'Ex.: Ana, Clínica Aurora', ph2: 'Falta de tempo, agenda bagunçada...', proc: 'Preparando ambiente...'
+            },
+            en: {
+                head: 'We organize your operations so your clinic can <span class="text-gradient font-medium">grow without chaos.</span>',
+                sub: 'The technology that works in silence, so you can focus on what truly matters: your patients.',
+                ctaM: 'Let\'s talk', ctaS: 'Manifesto', 
+                
+                s1T: 'The relief of having everything in place.',
+                befT: 'Your operations today',
+                p11: 'Forgotten WhatsApp messages. Patients left waiting for an answer.',
+                p12: 'Your team spends hours confirming appointments manually.',
+                p13: 'You don\'t know exactly where your best clients come from.',
+                aftT: 'With L.H.E.X.',
+                p21: 'Immediate, human-like responses. No patient is left waiting.',
+                p22: 'Scheduling, reminders, and billing run completely on their own.',
+                p23: 'Clear data on your phone. You have total control of your clinic.',
+
+                s2T: 'How it works? <br/> <span class="text-textSec font-normal">Absurdly simple.</span>',
+                w1t: 'We listen to you', w1d: 'We map exactly what steals your peace today. Where your team loses time and where you lose money.',
+                w2t: 'We build your system', w2d: 'We create silent, tailor-made automations. Without you having to learn complicated tools.',
+                w3t: 'You watch the magic happen', w3d: 'The clinic starts running effortlessly. Clients are well served, the schedule fills up, and your team breathes.',
+
+                s3T: 'What we take off your shoulders.',
+                b1t: 'Flawless Initial Contact', b1d: 'We respond, welcome, and triage patients 24/7, keeping the exact same warm tone of your clinic.',
+                b2t: 'Autonomous Scheduling', b2d: 'Reminders, confirmations, and rescheduling done without human intervention.',
+                b3t: 'Invisible Loyalty', b3d: 'We send post-visit messages, ask for reviews, and remind them to return automatically. Your patients feel remembered, while the system does the work.',
+
+                mani: '"You don\'t notice the technology.<br/> <span class="text-textSec">You feel the relief.</span>"',
+                
+                ctH: 'Your clinic ready to <span class="font-medium text-gradient">grow in peace.</span>',
+                ctS: 'Let\'s design how L.H.E.X. can lift the operational weight off your shoulders today.',
+                foot: 'Silent technology for premium operations.',
+                
+                fk: 'Private Invitation', fh: 'Let\'s talk.', fd: 'Tell me a bit about your clinic. We will get back to you via WhatsApp to understand how we can help.',
+                l1: 'Your name and Clinic', l2: 'What consumes most of your time today?', btn: 'Send message',
+                ph1: 'E.g.: Anna, Aurora Clinic', ph2: 'Lack of time, messy schedule...', proc: 'Preparing environment...'
+            }
+        };
+
+        function setLang(l, e) {
+            document.querySelectorAll('.lang-btn').forEach(b => { b.classList.remove('font-medium'); });
+            e.target.classList.add('font-medium');
+            
+            const t = dict[l];
+            document.querySelector('.headline').innerHTML = t.head;
+            document.querySelector('.subheadline').innerText = t.sub;
+            document.querySelectorAll('.cta-main').forEach(b => b.innerText = t.ctaM);
+            document.querySelector('.cta-soft').innerText = t.ctaS;
+            document.querySelector('.cta-nav').innerText = t.ctaM;
+
+            document.querySelector('.sec1-title').innerText = t.s1T;
+            document.querySelector('.before-title').innerText = t.befT;
+            document.querySelector('.p1-1').innerText = t.p11; document.querySelector('.p1-2').innerText = t.p12; document.querySelector('.p1-3').innerText = t.p13;
+            document.querySelector('.after-title').innerText = t.aftT;
+            document.querySelector('.p2-1').innerText = t.p21; document.querySelector('.p2-2').innerText = t.p22; document.querySelector('.p2-3').innerText = t.p23;
+
+            document.querySelector('.sec2-title').innerHTML = t.s2T;
+            document.querySelector('.w1-t').innerText = t.w1t; document.querySelector('.w1-d').innerText = t.w1d;
+            document.querySelector('.w2-t').innerText = t.w2t; document.querySelector('.w2-d').innerText = t.w2d;
+            document.querySelector('.w3-t').innerText = t.w3t; document.querySelector('.w3-d').innerText = t.w3d;
+
+            document.querySelector('.sec3-title').innerText = t.s3T;
+            document.querySelector('.b1-t').innerText = t.b1t; document.querySelector('.b1-d').innerText = t.b1d;
+            document.querySelector('.b2-t').innerText = t.b2t; document.querySelector('.b2-d').innerText = t.b2d;
+            document.querySelector('.b3-t').innerText = t.b3t; document.querySelector('.b3-d').innerText = t.b3d;
+
+            document.querySelector('.mani-text').innerHTML = t.mani;
+            document.querySelector('.cta-head').innerHTML = t.ctH; document.querySelector('.cta-sub').innerText = t.ctS;
+            document.querySelector('.foot-copy').innerText = t.foot;
+
+            document.querySelector('.form-kicker').innerText = t.fk; document.querySelector('.form-header').innerText = t.fh; document.querySelector('.form-desc').innerText = t.fd;
+            document.querySelector('.lbl-1').innerText = t.l1; document.querySelector('.lbl-2').innerText = t.l2;
+            document.getElementById('fname').placeholder = t.ph1; document.getElementById('fpain').placeholder = t.ph2;
+            document.getElementById('submitBtn').innerText = t.btn;
+            document.querySelector('.proc-text').innerText = t.proc;
+        }
+
+        // Modal Logic
+        const modal = document.getElementById('appModal');
+        const modalBox = document.getElementById('modalBox');
+        
+        function toggleModal() {
+            if(modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    modalBox.classList.remove('scale-[0.98]');
+                    document.getElementById('fname').focus();
+                }, 10);
+            } else {
+                modal.classList.add('opacity-0');
+                modalBox.classList.add('scale-[0.98]');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 500);
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) toggleModal();
+        });
+
+        function sendForm(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const loader = document.getElementById('loader');
+            
+            btn.disabled = true;
+            loader.classList.remove('hidden');
+            loader.classList.add('flex');
+
+            const name = document.getElementById('fname').value;
+            const pain = document.getElementById('fpain').value;
+            const phone = "5521987587047";
+            const msg = `*L.H.E.X.® | Nova Conversa*%0A%0A👤 *Clínica:* ${name}%0A💬 *Desafio Atual:* ${pain}`;
+
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                loader.classList.remove('flex');
+                toggleModal();
+                window.location.href = `https://wa.me/${phone}?text=${msg}`;
+                btn.disabled = false;
+                document.getElementById('fname').value = '';
+                document.getElementById('fpain').value = '';
+            }, 1200);
+        }
+    </script>
+</body>
+</html>
