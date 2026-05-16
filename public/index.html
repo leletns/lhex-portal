@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth bg-[#04080F]">
+<html lang="pt-BR" class="scroll-smooth bg-[#F7FBFD]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#04080F">
+    <meta name="theme-color" content="#F7FBFD">
 
     <title>L.H.E.X.® | Private Operational Layer</title>
     <meta name="description" content="Operações premium colapsam sem infraestrutura. Arquitetamos sistemas operacionais privados para clínicas e empresas que exigem previsibilidade, controle e escala.">
 
     <link rel="icon" type="image/png" href="logo.png">
     
-    <!-- Typography: Outfit (Architecture) & Inter (Data/Terminal) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS Engine -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -27,19 +25,21 @@
                         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
                     },
                     colors: {
-                        base: '#04080F',
-                        surface: '#080E18',
-                        accent: '#2DD4BF',
-                        textMain: '#F8FAFC',
+                        base: '#F7FBFD',
+                        surface: 'rgba(255, 255, 255, 0.7)',
+                        accent: '#6DD3E8',
+                        textMain: '#0F172A',
                         textSec: '#64748B',
-                        borderSubtle: 'rgba(255, 255, 255, 0.03)',
-                        borderStrong: 'rgba(255, 255, 255, 0.06)'
+                        borderSubtle: 'rgba(15, 23, 42, 0.05)',
+                        borderStrong: 'rgba(15, 23, 42, 0.08)'
                     },
                     backgroundImage: {
-                        'grid-pattern': 'linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px)',
+                        'grid-pattern': 'linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px)',
                     },
                     boxShadow: {
-                        'glow': '0 0 30px -10px rgba(45, 212, 191, 0.1)',
+                        'glass': '0 8px 32px 0 rgba(15, 23, 42, 0.04)',
+                        'glow': '0 0 40px -10px rgba(109, 211, 232, 0.25)',
+                        'soft-elevate': '0 20px 40px -15px rgba(15, 23, 42, 0.06)',
                     }
                 }
             }
@@ -47,36 +47,35 @@
     </script>
 
     <style>
-        body { background-color: #04080F; color: #F8FAFC; overflow-x: hidden; }
+        body { background-color: #F7FBFD; color: #0F172A; overflow-x: hidden; }
         
-        /* Premium Custom Cursor System (Desktop Only) */
+        /* Light Premium Custom Cursor */
         @media (pointer: fine) {
             body, a, button, .cursor-target { cursor: none !important; }
-            /* Inputs should retain normal cursor */
             input, select, textarea { cursor: auto !important; }
             
             #custom-cursor {
                 position: fixed; top: 0; left: 0; width: 32px; height: 32px;
-                border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%;
+                border: 1px solid rgba(15, 23, 42, 0.15); border-radius: 50%;
                 pointer-events: none; z-index: 9999;
-                box-shadow: 0 0 15px -5px rgba(45, 212, 191, 0.2);
+                box-shadow: 0 0 15px -5px rgba(109, 211, 232, 0.1);
                 transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s, border-color 0.4s, box-shadow 0.4s;
                 will-change: transform, width, height;
             }
             #custom-cursor-dot {
                 position: fixed; top: 0; left: 0; width: 4px; height: 4px;
-                background: #fff; border-radius: 50%;
+                background: #0F172A; border-radius: 50%;
                 pointer-events: none; z-index: 10000;
                 transition: opacity 0.3s;
                 will-change: transform, opacity;
             }
             
-            /* Hover States */
             #custom-cursor.hover-active {
                 width: 54px; height: 54px;
-                background-color: rgba(255, 255, 255, 0.04);
-                border-color: rgba(45, 212, 191, 0.4);
-                box-shadow: 0 0 30px -10px rgba(45, 212, 191, 0.3);
+                background-color: rgba(255, 255, 255, 0.5);
+                backdrop-filter: blur(4px);
+                border-color: rgba(109, 211, 232, 0.4);
+                box-shadow: 0 0 30px -10px rgba(109, 211, 232, 0.3);
             }
             #custom-cursor-dot.hover-active { opacity: 0; }
         }
@@ -84,8 +83,8 @@
         /* Elite Motion System */
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(24px);
+            transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: transform, opacity;
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -93,26 +92,40 @@
         .delay-200 { transition-delay: 200ms; }
         .delay-300 { transition-delay: 300ms; }
 
+        /* Arc / Apple Glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--borderSubtle);
+            box-shadow: var(--glass);
+        }
+
+        /* Ambient White Noise (Very subtle) */
         .bg-noise {
             position: fixed; inset: 0; z-index: 0; pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-            mix-blend-mode: screen;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+            mix-blend-mode: multiply;
         }
 
-        /* Ambient Light Float */
+        /* Ambient Oceanic Float */
         @keyframes ambientFloat {
-            0% { transform: translate(0px, 0px); }
-            50% { transform: translate(30px, 20px); }
-            100% { transform: translate(0px, 0px); }
+            0% { transform: translate(0px, 0px) scale(1); }
+            50% { transform: translate(30px, 20px) scale(1.05); }
+            100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-ambient {
-            animation: ambientFloat 18s ease-in-out infinite;
+        .animate-ambient { animation: ambientFloat 20s ease-in-out infinite; }
+
+        /* Alive Logo Pulse */
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.9; filter: drop-shadow(0 0 20px rgba(109,211,232,0.18)); }
+            50% { transform: scale(1.03); opacity: 1; filter: drop-shadow(0 0 35px rgba(109,211,232,0.3)); }
+            100% { transform: scale(1); opacity: 0.9; filter: drop-shadow(0 0 20px rgba(109,211,232,0.18)); }
         }
+        .logo-glow { animation: pulseGlow 4s ease-in-out infinite; will-change: transform, filter; }
 
         /* Moving Grid Infrastructure */
-        .bg-grid-pattern {
-            animation: gridMove 30s linear infinite;
-        }
+        .bg-grid-anim { animation: gridMove 40s linear infinite; }
         @keyframes gridMove {
             from { background-position: 0 0; }
             to { background-position: 40px 40px; }
@@ -121,64 +134,65 @@
         /* Chart Animation */
         @keyframes drawLine { to { stroke-dashoffset: 0; } }
         .chart-path {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
+            stroke-dasharray: 1000; stroke-dashoffset: 1000;
             animation: drawLine 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
         }
 
-        /* Terminal Inputs */
-        input:focus, textarea:focus, select:focus { outline: none; border-color: #2DD4BF; background: rgba(255,255,255,0.01); }
+        /* Elegant Inputs */
+        input:focus, textarea:focus, select:focus { 
+            outline: none; border-color: #6DD3E8; 
+            background: rgba(255,255,255,0.9);
+            box-shadow: 0 0 0 3px rgba(109, 211, 232, 0.1);
+        }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="antialiased selection:bg-accent selection:text-base relative font-sans">
+<body class="antialiased selection:bg-accent/20 selection:text-textMain relative font-sans">
 
-    <!-- Custom Cursor DOM -->
     <div id="custom-cursor" class="hidden md:block"></div>
     <div id="custom-cursor-dot" class="hidden md:block"></div>
 
     <div class="bg-noise"></div>
     
-    <!-- OS Tag Obsessive Detail -->
-    <div class="fixed bottom-4 right-4 text-[8px] tracking-[0.3em] text-white/20 font-mono z-50 pointer-events-none">
+    <div class="fixed bottom-4 right-4 text-[8px] tracking-[0.3em] text-textSec/40 font-mono z-50 pointer-events-none">
         LHX-OS v1.0
     </div>
 
-    <!-- Cold Architectural Light -->
-    <div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-accent/5 blur-[120px] pointer-events-none z-0 animate-ambient"></div>
+    <div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-accent/10 blur-[140px] pointer-events-none z-0 animate-ambient"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-400/5 blur-[140px] pointer-events-none z-0 animate-ambient" style="animation-delay: -10s;"></div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-6">
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-6 transition-all duration-500 bg-white/40 backdrop-blur-xl border-b border-white/60 shadow-sm">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="font-display font-medium tracking-[0.25em] text-sm flex items-center gap-3 text-textMain cursor-target">
-                <div class="w-1 h-1 bg-accent shadow-glow"></div>
+                <div class="w-1.5 h-1.5 bg-accent shadow-glow rounded-full"></div>
                 L.H.E.X.®
             </div>
             <div class="flex items-center gap-8">
                 <div class="flex gap-4 text-[10px] font-mono tracking-widest text-textSec">
-                    <button class="lang-btn text-textMain transition-colors duration-300 uppercase cursor-target" onclick="setLang('pt', event)">PT-BR</button>
+                    <button class="lang-btn text-textMain transition-colors duration-300 uppercase cursor-target font-medium" onclick="setLang('pt', event)">PT-BR</button>
                     <button class="lang-btn hover:text-textMain transition-colors duration-300 uppercase cursor-target" onclick="setLang('en', event)">EN</button>
                 </div>
-                <button onclick="toggleModal()" class="hidden md:flex items-center px-6 py-2.5 text-xs font-mono tracking-widest bg-white/[0.03] hover:bg-white/[0.06] border border-borderStrong rounded transition-all duration-300 text-textMain uppercase cursor-target">
+                <button onclick="toggleModal()" class="hidden md:flex items-center px-6 py-2.5 text-xs font-mono tracking-widest bg-white/60 hover:bg-white border border-borderStrong rounded-full transition-all duration-300 text-textMain uppercase cursor-target shadow-sm">
                     <span class="cta-nav">Iniciar diagnóstico</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-6 pt-40 pb-20 z-10 border-b border-borderStrong overflow-hidden">
-        <div class="absolute inset-0 bg-grid-pattern opacity-50 z-0 pointer-events-none" style="background-size: 40px 40px;"></div>
+    <header class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-40 pb-20 z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern bg-grid-anim opacity-40 z-0 pointer-events-none" style="background-size: 60px 60px;"></div>
         
-        <div class="max-w-6xl mx-auto w-full relative z-10">
-            <div class="reveal inline-flex items-center gap-2 px-3 py-1 rounded border border-borderStrong bg-base text-textSec text-[9px] font-mono tracking-[0.3em] uppercase mb-10">
-                <span class="w-1 h-1 bg-accent/80 animate-pulse"></span>
-                <span class="badge-text">Private Operational Layer</span>
+        <div class="max-w-6xl mx-auto w-full relative z-10 flex flex-col items-center">
+            
+            <div class="reveal relative flex justify-center mb-12 cursor-target" onclick="toggleModal()">
+                <div class="absolute inset-0 bg-accent/20 blur-[50px] rounded-full w-32 h-32 mx-auto pointer-events-none"></div>
+                <img src="logo.png" alt="L.H.E.X. Logo" class="w-20 md:w-24 relative z-10 logo-glow">
             </div>
             
             <h1 class="headline reveal delay-100 font-display text-5xl md:text-7xl lg:text-[6.5rem] font-light tracking-tight text-textMain mb-8 leading-[1.05]">
-                Operações premium <span class="text-transparent bg-clip-text bg-gradient-to-r from-textSec to-white/10 font-normal">colapsam sem infraestrutura.</span>
+                Operações premium <br class="hidden md:block"/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-textSec to-slate-400 font-normal">colapsam sem infraestrutura.</span>
             </h1>
             
             <p class="subheadline reveal delay-200 text-lg md:text-xl text-textSec font-light max-w-2xl mx-auto mb-16 leading-relaxed">
@@ -187,82 +201,87 @@
             
             <div class="reveal delay-300 flex flex-col items-center gap-6">
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <button onclick="toggleModal()" class="cta-main px-8 py-4 bg-textMain text-base font-medium text-sm tracking-wide hover:bg-white/90 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] cursor-target">
+                    <button onclick="toggleModal()" class="cta-main px-9 py-4 bg-textMain text-white rounded-full font-medium text-sm tracking-wide hover:bg-slate-800 transition-all duration-300 shadow-soft-elevate cursor-target">
                         Iniciar diagnóstico
                     </button>
-                    <button onclick="document.getElementById('manifesto').scrollIntoView()" class="cta-soft px-8 py-4 bg-transparent text-textMain border border-borderStrong font-medium text-sm tracking-wide hover:bg-white/5 transition-all duration-300 cursor-target">
+                    <button onclick="document.getElementById('manifesto').scrollIntoView()" class="cta-soft px-9 py-4 bg-white/50 backdrop-blur-md text-textMain border border-borderStrong rounded-full font-medium text-sm tracking-wide hover:bg-white transition-all duration-300 cursor-target shadow-sm">
                         Manifesto
                     </button>
                 </div>
                 
-                <div class="lim-text text-[10px] uppercase tracking-[0.3em] text-textSec/40 font-mono">
+                <div class="lim-text text-[10px] uppercase tracking-[0.3em] text-textSec/60 font-mono mt-4">
                     Aplicações limitadas por capacidade operacional
                 </div>
             </div>
 
-            <div class="reveal delay-300 mt-20 text-[9px] tracking-[0.4em] uppercase text-textSec/50 font-mono signature-text">
+            <div class="reveal delay-300 mt-24 text-[9px] tracking-[0.4em] uppercase text-textSec/40 font-mono signature-text">
                 PRIVATE OPERATIONAL INFRASTRUCTURE
             </div>
         </div>
     </header>
 
-    <!-- Operational Mockup -->
-    <section class="relative z-10 -mt-10 px-6">
-        <div class="reveal delay-300 w-full max-w-6xl mx-auto rounded-xl overflow-hidden bg-surface border border-borderStrong shadow-2xl relative flex flex-col md:flex-row text-left group cursor-target">
+    <section class="relative z-10 -mt-8 px-6">
+        <div class="reveal delay-300 w-full max-w-6xl mx-auto rounded-2xl overflow-hidden glass-panel relative flex flex-col md:flex-row text-left group cursor-target shadow-soft-elevate">
             
-            <!-- Dashboard Content -->
-            <div class="flex-1 relative z-10 p-6 md:p-10 flex flex-col gap-8 bg-grid-pattern" style="background-size: 20px 20px;">
+            <div class="flex-1 relative z-10 p-6 md:p-10 flex flex-col gap-8 bg-white/40">
                 <div class="flex justify-between items-center border-b border-borderStrong pb-4">
                     <div>
                         <div class="text-[9px] text-textSec font-mono tracking-widest uppercase mb-1">L.H.E.X. Infrastructure</div>
-                        <div class="text-lg font-display font-light text-textMain">Visão Geral da Operação</div>
+                        <div class="text-lg font-display font-medium text-textMain">Visão Geral da Operação</div>
                     </div>
-                    <div class="hidden sm:flex items-center gap-2.5 px-3 py-1.5 border border-borderStrong bg-base/80 text-[9px] text-accent font-mono uppercase tracking-widest rounded-sm">
+                    <div class="hidden sm:flex items-center gap-2.5 px-3 py-1.5 bg-white border border-borderStrong text-[9px] text-accent font-mono uppercase tracking-widest rounded-md shadow-sm">
                         <span class="w-1.5 h-1.5 bg-accent rounded-full animate-pulse shadow-glow"></span>
-                        <span class="sync-text">SYNC ACTIVE • LIVE INFRASTRUCTURE</span>
+                        <span class="sync-text text-slate-600">LIVE INFRASTRUCTURE</span>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-px bg-borderStrong border border-borderStrong">
-                    <div class="bg-surface p-5 flex flex-col gap-2 transition-colors hover:bg-surface/80">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-white/70 backdrop-blur-md border border-borderSubtle rounded-xl p-6 flex flex-col gap-2 transition-all hover:bg-white shadow-sm">
                         <div class="text-[9px] text-textSec font-mono tracking-[0.2em] uppercase">MRR Operacional</div>
-                        <div class="text-2xl font-display font-light text-textMain">R$ 142.500</div>
-                        <div class="text-[10px] text-accent/80 flex items-center gap-1 font-mono">+12.4% operational growth</div>
+                        <div class="text-3xl font-display font-light text-textMain">R$ 142.500</div>
+                        <div class="text-[10px] text-teal-600 flex items-center gap-1 font-mono">+12.4% operational growth</div>
                     </div>
-                    <div class="bg-surface p-5 flex flex-col gap-2 transition-colors hover:bg-surface/80">
+                    <div class="bg-white/70 backdrop-blur-md border border-borderSubtle rounded-xl p-6 flex flex-col gap-2 transition-all hover:bg-white shadow-sm">
                         <div class="text-[9px] text-textSec font-mono tracking-[0.2em] uppercase">Taxa de Conversão</div>
-                        <div class="text-2xl font-display font-light text-textMain">18.4%</div>
-                        <div class="text-[10px] text-accent/80 flex items-center gap-1 font-mono">+2.1% conversion efficiency</div>
+                        <div class="text-3xl font-display font-light text-textMain">18.4%</div>
+                        <div class="text-[10px] text-teal-600 flex items-center gap-1 font-mono">+2.1% conversion efficiency</div>
                     </div>
-                    <div class="bg-surface p-5 flex flex-col gap-2 transition-colors hover:bg-surface/80">
+                    <div class="bg-white/70 backdrop-blur-md border border-borderSubtle rounded-xl p-6 flex flex-col gap-2 transition-all hover:bg-white shadow-sm">
                         <div class="text-[9px] text-textSec font-mono tracking-[0.2em] uppercase">Churn Ativo</div>
-                        <div class="text-2xl font-display font-light text-textMain">0.8%</div>
+                        <div class="text-3xl font-display font-light text-textMain">0.8%</div>
                         <div class="text-[10px] text-textSec flex items-center gap-1 font-mono">Controle absoluto</div>
                     </div>
                 </div>
 
-                <div class="flex flex-col lg:flex-row gap-px bg-borderStrong border border-borderStrong">
-                    <div class="flex-[2] bg-surface p-6 relative overflow-hidden flex flex-col">
+                <div class="flex flex-col lg:flex-row gap-4">
+                    <div class="flex-[2] bg-white/70 backdrop-blur-md border border-borderSubtle rounded-xl p-6 relative overflow-hidden flex flex-col shadow-sm">
                         <div class="text-[10px] font-mono text-textSec tracking-[0.2em] uppercase mb-6">Projeção de Escala</div>
-                        <div class="flex-1 w-full relative min-h-[140px]">
+                        <div class="flex-1 w-full relative min-h-[160px]">
                             <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 400 100">
-                                <path class="chart-path" d="M0,80 C50,70 100,85 150,50 C200,15 250,45 300,20 C350,-5 400,10 400,10" fill="none" stroke="#2DD4BF" stroke-width="1.5" stroke-linecap="square" />
+                                <defs>
+                                    <linearGradient id="lightGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#6DD3E8" stop-opacity="0.3" />
+                                        <stop offset="100%" stop-color="#6DD3E8" stop-opacity="0" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M0,80 C50,70 100,85 150,50 C200,15 250,45 300,20 C350,-5 400,10 400,10 L400,100 L0,100 Z" fill="url(#lightGrad)" />
+                                <path class="chart-path" d="M0,80 C50,70 100,85 150,50 C200,15 250,45 300,20 C350,-5 400,10 400,10" fill="none" stroke="#6DD3E8" stroke-width="2" stroke-linecap="round" />
                             </svg>
                         </div>
                     </div>
 
-                    <div class="flex-1 bg-surface p-6 flex flex-col gap-4">
+                    <div class="flex-1 bg-white/70 backdrop-blur-md border border-borderSubtle rounded-xl p-6 flex flex-col gap-4 shadow-sm">
                         <div class="text-[10px] font-mono text-textSec tracking-[0.2em] uppercase">Eventos Críticos</div>
-                        <div class="flex flex-col gap-3">
-                            <div class="flex items-center gap-3 border-b border-borderStrong pb-3">
-                                <div class="w-1 h-1 bg-accent animate-pulse"></div>
+                        <div class="flex flex-col gap-4 mt-2">
+                            <div class="flex items-center gap-3 border-b border-borderStrong pb-4">
+                                <div class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shadow-glow"></div>
                                 <div>
                                     <div class="text-xs font-medium text-textMain">Instituto Aurora</div>
                                     <div class="text-[9px] text-textSec font-mono">Automação de Agendamento</div>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-3 border-b border-borderStrong pb-3">
-                                <div class="w-1 h-1 bg-white/20"></div>
+                            <div class="flex items-center gap-3 border-b border-borderStrong pb-4">
+                                <div class="w-1.5 h-1.5 rounded-full bg-slate-300"></div>
                                 <div>
                                     <div class="text-xs font-medium text-textMain">Dr. Rafael Mota</div>
                                     <div class="text-[9px] text-textSec font-mono">Onboarding Concluído</div>
@@ -275,54 +294,52 @@
         </div>
     </section>
 
-    <!-- Pain Section / Tensão Operacional -->
     <section class="py-32 px-6 relative z-10" id="pain">
         <div class="max-w-5xl mx-auto">
             <div class="reveal mb-16 text-center md:text-left">
-                <span class="pain-eye text-[9px] font-mono text-red-500/70 tracking-[0.3em] uppercase mb-6 block">Alerta Crítico</span>
+                <span class="pain-eye text-[9px] font-mono text-slate-400 tracking-[0.3em] uppercase mb-6 block">Alerta Crítico</span>
                 <h2 class="pain-head font-display text-3xl md:text-5xl font-light tracking-tight text-textMain">
                     O que acontece quando a <span class="text-textSec font-normal">operação quebra.</span>
                 </h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-borderStrong border border-borderStrong">
-                <div class="bg-base p-8 flex flex-col gap-4 reveal cursor-target hover:bg-surface/30 transition-colors">
-                    <div class="text-textSec font-mono text-xs opacity-50">01</div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="glass-panel p-8 rounded-2xl flex flex-col gap-4 reveal cursor-target hover:bg-white transition-all shadow-sm">
+                    <div class="text-accent font-mono text-xs font-medium">01</div>
                     <div class="p1-t text-textMain font-medium font-display text-xl">Leads esquecidos</div>
                     <div class="p1-d text-textSec text-sm font-light">Oportunidades high-ticket morrem no funil por falta de follow-up estruturado.</div>
                 </div>
-                <div class="bg-base p-8 flex flex-col gap-4 reveal delay-100 cursor-target hover:bg-surface/30 transition-colors">
-                    <div class="text-textSec font-mono text-xs opacity-50">02</div>
+                <div class="glass-panel p-8 rounded-2xl flex flex-col gap-4 reveal delay-100 cursor-target hover:bg-white transition-all shadow-sm">
+                    <div class="text-accent font-mono text-xs font-medium">02</div>
                     <div class="p2-t text-textMain font-medium font-display text-xl">Pacientes sem retorno</div>
                     <div class="p2-d text-textSec text-sm font-light">Nenhuma cadência de relacionamento ativo. Dinheiro deixado na mesa todos os meses.</div>
                 </div>
-                <div class="bg-base p-8 flex flex-col gap-4 reveal delay-200 cursor-target hover:bg-surface/30 transition-colors">
-                    <div class="text-textSec font-mono text-xs opacity-50">03</div>
+                <div class="glass-panel p-8 rounded-2xl flex flex-col gap-4 reveal delay-200 cursor-target hover:bg-white transition-all shadow-sm">
+                    <div class="text-accent font-mono text-xs font-medium">03</div>
                     <div class="p3-t text-textMain font-medium font-display text-xl">Agenda caótica</div>
                     <div class="p3-d text-textSec text-sm font-light">Falta de previsibilidade. O faturamento vira uma montanha-russa dependente de esforço manual.</div>
                 </div>
-                <div class="bg-base p-8 flex flex-col gap-4 reveal cursor-target hover:bg-surface/30 transition-colors">
-                    <div class="text-textSec font-mono text-xs opacity-50">04</div>
+                <div class="glass-panel p-8 rounded-2xl flex flex-col gap-4 reveal cursor-target hover:bg-white transition-all shadow-sm">
+                    <div class="text-accent font-mono text-xs font-medium">04</div>
                     <div class="p4-t text-textMain font-medium font-display text-xl">Equipe sobrecarregada</div>
                     <div class="p4-d text-textSec text-sm font-light">Talentos caros fazendo trabalho de software. Apagando incêndios no lugar de pensar escala.</div>
                 </div>
-                <div class="bg-base p-8 flex flex-col gap-4 reveal delay-100 md:col-span-2 cursor-target hover:bg-surface/30 transition-colors">
-                    <div class="text-textSec font-mono text-xs opacity-50">05</div>
+                <div class="glass-panel p-8 rounded-2xl flex flex-col gap-4 reveal delay-100 md:col-span-2 cursor-target hover:bg-white transition-all shadow-sm">
+                    <div class="text-accent font-mono text-xs font-medium">05</div>
                     <div class="p5-t text-textMain font-medium font-display text-xl">Crescimento sem previsibilidade</div>
                     <div class="p5-d text-textSec text-sm font-light">A empresa depende dos fundadores para rodar. Se o fluxo dobra hoje, a operação entra em colapso.</div>
                 </div>
             </div>
 
-            <div class="mt-20 text-center reveal border border-borderStrong p-8 bg-surface">
+            <div class="mt-20 text-center reveal glass-panel rounded-2xl p-8 shadow-sm">
                 <p class="pain-sub font-display text-xl text-textMain font-light tracking-wide">
-                    A L.H.E.X. existe para <span class="text-accent font-normal">impedir isso.</span>
+                    A L.H.E.X. existe para <span class="text-accent font-medium">impedir isso.</span>
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Structural Features -->
-    <section class="py-32 px-6 relative z-10 border-t border-borderStrong bg-surface/30">
+    <section class="py-32 px-6 relative z-10 border-t border-borderStrong bg-white/30">
         <div class="max-w-6xl mx-auto">
             <div class="mb-20 reveal">
                 <span class="sec-eye text-textSec text-[9px] font-mono tracking-[0.3em] uppercase mb-6 block">Arquitetura de Sistema</span>
@@ -332,26 +349,26 @@
                 </h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-borderStrong border border-borderStrong">
-                <div class="reveal bg-surface p-10 flex flex-col md:col-span-2 cursor-target hover:bg-surface/80 transition-colors">
-                    <div class="text-borderStrong text-4xl font-display font-thin mb-8">01</div>
-                    <h3 class="c1-t font-display text-2xl font-normal text-textMain mb-4">Aquisição Inteligente</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="reveal glass-panel rounded-2xl p-10 flex flex-col md:col-span-2 cursor-target hover:bg-white transition-colors shadow-sm">
+                    <div class="text-slate-200 text-5xl font-display font-light mb-8">01</div>
+                    <h3 class="c1-t font-display text-2xl font-medium text-textMain mb-4">Aquisição Inteligente</h3>
                     <p class="c1-d text-textSec font-light leading-relaxed max-w-md text-sm">
                         Estruturamos a captura, qualificação e conversão. Sistemas invisíveis garantem que nenhuma oportunidade seja perdida.
                     </p>
                 </div>
                 
-                <div class="reveal bg-surface p-10 flex flex-col cursor-target hover:bg-surface/80 transition-colors">
-                    <div class="text-borderStrong text-4xl font-display font-thin mb-8">02</div>
-                    <h3 class="c2-t font-display text-2xl font-normal text-textMain mb-4">Orquestração Operacional</h3>
+                <div class="reveal glass-panel rounded-2xl p-10 flex flex-col cursor-target hover:bg-white transition-colors shadow-sm">
+                    <div class="text-slate-200 text-5xl font-display font-light mb-8">02</div>
+                    <h3 class="c2-t font-display text-2xl font-medium text-textMain mb-4">Orquestração Operacional</h3>
                     <p class="c2-d text-textSec font-light leading-relaxed text-sm">
                         Substituímos o esforço repetitivo por fluxos automatizados. Máxima precisão e zero microgerenciamento.
                     </p>
                 </div>
 
-                <div class="reveal bg-surface p-10 flex flex-col md:col-span-3 cursor-target hover:bg-surface/80 transition-colors">
-                    <div class="text-borderStrong text-4xl font-display font-thin mb-8">03</div>
-                    <h3 class="c3-t font-display text-2xl md:text-3xl font-normal text-textMain mb-4">Retenção & Relacionamento</h3>
+                <div class="reveal glass-panel rounded-2xl p-10 flex flex-col md:col-span-3 cursor-target hover:bg-white transition-colors shadow-sm">
+                    <div class="text-slate-200 text-5xl font-display font-light mb-8">03</div>
+                    <h3 class="c3-t font-display text-2xl md:text-3xl font-medium text-textMain mb-4">Retenção & Relacionamento</h3>
                     <p class="c3-d text-textSec font-light leading-relaxed max-w-2xl text-sm">
                         Construímos a arquitetura de contato que mantém seus clientes engajados, escalando a percepção de um atendimento premium sem inchar a folha de pagamento.
                     </p>
@@ -360,17 +377,16 @@
         </div>
     </section>
 
-    <!-- Manifesto -->
-    <section class="py-32 border-y border-borderStrong bg-base relative z-10" id="manifesto">
-        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+    <section class="py-40 border-y border-borderStrong bg-white/50 relative z-10" id="manifesto">
+        <div class="absolute inset-0 bg-accent/5 blur-[120px] pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center reveal relative z-10">
             <p class="mani-text font-display text-3xl md:text-5xl font-light text-textSec leading-tight tracking-tight">
                 "A verdadeira escala <br class="hidden md:block"/> 
-                <span class="text-textMain font-normal">acontece em silêncio.</span>"
+                <span class="text-textMain font-medium">acontece em silêncio.</span>"
             </p>
         </div>
     </section>
 
-    <!-- Final Execution -->
     <section class="py-40 px-6 relative z-10 text-center">
         <div class="max-w-3xl mx-auto reveal relative z-10">
             <h2 class="cta-head font-display text-4xl md:text-6xl font-light tracking-tight text-textMain mb-6">
@@ -379,16 +395,15 @@
             <p class="cta-sub text-lg text-textSec font-light mb-12 max-w-xl mx-auto">
                 Não vendemos serviços soltos. Implementamos infraestrutura.
             </p>
-            <button onclick="toggleModal()" class="cta-main px-10 py-4 bg-textMain text-base font-medium tracking-wide hover:bg-white/90 transition-all duration-300 text-sm cursor-target">
+            <button onclick="toggleModal()" class="cta-main px-10 py-5 bg-textMain text-white rounded-full font-medium tracking-wide hover:bg-slate-800 transition-all duration-300 text-sm cursor-target shadow-soft-elevate">
                 Iniciar diagnóstico
             </button>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-8 px-6 border-t border-borderStrong relative z-10 bg-base text-center md:text-left">
+    <footer class="py-10 px-6 border-t border-borderStrong relative z-10 bg-white/50 backdrop-blur-md text-center md:text-left">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="font-display font-medium tracking-[0.25em] text-sm text-textSec flex items-center gap-2 cursor-target">
+            <div class="font-display font-medium tracking-[0.25em] text-sm text-textSec flex items-center gap-3 cursor-target">
                 <div class="w-1.5 h-1.5 bg-textSec rounded-full"></div>
                 L.H.E.X.®
             </div>
@@ -398,49 +413,48 @@
         </div>
     </footer>
 
-    <!-- Terminal Private Modal -->
-    <div id="appModal" class="fixed inset-0 z-[100] hidden items-center justify-center px-4 bg-base/80 backdrop-blur-md transition-opacity duration-300 opacity-0 cursor-target">
-        <div class="bg-surface border border-borderStrong w-full max-w-lg shadow-2xl transform scale-[0.98] transition-transform duration-300 flex flex-col cursor-auto" id="modalBox">
+    <div id="appModal" class="fixed inset-0 z-[100] hidden items-center justify-center px-4 bg-slate-900/20 backdrop-blur-md transition-opacity duration-300 opacity-0 cursor-target">
+        <div class="bg-white border border-borderStrong w-full max-w-lg rounded-2xl shadow-soft-elevate transform scale-[0.98] transition-transform duration-300 flex flex-col cursor-auto overflow-hidden" id="modalBox">
             
-            <div class="px-6 py-4 border-b border-borderStrong flex justify-between items-center bg-white/[0.01]">
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
                 <div class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 bg-accent/80 animate-pulse"></span>
-                    <div class="text-[9px] font-mono tracking-widest text-textSec uppercase">Terminal Setup</div>
+                    <span class="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
+                    <div class="text-[9px] font-mono tracking-widest text-slate-500 uppercase">Terminal Setup</div>
                 </div>
-                <button onclick="toggleModal()" class="text-textSec hover:text-textMain transition-colors text-[10px] font-mono border border-borderStrong px-2 py-1 bg-base cursor-target">ESC</button>
+                <button onclick="toggleModal()" class="text-slate-400 hover:text-textMain transition-colors text-[10px] font-mono border border-slate-200 px-2 py-1 rounded bg-white cursor-target">ESC</button>
             </div>
 
             <div class="p-6 md:p-8">
-                <h3 class="form-header font-display text-2xl font-light text-textMain mb-2">Inicializar Arquitetura</h3>
+                <h3 class="form-header font-display text-2xl font-medium text-textMain mb-2">Inicializar Arquitetura</h3>
                 <p class="form-desc text-textSec font-light text-sm mb-8">Forneça o contexto da sua operação. Retornaremos com o escopo executável.</p>
                 
                 <form onsubmit="sendForm(event)" class="flex flex-col gap-6">
                     <div class="group relative">
-                        <label class="lbl-1 block text-[9px] font-mono text-textSec tracking-[0.2em] uppercase mb-3">Nome & Entidade</label>
-                        <input type="text" id="fname" required placeholder="Ex.: Ana, Clínica Prime" class="w-full bg-base border border-borderStrong px-4 py-3 text-textMain font-light text-sm placeholder-textSec/30 transition-colors focus:border-accent">
+                        <label class="lbl-1 block text-[9px] font-mono text-slate-500 tracking-[0.2em] uppercase mb-2">Nome & Entidade</label>
+                        <input type="text" id="fname" required placeholder="Ex.: Ana, Clínica Prime" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-textMain font-light text-sm placeholder-slate-300 transition-all focus:ring-2 focus:ring-accent/20">
                     </div>
                     
                     <div class="group relative">
-                        <label class="lbl-2 block text-[9px] font-mono text-textSec tracking-[0.2em] uppercase mb-3">Gargalo Operacional Atual</label>
-                        <textarea id="fpain" rows="2" required placeholder="Onde a operação quebra na escala?" class="w-full bg-base border border-borderStrong px-4 py-3 text-textMain font-light text-sm placeholder-textSec/30 transition-colors focus:border-accent resize-none no-scrollbar"></textarea>
+                        <label class="lbl-2 block text-[9px] font-mono text-slate-500 tracking-[0.2em] uppercase mb-2">Gargalo Operacional Atual</label>
+                        <textarea id="fpain" rows="2" required placeholder="Onde a operação quebra na escala?" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-textMain font-light text-sm placeholder-slate-300 transition-all focus:ring-2 focus:ring-accent/20 resize-none no-scrollbar"></textarea>
                     </div>
                     
                     <div class="group relative">
-                        <label class="lbl-3 block text-[9px] font-mono text-textSec tracking-[0.2em] uppercase mb-3">Escopo de Investimento Mensal</label>
+                        <label class="lbl-3 block text-[9px] font-mono text-slate-500 tracking-[0.2em] uppercase mb-2">Escopo de Investimento Mensal</label>
                         <div class="relative">
-                            <select id="fbudget" class="w-full bg-base border border-borderStrong px-4 py-3 text-textMain font-light text-sm transition-colors focus:border-accent appearance-none">
+                            <select id="fbudget" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-textMain font-light text-sm transition-all focus:ring-2 focus:ring-accent/20 appearance-none">
                                 <option value="Avaliando">Ainda avaliando</option>
                                 <option value="Até R$ 5k/mês">Até R$ 5k/mês</option>
                                 <option value="R$ 5k–15k/mês">R$ 5k–15k/mês</option>
                                 <option value="R$ 15k+/mês">R$ 15k+/mês</option>
                             </select>
-                            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-textSec">
+                            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
                                 <svg width="8" height="5" fill="none"><path d="M1 1l3 3 3-3" stroke="currentColor" stroke-width="1.5"/></svg>
                             </div>
                         </div>
                     </div>
 
-                    <button type="submit" id="submitBtn" class="cursor-target mt-4 w-full py-4 bg-textMain text-base font-medium text-sm transition-colors hover:bg-white/90 tracking-wide">
+                    <button type="submit" id="submitBtn" class="cursor-target mt-4 w-full py-4 bg-textMain text-white rounded-lg font-medium text-sm transition-colors hover:bg-slate-800 tracking-wide shadow-sm">
                         Transmitir Contexto
                     </button>
                 </form>
@@ -448,16 +462,15 @@
         </div>
     </div>
 
-    <!-- Processing Loader -->
-    <div id="loader" class="fixed inset-0 z-[200] hidden items-center justify-center bg-base/90 backdrop-blur-sm cursor-target">
+    <div id="loader" class="fixed inset-0 z-[200] hidden items-center justify-center bg-white/90 backdrop-blur-sm cursor-target">
         <div class="flex flex-col items-center gap-5">
-            <div class="w-5 h-5 border border-borderStrong border-t-accent rounded-full animate-spin"></div>
-            <div class="text-[9px] font-mono tracking-widest text-textSec uppercase animate-pulse proc-text">Inicializando camada operacional...</div>
+            <div class="w-6 h-6 border-2 border-slate-200 border-t-accent rounded-full animate-spin"></div>
+            <div class="text-[9px] font-mono tracking-widest text-slate-500 uppercase animate-pulse proc-text">Inicializando camada operacional...</div>
         </div>
     </div>
 
     <script>
-        // Custom Elite Cursor System
+        // Premium Custom Cursor System (Excluding inputs)
         if (window.matchMedia("(pointer: fine)").matches) {
             const cursor = document.getElementById('custom-cursor');
             const dot = document.getElementById('custom-cursor-dot');
@@ -496,7 +509,7 @@
             bindHoverEffects();
         }
 
-        // Cinematic Scroll
+        // Cinematic Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -504,29 +517,29 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+        }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Dictionary
+        // Bilingual Dictionary
         const dict = {
             pt: {
                 badge: 'Private Operational Layer',
-                head: 'Operações premium <span class="text-transparent bg-clip-text bg-gradient-to-r from-textSec to-white/10 font-normal">colapsam sem infraestrutura.</span>',
+                head: 'Operações premium <br class="hidden md:block"/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-textSec to-slate-400 font-normal">colapsam sem infraestrutura.</span>',
                 sub: 'Arquitetamos sistemas operacionais privados para clínicas e empresas que exigem previsibilidade, controle e escala.',
                 ctaM: 'Iniciar diagnóstico', ctaS: 'Manifesto', sig: 'PRIVATE OPERATIONAL INFRASTRUCTURE', lim: 'Aplicações limitadas por capacidade operacional',
-                sync: 'SYNC ACTIVE • LIVE INFRASTRUCTURE',
+                sync: 'LIVE INFRASTRUCTURE',
                 pEye: 'Alerta Crítico', pHead: 'O que acontece quando a <span class="text-textSec font-normal">operação quebra.</span>',
                 p1t: 'Leads esquecidos', p1d: 'Oportunidades high-ticket morrem no funil por falta de follow-up estruturado.',
                 p2t: 'Pacientes sem retorno', p2d: 'Nenhuma cadência de relacionamento ativo. Dinheiro deixado na mesa todos os meses.',
                 p3t: 'Agenda caótica', p3d: 'Falta de previsibilidade. O faturamento vira uma montanha-russa dependente de esforço manual.',
                 p4t: 'Equipe sobrecarregada', p4d: 'Talentos caros fazendo trabalho de software. Apagando incêndios no lugar de pensar escala.',
                 p5t: 'Crescimento sem previsibilidade', p5d: 'A empresa depende dos fundadores para rodar. Se o fluxo dobra hoje, a operação entra em colapso.',
-                pSub: 'A L.H.E.X. existe para <span class="text-accent font-normal">impedir isso.</span>',
+                pSub: 'A L.H.E.X. existe para <span class="text-accent font-medium">impedir isso.</span>',
                 sEye: 'Arquitetura de Sistema', sTitle: 'Infraestrutura que remove o atrito.<br/><span class="text-textSec font-normal">Controle operacional absoluto.</span>',
                 c1t: 'Aquisição Inteligente', c1d: 'Estruturamos a captura, qualificação e conversão. Sistemas invisíveis garantem que nenhuma oportunidade seja perdida.',
                 c2t: 'Orquestração Operacional', c2d: 'Substituímos o esforço repetitivo por fluxos automatizados. Máxima precisão e zero microgerenciamento.',
                 c3t: 'Retenção & Relacionamento', c3d: 'Construímos a arquitetura de contato que mantém seus clientes engajados, escalando a percepção de um atendimento premium sem inchar a folha de pagamento.',
-                mani: '"A verdadeira escala <br class="hidden md:block"/> <span class="text-textMain font-normal">acontece em silêncio.</span>"',
+                mani: '"A verdadeira escala <br class="hidden md:block"/> <span class="text-textMain font-medium">acontece em silêncio.</span>"',
                 ctH: 'Precisão arquitetural.<br/><span class="text-textSec font-normal">Para operações que exigem controle.</span>', ctS: 'Não vendemos serviços soltos. Implementamos infraestrutura.',
                 foot: 'L.H.E.X.® — Operational Infrastructure Systems',
                 fh: 'Inicializar Arquitetura', fd: 'Forneça o contexto da sua operação. Retornaremos com o escopo executável.',
@@ -535,22 +548,22 @@
             },
             en: {
                 badge: 'Private Operational Layer',
-                head: 'Premium operations <span class="text-transparent bg-clip-text bg-gradient-to-r from-textSec to-white/10 font-normal">collapse without infrastructure.</span>',
+                head: 'Premium operations <br class="hidden md:block"/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-textSec to-slate-400 font-normal">collapse without infrastructure.</span>',
                 sub: 'We architect private operational systems for clinics and companies demanding predictability, control, and scale.',
                 ctaM: 'Initiate diagnostic', ctaS: 'Manifesto', sig: 'PRIVATE OPERATIONAL INFRASTRUCTURE', lim: 'Applications limited by operational capacity',
-                sync: 'SYNC ACTIVE • LIVE INFRASTRUCTURE',
+                sync: 'LIVE INFRASTRUCTURE',
                 pEye: 'Critical Alert', pHead: 'What happens when <span class="text-textSec font-normal">operations break.</span>',
                 p1t: 'Forgotten Leads', p1d: 'High-ticket opportunities die in the funnel due to lack of structured follow-up.',
                 p2t: 'Lost Patients', p2d: 'No active relationship cadence. Money left on the table every month.',
                 p3t: 'Chaotic Scheduling', p3d: 'Lack of predictability. Revenue becomes a rollercoaster dependent on manual effort.',
                 p4t: 'Overworked Team', p4d: 'Expensive talent doing software work. Putting out fires instead of scaling.',
                 p5t: 'Unpredictable Growth', p5d: 'The company depends on founders to run. If volume doubles today, operations collapse.',
-                pSub: 'L.H.E.X. exists to <span class="text-accent font-normal">prevent this.</span>',
+                pSub: 'L.H.E.X. exists to <span class="text-accent font-medium">prevent this.</span>',
                 sEye: 'System Architecture', sTitle: 'Infrastructure that removes friction.<br/><span class="text-textSec font-normal">Absolute operational control.</span>',
                 c1t: 'Intelligent Acquisition', c1d: 'We structure capture, qualification, and conversion. Invisible systems ensure no opportunity is lost.',
                 c2t: 'Operational Orchestration', c2d: 'We replace repetitive effort with automated flows. Maximum precision and zero micromanagement.',
                 c3t: 'Retention & Relationship', c3d: 'We build the contact architecture that keeps your clients engaged, scaling premium service perception without inflating payroll.',
-                mani: '"True scale <br class="hidden md:block"/> <span class="text-textMain font-normal">happens in silence.</span>"',
+                mani: '"True scale <br class="hidden md:block"/> <span class="text-textMain font-medium">happens in silence.</span>"',
                 ctH: 'Architectural precision.<br/><span class="text-textSec font-normal">For operations demanding control.</span>', ctS: 'We don\'t sell random services. We deploy infrastructure.',
                 foot: 'L.H.E.X.® — Operational Infrastructure Systems',
                 fh: 'Initialize Architecture', fd: 'Provide your operational context. We will return with an executable scope.',
@@ -561,9 +574,9 @@
 
         function setLang(l, e) {
             document.querySelectorAll('.lang-btn').forEach(b => {
-                b.classList.remove('text-textMain'); b.classList.add('hover:text-textMain');
+                b.classList.remove('font-medium'); 
             });
-            e.target.classList.add('text-textMain'); e.target.classList.remove('hover:text-textMain');
+            e.target.classList.add('font-medium');
             
             const t = dict[l];
             document.querySelector('.badge-text').innerText = t.badge;
@@ -651,7 +664,7 @@
                 btn.disabled = false;
                 document.getElementById('fname').value = '';
                 document.getElementById('fpain').value = '';
-            }, 1000);
+            }, 1200);
         }
     </script>
 </body>
