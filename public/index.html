@@ -113,13 +113,13 @@
 
         /* Desktop: 2 colunas */
         @media (min-width: 960px) {
-            .hero { padding: 80px 6% 140px; min-height: 100vh; }
+            .hero { padding: 100px 6% 160px; min-height: 100vh; }
             .hero-inner {
                 flex-direction: row; text-align: left;
-                align-items: center; gap: 72px;
+                align-items: center; gap: 80px;
             }
-            .hero-text { flex: 1.1; }
-            .hero-visual { flex: 0.9; display: flex !important; }
+            .hero-text { flex: 1.15; }
+            .hero-visual { flex: 0.85; display: flex !important; }
         }
 
         .hero-text { width: 100%; }
@@ -140,15 +140,15 @@
         @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
 
         .headline {
-            font-size: clamp(2.5rem, 5.5vw, 5.4rem);
-            font-weight: 200; line-height: 1.08; margin-bottom: 24px;
-            letter-spacing: -1.5px; color: var(--text);
+            font-size: clamp(3rem, 7vw, 8.5rem);
+            font-weight: 100; line-height: 1.04; margin-bottom: 28px;
+            letter-spacing: -2.5px; color: var(--text);
         }
-        .headline strong { font-weight: 600; color: var(--ocean); }
+        .headline strong { font-weight: 600; color: var(--ocean); display: block; }
         .subheadline {
-            font-size: clamp(0.93rem, 1.4vw, 1.05rem);
-            color: var(--muted); max-width: 480px; margin-bottom: 48px;
-            font-weight: 300; line-height: 1.82;
+            font-size: clamp(0.9rem, 1.3vw, 1rem);
+            color: var(--muted); max-width: 500px; margin-bottom: 52px;
+            font-weight: 300; line-height: 1.9; letter-spacing: 0.01em;
         }
         @media (max-width: 959px) { .subheadline { margin-left: auto; margin-right: auto; } }
 
@@ -156,13 +156,13 @@
         @media (max-width: 959px) { .cta-group { justify-content: center; } }
 
         .cta-main {
-            background: var(--verde); color: #fff; border: none;
+            background: var(--ocean); color: #fff; border: none;
             padding: 16px 44px; font-weight: 500; font-family: 'Montserrat';
-            font-size: 0.85rem; cursor: pointer; border-radius: 100px;
-            transition: 0.35s; letter-spacing: 0.08em; text-transform: uppercase;
-            box-shadow: 0 4px 22px rgba(0,168,150,0.22);
+            font-size: 0.82rem; cursor: pointer; border-radius: 100px;
+            transition: 0.35s; letter-spacing: 0.1em; text-transform: uppercase;
+            box-shadow: 0 4px 28px rgba(8,61,110,0.25);
         }
-        .cta-main:hover { transform: translateY(-3px); box-shadow: 0 12px 38px rgba(0,168,150,0.32); }
+        .cta-main:hover { transform: translateY(-3px); box-shadow: 0 12px 44px rgba(8,61,110,0.35); background: #0a4a84; }
         .cta-soft {
             font-size: 0.82rem; color: var(--muted); font-weight: 300;
             letter-spacing: 0.06em; cursor: pointer; transition: 0.3s; background: none; border: none;
@@ -263,7 +263,7 @@
         .diff-headline em { font-style: italic; font-weight: 300; color: var(--verde); }
 
         .diff-point { display: flex; flex-direction: column; }
-        .diff-icon { width: 40px; height: 40px; min-width: 40px; border-radius: 12px; background: var(--verde-s); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--verde); font-size: 0.85rem; }
+        .diff-icon { display: none; }
         .diff-point-text strong { display: block; font-size: 0.93rem; font-weight: 500; color: var(--ocean); margin-bottom: 6px; }
         .diff-point-text p { font-size: 0.85rem; color: var(--muted); line-height: 1.72; font-weight: 300; }
         @media (max-width: 699px) {
@@ -386,6 +386,23 @@
         .egg-flash.fh { animation: flh 0.18s ease; }
         @keyframes flv { 0% { opacity: 0.16; background: #2EFFD5; } 100% { opacity: 0; } }
         @keyframes flh { 0% { opacity: 0.16; background: #D080FF; } 100% { opacity: 0; } }
+
+        /* ── MANIFESTO ───────────────────────────────────── */
+        .manifesto {
+            background: var(--white);
+            padding: 110px 6%;
+            text-align: center;
+            border-top: 1px solid rgba(8,61,110,0.05);
+            border-bottom: 1px solid rgba(8,61,110,0.05);
+        }
+        .manifesto-text {
+            font-size: clamp(1.6rem, 3.8vw, 4rem);
+            font-weight: 100; color: var(--ocean);
+            max-width: 880px; margin: 0 auto;
+            line-height: 1.25; letter-spacing: -1px;
+            font-style: italic;
+        }
+        .manifesto-text em { font-weight: 500; font-style: italic; color: var(--verde); }
 
         /* ── MOCKUP DASHBOARD ────────────────────────────── */
         .hero-visual { display: none; }
@@ -510,10 +527,10 @@
                 <div class="hero-logo-mark r"></div>
                 <img src="logo.png" alt="L.H.E.X." class="hero-logo r" onclick="toggleModal()">
                 <h1 class="headline r rd1">
-                    Menos operação.<br><strong>Mais crescimento.</strong>
+                    Infraestrutura<br>para<strong>crescimento inteligente.</strong>
                 </h1>
                 <p class="subheadline r rd2">
-                    Sistemas, automações e inteligência operacional para clínicas e empresas que crescem com excelência.
+                    Sistemas, automação e inteligência operacional para empresas que valorizam precisão, performance e escala.
                 </p>
                 <div class="cta-group r rd3">
                     <button class="cta-main" onclick="toggleModal()">Quero conversar</button>
@@ -577,6 +594,11 @@
         </div>
     </section>
 
+    <!-- Manifesto -->
+    <section class="manifesto">
+        <p class="manifesto-text r">"A melhor operação é aquela que você <em>nunca precisa gerenciar.</em>"</p>
+    </section>
+
     <!-- Trust strip -->
     <div class="trust-strip">
         <div class="trust-item r"><div class="trust-label">Feito sob medida</div><div class="trust-text">Nenhuma solução é igual à outra</div></div>
@@ -591,18 +613,18 @@
             <div class="ad-grid">
                 <div class="ad-col ad-antes r rd1">
                     <div class="ad-col-label">Antes</div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Leads chegam e somem sem acompanhamento</span></div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Equipe apagando incêndio todos os dias</span></div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Processos manuais que travam o crescimento</span></div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Decisões no feeling, sem dados reais</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Leads perdidos. Nenhum acompanhamento.</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Equipe apagando incêndio.</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Processos manuais, crescimento travado.</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Decisões sem dados.</span></div>
                 </div>
                 <div class="ad-divider r rd2">→</div>
                 <div class="ad-col ad-depois r rd2">
                     <div class="ad-col-label">Depois</div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Cada lead acompanhado, nenhum perdido</span></div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Operação rodando — equipe focada no estratégico</span></div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Automações substituem o operacional repetitivo</span></div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Dados em tempo real para decisões mais rápidas</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Zero leads perdidos. Funil preciso.</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Operação fluída. Equipe no estratégico.</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Automação no lugar do esforço repetitivo.</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Dados em tempo real. Decisões rápidas.</span></div>
                 </div>
             </div>
             <p class="ad-quote r rd3">"Tecnologia não é custo. É margem."</p>
@@ -618,23 +640,23 @@
 
     <!-- Serviços -->
     <section class="solutions-wrap">
-        <div class="section-eye r">O que fazemos</div>
-        <h2 class="section-title r rd1">Para cada problema,<br><strong>uma solução própria.</strong></h2>
+        <div class="section-eye r">O que construímos</div>
+        <h2 class="section-title r rd1">Três frentes.<br><strong>Um objetivo.</strong></h2>
         <div class="solutions">
             <div class="card r">
                 <div class="card-num">01 — Growth com IA</div>
                 <h3>Automação + CRM + aquisição.</h3>
-                <p>Leads acompanhados do primeiro contato à venda. CRM inteligente, nutrição automática e dados que mostram o que converte.</p>
+                <p>Do primeiro contato à venda — sem esforço manual.</p>
             </div>
             <div class="card r rd1">
                 <div class="card-num">02 — Operação Inteligente</div>
-                <h3>Menos caos operacional.</h3>
-                <p>Agendamentos, cobranças e lembretes acontecem sozinhos. Sua equipe para de apagar incêndio e começa a crescer.</p>
+                <h3>Menos caos. Mais resultado.</h3>
+                <p>Processos que rodam sem precisar de você.</p>
             </div>
             <div class="card r rd2">
                 <div class="card-num">03 — Experiência Premium</div>
                 <h3>Clientes que voltam e indicam.</h3>
-                <p>Acompanhamento estruturado, comunicação personalizada e processos que geram confiança — em clínicas e negócios high ticket.</p>
+                <p>Relacionamento estruturado que gera confiança e escala.</p>
             </div>
         </div>
     </section>
@@ -728,7 +750,7 @@
     <section class="cta-section">
         <div class="cta-inner">
             <div class="cta-eye r">Próximo passo</div>
-            <h2 class="cta-heading r rd1">Empresas inteligentes<br><strong>crescem mais rápido.</strong></h2>
+            <h2 class="cta-heading r rd1">Operação precisa.<br><strong>Crescimento inevitável.</strong></h2>
             <p class="cta-sub r rd2">Você conta, a gente cuida do resto.</p>
             <button class="cta-main r rd3" onclick="toggleModal()">Quero conversar</button>
         </div>
@@ -800,17 +822,18 @@
     /* ── CONTEÚDO BILÍNGUE ──────────────────────────────── */
     const C = {
         pt: {
-            ht: 'Menos operação.<br><strong>Mais crescimento.</strong>',
-            hs: 'Sistemas, automações e inteligência operacional para clínicas e empresas que crescem com excelência.',
+            ht: 'Infraestrutura<br>para<strong>crescimento inteligente.</strong>',
+            hs: 'Sistemas, automação e inteligência operacional para empresas que valorizam precisão, performance e escala.',
             cta: 'Quero conversar', cta2: 'Como funciona',
-            secEye: 'O que fazemos',
-            secTitle: 'Para cada problema,<br><strong>uma solução própria.</strong>',
+            mani: '"A melhor operação é aquela que você <em>nunca precisa gerenciar.</em>"',
+            secEye: 'O que construímos',
+            secTitle: 'Três frentes.<br><strong>Um objetivo.</strong>',
             c1n:'01 — Growth com IA', c1t:'Automação + CRM + aquisição.',
-            c1d:'Leads acompanhados do primeiro contato à venda. CRM inteligente, nutrição automática e dados que mostram o que converte.',
-            c2n:'02 — Operação Inteligente', c2t:'Menos caos operacional.',
-            c2d:'Agendamentos, cobranças e lembretes acontecem sozinhos. Sua equipe para de apagar incêndio e começa a crescer.',
+            c1d:'Do primeiro contato à venda — sem esforço manual.',
+            c2n:'02 — Operação Inteligente', c2t:'Menos caos. Mais resultado.',
+            c2d:'Processos que rodam sem precisar de você.',
             c3n:'03 — Experiência Premium', c3t:'Clientes que voltam e indicam.',
-            c3d:'Acompanhamento estruturado, comunicação personalizada e processos que geram confiança — em clínicas e negócios high ticket.',
+            c3d:'Relacionamento estruturado que gera confiança e escala.',
             diffEye:'Por que a L.H.E.X.',
             diffHead:'Cada cliente é único.<br>A solução <em>também é.</em>',
             dp1t:'Sem pacote pré-definido', dp1d:'Primeiro entendemos o que você tem, onde trava e o que falta. Depois construímos — sem fórmula pronta.',
@@ -820,7 +843,7 @@
             fq:['Para quem é a L.H.E.X.?','Preciso entender de tecnologia?','Em quanto tempo aparecem os primeiros resultados?','Como funciona o início?'],
             fa:['Para clínicas, consultórios e empresas que estão crescendo e precisam que a tecnologia acompanhe esse crescimento — sem virar um problema a mais.','Não precisa. Cuidamos de tudo isso. Você só usa o que construímos juntos, de forma simples e no dia a dia.','As primeiras mudanças aparecem nas primeiras semanas. Para resultados mais estruturados, trabalhamos em ciclos de 90 dias.','Começa com uma conversa. A gente entende o que trava, o que já funciona e propõe o que faz sentido construir a partir daí.'],
             ctaEye:'Próximo passo',
-            ctaHead:'Empresas inteligentes<br><strong>crescem mais rápido.</strong>',
+            ctaHead:'Operação precisa.<br><strong>Crescimento inevitável.</strong>',
             ctaSub:'Você conta, a gente cuida do resto.',
             t1l:'Feito sob medida', t1t:'Nenhuma solução é igual à outra',
             t2l:'Sem complicação', t2t:'Você não precisa entender de tecnologia',
@@ -833,17 +856,18 @@
             sText:'Mensagem recebida.', sSub:'Entramos em contato pelo WhatsApp em breve.'
         },
         en: {
-            ht: 'Less operation.<br><strong>More growth.</strong>',
-            hs: 'Systems, automation and operational intelligence for clinics and businesses that grow with excellence.',
+            ht: 'Infrastructure<br>for<strong>intelligent growth.</strong>',
+            hs: 'Systems, automation and operational intelligence for companies that value precision, performance and scale.',
             cta: 'Let\'s talk', cta2: 'How it works',
-            secEye: 'What we do',
-            secTitle: 'For each problem,<br><strong>its own solution.</strong>',
+            mani: '"The best operation is the one you <em>never have to manage.</em>"',
+            secEye: 'What we build',
+            secTitle: 'Three fronts.<br><strong>One goal.</strong>',
             c1n:'01 — Growth with AI', c1t:'Automation + CRM + acquisition.',
-            c1d:'Leads tracked from first contact to sale. Smart CRM, automatic nurturing and data that shows what converts.',
-            c2n:'02 — Smart Operations', c2t:'Less operational chaos.',
-            c2d:'Scheduling, billing and reminders happen on their own. Your team stops firefighting and starts growing.',
+            c1d:'From first contact to sale — no manual effort.',
+            c2n:'02 — Smart Operations', c2t:'Less chaos. More results.',
+            c2d:'Processes that run without needing you.',
             c3n:'03 — Premium Experience', c3t:'Clients who return and refer.',
-            c3d:'Structured follow-up, personalized communication and processes that build trust — in clinics and high-ticket businesses.',
+            c3d:'Structured relationships that build trust and scale.',
             diffEye:'Why L.H.E.X.',
             diffHead:'Every client is unique.<br>The solution <em>is too.</em>',
             dp1t:'No preset package', dp1d:'We start by understanding what you have, where it breaks, and what\'s missing. Then we build — no templates.',
@@ -853,7 +877,7 @@
             fq:['Who is L.H.E.X. for?','Do I need to understand technology?','How soon do the first results appear?','How does it start?'],
             fa:['For clinics, practices and companies that are growing and need technology to keep up — without becoming one more problem.','You don\'t need to. We take care of all that. You just use what we build together, simply and day to day.','The first changes appear in the first weeks. For more structured results, we work in 90-day cycles.','It starts with a conversation. We understand what\'s blocking you, what\'s already working, and propose what makes sense to build from there.'],
             ctaEye:'Next step',
-            ctaHead:'Smart businesses<br><strong>grow faster.</strong>',
+            ctaHead:'Precise operations.<br><strong>Inevitable growth.</strong>',
             ctaSub:'You tell us, we take care of the rest.',
             t1l:'Made for you', t1t:'No two solutions are the same',
             t2l:'No complexity', t2t:'You don\'t need to understand technology',
@@ -878,6 +902,7 @@
         document.querySelector('.subheadline').innerText = t.hs;
         document.querySelectorAll('.cta-main').forEach(b => { if (b.tagName==='BUTTON') b.innerText = t.cta; });
         document.querySelector('.cta-soft').innerText = t.cta2;
+        document.querySelector('.manifesto-text').innerHTML = t.mani;
         document.querySelector('.section-eye').innerText = t.secEye;
         document.querySelector('.section-title').innerHTML = t.secTitle;
         const cards = document.querySelectorAll('.card');
