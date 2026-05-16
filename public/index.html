@@ -3,124 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#000000">
-    <title>L.H.E.X.® | Sovereign Tech Infrastructure</title>
-    
-    <meta name="description" content="Engenharia de Software, Infraestrutura Soberana e Protocolos M2M.">
+    <meta name="theme-color" content="#F6F8FA">
+    <title>L.H.E.X.® | Inteligência Operacional Premium</title>
+
+    <meta name="description" content="Sistemas, automações e IA para clínicas e empresas high ticket.">
     <link rel="icon" type="image/png" href="favicon.png">
-    
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg: #000000; 
-            --panel: rgba(10, 10, 12, 0.8); 
-            --text-primary: #ffffff; 
-            --text-secondary: #888899;
-            --lhex-green: #5FFFD7; 
-            --jabuticaba: #4A0E4E; 
-            --border: rgba(255, 255, 255, 0.05);
-            --glow-green: rgba(95, 255, 215, 0.2);
+            --bg: #F6F8FA;
+            --panel: rgba(255, 255, 255, 0.75);
+            --text-primary: #1A1A2E;
+            --text-secondary: #6B7280;
+            --lhex-blue: #6EC1E4;
+            --lhex-deep: #1D4E89;
+            --jabuticaba: #4A0E4E;
+            --sand: #E8DCCF;
+            --border: rgba(255, 255, 255, 0.6);
+            --glow: rgba(110, 193, 228, 0.15);
+            --white: #FFFFFF;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
         body {
-            background-color: var(--bg); color: var(--text-primary);
-            font-family: 'Montserrat', sans-serif; line-height: 1.6; overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 0%, #0a0a0f 0%, #000000 70%);
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #F6F8FA 0%, #EEF4FB 50%, #F6F8FA 100%);
         }
 
-        /* NAVBAR PREMIUM */
+        /* NAVBAR */
         .navbar {
             display: flex; justify-content: space-between; align-items: center; padding: 25px 5%;
-            background: transparent; border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);
+            background: rgba(246,248,250,0.9);
+            border-bottom: 1px solid rgba(29,78,137,0.08);
+            position: sticky; top: 0; z-index: 1000;
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         }
-        
-        .brand { font-family: 'Montserrat'; font-weight: 700; letter-spacing: 2px; font-size: 1.5rem; }
-        .brand-l, .brand-e, .brand-x { color: var(--lhex-green); text-shadow: 0 0 10px var(--glow-green); }
-        .brand-h { color: var(--jabuticaba); text-shadow: 0 0 15px rgba(74, 14, 78, 0.8); font-size: 1.8rem; }
-        .brand .reg { font-size: 0.8rem; color: var(--text-secondary); vertical-align: top;}
-        
-        .lang-dock { display: flex; gap: 20px; }
-        .lang-btn { font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--text-secondary); background: none; border: none; cursor: pointer; transition: 0.3s; }
-        .lang-btn:hover, .lang-btn.active { color: var(--lhex-green); text-shadow: 0 0 8px var(--glow-green); }
 
-        /* HERO SECTION */
-        .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
-        .hero-logo { 
-            width: 280px; margin-bottom: 40px; cursor: pointer; 
-            filter: drop-shadow(0 0 30px rgba(95, 255, 215, 0.3)); 
-            animation: float 6s ease-in-out infinite; transition: 0.5s; 
+        .brand {
+            font-family: 'Inter'; font-weight: 700; letter-spacing: 2px; font-size: 1.5rem;
+            cursor: pointer; user-select: none; transition: opacity 0.2s;
         }
-        .hero-logo:hover { filter: drop-shadow(0 0 60px rgba(95, 255, 215, 0.6)); transform: scale(1.05); }
+        .brand:hover { opacity: 0.75; }
+        .brand-l, .brand-e, .brand-x { color: var(--lhex-blue); }
+        .brand-h { color: var(--jabuticaba); font-size: 1.8rem; }
+        .brand .reg { font-size: 0.8rem; color: var(--text-secondary); vertical-align: top; }
+
+        .lang-dock { display: flex; gap: 20px; }
+        .lang-btn {
+            font-family: 'Inter'; font-size: 0.85rem; color: var(--text-secondary);
+            background: none; border: none; cursor: pointer; transition: 0.3s; font-weight: 500;
+        }
+        .lang-btn:hover, .lang-btn.active { color: var(--lhex-deep); }
+
+        /* HERO */
+        .hero {
+            min-height: 85vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 80px 40px;
+        }
+        .hero-logo {
+            width: 260px; margin-bottom: 48px; cursor: pointer;
+            filter: drop-shadow(0 4px 24px rgba(29,78,137,0.12));
+            animation: float 6s ease-in-out infinite; transition: 0.5s;
+        }
+        .hero-logo:hover { filter: drop-shadow(0 8px 40px rgba(29,78,137,0.22)); transform: scale(1.04); }
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
-        .headline { font-size: clamp(2rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; margin-bottom: 25px; max-width: 900px; letter-spacing: -1px; }
-        .headline strong { font-weight: 700; color: var(--lhex-green); }
-        .subheadline { font-size: 1.1rem; color: var(--text-secondary); max-width: 650px; margin-bottom: 50px; font-weight: 300; }
+        .headline {
+            font-size: clamp(2.2rem, 5vw, 4.2rem); font-weight: 600;
+            line-height: 1.1; margin-bottom: 28px; max-width: 900px;
+            letter-spacing: -1.5px; color: var(--text-primary);
+        }
+        .headline strong { font-weight: 700; color: var(--lhex-deep); }
+        .subheadline {
+            font-size: 1.15rem; color: var(--text-secondary);
+            max-width: 580px; margin-bottom: 56px; font-weight: 400;
+        }
 
-        /* CARDS / SOLUÇÕES */
-        .solutions { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto 100px; padding: 0 20px; }
-        .card { background: var(--panel); border: 1px solid var(--border); padding: 45px; border-radius: 4px; transition: 0.4s; cursor: pointer; position: relative; overflow: hidden; }
-        .card:hover { border-color: var(--lhex-green); transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 20px var(--glow-green); }
-        .card-header { font-family: 'JetBrains Mono'; color: var(--jabuticaba); font-size: 0.85rem; font-weight: 700; margin-bottom: 25px; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px;}
-        .card h3 { font-size: 1.5rem; margin-bottom: 15px; font-weight: 500; letter-spacing: 1px;}
-        .card p { color: var(--text-secondary); font-size: 0.95rem; font-weight: 300; line-height: 1.7;}
+        .cta-main {
+            background: var(--lhex-deep); color: #fff; border: none;
+            padding: 18px 48px; font-weight: 600; font-family: 'Inter';
+            font-size: 1rem; cursor: pointer; border-radius: 100px;
+            transition: 0.3s; letter-spacing: 0.02em;
+            box-shadow: 0 4px 20px rgba(29,78,137,0.25);
+        }
+        .cta-main:hover { background: #1a4478; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(29,78,137,0.35); }
 
-        /* FAQ VIP */
-        .faq { max-width: 800px; margin: 100px auto; padding: 0 20px; }
-        .faq-title { text-align: center; font-weight: 300; margin-bottom: 60px; font-size: 2rem; letter-spacing: 2px;}
-        .faq-item { border-bottom: 1px solid var(--border); padding: 30px 0; cursor: pointer; }
-        .faq-q { font-size: 1.2rem; font-weight: 400; display: flex; justify-content: space-between; align-items: center; color: #fff; transition: 0.3s;}
-        .faq-q span { color: var(--lhex-green); font-family: 'JetBrains Mono'; font-size: 1.5rem;}
-        .faq-a { height: 0; overflow: hidden; transition: 0.5s ease; color: var(--text-secondary); font-size: 1rem; line-height: 1.8; font-weight: 300; }
-        .faq-item.active .faq-a { height: auto; margin-top: 20px; padding-left: 15px; border-left: 2px solid var(--jabuticaba); }
-        .faq-item.active .faq-q { color: var(--lhex-green); }
+        /* CARDS */
+        .solutions {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px; max-width: 1200px; margin: 0 auto 140px; padding: 0 40px;
+        }
+        .card {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.65);
+            box-shadow: 0 8px 32px rgba(29,78,137,0.08);
+            padding: 56px 48px; border-radius: 20px;
+            transition: 0.4s; cursor: default; position: relative;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 48px rgba(29,78,137,0.14);
+            border-color: rgba(110,193,228,0.5);
+        }
+        .card-header {
+            color: var(--lhex-blue); font-size: 0.78rem; font-weight: 600;
+            margin-bottom: 28px; letter-spacing: 0.1em; text-transform: uppercase;
+        }
+        .card h3 { font-size: 1.45rem; margin-bottom: 16px; font-weight: 600; color: var(--text-primary); }
+        .card p { color: var(--text-secondary); font-size: 0.95rem; font-weight: 400; line-height: 1.75; }
 
-        /* FORMULÁRIO VIP */
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px;}
+        /* FAQ */
+        .faq { max-width: 800px; margin: 0 auto 140px; padding: 0 40px; }
+        .faq-title {
+            text-align: center; font-weight: 600; margin-bottom: 64px;
+            font-size: 2rem; letter-spacing: -0.5px; color: var(--text-primary);
+        }
+        .faq-item { border-bottom: 1px solid rgba(29,78,137,0.1); padding: 30px 0; cursor: pointer; }
+        .faq-q {
+            font-size: 1.1rem; font-weight: 500; display: flex;
+            justify-content: space-between; align-items: center;
+            color: var(--text-primary); transition: 0.3s; gap: 20px;
+        }
+        .faq-q span { color: var(--lhex-blue); font-size: 1.4rem; font-weight: 300; transition: 0.3s; flex-shrink: 0; }
+        .faq-a { height: 0; overflow: hidden; transition: 0.5s ease; color: var(--text-secondary); font-size: 1rem; line-height: 1.8; }
+        .faq-item.active .faq-a { height: auto; margin-top: 20px; padding-left: 16px; border-left: 2px solid var(--lhex-blue); }
+        .faq-item.active .faq-q { color: var(--lhex-deep); }
+        .faq-item.active .faq-q span { transform: rotate(45deg); display: inline-block; }
+
+        /* MODAL */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(29,78,137,0.12); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px;
+        }
         .modal.active { display: flex; }
-        .modal-box { background: #050508; border: 1px solid var(--border); width: 100%; max-width: 650px; padding: 50px; position: relative; border-top: 3px solid var(--lhex-green); border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.9); }
-        .form-header { font-family: 'JetBrains Mono'; color: #fff; margin-bottom: 15px; font-size: 1.3rem; font-weight: 300;}
-        .form-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 35px; font-weight: 300; line-height: 1.6;}
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; font-size: 0.75rem; color: #888; margin-bottom: 10px; font-family: 'JetBrains Mono'; letter-spacing: 1px;}
-        .form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(255,255,255,0.02); border: 1px solid var(--border); color: #fff; padding: 15px; font-family: 'Montserrat'; font-size: 1rem; font-weight: 300; transition: 0.3s; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--lhex-green); background: rgba(0,0,0,0.5); }
-        .cta-submit { background: var(--text-primary); color: #000; border: none; padding: 18px; width: 100%; font-weight: 700; font-family: 'JetBrains Mono'; cursor: pointer; margin-top: 15px; transition: 0.3s; letter-spacing: 1px;}
-        .cta-submit:hover { background: var(--lhex-green); box-shadow: 0 0 20px var(--glow-green); }
+        .modal-box {
+            background: rgba(255,255,255,0.97); border: 1px solid rgba(255,255,255,0.85);
+            width: 100%; max-width: 580px; padding: 56px; position: relative;
+            border-radius: 24px; box-shadow: 0 32px 80px rgba(29,78,137,0.2);
+        }
+        .form-header { color: var(--text-primary); margin-bottom: 12px; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.5px; }
+        .form-desc { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 40px; line-height: 1.6; }
+        .form-group { margin-bottom: 24px; }
+        .form-group label {
+            display: block; font-size: 0.75rem; color: var(--text-secondary);
+            margin-bottom: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; background: #F6F8FA; border: 1px solid rgba(29,78,137,0.15);
+            color: var(--text-primary); padding: 15px 18px; font-family: 'Inter';
+            font-size: 1rem; font-weight: 400; transition: 0.3s; border-radius: 12px;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--lhex-blue); background: #fff;
+            box-shadow: 0 0 0 3px rgba(110,193,228,0.2);
+        }
+        .form-group select {
+            cursor: pointer; appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath fill='%236B7280' d='M6 7L0 0h12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 18px center; padding-right: 42px;
+        }
+        .cta-submit {
+            background: var(--lhex-deep); color: #fff; border: none; padding: 18px;
+            width: 100%; font-weight: 600; font-family: 'Inter'; font-size: 1rem;
+            cursor: pointer; margin-top: 8px; transition: 0.3s; border-radius: 12px; letter-spacing: 0.02em;
+        }
+        .cta-submit:hover { background: #1a4478; box-shadow: 0 8px 24px rgba(29,78,137,0.3); }
+        .cta-submit:disabled { opacity: 0.7; cursor: not-allowed; }
 
-        /* LOADER E SUCESSO SINISTRO */
-        .lhex-loader { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; z-index: 2001; }
+        /* LOADER */
+        .lhex-loader { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 120px; height: 120px; z-index: 2001; }
         .lhex-loader.active { display: block; }
-        .lhex-logo-spin { width: 100%; height: 100%; animation: spin 1.5s linear infinite; filter: drop-shadow(0 0 20px var(--lhex-green)); }
+        .lhex-logo-spin { width: 100%; height: 100%; animation: spin 1.5s linear infinite; filter: drop-shadow(0 4px 16px rgba(29,78,137,0.3)); }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 3000; opacity: 0; transition: 0.5s; }
+        /* SUCCESS */
+        .success-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(246,248,250,0.98); display: none; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 3000; opacity: 0; transition: 0.5s;
+        }
         .success-overlay.active { display: flex; opacity: 1; }
-        .success-logo { width: 200px; margin-bottom: 30px; animation: success-spin 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275); filter: drop-shadow(0 0 40px var(--lhex-green)); }
+        .success-logo { width: 160px; margin-bottom: 32px; animation: success-spin 1s forwards cubic-bezier(0.175,0.885,0.32,1.275); filter: drop-shadow(0 8px 32px rgba(29,78,137,0.2)); }
         @keyframes success-spin { 0% { transform: rotate(0deg) scale(1); } 70% { transform: rotate(720deg) scale(1.2); } 100% { transform: rotate(720deg) scale(1.1); } }
-        
-        .success-text { font-family: 'JetBrains Mono'; font-size: 1.8rem; color: var(--lhex-green); text-align: center; opacity: 0; transform: translateY(20px); animation: fade-up 0.5s forwards 0.8s; }
-        .success-subtext { color: var(--text-secondary); margin-top: 10px; opacity: 0; transform: translateY(20px); animation: fade-up 0.5s forwards 1s; }
+        .success-text { font-size: 1.8rem; font-weight: 700; color: var(--lhex-deep); text-align: center; opacity: 0; transform: translateY(20px); animation: fade-up 0.5s forwards 0.8s; }
+        .success-subtext { color: var(--text-secondary); margin-top: 12px; opacity: 0; transform: translateY(20px); animation: fade-up 0.5s forwards 1s; font-size: 1rem; }
         @keyframes fade-up { 100% { opacity: 1; transform: translateY(0); } }
 
-        /* FOOTER CORRIGIDO E ALINHADO */
-        .footer { border-top: 1px solid var(--border); padding: 50px 20px; text-align: center; background: #030303; margin-top: 50px;}
-        .footer-content { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; align-items: center;}
-        
-        /* Ajuste fino do H no Footer para não ficar discrepante */
-        .f-logo { font-family: 'Montserrat'; font-weight: 700; font-size: 1.2rem; margin-bottom: 10px;}
-        .f-logo .brand-h { font-size: 1.3rem; text-shadow: none; } 
-        
-        .f-links { display: flex; gap: 30px; font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--text-secondary);}
-        .f-links a { color: var(--text-secondary); text-decoration: none; transition: 0.3s;}
-        .f-links a:hover { color: var(--lhex-green); }
-        .f-copy { font-size: 0.75rem; color: #555; margin-top: 20px; letter-spacing: 1px; line-height: 1.8;}
+        /* FOOTER */
+        .footer { border-top: 1px solid rgba(29,78,137,0.08); padding: 64px 40px; text-align: center; background: var(--white); }
+        .footer-content { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; align-items: center; }
+        .f-logo { font-family: 'Inter'; font-weight: 700; font-size: 1.2rem; margin-bottom: 8px; letter-spacing: 2px; }
+        .f-logo .brand-h { font-size: 1.3rem; }
+        .f-links { display: flex; gap: 30px; font-size: 0.9rem; color: var(--text-secondary); flex-wrap: wrap; justify-content: center; }
+        .f-links a { color: var(--text-secondary); text-decoration: none; transition: 0.3s; }
+        .f-links a:hover { color: var(--lhex-deep); }
+        .f-copy { font-size: 0.75rem; color: #9CA3AF; margin-top: 16px; letter-spacing: 0.05em; line-height: 1.8; }
 
+        /* ===== EASTER EGG ===== */
+        .lhex-egg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(8, 6, 18, 0.97);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            display: none; justify-content: center; align-items: center;
+            z-index: 9999; cursor: pointer; flex-direction: column;
+        }
+        .lhex-egg.active { display: flex; }
+
+        .egg-letters {
+            display: flex; align-items: flex-end; justify-content: center; gap: 8px;
+        }
+
+        .egg-letter-wrap {
+            display: flex; flex-direction: column; align-items: center;
+            opacity: 0; transform: translateY(80px) scale(0.4);
+            transition: opacity 0.55s cubic-bezier(0.34,1.56,0.64,1), transform 0.55s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .egg-letter-wrap.show { opacity: 1; transform: translateY(0) scale(1); }
+
+        .egg-letter {
+            font-size: clamp(5rem, 14vw, 13rem); font-weight: 900;
+            line-height: 0.9; font-family: 'Inter', sans-serif;
+        }
+        .egg-letter.L { color: #6EC1E4; text-shadow: 0 0 40px rgba(110,193,228,0.7), 0 0 100px rgba(110,193,228,0.25); }
+        .egg-letter.H { color: #c060cc; text-shadow: 0 0 50px rgba(192,96,204,0.8), 0 0 120px rgba(192,96,204,0.3); font-size: clamp(6rem, 16vw, 15rem); }
+        .egg-letter.E { color: #6EC1E4; text-shadow: 0 0 40px rgba(110,193,228,0.7), 0 0 100px rgba(110,193,228,0.25); }
+        .egg-letter.X { color: #1D4E89; text-shadow: 0 0 40px rgba(29,78,137,0.8), 0 0 100px rgba(29,78,137,0.3); }
+
+        .egg-meaning {
+            font-size: clamp(0.5rem, 1.3vw, 0.8rem); font-weight: 700;
+            letter-spacing: 0.25em; text-transform: uppercase;
+            margin-top: 14px; text-align: center; white-space: nowrap;
+            opacity: 0; transform: translateY(12px);
+            transition: opacity 0.4s ease 0.25s, transform 0.4s ease 0.25s;
+        }
+        .egg-letter-wrap.show .egg-meaning { opacity: 1; transform: translateY(0); }
+        .egg-meaning.L, .egg-meaning.E { color: rgba(110,193,228,0.8); }
+        .egg-meaning.H { color: rgba(192,96,204,0.8); }
+        .egg-meaning.X { color: rgba(29,78,137,0.7); }
+
+        .egg-tagline {
+            margin-top: 56px; color: rgba(255,255,255,0.18);
+            font-size: clamp(0.65rem, 1.5vw, 0.9rem); letter-spacing: 0.3em;
+            text-transform: uppercase; opacity: 0;
+            transition: opacity 0.5s ease 1s;
+        }
+        .lhex-egg.active .egg-tagline { opacity: 1; }
+        .egg-close-hint {
+            position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+            color: rgba(255,255,255,0.2); font-size: 0.7rem; letter-spacing: 0.2em;
+            text-transform: uppercase; opacity: 0; animation: fade-up 0.5s forwards 1.6s;
+            white-space: nowrap;
+        }
+        .egg-flash {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9998; opacity: 0;
+        }
+        .egg-flash.fl-blue { animation: flash-blue 0.18s ease; }
+        .egg-flash.fl-purple { animation: flash-purple 0.18s ease; }
+        .egg-flash.fl-deep { animation: flash-deep 0.18s ease; }
+        @keyframes flash-blue   { 0% { opacity: 0.25; background: #6EC1E4; } 100% { opacity: 0; } }
+        @keyframes flash-purple { 0% { opacity: 0.25; background: #c060cc; } 100% { opacity: 0; } }
+        @keyframes flash-deep   { 0% { opacity: 0.2;  background: #1D4E89; } 100% { opacity: 0; } }
     </style>
 </head>
 <body>
@@ -131,163 +285,277 @@
 
     <div class="success-overlay" id="successOverlay">
         <img src="logo.png" alt="Success" class="success-logo">
-        <div class="success-text">PROTOCOLO VALIDADO.</div>
-        <div class="success-subtext">Acesso concedido. Estabelecendo conexão segura via WhatsApp...</div>
+        <div class="success-text">Recebemos sua mensagem.</div>
+        <div class="success-subtext">Entramos em contato em breve via WhatsApp.</div>
     </div>
 
+    <!-- EASTER EGG OVERLAY -->
+    <div class="lhex-egg" id="lhexEgg" onclick="closeEgg()">
+        <div class="egg-letters">
+            <div class="egg-letter-wrap" id="egg-L">
+                <div class="egg-letter L">L</div>
+                <div class="egg-meaning L">Legado</div>
+            </div>
+            <div class="egg-letter-wrap" id="egg-H">
+                <div class="egg-letter H">H</div>
+                <div class="egg-meaning H">Humanidade</div>
+            </div>
+            <div class="egg-letter-wrap" id="egg-E">
+                <div class="egg-letter E">E</div>
+                <div class="egg-meaning E">Exponencial</div>
+            </div>
+            <div class="egg-letter-wrap" id="egg-X">
+                <div class="egg-letter X">X</div>
+                <div class="egg-meaning X">Multiplicar</div>
+            </div>
+        </div>
+        <div class="egg-tagline">cada letra. um propósito.</div>
+        <div class="egg-close-hint">toque para fechar</div>
+    </div>
+    <div class="egg-flash" id="eggFlash"></div>
+
     <nav class="navbar">
-        <div class="brand"><span class="brand-l">L.</span><span class="brand-h">H</span><span class="brand-e">.E</span><span class="brand-x">.X</span><span class="reg">®</span></div>
+        <div class="brand" onclick="openEgg()" title="Descubra o significado">
+            <span class="brand-l">L.</span><span class="brand-h">H</span><span class="brand-e">.E</span><span class="brand-x">.X</span><span class="reg">®</span>
+        </div>
         <div class="lang-dock">
-            <button class="lang-btn active">PT</button>
-            <button class="lang-btn">EN</button>
+            <button class="lang-btn active" onclick="setLang('pt', event)">PT</button>
+            <button class="lang-btn" onclick="setLang('en', event)">EN</button>
         </div>
     </nav>
 
     <section class="hero">
         <img src="logo.png" alt="LHEX Core" class="hero-logo" onclick="toggleModal()">
-        <h1 class="headline">Arquitetura de Software & <strong>Infraestrutura M2M.</strong></h1>
-        <p class="subheadline">Construímos sistemas invioláveis (C/Python) e validamos protocolos de automação financeira. Sua operação, sob seu controle absoluto.</p>
-        <button class="cta-submit" style="max-width: 300px; border-radius: 4px;" onclick="toggleModal()">SOLICITAR AUDITORIA</button>
+        <h1 class="headline">Menos operação. <strong>Mais crescimento.</strong></h1>
+        <p class="subheadline">Criamos sistemas, automações e inteligência operacional para clínicas e empresas high ticket.</p>
+        <button class="cta-main" onclick="toggleModal()">Quero conhecer</button>
     </section>
 
     <section class="solutions">
         <div class="card">
-            <div class="card-header"><span>01. THE VAULT</span><span>[ HOSTING ]</span></div>
-            <h3>Soberania de Dados</h3>
-            <p>Setup completo de infraestrutura em nuvem privada. Protegemos seu capital intelectual retirando sua operação de plataformas terceirizadas (Vendor Lock-in).</p>
+            <div class="card-header">01 — CRM Inteligente</div>
+            <h3>Relacionamento que converte</h3>
+            <p>Centralize pacientes e clientes em um sistema que funciona por você. Menos manual, mais resultado.</p>
         </div>
         <div class="card">
-            <div class="card-header"><span>02. THE CORE</span><span>[ DEV ]</span></div>
-            <h3>Lógica em C/Python</h3>
-            <p>Desenvolvimento robusto de scripts e back-ends preparados para integrações neurais. Código otimizado bare-metal para não quebrar sob estresse de escala.</p>
+            <div class="card-header">02 — Automação</div>
+            <h3>Operação sem atrito</h3>
+            <p>Elimine tarefas repetitivas e libere sua equipe para o que importa. A tecnologia trabalha, você cresce.</p>
         </div>
         <div class="card">
-            <div class="card-header"><span>03. THE PROTOCOL</span><span>[ M2M ]</span></div>
-            <h3>Liquidação M2M</h3>
-            <p>Estruturação de fluxos autônomos de pagamento (Machine-to-Machine) via APIs de alta segurança e Smart Contracts. Zero intervenção humana.</p>
+            <div class="card-header">03 — Growth com IA</div>
+            <h3>Inteligência que escala</h3>
+            <p>Estratégia e IA aplicadas ao crescimento da sua empresa. Decisões mais rápidas, resultados mais previsíveis.</p>
         </div>
     </section>
 
     <section class="faq">
-        <h2 class="faq-title">DIRETRIZES DE ARQUITETURA</h2>
-        
+        <h2 class="faq-title">Perguntas Frequentes</h2>
+
         <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-q">Por que a L.H.E.X. exige aprovação prévia? <span>+</span></div>
-            <div class="faq-a">Nós construímos arquitetura proprietária, não SaaS genérico. Nossa largura de banda técnica é reservada para operações que escalam acima de 6 dígitos anuais e compreendem que tecnologia de ponta é o maior ativo de uma empresa, não um centro de custo.</div>
+            <div class="faq-q">Para quem é a L.H.E.X.? <span>+</span></div>
+            <div class="faq-a">Para clínicas, consultórios e empresas que querem parar de perder tempo com operação e começar a crescer com tecnologia.</div>
         </div>
         <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-q">Por que não usar Vercel, AWS padrão ou Shopify? <span>+</span></div>
-            <div class="faq-a">A dependência de fornecedores (Vendor Lock-in) é um imposto oculto sobre o seu crescimento. A L.H.E.X. constrói 'The Vault' para que você seja o verdadeiro dono da máquina, do código e dos dados dos seus clientes. Segurança em nível institucional, hospedada no seu próprio cofre digital.</div>
+            <div class="faq-q">Preciso saber de tecnologia para trabalhar com vocês? <span>+</span></div>
+            <div class="faq-a">Não. Nossa função é exatamente essa: tornar a tecnologia invisível pra você. Você foca no seu negócio, a gente cuida do sistema.</div>
         </div>
         <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-q">O que significa liquidação M2M na prática? <span>+</span></div>
-            <div class="faq-a">Machine-to-Machine. É o ápice da eficiência operacional. Seu Agente IA negocia, nosso backend executa o contrato e o capital é liquidado na sua conta bancária (ou carteira Crypto) em milissegundos. Zero back-office humano. Zero atrito financeiro.</div>
+            <div class="faq-q">Em quanto tempo vejo resultados? <span>+</span></div>
+            <div class="faq-a">Os primeiros ganhos operacionais aparecem nas primeiras semanas. Para crescimento estruturado com IA, trabalhamos em ciclos de 90 dias.</div>
         </div>
         <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-q">Quais as garantias técnicas do código entregue? <span>+</span></div>
-            <div class="faq-a">Fornecemos SLA de 99.9% de uptime na infraestrutura gerenciada. Todo o código (Python/C) é entregue de forma criptografada diretamente no seu repositório privado do GitHub. Aceitamos contratos via Escrow para total neutralidade financeira.</div>
+            <div class="faq-q">Como funciona o processo? <span>+</span></div>
+            <div class="faq-a">Começa com uma conversa. Entendemos sua operação, mapeamos os gargalos e entregamos uma solução sob medida — sem jargão técnico, sem surpresas.</div>
         </div>
     </section>
 
     <div class="modal" id="appModal">
         <div class="modal-box">
-            <button class="close-reveal" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: #888; font-size: 1.2rem; cursor: pointer;" onclick="toggleModal()">✕</button>
-            <div class="form-header">PROTOCOLO DE ANÁLISE B2B</div>
-            <p class="form-desc">Inicie seu processo de aplicação. Ao enviar, os dados serão criptografados e enviados diretamente à Arquiteta Chefe.</p>
-            
+            <button style="position:absolute;top:20px;right:20px;background:none;border:none;color:#9CA3AF;font-size:1.3rem;cursor:pointer;line-height:1;transition:0.2s;" onmouseover="this.style.color='#1A1A2E'" onmouseout="this.style.color='#9CA3AF'" onclick="toggleModal()">✕</button>
+            <div class="form-header">Vamos conversar</div>
+            <p class="form-desc">Conta pra gente sobre o seu negócio. Retornamos em até 24h.</p>
+
             <form onsubmit="sendForm(event)">
                 <div class="form-group">
-                    <label>IDENTIFICAÇÃO EMPRESARIAL</label>
-                    <input type="text" id="fname" required placeholder="Sua Empresa / Nome Completo">
+                    <label>Quem é você</label>
+                    <input type="text" id="fname" required placeholder="Seu nome e empresa">
                 </div>
                 <div class="form-group">
-                    <label>ORÇAMENTO (CAPEX DISPONÍVEL)</label>
+                    <label>Investimento mensal</label>
                     <select id="fbudget">
-                        <option value="10k_50k">R$ 10k - 50k (The Vault Setup)</option>
-                        <option value="50k_150k">R$ 50k - 150k (Custom Core Backend)</option>
-                        <option value="150k_Plus">R$ 150k+ (Enterprise M2M Protocol)</option>
+                        <option value="Até R$ 5k/mês">Até R$ 5k/mês</option>
+                        <option value="R$ 5k–15k/mês">R$ 5k–15k/mês</option>
+                        <option value="R$ 15k+/mês">R$ 15k+/mês</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>ESCOPO TÉCNICO DESEJADO</label>
-                    <textarea id="fpain" rows="3" required placeholder="Qual ineficiência operacional a L.H.E.X. deve eliminar hoje?"></textarea>
+                    <label>Qual é o seu maior gargalo hoje?</label>
+                    <textarea id="fpain" rows="3" required placeholder="Me conta onde sua operação trava..."></textarea>
                 </div>
-                <button type="submit" class="cta-submit" id="submitBtn">TRANSMITIR DADOS (CRIPTOGRAFADO)</button>
+                <button type="submit" class="cta-submit" id="submitBtn">Quero começar</button>
             </form>
         </div>
     </div>
 
     <footer class="footer">
         <div class="footer-content">
-            <div class="f-logo"><span class="brand-l">L.</span><span class="brand-h">H</span><span class="brand-e">.E</span><span class="brand-x">.X</span><span class="reg" style="color:#555">®</span> SYSTEMS</div>
+            <div class="f-logo"><span class="brand-l">L.</span><span class="brand-h">H</span><span class="brand-e">.E</span><span class="brand-x">.X</span><span class="reg" style="color:#9CA3AF">®</span> SYSTEMS</div>
             <div class="f-links">
                 <a href="mailto:contato@lhexsystems.com"><i class="fas fa-envelope"></i> contato@lhexsystems.com</a>
-                <span><i class="fas fa-globe"></i> Origin: Brazil | Global Reach</span>
+                <span><i class="fas fa-globe"></i> Rio de Janeiro | Brasil</span>
             </div>
             <div class="f-copy">
-                &copy; 2026 L.H.E.X. Systems Protocol. All rights reserved.<br>
-                Founder & Lead Architect: Letícia Nascimento
+                &copy; 2026 L.H.E.X. Systems. Todos os direitos reservados.<br>
+                Founder &amp; Lead Architect: Letícia Nascimento
             </div>
         </div>
     </footer>
 
-   <script>
-        // Dicionário de Idiomas
+    <script>
         const content = {
             pt: {
-                ht: "Arquitetura de Software & <strong>Infraestrutura M2M.</strong>",
-                hs: "Construímos sistemas invioláveis (C/Python) e validamos protocolos de automação financeira. Sua operação, sob seu controle absoluto.",
-                c1t: "Soberania de Dados", c1d: "Setup completo de infraestrutura em nuvem privada. Protegemos seu capital intelectual retirando sua operação de plataformas terceirizadas (Vendor Lock-in).",
-                c2t: "Lógica em C/Python", c2d: "Desenvolvimento robusto de scripts e back-ends preparados para integrações neurais. Código otimizado bare-metal para não quebrar sob estresse de escala.",
-                c3t: "Liquidação M2M", c3d: "Estruturação de fluxos autônomos de pagamento (Machine-to-Machine) via APIs de alta segurança e Smart Contracts. Zero intervenção humana."
+                ht: "Menos operação. <strong>Mais crescimento.</strong>",
+                hs: "Criamos sistemas, automações e inteligência operacional para clínicas e empresas high ticket.",
+                cta: "Quero conhecer",
+                faqTitle: "Perguntas Frequentes",
+                c1h: "01 — CRM Inteligente", c1t: "Relacionamento que converte",
+                c1d: "Centralize pacientes e clientes em um sistema que funciona por você. Menos manual, mais resultado.",
+                c2h: "02 — Automação", c2t: "Operação sem atrito",
+                c2d: "Elimine tarefas repetitivas e libere sua equipe para o que importa. A tecnologia trabalha, você cresce.",
+                c3h: "03 — Growth com IA", c3t: "Inteligência que escala",
+                c3d: "Estratégia e IA aplicadas ao crescimento da sua empresa. Decisões mais rápidas, resultados mais previsíveis.",
+                fq: ["Para quem é a L.H.E.X.?","Preciso saber de tecnologia para trabalhar com vocês?","Em quanto tempo vejo resultados?","Como funciona o processo?"],
+                fa: [
+                    "Para clínicas, consultórios e empresas que querem parar de perder tempo com operação e começar a crescer com tecnologia.",
+                    "Não. Nossa função é exatamente essa: tornar a tecnologia invisível pra você. Você foca no seu negócio, a gente cuida do sistema.",
+                    "Os primeiros ganhos operacionais aparecem nas primeiras semanas. Para crescimento estruturado com IA, trabalhamos em ciclos de 90 dias.",
+                    "Começa com uma conversa. Entendemos sua operação, mapeamos os gargalos e entregamos uma solução sob medida — sem jargão técnico, sem surpresas."
+                ],
+                mTitle: "Vamos conversar", mDesc: "Conta pra gente sobre o seu negócio. Retornamos em até 24h.",
+                l1: "Quem é você", l2: "Investimento mensal", l3: "Qual é o seu maior gargalo hoje?",
+                p1: "Seu nome e empresa", p3: "Me conta onde sua operação trava...",
+                submit: "Quero começar", processing: "Enviando...",
+                sText: "Recebemos sua mensagem.", sSub: "Entramos em contato em breve via WhatsApp."
             },
             en: {
-                ht: "Software Architecture & <strong>M2M Infrastructure.</strong>",
-                hs: "We build unbreachable systems (C/Python) and validate financial automation protocols. Your operation, under your absolute control.",
-                c1t: "Data Sovereignty", c1d: "Complete private cloud infrastructure setup. We protect your intellectual capital by removing your operation from third-party platforms (Vendor Lock-in).",
-                c2t: "C/Python Logic", c2d: "Robust script and backend development ready for neural integrations. Bare-metal optimized code built not to break under scale stress.",
-                c3t: "M2M Settlement", c3d: "Structuring of autonomous payment flows (Machine-to-Machine) via high-security APIs and Smart Contracts. Zero human intervention."
+                ht: "Less operation. <strong>More growth.</strong>",
+                hs: "We build systems, automation and operational intelligence for premium clinics and businesses.",
+                cta: "Get to know us",
+                faqTitle: "Frequently Asked Questions",
+                c1h: "01 — Smart CRM", c1t: "Relationships that convert",
+                c1d: "Centralize patients and clients in a system that works for you. Less manual work, more results.",
+                c2h: "02 — Automation", c2t: "Friction-free operations",
+                c2d: "Eliminate repetitive tasks and free your team for what matters. Technology works, you grow.",
+                c3h: "03 — Growth with AI", c3t: "Intelligence that scales",
+                c3d: "Strategy and AI applied to your company's growth. Faster decisions, more predictable results.",
+                fq: ["Who is L.H.E.X. for?","Do I need to know about technology?","How soon will I see results?","How does the process work?"],
+                fa: [
+                    "For clinics, practices and businesses that want to stop wasting time on operations and start growing with technology.",
+                    "No. That's exactly our job: make technology invisible to you. You focus on your business, we handle the system.",
+                    "The first operational gains appear within the first weeks. For structured AI-driven growth, we work in 90-day cycles.",
+                    "It starts with a conversation. We understand your operation, map the bottlenecks and deliver a tailored solution — no jargon, no surprises."
+                ],
+                mTitle: "Let's talk", mDesc: "Tell us about your business. We'll get back to you within 24 hours.",
+                l1: "Who are you", l2: "Monthly investment", l3: "What's your biggest bottleneck today?",
+                p1: "Your name and company", p3: "Tell me where your operation gets stuck...",
+                submit: "Get started", processing: "Sending...",
+                sText: "We got your message.", sSub: "We'll reach out shortly via WhatsApp."
             }
         };
 
-        function setLang(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        let currentLang = 'pt';
 
+        function setLang(lang, e) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
             const t = content[lang];
+
             document.querySelector('.headline').innerHTML = t.ht;
             document.querySelector('.subheadline').innerText = t.hs;
-            
+            document.querySelector('.cta-main').innerText = t.cta;
+            document.querySelector('.faq-title').innerText = t.faqTitle;
+
             const cards = document.querySelectorAll('.card');
-            cards[0].querySelector('h3').innerText = t.c1t; cards[0].querySelector('p').innerText = t.c1d;
-            cards[1].querySelector('h3').innerText = t.c2t; cards[1].querySelector('p').innerText = t.c2d;
-            cards[2].querySelector('h3').innerText = t.c3t; cards[2].querySelector('p').innerText = t.c3d;
+            [[0,'c1h','c1t','c1d'],[1,'c2h','c2t','c2d'],[2,'c3h','c3t','c3d']].forEach(([i,h,ti,d]) => {
+                cards[i].querySelector('.card-header').innerText = t[h];
+                cards[i].querySelector('h3').innerText = t[ti];
+                cards[i].querySelector('p').innerText = t[d];
+            });
+
+            document.querySelectorAll('.faq-item').forEach((item, i) => {
+                const q = item.querySelector('.faq-q');
+                q.childNodes[0].textContent = t.fq[i] + ' ';
+                item.querySelector('.faq-a').innerText = t.fa[i];
+            });
+
+            document.querySelector('.form-header').innerText = t.mTitle;
+            document.querySelector('.form-desc').innerText = t.mDesc;
+            const labels = document.querySelectorAll('.form-group label');
+            labels[0].innerText = t.l1; labels[1].innerText = t.l2; labels[2].innerText = t.l3;
+            document.getElementById('fname').placeholder = t.p1;
+            document.getElementById('fpain').placeholder = t.p3;
+            document.getElementById('submitBtn').innerText = t.submit;
         }
 
         function toggleModal() { document.getElementById('appModal').classList.toggle('active'); }
 
         function sendForm(e) {
             e.preventDefault();
+            const t = content[currentLang];
             const loader = document.getElementById('formLoader');
-            const submitBtn = document.getElementById('submitBtn');
+            const btn = document.getElementById('submitBtn');
             loader.classList.add('active');
-            submitBtn.disabled = true;
-            submitBtn.textContent = "PROCESSANDO...";
+            btn.disabled = true;
+            btn.textContent = t.processing;
 
             const name = document.getElementById('fname').value;
             const budget = document.getElementById('fbudget').value;
             const pain = document.getElementById('fpain').value;
-            
-            const seuWhatsApp = "5521987587047";
-            const msg = `*NOVA APLICAÇÃO [L.H.E.X.®]*%0A%0A🏢 *Empresa/CEO:* ${name}%0A💰 *Capex Previsto:* ${budget}%0A%0A📌 *Escopo Técnico Submetido:*%0A"${pain}"%0A%0A_Aguardando validação._`;
-            const whatsappUrl = `https://wa.me/${seuWhatsApp}?text=${msg}`;
+            const phone = "5521987587047";
+            const msg = `*NOVA MENSAGEM [L.H.E.X.®]*%0A%0A🏢 *Nome/Empresa:* ${name}%0A💰 *Investimento:* ${budget}%0A%0A📌 *Gargalo principal:*%0A"${pain}"`;
 
             setTimeout(() => {
                 loader.classList.remove('active');
                 toggleModal();
-                const successOverlay = document.getElementById('successOverlay');
-                successOverlay.classList.add('active');
-                setTimeout(() => { window.location.href = whatsappUrl; }, 2000); 
-            }, 1500); 
+                const overlay = document.getElementById('successOverlay');
+                document.querySelector('.success-text').innerText = t.sText;
+                document.querySelector('.success-subtext').innerText = t.sSub;
+                overlay.classList.add('active');
+                setTimeout(() => { window.location.href = `https://wa.me/${phone}?text=${msg}`; }, 2000);
+            }, 1500);
+        }
+
+        // ===== EASTER EGG =====
+        const eggIds    = ['egg-L', 'egg-H', 'egg-E', 'egg-X'];
+        const eggDelays = [0, 160, 320, 480];
+        const eggFlash  = ['fl-blue', 'fl-purple', 'fl-blue', 'fl-deep'];
+        let eggTimer;
+
+        function openEgg() {
+            const egg = document.getElementById('lhexEgg');
+            eggIds.forEach(id => document.getElementById(id).classList.remove('show'));
+            egg.classList.add('active');
+
+            eggIds.forEach((id, i) => {
+                setTimeout(() => {
+                    const f = document.getElementById('eggFlash');
+                    f.className = 'egg-flash';
+                    void f.offsetWidth;
+                    f.className = 'egg-flash ' + eggFlash[i];
+                    document.getElementById(id).classList.add('show');
+                }, eggDelays[i]);
+            });
+
+            eggTimer = setTimeout(closeEgg, 6000);
+        }
+
+        function closeEgg() {
+            clearTimeout(eggTimer);
+            document.getElementById('lhexEgg').classList.remove('active');
+            eggIds.forEach(id => document.getElementById(id).classList.remove('show'));
         }
     </script>
+</body>
+</html>
