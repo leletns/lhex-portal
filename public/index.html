@@ -1,991 +1,658 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth bg-[#04080F]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#F7FBFD">
+    <meta name="theme-color" content="#04080F">
 
-    <title>L.H.E.X.® | Tecnologia para quem quer crescer</title>
-    <meta name="description" content="Trabalhamos com clínicas e empresas que querem crescer sem precisar cuidar de tudo. Sistemas feitos para o seu negócio.">
+    <title>L.H.E.X.® | Private Operational Layer</title>
+    <meta name="description" content="Operações premium colapsam sem infraestrutura. Arquitetamos sistemas operacionais privados para clínicas e empresas que exigem previsibilidade, controle e escala.">
 
-    <!-- Favicon = logo -->
     <link rel="icon" type="image/png" href="logo.png">
-    <link rel="apple-touch-icon" href="logo.png">
-
-    <!-- WhatsApp / redes sociais -->
-    <meta property="og:type"        content="website">
-    <meta property="og:title"       content="L.H.E.X.® | Tecnologia para quem quer crescer">
-    <meta property="og:description" content="Trabalhamos com clínicas e empresas que querem crescer sem precisar cuidar de tudo.">
-    <meta property="og:image"       content="https://lhexsystems.com/social-card.jpg">
-    <meta property="og:image:width"  content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt"    content="L.H.E.X. Systems — Tecnologia para quem quer crescer">
-    <meta name="twitter:card"        content="summary_large_image">
-    <meta name="twitter:image"       content="https://lhexsystems.com/social-card.jpg">
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Typography: Outfit (Architecture) & Inter (Data/Terminal) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS Engine -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+                    },
+                    colors: {
+                        base: '#04080F',
+                        surface: '#080E18',
+                        accent: '#2DD4BF',
+                        textMain: '#F8FAFC',
+                        textSec: '#64748B',
+                        borderSubtle: 'rgba(255, 255, 255, 0.03)',
+                        borderStrong: 'rgba(255, 255, 255, 0.06)'
+                    },
+                    backgroundImage: {
+                        'grid-pattern': 'linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px)',
+                    },
+                    boxShadow: {
+                        'glow': '0 0 30px -10px rgba(45, 212, 191, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        /* ── SISTEMA VISUAL ──────────────────────────────────
-           Rio de Janeiro. Luz natural. Montserrat fino.
-           Paleta: céu → branco → areia → céu.
-        ─────────────────────────────────────────────────── */
-        :root {
-            --sky:     #EDF5FF;
-            --bg:      #F7FBFD;
-            --white:   #FFFFFF;
-            --sand:    #F5EEE4;
-            --ocean:   #083D6E;
-            --verde:   #00A896;
-            --verde-s: rgba(0,168,150,0.1);
-            --verde-b: rgba(0,168,150,0.22);
-            --jab:     #6B3A9E;
-            --text:    #0A2E4A;
-            --muted:   #7A8EA8;
-            --border:  rgba(0,168,150,0.14);
+        body { background-color: #04080F; color: #F8FAFC; overflow-x: hidden; }
+        
+        /* Premium Custom Cursor System (Desktop Only) */
+        @media (pointer: fine) {
+            body, a, button, .cursor-target { cursor: none !important; }
+            /* Inputs should retain normal cursor */
+            input, select, textarea { cursor: auto !important; }
+            
+            #custom-cursor {
+                position: fixed; top: 0; left: 0; width: 32px; height: 32px;
+                border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%;
+                pointer-events: none; z-index: 9999;
+                box-shadow: 0 0 15px -5px rgba(45, 212, 191, 0.2);
+                transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s, border-color 0.4s, box-shadow 0.4s;
+                will-change: transform, width, height;
+            }
+            #custom-cursor-dot {
+                position: fixed; top: 0; left: 0; width: 4px; height: 4px;
+                background: #fff; border-radius: 50%;
+                pointer-events: none; z-index: 10000;
+                transition: opacity 0.3s;
+                will-change: transform, opacity;
+            }
+            
+            /* Hover States */
+            #custom-cursor.hover-active {
+                width: 54px; height: 54px;
+                background-color: rgba(255, 255, 255, 0.04);
+                border-color: rgba(45, 212, 191, 0.4);
+                box-shadow: 0 0 30px -10px rgba(45, 212, 191, 0.3);
+            }
+            #custom-cursor-dot.hover-active { opacity: 0; }
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        html { scroll-behavior: smooth; }
-        body {
-            background: var(--bg); color: var(--text);
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.65; overflow-x: hidden;
-        }
-
-        /* ── SCROLL REVEAL ───────────────────────────────── */
-        .r {
+        /* Elite Motion System */
+        .reveal {
             opacity: 0;
-            transform: translateY(40px) scale(0.98);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(20px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: transform, opacity;
         }
-        .r.in    { opacity: 1; transform: translateY(0) scale(1); }
-        .rd1     { transition-delay: 0.10s; }
-        .rd2     { transition-delay: 0.20s; }
-        .rd3     { transition-delay: 0.30s; }
-        .rd4     { transition-delay: 0.40s; }
-        /* Slide from left/right on desktop */
-        .r-left  { transform: translateX(-40px) scale(0.98); }
-        .r-right { transform: translateX(40px) scale(0.98); }
-        .r-left.in, .r-right.in { transform: translateX(0) scale(1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
 
-        /* ── NAVBAR ──────────────────────────────────────── */
-        .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 22px 6%;
-            background: rgba(247,251,253,0.93);
-            border-bottom: 1px solid rgba(0,168,150,0.09);
-            position: sticky; top: 0; z-index: 1000;
-            backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
-        }
-        .brand {
-            font-weight: 600; letter-spacing: 3px; font-size: 1.2rem;
-            cursor: pointer; user-select: none; transition: opacity 0.25s;
-        }
-        .brand:hover { opacity: 0.62; }
-        .brand-l, .brand-e, .brand-x { color: var(--verde); }
-        .brand-h { color: var(--jab); font-size: 1.45rem; letter-spacing: 0; }
-        .brand .reg { font-size: 0.62rem; color: var(--muted); vertical-align: top; }
-        .lang-dock { display: flex; gap: 20px; }
-        .lang-btn {
-            font-size: 0.72rem; color: var(--muted); background: none; border: none;
-            cursor: pointer; transition: 0.3s; font-weight: 500; letter-spacing: 0.14em;
-            font-family: 'Montserrat';
-        }
-        .lang-btn:hover, .lang-btn.active { color: var(--verde); }
-
-        /* ── HERO ────────────────────────────────────────── */
-        .hero {
-            min-height: 96vh;
-            background: linear-gradient(180deg, var(--sky) 0%, var(--bg) 75%);
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: center; padding: 72px 6% 120px;
-            position: relative; overflow: hidden;
-        }
-        .hero-inner {
-            width: 100%; max-width: 1160px;
-            display: flex; flex-direction: column;
-            align-items: center; text-align: center; gap: 0;
+        .bg-noise {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            mix-blend-mode: screen;
         }
 
-        /* Desktop: 2 colunas */
-        @media (min-width: 960px) {
-            .hero { padding: 100px 6% 160px; min-height: 100vh; }
-            .hero-inner {
-                flex-direction: row; text-align: left;
-                align-items: center; gap: 80px;
-            }
-            .hero-text { flex: 1.15; }
-            .hero-visual { flex: 0.85; display: flex !important; }
+        /* Ambient Light Float */
+        @keyframes ambientFloat {
+            0% { transform: translate(0px, 0px); }
+            50% { transform: translate(30px, 20px); }
+            100% { transform: translate(0px, 0px); }
+        }
+        .animate-ambient {
+            animation: ambientFloat 18s ease-in-out infinite;
         }
 
-        .hero-text { width: 100%; }
-        .hero-logo-mark {
-            width: 56px; height: 4px; background: var(--verde);
-            border-radius: 2px; margin-bottom: 32px;
-            display: none;
+        /* Moving Grid Infrastructure */
+        .bg-grid-pattern {
+            animation: gridMove 30s linear infinite;
         }
-        @media (min-width: 960px) { .hero-logo-mark { display: block; } }
-
-        .hero-logo {
-            width: 220px; margin-bottom: 44px; cursor: pointer;
-            filter: drop-shadow(0 6px 32px rgba(0,168,150,0.22));
-            animation: float 7s ease-in-out infinite; transition: 0.4s;
-        }
-        .hero-logo:hover { filter: drop-shadow(0 10px 48px rgba(0,168,150,0.34)); }
-        @media (min-width: 960px) { .hero-logo { display: none; } }
-        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
-
-        .headline {
-            font-size: clamp(3rem, 7vw, 8.5rem);
-            font-weight: 100; line-height: 1.04; margin-bottom: 28px;
-            letter-spacing: -2.5px; color: var(--text);
-        }
-        .headline strong { font-weight: 600; color: var(--ocean); display: block; }
-        .subheadline {
-            font-size: clamp(0.9rem, 1.3vw, 1rem);
-            color: var(--muted); max-width: 500px; margin-bottom: 52px;
-            font-weight: 300; line-height: 1.9; letter-spacing: 0.01em;
-        }
-        @media (max-width: 959px) { .subheadline { margin-left: auto; margin-right: auto; } }
-
-        .cta-group { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-        @media (max-width: 959px) { .cta-group { justify-content: center; } }
-
-        .cta-main {
-            background: var(--ocean); color: #fff; border: none;
-            padding: 16px 44px; font-weight: 500; font-family: 'Montserrat';
-            font-size: 0.82rem; cursor: pointer; border-radius: 100px;
-            transition: 0.35s; letter-spacing: 0.1em; text-transform: uppercase;
-            box-shadow: 0 4px 28px rgba(8,61,110,0.25);
-        }
-        .cta-main:hover { transform: translateY(-3px); box-shadow: 0 12px 44px rgba(8,61,110,0.35); background: #0a4a84; }
-        .cta-soft {
-            font-size: 0.82rem; color: var(--muted); font-weight: 300;
-            letter-spacing: 0.06em; cursor: pointer; transition: 0.3s; background: none; border: none;
-            font-family: 'Montserrat'; text-decoration: underline; text-underline-offset: 4px;
-            text-decoration-color: var(--border);
-        }
-        .cta-soft:hover { color: var(--verde); }
-
-        /* Hero visual — logo com anéis (desktop) */
-        .hero-visual {
-            display: none; position: relative;
-            justify-content: center; align-items: center;
-        }
-        .hbv {
-            position: relative; width: 420px; height: 420px;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .hbv-ring {
-            position: absolute; border-radius: 50%;
-            border: 1px solid rgba(0,168,150,0.18);
-        }
-        .hbv-ring-1 { width: 240px; height: 240px; animation: rpulse 4s ease-in-out infinite 0s; }
-        .hbv-ring-2 { width: 320px; height: 320px; animation: rpulse 4s ease-in-out infinite 0.9s; }
-        .hbv-ring-3 { width: 400px; height: 400px; animation: rpulse 4s ease-in-out infinite 1.8s; }
-        @keyframes rpulse {
-            0%,100% { opacity: 0.3; transform: scale(1); }
-            50%      { opacity: 0.8; transform: scale(1.015); }
-        }
-        .hbv-logo {
-            width: 160px; position: relative; z-index: 1;
-            filter: drop-shadow(0 8px 36px rgba(0,168,150,0.22));
-            animation: float 7s ease-in-out infinite;
+        @keyframes gridMove {
+            from { background-position: 0 0; }
+            to { background-position: 40px 40px; }
         }
 
-        /* Ondas do hero */
-        .hero-waves { position: absolute; bottom: 0; left: 0; width: 100%; height: 70px; overflow: hidden; }
-        .hero-waves svg { display: block; width: 200%; height: 100%; }
-        .w1 { animation: wm 7s  linear infinite; }
-        .w2 { animation: wm 11s linear infinite reverse; opacity: 0.4; }
-        .w3 { animation: wm 15s linear infinite; opacity: 0.22; }
-        @keyframes wm { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        /* ── TRUST STRIP ─────────────────────────────────── */
-        .trust-strip {
-            background: var(--white);
-            display: flex; align-items: stretch;
-            border-bottom: 1px solid rgba(0,168,150,0.07);
-        }
-        .trust-item {
-            flex: 1; padding: 38px 44px; text-align: center;
-            border-right: 1px solid rgba(0,168,150,0.07);
-        }
-        .trust-item:last-child { border-right: none; }
-        .trust-label { font-size: 0.6rem; color: var(--verde); font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; margin-bottom: 7px; }
-        .trust-text { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
-
-        /* ── WAVES SVG separator ─────────────────────────── */
-        .wsep { width: 100%; overflow: hidden; line-height: 0; display: block; }
-        .wsep svg { display: block; width: 100%; }
-
-        /* ── SERVICES ────────────────────────────────────── */
-        .solutions-wrap { background: var(--sand); padding: 96px 6% 80px; }
-        .section-eye { text-align: center; font-size: 0.6rem; color: var(--verde); font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 16px; }
-        .section-title { text-align: center; font-size: clamp(1.55rem, 2.7vw, 2.5rem); font-weight: 200; margin-bottom: 64px; letter-spacing: -0.5px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.25; color: var(--ocean); }
-        .section-title strong { font-weight: 600; }
-
-        .solutions { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
-        .card {
-            background: var(--white); border: 1px solid rgba(0,168,150,0.09);
-            padding: 48px 40px; border-radius: 20px; transition: 0.45s;
-            box-shadow: 0 2px 16px rgba(8,61,110,0.05);
-            position: relative; overflow: hidden;
-        }
-        .card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: var(--verde); transform: scaleX(0); transform-origin: left;
-            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .card:hover { transform: translateY(-6px); box-shadow: 0 20px 52px rgba(8,61,110,0.1); border-color: var(--border); }
-        .card:hover::before { transform: scaleX(1); }
-        .card-num { font-size: 0.58rem; color: var(--verde); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 24px; }
-        .card h3 { font-size: 1.28rem; margin-bottom: 12px; font-weight: 500; color: var(--ocean); letter-spacing: -0.3px; }
-        .card p { color: var(--muted); font-size: 0.88rem; line-height: 1.82; font-weight: 300; }
-
-        /* ── DIFF SECTION ────────────────────────────────── */
-        .diff-section { background: var(--white); padding: 96px 6%; }
-        .diff-inner {
-            max-width: 960px; margin: 0 auto;
-        }
-        .diff-top { margin-bottom: 56px; }
-        @media (min-width: 900px) { .diff-top { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; } }
-
-        .diff-body { display: grid; grid-template-columns: 1fr; gap: 0; }
-        @media (min-width: 700px) { .diff-body { grid-template-columns: repeat(3, 1fr); gap: 0; } }
-
-        .diff-eye { font-size: 0.6rem; color: var(--verde); font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 20px; }
-        .diff-headline { font-size: clamp(1.6rem, 2.8vw, 2.7rem); font-weight: 200; line-height: 1.18; letter-spacing: -0.8px; color: var(--ocean); margin-bottom: 40px; }
-        .diff-headline em { font-style: italic; font-weight: 300; color: var(--verde); }
-
-        .diff-point { display: flex; flex-direction: column; }
-        .diff-icon { display: none; }
-        .diff-point-text strong { display: block; font-size: 0.93rem; font-weight: 500; color: var(--ocean); margin-bottom: 6px; }
-        .diff-point-text p { font-size: 0.85rem; color: var(--muted); line-height: 1.72; font-weight: 300; }
-        @media (max-width: 699px) {
-            .diff-point { padding: 28px 0 !important; border-right: none !important; border-bottom: 1px solid rgba(0,168,150,0.1); }
-            .diff-point:last-child { border-bottom: none; }
+        /* Chart Animation */
+        @keyframes drawLine { to { stroke-dashoffset: 0; } }
+        .chart-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
         }
 
-        /* ── FAQ ─────────────────────────────────────────── */
-        .faq-section { background: var(--sand); padding: 96px 40px; }
-        .faq-inner { max-width: 700px; margin: 0 auto; }
-        .faq-title { text-align: center; font-weight: 200; margin-bottom: 60px; font-size: clamp(1.5rem, 2.4vw, 2.1rem); letter-spacing: -0.5px; color: var(--ocean); }
-        .faq-item { border-bottom: 1px solid rgba(0,168,150,0.11); padding: 24px 0; cursor: pointer; }
-        .faq-q { font-size: 0.97rem; font-weight: 400; display: flex; justify-content: space-between; align-items: center; color: var(--text); transition: color 0.3s; gap: 20px; }
-        .faq-icon { width: 26px; height: 26px; min-width: 26px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--verde); font-size: 0.9rem; font-weight: 300; transition: all 0.35s; flex-shrink: 0; line-height: 1; }
-        .faq-a { height: 0; overflow: hidden; transition: 0.5s ease; color: var(--muted); font-size: 0.88rem; line-height: 1.85; font-weight: 300; }
-        .faq-item.active .faq-a { height: auto; margin-top: 14px; }
-        .faq-item.active .faq-q { color: var(--verde); }
-        .faq-item.active .faq-icon { background: var(--verde-s); border-color: var(--verde); transform: rotate(45deg); }
-
-        /* ── CTA SECTION ─────────────────────────────────── */
-        .cta-section { background: var(--white); padding: 112px 40px; text-align: center; position: relative; overflow: hidden; }
-        .cta-section::before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 160px; background: var(--sky); clip-path: ellipse(55% 100% at 50% 100%); }
-        .cta-inner { position: relative; z-index: 1; }
-        .cta-eye { font-size: 0.6rem; color: var(--verde); font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 20px; }
-        .cta-heading { font-size: clamp(1.9rem, 4.2vw, 3.8rem); font-weight: 200; line-height: 1.1; margin-bottom: 16px; letter-spacing: -1.5px; color: var(--ocean); }
-        .cta-heading strong { font-weight: 600; }
-        .cta-sub { font-size: 0.97rem; color: var(--muted); margin-bottom: 48px; font-weight: 300; }
-
-        /* ── FORM MODAL ──────────────────────────────────── */
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8,61,110,0.14); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; }
-        .modal.active { display: flex; }
-        .modal-box {
-            background: var(--white); width: 100%; max-width: 520px;
-            padding: 56px 52px; position: relative; border-radius: 28px;
-            box-shadow: 0 40px 100px rgba(8,61,110,0.18);
-        }
-        .modal-close { position: absolute; top: 24px; right: 24px; background: none; border: none; color: var(--muted); font-size: 1.1rem; cursor: pointer; transition: 0.2s; padding: 4px; }
-        .modal-close:hover { color: var(--ocean); }
-
-        .form-kicker { font-size: 0.58rem; color: var(--verde); font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 12px; }
-        .form-header { font-size: 1.8rem; font-weight: 200; letter-spacing: -0.8px; color: var(--ocean); margin-bottom: 8px; line-height: 1.15; }
-        .form-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 40px; font-weight: 300; line-height: 1.7; }
-
-        /* Inputs underline — clean e editorial */
-        .fgroup { margin-bottom: 32px; position: relative; }
-        .fgroup label { display: block; font-size: 0.6rem; font-weight: 600; color: var(--verde); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; }
-        .fgroup input, .fgroup textarea, .fgroup select {
-            width: 100%; background: transparent;
-            border: none; border-bottom: 1px solid rgba(0,168,150,0.25);
-            color: var(--text); padding: 10px 0;
-            font-family: 'Montserrat'; font-size: 0.95rem; font-weight: 300;
-            transition: 0.3s; border-radius: 0; outline: none;
-            -webkit-appearance: none; appearance: none;
-        }
-        .fgroup input::placeholder, .fgroup textarea::placeholder { color: rgba(122,142,168,0.5); }
-        .fgroup input:focus, .fgroup textarea:focus, .fgroup select:focus { border-bottom-color: var(--verde); }
-        .fgroup select {
-            cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%2300A896' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat; background-position: right 4px center; padding-right: 24px;
-        }
-        .fgroup select option { background: #fff; color: var(--text); }
-        .fgroup textarea { resize: none; }
-        .fline { position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--verde); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .fgroup:focus-within .fline { width: 100%; }
-
-        .form-submit {
-            width: 100%; background: var(--verde); color: #fff; border: none;
-            padding: 16px; font-weight: 500; font-family: 'Montserrat'; font-size: 0.85rem;
-            cursor: pointer; border-radius: 100px; transition: 0.35s;
-            text-transform: uppercase; letter-spacing: 0.1em; margin-top: 8px;
-        }
-        .form-submit:hover { background: #009485; transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,168,150,0.28); }
-        .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-        /* ── LOADER / SUCCESS ────────────────────────────── */
-        .lhex-loader { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 84px; z-index: 2001; }
-        .lhex-loader.active { display: block; }
-        .lhex-logo-spin { width: 100%; animation: spin 1.5s linear infinite; filter: drop-shadow(0 4px 14px rgba(0,168,150,0.25)); }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(247,251,253,0.97); display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 3000; opacity: 0; transition: 0.5s; }
-        .success-overlay.active { display: flex; opacity: 1; }
-        .success-logo { width: 100px; margin-bottom: 28px; animation: sspin 1s forwards cubic-bezier(0.175,0.885,0.32,1.275); filter: drop-shadow(0 6px 28px rgba(0,168,150,0.25)); }
-        @keyframes sspin { 0% { transform: rotate(0) scale(1); } 70% { transform: rotate(720deg) scale(1.2); } 100% { transform: rotate(720deg) scale(1.1); } }
-        .success-text { font-size: 1.6rem; font-weight: 300; color: var(--ocean); text-align: center; opacity: 0; transform: translateY(20px); animation: fadeup 0.5s forwards 0.8s; }
-        .success-sub { color: var(--muted); margin-top: 10px; opacity: 0; transform: translateY(20px); animation: fadeup 0.5s forwards 1s; font-size: 0.9rem; font-weight: 300; }
-        @keyframes fadeup { 100% { opacity: 1; transform: translateY(0); } }
-
-        /* ── FOOTER ──────────────────────────────────────── */
-        .footer { background: var(--sky); padding: 52px 6%; border-top: 1px solid rgba(0,168,150,0.09); }
-        .footer-content { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center; }
-        .f-logo { font-weight: 600; font-size: 0.95rem; letter-spacing: 3px; }
-        .f-logo .brand-h { font-size: 1.15rem; }
-        .f-links { display: flex; gap: 28px; font-size: 0.8rem; color: var(--muted); flex-wrap: wrap; justify-content: center; font-weight: 300; }
-        .f-links a { color: var(--muted); text-decoration: none; transition: 0.3s; }
-        .f-links a:hover { color: var(--verde); }
-        .f-copy { font-size: 0.65rem; color: rgba(122,142,168,0.6); margin-top: 8px; line-height: 1.9; font-weight: 300; }
-
-        /* ── EASTER EGG ──────────────────────────────────── */
-        .lhex-egg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3,8,22,0.97); display: none; justify-content: center; align-items: center; z-index: 9999; cursor: pointer; flex-direction: column; }
-        .lhex-egg.active { display: flex; }
-        .egg-letters { display: flex; align-items: flex-end; justify-content: center; gap: 10px; }
-        .egg-lw { display: flex; flex-direction: column; align-items: center; opacity: 0; transform: translateY(80px) scale(0.3); transition: opacity 0.6s cubic-bezier(0.34,1.56,0.64,1), transform 0.6s cubic-bezier(0.34,1.56,0.64,1); }
-        .egg-lw.show { opacity: 1; transform: none; }
-        .egg-l { font-size: clamp(5rem, 14vw, 13rem); font-weight: 900; line-height: 0.88; font-family: 'Montserrat'; }
-        .egg-l.L { color: #2EFFD5; text-shadow: 0 0 60px rgba(46,255,213,0.65); }
-        .egg-l.H { color: #D080FF; text-shadow: 0 0 70px rgba(208,128,255,0.75); font-size: clamp(6rem, 16vw, 15rem); }
-        .egg-l.E { color: #2EFFD5; text-shadow: 0 0 60px rgba(46,255,213,0.65); }
-        .egg-l.X { color: #2EFFD5; text-shadow: 0 0 60px rgba(46,255,213,0.45); opacity: 0.72; }
-        .egg-m { font-size: clamp(0.44rem, 1.05vw, 0.68rem); font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; margin-top: 12px; text-align: center; white-space: nowrap; opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s; font-family: 'Montserrat'; }
-        .egg-lw.show .egg-m { opacity: 1; transform: none; }
-        .egg-m.L, .egg-m.E, .egg-m.X { color: rgba(46,255,213,0.6); }
-        .egg-m.H { color: rgba(208,128,255,0.7); }
-        .egg-tag { margin-top: 56px; color: rgba(255,255,255,0.1); font-size: clamp(0.52rem, 1vw, 0.7rem); letter-spacing: 0.38em; text-transform: uppercase; opacity: 0; transition: opacity 0.6s ease 1.1s; font-family: 'Montserrat'; font-weight: 300; }
-        .lhex-egg.active .egg-tag { opacity: 1; }
-        .egg-hint { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.16); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0; animation: fadeup 0.5s forwards 1.8s; white-space: nowrap; font-family: 'Montserrat'; font-weight: 300; }
-        .egg-flash { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0; }
-        .egg-flash.fv { animation: flv 0.18s ease; }
-        .egg-flash.fh { animation: flh 0.18s ease; }
-        @keyframes flv { 0% { opacity: 0.16; background: #2EFFD5; } 100% { opacity: 0; } }
-        @keyframes flh { 0% { opacity: 0.16; background: #D080FF; } 100% { opacity: 0; } }
-
-        /* ── MANIFESTO ───────────────────────────────────── */
-        .manifesto {
-            background: var(--white);
-            padding: 110px 6%;
-            text-align: center;
-            border-top: 1px solid rgba(8,61,110,0.05);
-            border-bottom: 1px solid rgba(8,61,110,0.05);
-        }
-        .manifesto-text {
-            font-size: clamp(1.6rem, 3.8vw, 4rem);
-            font-weight: 100; color: var(--ocean);
-            max-width: 880px; margin: 0 auto;
-            line-height: 1.25; letter-spacing: -1px;
-            font-style: italic;
-        }
-        .manifesto-text em { font-weight: 500; font-style: italic; color: var(--verde); }
-
-        /* ── MOCKUP DASHBOARD ────────────────────────────── */
-        .hero-visual { display: none; }
-        @media (min-width: 960px) { .hero-visual { display: flex !important; flex: 0.9; justify-content: center; align-items: center; } }
-
-        .mock-panel {
-            background: rgba(255,255,255,0.97);
-            border: 1px solid rgba(0,168,150,0.14);
-            border-radius: 24px;
-            padding: 26px 24px;
-            box-shadow: 0 32px 80px rgba(8,61,110,0.13), 0 4px 16px rgba(0,168,150,0.07);
-            width: 100%; max-width: 420px;
-            animation: floatMock 7s ease-in-out infinite;
-        }
-        @keyframes floatMock {
-            0%,100% { transform: translateY(0px) rotate(-0.4deg); }
-            50%      { transform: translateY(-10px) rotate(0.3deg); }
-        }
-        .mock-topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(0,168,150,0.09); }
-        .mock-topbar-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean); }
-        .mock-dots { display: flex; gap: 5px; }
-        .mock-dot2 { width: 8px; height: 8px; border-radius: 50%; }
-        .mock-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 18px; }
-        .mock-mc { background: var(--sky); border-radius: 12px; padding: 13px 8px; text-align: center; border: 1px solid rgba(0,168,150,0.07); }
-        .mock-mv { font-size: 1.2rem; font-weight: 700; color: var(--ocean); line-height: 1; margin-bottom: 4px; }
-        .mock-mv.green { color: var(--verde); }
-        .mock-ml { font-size: 0.62rem; color: var(--muted); }
-        .mock-chart-hdr { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 9px; font-weight: 500; }
-        .mock-bars { display: flex; align-items: flex-end; gap: 5px; height: 58px; margin-bottom: 18px; }
-        .mock-b { flex: 1; border-radius: 3px 3px 2px 2px; }
-        .mock-b-dim { background: rgba(0,168,150,0.12); }
-        .mock-b-hi  { background: linear-gradient(180deg, var(--verde) 0%, rgba(0,168,150,0.25) 100%); }
-        .mock-b-acc { background: linear-gradient(180deg, var(--ocean) 0%, rgba(8,61,110,0.25) 100%); }
-        .mock-rows-hdr { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; font-weight: 500; }
-        .mock-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid rgba(0,168,150,0.06); }
-        .mock-row:last-child { border-bottom: none; }
-        .mock-av { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 700; color: #fff; }
-        .mock-rt { flex: 1; }
-        .mock-rn { font-size: 0.79rem; font-weight: 500; color: var(--text); }
-        .mock-rs { font-size: 0.66rem; color: var(--muted); margin-top: 1px; }
-        .mock-bg { font-size: 0.62rem; font-weight: 600; padding: 3px 8px; border-radius: 20px; white-space: nowrap; }
-        .mock-bg-ok   { background: rgba(0,168,150,0.1); color: var(--verde); }
-        .mock-bg-live { background: rgba(8,61,110,0.1);  color: var(--ocean); }
-
-        /* ── ANTES / DEPOIS ──────────────────────────────── */
-        .ad-section { background: var(--white); padding: 80px 6% 72px; }
-        .ad-inner { max-width: 840px; margin: 0 auto; }
-        .ad-eye { text-align: center; font-size: 0.6rem; color: var(--verde); font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 44px; }
-        .ad-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: start; }
-        @media (max-width: 680px) { .ad-grid { grid-template-columns: 1fr; gap: 16px; } .ad-divider { display: none; } }
-        .ad-col { border-radius: 20px; padding: 32px 28px; }
-        .ad-antes { background: rgba(220,38,38,0.04); border: 1px solid rgba(220,38,38,0.1); }
-        .ad-depois { background: rgba(0,168,150,0.05); border: 1px solid rgba(0,168,150,0.15); }
-        .ad-col-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; }
-        .ad-antes .ad-col-label { color: rgba(180,50,50,0.7); }
-        .ad-depois .ad-col-label { color: var(--verde); }
-        .ad-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; font-size: 0.87rem; color: var(--text); font-weight: 300; line-height: 1.55; }
-        .ad-item:last-child { margin-bottom: 0; }
-        .ad-ic { font-size: 0.72rem; font-weight: 700; flex-shrink: 0; margin-top: 3px; }
-        .ad-ic-no { color: rgba(180,50,50,0.65); }
-        .ad-ic-ok  { color: var(--verde); }
-        .ad-divider { font-size: 1.6rem; color: var(--muted); align-self: center; padding: 0 4px; opacity: 0.3; }
-        .ad-quote { text-align: center; margin-top: 52px; font-size: 1.1rem; color: var(--ocean); font-weight: 300; letter-spacing: -0.2px; font-style: italic; }
-
-        /* ── RESPONSIVE UTILS ────────────────────────────── */
-        @media (max-width: 899px) {
-            .trust-strip { flex-direction: column; }
-            .trust-item { border-right: none; border-bottom: 1px solid rgba(0,168,150,0.07); }
-            .trust-item:last-child { border-bottom: none; }
-        }
-        @media (max-width: 599px) {
-            .hero { padding: 60px 5% 100px; }
-            .solutions-wrap, .diff-section, .faq-section, .cta-section { padding: 72px 5%; }
-            .modal-box { padding: 40px 28px; }
-            .egg-letters { gap: 4px; }
-        }
+        /* Terminal Inputs */
+        input:focus, textarea:focus, select:focus { outline: none; border-color: #2DD4BF; background: rgba(255,255,255,0.01); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-accent selection:text-base relative font-sans">
 
-    <!-- Loader -->
-    <div class="lhex-loader" id="formLoader">
-        <img src="logo.png" alt="" class="lhex-logo-spin">
+    <!-- Custom Cursor DOM -->
+    <div id="custom-cursor" class="hidden md:block"></div>
+    <div id="custom-cursor-dot" class="hidden md:block"></div>
+
+    <div class="bg-noise"></div>
+    
+    <!-- OS Tag Obsessive Detail -->
+    <div class="fixed bottom-4 right-4 text-[8px] tracking-[0.3em] text-white/20 font-mono z-50 pointer-events-none">
+        LHX-OS v1.0
     </div>
 
-    <!-- Sucesso -->
-    <div class="success-overlay" id="successOverlay">
-        <img src="logo.png" alt="" class="success-logo">
-        <div class="success-text">Mensagem recebida.</div>
-        <div class="success-sub">Entramos em contato pelo WhatsApp em breve.</div>
-    </div>
+    <!-- Cold Architectural Light -->
+    <div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-accent/5 blur-[120px] pointer-events-none z-0 animate-ambient"></div>
 
-    <!-- Easter Egg -->
-    <div class="lhex-egg" id="lhexEgg" onclick="closeEgg()">
-        <div class="egg-letters">
-            <div class="egg-lw" id="eL"><div class="egg-l L">L</div><div class="egg-m L">Legado</div></div>
-            <div class="egg-lw" id="eH"><div class="egg-l H">H</div><div class="egg-m H">Humanidade</div></div>
-            <div class="egg-lw" id="eE"><div class="egg-l E">E</div><div class="egg-m E">Exponencial</div></div>
-            <div class="egg-lw" id="eX"><div class="egg-l X">X</div><div class="egg-m X">Multiplicar</div></div>
-        </div>
-        <div class="egg-tag">cada letra. um propósito.</div>
-        <div class="egg-hint">toque para fechar</div>
-    </div>
-    <div class="egg-flash" id="eggFlash"></div>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="brand" onclick="openEgg()">
-            <span class="brand-l">L.</span><span class="brand-h">H</span><span class="brand-e">.E</span><span class="brand-x">.X</span><span class="reg">®</span>
-        </div>
-        <div class="lang-dock">
-            <button class="lang-btn active" onclick="setLang('pt',event)">PT</button>
-            <button class="lang-btn" onclick="setLang('en',event)">EN</button>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="font-display font-medium tracking-[0.25em] text-sm flex items-center gap-3 text-textMain cursor-target">
+                <div class="w-1 h-1 bg-accent shadow-glow"></div>
+                L.H.E.X.®
+            </div>
+            <div class="flex items-center gap-8">
+                <div class="flex gap-4 text-[10px] font-mono tracking-widest text-textSec">
+                    <button class="lang-btn text-textMain transition-colors duration-300 uppercase cursor-target" onclick="setLang('pt', event)">PT-BR</button>
+                    <button class="lang-btn hover:text-textMain transition-colors duration-300 uppercase cursor-target" onclick="setLang('en', event)">EN</button>
+                </div>
+                <button onclick="toggleModal()" class="hidden md:flex items-center px-6 py-2.5 text-xs font-mono tracking-widest bg-white/[0.03] hover:bg-white/[0.06] border border-borderStrong rounded transition-all duration-300 text-textMain uppercase cursor-target">
+                    <span class="cta-nav">Iniciar diagnóstico</span>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-inner">
-            <!-- Texto -->
-            <div class="hero-text">
-                <div class="hero-logo-mark r"></div>
-                <img src="logo.png" alt="L.H.E.X." class="hero-logo r" onclick="toggleModal()">
-                <h1 class="headline r rd1">
-                    Infraestrutura<br>para<strong>crescimento inteligente.</strong>
-                </h1>
-                <p class="subheadline r rd2">
-                    Sistemas, automação e inteligência operacional para empresas que valorizam precisão, performance e escala.
-                </p>
-                <div class="cta-group r rd3">
-                    <button class="cta-main" onclick="toggleModal()">Quero conversar</button>
-                    <button class="cta-soft" onclick="document.querySelector('.solutions-wrap').scrollIntoView({behavior:'smooth'})">Como funciona</button>
+    <!-- Hero Section -->
+    <header class="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-6 pt-40 pb-20 z-10 border-b border-borderStrong overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern opacity-50 z-0 pointer-events-none" style="background-size: 40px 40px;"></div>
+        
+        <div class="max-w-6xl mx-auto w-full relative z-10">
+            <div class="reveal inline-flex items-center gap-2 px-3 py-1 rounded border border-borderStrong bg-base text-textSec text-[9px] font-mono tracking-[0.3em] uppercase mb-10">
+                <span class="w-1 h-1 bg-accent/80 animate-pulse"></span>
+                <span class="badge-text">Private Operational Layer</span>
+            </div>
+            
+            <h1 class="headline reveal delay-100 font-display text-5xl md:text-7xl lg:text-[6.5rem] font-light tracking-tight text-textMain mb-8 leading-[1.05]">
+                Operações premium <span class="text-transparent bg-clip-text bg-gradient-to-r from-textSec to-white/10 font-normal">colapsam sem infraestrutura.</span>
+            </h1>
+            
+            <p class="subheadline reveal delay-200 text-lg md:text-xl text-textSec font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+                Arquitetamos sistemas operacionais privados para clínicas e empresas que exigem previsibilidade, controle e escala.
+            </p>
+            
+            <div class="reveal delay-300 flex flex-col items-center gap-6">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button onclick="toggleModal()" class="cta-main px-8 py-4 bg-textMain text-base font-medium text-sm tracking-wide hover:bg-white/90 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] cursor-target">
+                        Iniciar diagnóstico
+                    </button>
+                    <button onclick="document.getElementById('manifesto').scrollIntoView()" class="cta-soft px-8 py-4 bg-transparent text-textMain border border-borderStrong font-medium text-sm tracking-wide hover:bg-white/5 transition-all duration-300 cursor-target">
+                        Manifesto
+                    </button>
+                </div>
+                
+                <div class="lim-text text-[10px] uppercase tracking-[0.3em] text-textSec/40 font-mono">
+                    Aplicações limitadas por capacidade operacional
                 </div>
             </div>
 
-            <!-- Visual desktop — mockup operacional -->
-            <div class="hero-visual r r-right rd1">
-                <div class="mock-panel">
-                    <div class="mock-topbar">
-                        <div class="mock-topbar-title">Painel Operacional</div>
-                        <div class="mock-dots">
-                            <div class="mock-dot2" style="background:rgba(255,100,80,0.5)"></div>
-                            <div class="mock-dot2" style="background:rgba(255,190,0,0.5)"></div>
-                            <div class="mock-dot2" style="background:var(--verde);opacity:0.7"></div>
+            <div class="reveal delay-300 mt-20 text-[9px] tracking-[0.4em] uppercase text-textSec/50 font-mono signature-text">
+                PRIVATE OPERATIONAL INFRASTRUCTURE
+            </div>
+        </div>
+    </header>
+
+    <!-- Operational Mockup -->
+    <section class="relative z-10 -mt-10 px-6">
+        <div class="reveal delay-300 w-full max-w-6xl mx-auto rounded-xl overflow-hidden bg-surface border border-borderStrong shadow-2xl relative flex flex-col md:flex-row text-left group cursor-target">
+            
+            <!-- Dashboard Content -->
+            <div class="flex-1 relative z-10 p-6 md:p-10 flex flex-col gap-8 bg-grid-pattern" style="background-size: 20px 20px;">
+                <div class="flex justify-between items-center border-b border-borderStrong pb-4">
+                    <div>
+                        <div class="text-[9px] text-textSec font-mono tracking-widest uppercase mb-1">L.H.E.X. Infrastructure</div>
+                        <div class="text-lg font-display font-light text-textMain">Visão Geral da Operação</div>
+                    </div>
+                    <div class="hidden sm:flex items-center gap-2.5 px-3 py-1.5 border border-borderStrong bg-base/80 text-[9px] text-accent font-mono uppercase tracking-widest rounded-sm">
+                        <span class="w-1.5 h-1.5 bg-accent rounded-full animate-pulse shadow-glow"></span>
+                        <span class="sync-text">SYNC ACTIVE • LIVE INFRASTRUCTURE</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-px bg-borderStrong border border-borderStrong">
+                    <div class="bg-surface p-5 flex flex-col gap-2 transition-colors hover:bg-surface/80">
+                        <div class="text-[9px] text-textSec font-mono tracking-[0.2em] uppercase">MRR Operacional</div>
+                        <div class="text-2xl font-display font-light text-textMain">R$ 142.500</div>
+                        <div class="text-[10px] text-accent/80 flex items-center gap-1 font-mono">+12.4% operational growth</div>
+                    </div>
+                    <div class="bg-surface p-5 flex flex-col gap-2 transition-colors hover:bg-surface/80">
+                        <div class="text-[9px] text-textSec font-mono tracking-[0.2em] uppercase">Taxa de Conversão</div>
+                        <div class="text-2xl font-display font-light text-textMain">18.4%</div>
+                        <div class="text-[10px] text-accent/80 flex items-center gap-1 font-mono">+2.1% conversion efficiency</div>
+                    </div>
+                    <div class="bg-surface p-5 flex flex-col gap-2 transition-colors hover:bg-surface/80">
+                        <div class="text-[9px] text-textSec font-mono tracking-[0.2em] uppercase">Churn Ativo</div>
+                        <div class="text-2xl font-display font-light text-textMain">0.8%</div>
+                        <div class="text-[10px] text-textSec flex items-center gap-1 font-mono">Controle absoluto</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-px bg-borderStrong border border-borderStrong">
+                    <div class="flex-[2] bg-surface p-6 relative overflow-hidden flex flex-col">
+                        <div class="text-[10px] font-mono text-textSec tracking-[0.2em] uppercase mb-6">Projeção de Escala</div>
+                        <div class="flex-1 w-full relative min-h-[140px]">
+                            <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 400 100">
+                                <path class="chart-path" d="M0,80 C50,70 100,85 150,50 C200,15 250,45 300,20 C350,-5 400,10 400,10" fill="none" stroke="#2DD4BF" stroke-width="1.5" stroke-linecap="square" />
+                            </svg>
                         </div>
                     </div>
-                    <div class="mock-metrics">
-                        <div class="mock-mc"><div class="mock-mv green">+34%</div><div class="mock-ml">Conversão</div></div>
-                        <div class="mock-mc"><div class="mock-mv">R$82k</div><div class="mock-ml">Receita/mês</div></div>
-                        <div class="mock-mc"><div class="mock-mv green">98%</div><div class="mock-ml">Satisfação</div></div>
-                    </div>
-                    <div class="mock-chart-hdr">Crescimento · últimas 7 semanas</div>
-                    <div class="mock-bars">
-                        <div class="mock-b mock-b-dim" style="height:38%"></div>
-                        <div class="mock-b mock-b-dim" style="height:52%"></div>
-                        <div class="mock-b mock-b-dim" style="height:44%"></div>
-                        <div class="mock-b mock-b-hi"  style="height:67%"></div>
-                        <div class="mock-b mock-b-hi"  style="height:58%"></div>
-                        <div class="mock-b mock-b-hi"  style="height:82%"></div>
-                        <div class="mock-b mock-b-acc" style="height:91%"></div>
-                    </div>
-                    <div class="mock-rows-hdr">Atividade recente</div>
-                    <div class="mock-row">
-                        <div class="mock-av" style="background:var(--verde)">CA</div>
-                        <div class="mock-rt"><div class="mock-rn">Clínica Aurora</div><div class="mock-rs">Agendamento automático · há 2min</div></div>
-                        <div class="mock-bg mock-bg-ok">✓ ok</div>
-                    </div>
-                    <div class="mock-row">
-                        <div class="mock-av" style="background:var(--jab)">RM</div>
-                        <div class="mock-rt"><div class="mock-rn">Dr. Rafael Mota</div><div class="mock-rs">Cobrança processada · há 9min</div></div>
-                        <div class="mock-bg mock-bg-ok">✓ ok</div>
-                    </div>
-                    <div class="mock-row">
-                        <div class="mock-av" style="background:var(--ocean)">IV</div>
-                        <div class="mock-rt"><div class="mock-rn">Instituto Vital</div><div class="mock-rs">Lead qualificado · há 14min</div></div>
-                        <div class="mock-bg mock-bg-live">● live</div>
+
+                    <div class="flex-1 bg-surface p-6 flex flex-col gap-4">
+                        <div class="text-[10px] font-mono text-textSec tracking-[0.2em] uppercase">Eventos Críticos</div>
+                        <div class="flex flex-col gap-3">
+                            <div class="flex items-center gap-3 border-b border-borderStrong pb-3">
+                                <div class="w-1 h-1 bg-accent animate-pulse"></div>
+                                <div>
+                                    <div class="text-xs font-medium text-textMain">Instituto Aurora</div>
+                                    <div class="text-[9px] text-textSec font-mono">Automação de Agendamento</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 border-b border-borderStrong pb-3">
+                                <div class="w-1 h-1 bg-white/20"></div>
+                                <div>
+                                    <div class="text-xs font-medium text-textMain">Dr. Rafael Mota</div>
+                                    <div class="text-[9px] text-textSec font-mono">Onboarding Concluído</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Ondas animadas -->
-        <div class="hero-waves">
-            <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <path class="w1" d="M0,35 C180,70 360,0 540,35 C720,70 900,0 1080,35 C1260,70 1350,20 1440,35 L1440,70 L0,70 Z" fill="rgba(255,255,255,0.92)"/>
-                <path class="w2" d="M0,48 C200,20 400,62 600,48 C800,34 1000,62 1200,48 C1320,40 1380,56 1440,48 L1440,70 L0,70 Z" fill="rgba(255,255,255,0.55)"/>
-                <path class="w3" d="M0,56 C150,42 300,66 500,56 C700,46 900,66 1100,56 C1250,48 1360,60 1440,56 L1440,70 L0,70 Z" fill="rgba(255,255,255,0.35)"/>
-            </svg>
+    <!-- Pain Section / Tensão Operacional -->
+    <section class="py-32 px-6 relative z-10" id="pain">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal mb-16 text-center md:text-left">
+                <span class="pain-eye text-[9px] font-mono text-red-500/70 tracking-[0.3em] uppercase mb-6 block">Alerta Crítico</span>
+                <h2 class="pain-head font-display text-3xl md:text-5xl font-light tracking-tight text-textMain">
+                    O que acontece quando a <span class="text-textSec font-normal">operação quebra.</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-borderStrong border border-borderStrong">
+                <div class="bg-base p-8 flex flex-col gap-4 reveal cursor-target hover:bg-surface/30 transition-colors">
+                    <div class="text-textSec font-mono text-xs opacity-50">01</div>
+                    <div class="p1-t text-textMain font-medium font-display text-xl">Leads esquecidos</div>
+                    <div class="p1-d text-textSec text-sm font-light">Oportunidades high-ticket morrem no funil por falta de follow-up estruturado.</div>
+                </div>
+                <div class="bg-base p-8 flex flex-col gap-4 reveal delay-100 cursor-target hover:bg-surface/30 transition-colors">
+                    <div class="text-textSec font-mono text-xs opacity-50">02</div>
+                    <div class="p2-t text-textMain font-medium font-display text-xl">Pacientes sem retorno</div>
+                    <div class="p2-d text-textSec text-sm font-light">Nenhuma cadência de relacionamento ativo. Dinheiro deixado na mesa todos os meses.</div>
+                </div>
+                <div class="bg-base p-8 flex flex-col gap-4 reveal delay-200 cursor-target hover:bg-surface/30 transition-colors">
+                    <div class="text-textSec font-mono text-xs opacity-50">03</div>
+                    <div class="p3-t text-textMain font-medium font-display text-xl">Agenda caótica</div>
+                    <div class="p3-d text-textSec text-sm font-light">Falta de previsibilidade. O faturamento vira uma montanha-russa dependente de esforço manual.</div>
+                </div>
+                <div class="bg-base p-8 flex flex-col gap-4 reveal cursor-target hover:bg-surface/30 transition-colors">
+                    <div class="text-textSec font-mono text-xs opacity-50">04</div>
+                    <div class="p4-t text-textMain font-medium font-display text-xl">Equipe sobrecarregada</div>
+                    <div class="p4-d text-textSec text-sm font-light">Talentos caros fazendo trabalho de software. Apagando incêndios no lugar de pensar escala.</div>
+                </div>
+                <div class="bg-base p-8 flex flex-col gap-4 reveal delay-100 md:col-span-2 cursor-target hover:bg-surface/30 transition-colors">
+                    <div class="text-textSec font-mono text-xs opacity-50">05</div>
+                    <div class="p5-t text-textMain font-medium font-display text-xl">Crescimento sem previsibilidade</div>
+                    <div class="p5-d text-textSec text-sm font-light">A empresa depende dos fundadores para rodar. Se o fluxo dobra hoje, a operação entra em colapso.</div>
+                </div>
+            </div>
+
+            <div class="mt-20 text-center reveal border border-borderStrong p-8 bg-surface">
+                <p class="pain-sub font-display text-xl text-textMain font-light tracking-wide">
+                    A L.H.E.X. existe para <span class="text-accent font-normal">impedir isso.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structural Features -->
+    <section class="py-32 px-6 relative z-10 border-t border-borderStrong bg-surface/30">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-20 reveal">
+                <span class="sec-eye text-textSec text-[9px] font-mono tracking-[0.3em] uppercase mb-6 block">Arquitetura de Sistema</span>
+                <h2 class="sec-title font-display text-4xl md:text-5xl font-light tracking-tight text-textMain leading-tight">
+                    Infraestrutura que remove o atrito.<br/>
+                    <span class="text-textSec font-normal">Controle operacional absoluto.</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-borderStrong border border-borderStrong">
+                <div class="reveal bg-surface p-10 flex flex-col md:col-span-2 cursor-target hover:bg-surface/80 transition-colors">
+                    <div class="text-borderStrong text-4xl font-display font-thin mb-8">01</div>
+                    <h3 class="c1-t font-display text-2xl font-normal text-textMain mb-4">Aquisição Inteligente</h3>
+                    <p class="c1-d text-textSec font-light leading-relaxed max-w-md text-sm">
+                        Estruturamos a captura, qualificação e conversão. Sistemas invisíveis garantem que nenhuma oportunidade seja perdida.
+                    </p>
+                </div>
+                
+                <div class="reveal bg-surface p-10 flex flex-col cursor-target hover:bg-surface/80 transition-colors">
+                    <div class="text-borderStrong text-4xl font-display font-thin mb-8">02</div>
+                    <h3 class="c2-t font-display text-2xl font-normal text-textMain mb-4">Orquestração Operacional</h3>
+                    <p class="c2-d text-textSec font-light leading-relaxed text-sm">
+                        Substituímos o esforço repetitivo por fluxos automatizados. Máxima precisão e zero microgerenciamento.
+                    </p>
+                </div>
+
+                <div class="reveal bg-surface p-10 flex flex-col md:col-span-3 cursor-target hover:bg-surface/80 transition-colors">
+                    <div class="text-borderStrong text-4xl font-display font-thin mb-8">03</div>
+                    <h3 class="c3-t font-display text-2xl md:text-3xl font-normal text-textMain mb-4">Retenção & Relacionamento</h3>
+                    <p class="c3-d text-textSec font-light leading-relaxed max-w-2xl text-sm">
+                        Construímos a arquitetura de contato que mantém seus clientes engajados, escalando a percepção de um atendimento premium sem inchar a folha de pagamento.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Manifesto -->
-    <section class="manifesto">
-        <p class="manifesto-text r">"A melhor operação é aquela que você <em>nunca precisa gerenciar.</em>"</p>
-    </section>
-
-    <!-- Trust strip -->
-    <div class="trust-strip">
-        <div class="trust-item r"><div class="trust-label">Feito sob medida</div><div class="trust-text">Nenhuma solução é igual à outra</div></div>
-        <div class="trust-item r rd1"><div class="trust-label">Sem complicação</div><div class="trust-text">Você não precisa entender de tecnologia</div></div>
-        <div class="trust-item r rd2"><div class="trust-label">Healthtech & high ticket</div><div class="trust-text">IA operacional para clínicas e negócios premium</div></div>
-    </div>
-
-    <!-- Antes / Depois -->
-    <section class="ad-section">
-        <div class="ad-inner">
-            <div class="ad-eye r">O problema que resolvemos</div>
-            <div class="ad-grid">
-                <div class="ad-col ad-antes r rd1">
-                    <div class="ad-col-label">Antes</div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Leads perdidos. Nenhum acompanhamento.</span></div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Equipe apagando incêndio.</span></div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Processos manuais, crescimento travado.</span></div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Decisões sem dados.</span></div>
-                </div>
-                <div class="ad-divider r rd2">→</div>
-                <div class="ad-col ad-depois r rd2">
-                    <div class="ad-col-label">Depois</div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Zero leads perdidos. Funil preciso.</span></div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Operação fluída. Equipe no estratégico.</span></div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Automação no lugar do esforço repetitivo.</span></div>
-                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Dados em tempo real. Decisões rápidas.</span></div>
-                </div>
-            </div>
-            <p class="ad-quote r rd3">"Tecnologia não é custo. É margem."</p>
+    <section class="py-32 border-y border-borderStrong bg-base relative z-10" id="manifesto">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <p class="mani-text font-display text-3xl md:text-5xl font-light text-textSec leading-tight tracking-tight">
+                "A verdadeira escala <br class="hidden md:block"/> 
+                <span class="text-textMain font-normal">acontece em silêncio.</span>"
+            </p>
         </div>
     </section>
 
-    <!-- Wave: white → sand -->
-    <div class="wsep" style="background:var(--white)">
-        <svg viewBox="0 0 1440 46" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,23 C360,46 720,0 1080,23 C1260,35 1350,12 1440,23 L1440,46 L0,46 Z" fill="#F5EEE4"/>
-        </svg>
-    </div>
-
-    <!-- Serviços -->
-    <section class="solutions-wrap">
-        <div class="section-eye r">O que construímos</div>
-        <h2 class="section-title r rd1">Três frentes.<br><strong>Um objetivo.</strong></h2>
-        <div class="solutions">
-            <div class="card r">
-                <div class="card-num">01 — Growth com IA</div>
-                <h3>Automação + CRM + aquisição.</h3>
-                <p>Do primeiro contato à venda — sem esforço manual.</p>
-            </div>
-            <div class="card r rd1">
-                <div class="card-num">02 — Operação Inteligente</div>
-                <h3>Menos caos. Mais resultado.</h3>
-                <p>Processos que rodam sem precisar de você.</p>
-            </div>
-            <div class="card r rd2">
-                <div class="card-num">03 — Experiência Premium</div>
-                <h3>Clientes que voltam e indicam.</h3>
-                <p>Relacionamento estruturado que gera confiança e escala.</p>
-            </div>
+    <!-- Final Execution -->
+    <section class="py-40 px-6 relative z-10 text-center">
+        <div class="max-w-3xl mx-auto reveal relative z-10">
+            <h2 class="cta-head font-display text-4xl md:text-6xl font-light tracking-tight text-textMain mb-6">
+                Precisão arquitetural.<br/><span class="text-textSec font-normal">Para operações que exigem controle.</span>
+            </h2>
+            <p class="cta-sub text-lg text-textSec font-light mb-12 max-w-xl mx-auto">
+                Não vendemos serviços soltos. Implementamos infraestrutura.
+            </p>
+            <button onclick="toggleModal()" class="cta-main px-10 py-4 bg-textMain text-base font-medium tracking-wide hover:bg-white/90 transition-all duration-300 text-sm cursor-target">
+                Iniciar diagnóstico
+            </button>
         </div>
     </section>
-
-    <!-- Wave: sand → white -->
-    <div class="wsep" style="background:var(--sand)">
-        <svg viewBox="0 0 1440 46" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,0 C360,46 720,0 1080,23 C1260,34 1350,10 1440,0 L1440,46 L0,46 Z" fill="#FFFFFF"/>
-        </svg>
-    </div>
-
-    <!-- Diferenciador -->
-    <section class="diff-section">
-        <div class="diff-inner">
-            <div class="diff-top">
-                <div class="r">
-                    <div class="diff-eye">Por que a L.H.E.X.</div>
-                    <h2 class="diff-headline">
-                        Cada cliente é único.<br>
-                        A solução <em>também é.</em>
-                    </h2>
-                </div>
-                <p class="r rd1" style="color:var(--muted);font-weight:300;font-size:0.97rem;line-height:1.8;align-self:center;">
-                    Não existe solução que funcione para todo mundo. Por isso começamos sempre ouvindo — e construímos a partir do que encontramos.
-                </p>
-            </div>
-            <div class="diff-body">
-                <div class="diff-point r" style="padding:32px 40px 32px 0;border-right:1px solid rgba(0,168,150,0.1);">
-                    <div class="diff-icon" style="margin-bottom:24px;"><i class="fas fa-fingerprint"></i></div>
-                    <div class="diff-point-text">
-                        <strong>Sem pacote pré-definido</strong>
-                        <p>Primeiro entendemos o que você tem, onde trava e o que falta. Depois construímos — sem fórmula pronta.</p>
-                    </div>
-                </div>
-                <div class="diff-point r rd1" style="padding:32px 40px;border-right:1px solid rgba(0,168,150,0.1);">
-                    <div class="diff-icon" style="margin-bottom:24px;"><i class="fas fa-feather-alt"></i></div>
-                    <div class="diff-point-text">
-                        <strong>Você não sente a tecnologia</strong>
-                        <p>Quando está bom, some. Você nem percebe que existe — e é exatamente isso.</p>
-                    </div>
-                </div>
-                <div class="diff-point r rd2" style="padding:32px 0 32px 40px;">
-                    <div class="diff-icon" style="margin-bottom:24px;"><i class="fas fa-seedling"></i></div>
-                    <div class="diff-point-text">
-                        <strong>Crescimento sem perda de controle</strong>
-                        <p>Você acompanha tudo. Sabe o que foi feito, o que está funcionando e o que vem a seguir.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wave: white → sand -->
-    <div class="wsep" style="background:var(--white)">
-        <svg viewBox="0 0 1440 46" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,10 C240,46 480,0 720,23 C960,46 1200,6 1440,18 L1440,46 L0,46 Z" fill="#F5EEE4"/>
-        </svg>
-    </div>
-
-    <!-- FAQ -->
-    <section class="faq-section">
-        <div class="faq-inner">
-            <h2 class="faq-title r">Dúvidas comuns</h2>
-            <div class="faq-item r" onclick="this.classList.toggle('active')">
-                <div class="faq-q">Para quem é a L.H.E.X.? <div class="faq-icon">+</div></div>
-                <div class="faq-a">Para clínicas, consultórios e empresas que estão crescendo e precisam que a tecnologia acompanhe esse crescimento — sem virar um problema a mais.</div>
-            </div>
-            <div class="faq-item r rd1" onclick="this.classList.toggle('active')">
-                <div class="faq-q">Preciso entender de tecnologia? <div class="faq-icon">+</div></div>
-                <div class="faq-a">Não precisa. Cuidamos de tudo isso. Você só usa o que construímos juntos, de forma simples e no dia a dia.</div>
-            </div>
-            <div class="faq-item r rd1" onclick="this.classList.toggle('active')">
-                <div class="faq-q">Em quanto tempo aparecem os primeiros resultados? <div class="faq-icon">+</div></div>
-                <div class="faq-a">As primeiras mudanças aparecem nas primeiras semanas. Para resultados mais estruturados, trabalhamos em ciclos de 90 dias.</div>
-            </div>
-            <div class="faq-item r rd2" onclick="this.classList.toggle('active')">
-                <div class="faq-q">Como funciona o início? <div class="faq-icon">+</div></div>
-                <div class="faq-a">Começa com uma conversa. A gente entende o que trava, o que já funciona e propõe o que faz sentido construir a partir daí.</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wave: sand → white -->
-    <div class="wsep" style="background:var(--sand)">
-        <svg viewBox="0 0 1440 46" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,30 C300,0 600,46 900,18 C1100,2 1280,38 1440,22 L1440,46 L0,46 Z" fill="#FFFFFF"/>
-        </svg>
-    </div>
-
-    <!-- CTA final -->
-    <section class="cta-section">
-        <div class="cta-inner">
-            <div class="cta-eye r">Próximo passo</div>
-            <h2 class="cta-heading r rd1">Operação precisa.<br><strong>Crescimento inevitável.</strong></h2>
-            <p class="cta-sub r rd2">Você conta, a gente cuida do resto.</p>
-            <button class="cta-main r rd3" onclick="toggleModal()">Quero conversar</button>
-        </div>
-    </section>
-
-    <!-- Modal formulário -->
-    <div class="modal" id="appModal">
-        <div class="modal-box">
-            <button class="modal-close" onclick="toggleModal()">✕</button>
-            <div class="form-kicker">Vamos nos conhecer</div>
-            <div class="form-header">Por onde<br>começar?</div>
-            <p class="form-desc">Conta o que trava. A gente lê tudo e responde de verdade.</p>
-            <form onsubmit="sendForm(event)">
-                <div class="fgroup">
-                    <label>Seu nome e empresa</label>
-                    <input type="text" id="fname" required placeholder="Ex.: Ana, Clínica Vida">
-                    <div class="fline"></div>
-                </div>
-                <div class="fgroup">
-                    <label>O que mais te preocupa hoje?</label>
-                    <textarea id="fpain" rows="3" required placeholder="Pode ser simples: perco muito tempo com agendamentos, não consigo acompanhar meus clientes..."></textarea>
-                    <div class="fline"></div>
-                </div>
-                <div class="fgroup">
-                    <label>Investimento mensal</label>
-                    <select id="fbudget">
-                        <option value="Ainda estou entendendo">Ainda estou entendendo</option>
-                        <option value="Até R$ 5k/mês">Até R$ 5k/mês</option>
-                        <option value="R$ 5k–15k/mês">R$ 5k–15k/mês</option>
-                        <option value="R$ 15k+/mês">R$ 15k+/mês</option>
-                    </select>
-                    <div class="fline"></div>
-                </div>
-                <button type="submit" class="form-submit" id="submitBtn">Iniciar conversa</button>
-            </form>
-        </div>
-    </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="f-logo"><span class="brand-l">L.</span><span class="brand-h">H</span><span class="brand-e">.E</span><span class="brand-x">.X</span><span class="reg" style="color:var(--muted)">®</span> SYSTEMS</div>
-            <div class="f-links">
-                <a href="mailto:contato@lhexsystems.com"><i class="fas fa-envelope"></i> contato@lhexsystems.com</a>
-                <span><i class="fas fa-globe"></i> Rio de Janeiro · Brasil</span>
+    <footer class="py-8 px-6 border-t border-borderStrong relative z-10 bg-base text-center md:text-left">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="font-display font-medium tracking-[0.25em] text-sm text-textSec flex items-center gap-2 cursor-target">
+                <div class="w-1.5 h-1.5 bg-textSec rounded-full"></div>
+                L.H.E.X.®
             </div>
-            <div class="f-copy">
-                &copy; 2026 L.H.E.X. Systems. Todos os direitos reservados.<br>
-                Founder &amp; Lead Architect: Letícia Nascimento
+            <div class="text-[10px] text-textSec font-mono tracking-widest uppercase foot-copy">
+                L.H.E.X.® — Operational Infrastructure Systems
             </div>
         </div>
     </footer>
 
+    <!-- Terminal Private Modal -->
+    <div id="appModal" class="fixed inset-0 z-[100] hidden items-center justify-center px-4 bg-base/80 backdrop-blur-md transition-opacity duration-300 opacity-0 cursor-target">
+        <div class="bg-surface border border-borderStrong w-full max-w-lg shadow-2xl transform scale-[0.98] transition-transform duration-300 flex flex-col cursor-auto" id="modalBox">
+            
+            <div class="px-6 py-4 border-b border-borderStrong flex justify-between items-center bg-white/[0.01]">
+                <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 bg-accent/80 animate-pulse"></span>
+                    <div class="text-[9px] font-mono tracking-widest text-textSec uppercase">Terminal Setup</div>
+                </div>
+                <button onclick="toggleModal()" class="text-textSec hover:text-textMain transition-colors text-[10px] font-mono border border-borderStrong px-2 py-1 bg-base cursor-target">ESC</button>
+            </div>
+
+            <div class="p-6 md:p-8">
+                <h3 class="form-header font-display text-2xl font-light text-textMain mb-2">Inicializar Arquitetura</h3>
+                <p class="form-desc text-textSec font-light text-sm mb-8">Forneça o contexto da sua operação. Retornaremos com o escopo executável.</p>
+                
+                <form onsubmit="sendForm(event)" class="flex flex-col gap-6">
+                    <div class="group relative">
+                        <label class="lbl-1 block text-[9px] font-mono text-textSec tracking-[0.2em] uppercase mb-3">Nome & Entidade</label>
+                        <input type="text" id="fname" required placeholder="Ex.: Ana, Clínica Prime" class="w-full bg-base border border-borderStrong px-4 py-3 text-textMain font-light text-sm placeholder-textSec/30 transition-colors focus:border-accent">
+                    </div>
+                    
+                    <div class="group relative">
+                        <label class="lbl-2 block text-[9px] font-mono text-textSec tracking-[0.2em] uppercase mb-3">Gargalo Operacional Atual</label>
+                        <textarea id="fpain" rows="2" required placeholder="Onde a operação quebra na escala?" class="w-full bg-base border border-borderStrong px-4 py-3 text-textMain font-light text-sm placeholder-textSec/30 transition-colors focus:border-accent resize-none no-scrollbar"></textarea>
+                    </div>
+                    
+                    <div class="group relative">
+                        <label class="lbl-3 block text-[9px] font-mono text-textSec tracking-[0.2em] uppercase mb-3">Escopo de Investimento Mensal</label>
+                        <div class="relative">
+                            <select id="fbudget" class="w-full bg-base border border-borderStrong px-4 py-3 text-textMain font-light text-sm transition-colors focus:border-accent appearance-none">
+                                <option value="Avaliando">Ainda avaliando</option>
+                                <option value="Até R$ 5k/mês">Até R$ 5k/mês</option>
+                                <option value="R$ 5k–15k/mês">R$ 5k–15k/mês</option>
+                                <option value="R$ 15k+/mês">R$ 15k+/mês</option>
+                            </select>
+                            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-textSec">
+                                <svg width="8" height="5" fill="none"><path d="M1 1l3 3 3-3" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="cursor-target mt-4 w-full py-4 bg-textMain text-base font-medium text-sm transition-colors hover:bg-white/90 tracking-wide">
+                        Transmitir Contexto
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Processing Loader -->
+    <div id="loader" class="fixed inset-0 z-[200] hidden items-center justify-center bg-base/90 backdrop-blur-sm cursor-target">
+        <div class="flex flex-col items-center gap-5">
+            <div class="w-5 h-5 border border-borderStrong border-t-accent rounded-full animate-spin"></div>
+            <div class="text-[9px] font-mono tracking-widest text-textSec uppercase animate-pulse proc-text">Inicializando camada operacional...</div>
+        </div>
+    </div>
+
     <script>
-    /* ── SCROLL REVEAL ──────────────────────────────────── */
-    const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-    document.querySelectorAll('.r').forEach(el => obs.observe(el));
+        // Custom Elite Cursor System
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const cursor = document.getElementById('custom-cursor');
+            const dot = document.getElementById('custom-cursor-dot');
+            
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let cursorX = mouseX;
+            let cursorY = mouseY;
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                dot.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
+            });
 
-    /* Parallax suave na imagem do hero */
-    window.addEventListener('scroll', () => {
-        const frame = document.querySelector('.hero-img-frame');
-        if (frame && window.innerWidth >= 960) {
-            frame.style.transform = `translateY(${window.scrollY * 0.06}px)`;
+            const renderCursor = () => {
+                cursorX += (mouseX - cursorX) * 0.15;
+                cursorY += (mouseY - cursorY) * 0.15;
+                cursor.style.transform = `translate3d(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%), 0)`;
+                requestAnimationFrame(renderCursor);
+            };
+            requestAnimationFrame(renderCursor);
+
+            const bindHoverEffects = () => {
+                document.querySelectorAll('a, button, .cursor-target').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursor.classList.add('hover-active');
+                        dot.classList.add('hover-active');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        cursor.classList.remove('hover-active');
+                        dot.classList.remove('hover-active');
+                    });
+                });
+            };
+            bindHoverEffects();
         }
-    }, { passive: true });
 
-    /* ── CONTEÚDO BILÍNGUE ──────────────────────────────── */
-    const C = {
-        pt: {
-            ht: 'Infraestrutura<br>para<strong>crescimento inteligente.</strong>',
-            hs: 'Sistemas, automação e inteligência operacional para empresas que valorizam precisão, performance e escala.',
-            cta: 'Quero conversar', cta2: 'Como funciona',
-            mani: '"A melhor operação é aquela que você <em>nunca precisa gerenciar.</em>"',
-            secEye: 'O que construímos',
-            secTitle: 'Três frentes.<br><strong>Um objetivo.</strong>',
-            c1n:'01 — Growth com IA', c1t:'Automação + CRM + aquisição.',
-            c1d:'Do primeiro contato à venda — sem esforço manual.',
-            c2n:'02 — Operação Inteligente', c2t:'Menos caos. Mais resultado.',
-            c2d:'Processos que rodam sem precisar de você.',
-            c3n:'03 — Experiência Premium', c3t:'Clientes que voltam e indicam.',
-            c3d:'Relacionamento estruturado que gera confiança e escala.',
-            diffEye:'Por que a L.H.E.X.',
-            diffHead:'Cada cliente é único.<br>A solução <em>também é.</em>',
-            dp1t:'Sem pacote pré-definido', dp1d:'Primeiro entendemos o que você tem, onde trava e o que falta. Depois construímos — sem fórmula pronta.',
-            dp2t:'Você não sente a tecnologia', dp2d:'Quando está bom, some. Você nem percebe que existe — e é exatamente isso.',
-            dp3t:'Crescimento sem perda de controle', dp3d:'Você acompanha tudo. Sabe o que foi feito, o que está funcionando e o que vem a seguir.',
-            faqTitle:'Dúvidas comuns',
-            fq:['Para quem é a L.H.E.X.?','Preciso entender de tecnologia?','Em quanto tempo aparecem os primeiros resultados?','Como funciona o início?'],
-            fa:['Para clínicas, consultórios e empresas que estão crescendo e precisam que a tecnologia acompanhe esse crescimento — sem virar um problema a mais.','Não precisa. Cuidamos de tudo isso. Você só usa o que construímos juntos, de forma simples e no dia a dia.','As primeiras mudanças aparecem nas primeiras semanas. Para resultados mais estruturados, trabalhamos em ciclos de 90 dias.','Começa com uma conversa. A gente entende o que trava, o que já funciona e propõe o que faz sentido construir a partir daí.'],
-            ctaEye:'Próximo passo',
-            ctaHead:'Operação precisa.<br><strong>Crescimento inevitável.</strong>',
-            ctaSub:'Você conta, a gente cuida do resto.',
-            t1l:'Feito sob medida', t1t:'Nenhuma solução é igual à outra',
-            t2l:'Sem complicação', t2t:'Você não precisa entender de tecnologia',
-            t3l:'Healthtech & high ticket', t3t:'IA operacional para clínicas e negócios premium',
-            mk:'Vamos nos conhecer', mh:'Por onde\ncomeçar?',
-            md:'Conta o que trava. A gente lê tudo e responde de verdade.',
-            l1:'Seu nome e empresa', l2:'O que mais te preocupa hoje?', l3:'Investimento mensal',
-            p1:'Ex.: Ana, Clínica Vida', p2:'Pode ser simples: perco muito tempo com agendamentos...',
-            submit:'Iniciar conversa', proc:'Enviando...',
-            sText:'Mensagem recebida.', sSub:'Entramos em contato pelo WhatsApp em breve.'
-        },
-        en: {
-            ht: 'Infrastructure<br>for<strong>intelligent growth.</strong>',
-            hs: 'Systems, automation and operational intelligence for companies that value precision, performance and scale.',
-            cta: 'Let\'s talk', cta2: 'How it works',
-            mani: '"The best operation is the one you <em>never have to manage.</em>"',
-            secEye: 'What we build',
-            secTitle: 'Three fronts.<br><strong>One goal.</strong>',
-            c1n:'01 — Growth with AI', c1t:'Automation + CRM + acquisition.',
-            c1d:'From first contact to sale — no manual effort.',
-            c2n:'02 — Smart Operations', c2t:'Less chaos. More results.',
-            c2d:'Processes that run without needing you.',
-            c3n:'03 — Premium Experience', c3t:'Clients who return and refer.',
-            c3d:'Structured relationships that build trust and scale.',
-            diffEye:'Why L.H.E.X.',
-            diffHead:'Every client is unique.<br>The solution <em>is too.</em>',
-            dp1t:'No preset package', dp1d:'We start by understanding what you have, where it breaks, and what\'s missing. Then we build — no templates.',
-            dp2t:'You don\'t feel the technology', dp2d:'When it\'s working well, you don\'t even notice it. That\'s the whole point.',
-            dp3t:'Growth without losing control', dp3d:'You follow everything. You know what was done, what\'s working and what comes next.',
-            faqTitle:'Common questions',
-            fq:['Who is L.H.E.X. for?','Do I need to understand technology?','How soon do the first results appear?','How does it start?'],
-            fa:['For clinics, practices and companies that are growing and need technology to keep up — without becoming one more problem.','You don\'t need to. We take care of all that. You just use what we build together, simply and day to day.','The first changes appear in the first weeks. For more structured results, we work in 90-day cycles.','It starts with a conversation. We understand what\'s blocking you, what\'s already working, and propose what makes sense to build from there.'],
-            ctaEye:'Next step',
-            ctaHead:'Precise operations.<br><strong>Inevitable growth.</strong>',
-            ctaSub:'You tell us, we take care of the rest.',
-            t1l:'Made for you', t1t:'No two solutions are the same',
-            t2l:'No complexity', t2t:'You don\'t need to understand technology',
-            t3l:'Healthtech & high ticket', t3t:'Operational AI for clinics and premium businesses',
-            mk:'Let\'s get to know each other', mh:'Where to\nstart?',
-            md:'Tell us what\'s blocking you. We read everything and reply for real.',
-            l1:'Your name and company', l2:'What worries you most today?', l3:'Monthly investment',
-            p1:'E.g.: Ana, Vida Clinic', p2:'Keep it simple: I spend too much time on scheduling...',
-            submit:'Start the conversation', proc:'Sending...',
-            sText:'Message received.', sSub:'We\'ll reach out via WhatsApp shortly.'
+        // Cinematic Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Dictionary
+        const dict = {
+            pt: {
+                badge: 'Private Operational Layer',
+                head: 'Operações premium <span class="text-transparent bg-clip-text bg-gradient-to-r from-textSec to-white/10 font-normal">colapsam sem infraestrutura.</span>',
+                sub: 'Arquitetamos sistemas operacionais privados para clínicas e empresas que exigem previsibilidade, controle e escala.',
+                ctaM: 'Iniciar diagnóstico', ctaS: 'Manifesto', sig: 'PRIVATE OPERATIONAL INFRASTRUCTURE', lim: 'Aplicações limitadas por capacidade operacional',
+                sync: 'SYNC ACTIVE • LIVE INFRASTRUCTURE',
+                pEye: 'Alerta Crítico', pHead: 'O que acontece quando a <span class="text-textSec font-normal">operação quebra.</span>',
+                p1t: 'Leads esquecidos', p1d: 'Oportunidades high-ticket morrem no funil por falta de follow-up estruturado.',
+                p2t: 'Pacientes sem retorno', p2d: 'Nenhuma cadência de relacionamento ativo. Dinheiro deixado na mesa todos os meses.',
+                p3t: 'Agenda caótica', p3d: 'Falta de previsibilidade. O faturamento vira uma montanha-russa dependente de esforço manual.',
+                p4t: 'Equipe sobrecarregada', p4d: 'Talentos caros fazendo trabalho de software. Apagando incêndios no lugar de pensar escala.',
+                p5t: 'Crescimento sem previsibilidade', p5d: 'A empresa depende dos fundadores para rodar. Se o fluxo dobra hoje, a operação entra em colapso.',
+                pSub: 'A L.H.E.X. existe para <span class="text-accent font-normal">impedir isso.</span>',
+                sEye: 'Arquitetura de Sistema', sTitle: 'Infraestrutura que remove o atrito.<br/><span class="text-textSec font-normal">Controle operacional absoluto.</span>',
+                c1t: 'Aquisição Inteligente', c1d: 'Estruturamos a captura, qualificação e conversão. Sistemas invisíveis garantem que nenhuma oportunidade seja perdida.',
+                c2t: 'Orquestração Operacional', c2d: 'Substituímos o esforço repetitivo por fluxos automatizados. Máxima precisão e zero microgerenciamento.',
+                c3t: 'Retenção & Relacionamento', c3d: 'Construímos a arquitetura de contato que mantém seus clientes engajados, escalando a percepção de um atendimento premium sem inchar a folha de pagamento.',
+                mani: '"A verdadeira escala <br class="hidden md:block"/> <span class="text-textMain font-normal">acontece em silêncio.</span>"',
+                ctH: 'Precisão arquitetural.<br/><span class="text-textSec font-normal">Para operações que exigem controle.</span>', ctS: 'Não vendemos serviços soltos. Implementamos infraestrutura.',
+                foot: 'L.H.E.X.® — Operational Infrastructure Systems',
+                fh: 'Inicializar Arquitetura', fd: 'Forneça o contexto da sua operação. Retornaremos com o escopo executável.',
+                l1: 'Nome & Entidade', l2: 'Gargalo Operacional Atual', l3: 'Escopo de Investimento Mensal', btn: 'Transmitir Contexto',
+                ph1: 'Ex.: Ana, Clínica Prime', ph2: 'Onde a operação quebra na escala?', proc: 'Inicializando camada operacional...'
+            },
+            en: {
+                badge: 'Private Operational Layer',
+                head: 'Premium operations <span class="text-transparent bg-clip-text bg-gradient-to-r from-textSec to-white/10 font-normal">collapse without infrastructure.</span>',
+                sub: 'We architect private operational systems for clinics and companies demanding predictability, control, and scale.',
+                ctaM: 'Initiate diagnostic', ctaS: 'Manifesto', sig: 'PRIVATE OPERATIONAL INFRASTRUCTURE', lim: 'Applications limited by operational capacity',
+                sync: 'SYNC ACTIVE • LIVE INFRASTRUCTURE',
+                pEye: 'Critical Alert', pHead: 'What happens when <span class="text-textSec font-normal">operations break.</span>',
+                p1t: 'Forgotten Leads', p1d: 'High-ticket opportunities die in the funnel due to lack of structured follow-up.',
+                p2t: 'Lost Patients', p2d: 'No active relationship cadence. Money left on the table every month.',
+                p3t: 'Chaotic Scheduling', p3d: 'Lack of predictability. Revenue becomes a rollercoaster dependent on manual effort.',
+                p4t: 'Overworked Team', p4d: 'Expensive talent doing software work. Putting out fires instead of scaling.',
+                p5t: 'Unpredictable Growth', p5d: 'The company depends on founders to run. If volume doubles today, operations collapse.',
+                pSub: 'L.H.E.X. exists to <span class="text-accent font-normal">prevent this.</span>',
+                sEye: 'System Architecture', sTitle: 'Infrastructure that removes friction.<br/><span class="text-textSec font-normal">Absolute operational control.</span>',
+                c1t: 'Intelligent Acquisition', c1d: 'We structure capture, qualification, and conversion. Invisible systems ensure no opportunity is lost.',
+                c2t: 'Operational Orchestration', c2d: 'We replace repetitive effort with automated flows. Maximum precision and zero micromanagement.',
+                c3t: 'Retention & Relationship', c3d: 'We build the contact architecture that keeps your clients engaged, scaling premium service perception without inflating payroll.',
+                mani: '"True scale <br class="hidden md:block"/> <span class="text-textMain font-normal">happens in silence.</span>"',
+                ctH: 'Architectural precision.<br/><span class="text-textSec font-normal">For operations demanding control.</span>', ctS: 'We don\'t sell random services. We deploy infrastructure.',
+                foot: 'L.H.E.X.® — Operational Infrastructure Systems',
+                fh: 'Initialize Architecture', fd: 'Provide your operational context. We will return with an executable scope.',
+                l1: 'Name & Entity', l2: 'Current Operational Bottleneck', l3: 'Monthly Investment Scope', btn: 'Transmit Context',
+                ph1: 'E.g.: Anna, Prime Clinic', ph2: 'Where does the operation break at scale?', proc: 'Initializing operational layer...'
+            }
+        };
+
+        function setLang(l, e) {
+            document.querySelectorAll('.lang-btn').forEach(b => {
+                b.classList.remove('text-textMain'); b.classList.add('hover:text-textMain');
+            });
+            e.target.classList.add('text-textMain'); e.target.classList.remove('hover:text-textMain');
+            
+            const t = dict[l];
+            document.querySelector('.badge-text').innerText = t.badge;
+            document.querySelector('.headline').innerHTML = t.head;
+            document.querySelector('.subheadline').innerText = t.sub;
+            document.querySelectorAll('.cta-main').forEach(b => b.innerText = t.ctaM);
+            document.querySelector('.cta-soft').innerText = t.ctaS;
+            document.querySelector('.cta-nav').innerText = t.ctaM;
+            document.querySelector('.signature-text').innerText = t.sig;
+            document.querySelector('.lim-text').innerText = t.lim;
+            document.querySelector('.sync-text').innerText = t.sync;
+
+            document.querySelector('.pain-eye').innerText = t.pEye;
+            document.querySelector('.pain-head').innerHTML = t.pHead;
+            document.querySelector('.p1-t').innerText = t.p1t; document.querySelector('.p1-d').innerText = t.p1d;
+            document.querySelector('.p2-t').innerText = t.p2t; document.querySelector('.p2-d').innerText = t.p2d;
+            document.querySelector('.p3-t').innerText = t.p3t; document.querySelector('.p3-d').innerText = t.p3d;
+            document.querySelector('.p4-t').innerText = t.p4t; document.querySelector('.p4-d').innerText = t.p4d;
+            document.querySelector('.p5-t').innerText = t.p5t; document.querySelector('.p5-d').innerText = t.p5d;
+            document.querySelector('.pain-sub').innerHTML = t.pSub;
+            
+            document.querySelector('.sec-eye').innerText = t.sEye; document.querySelector('.sec-title').innerHTML = t.sTitle;
+            document.querySelector('.c1-t').innerText = t.c1t; document.querySelector('.c1-d').innerText = t.c1d;
+            document.querySelector('.c2-t').innerText = t.c2t; document.querySelector('.c2-d').innerText = t.c2d;
+            document.querySelector('.c3-t').innerText = t.c3t; document.querySelector('.c3-d').innerText = t.c3d;
+            
+            document.querySelector('.mani-text').innerHTML = t.mani;
+            document.querySelector('.cta-head').innerHTML = t.ctH; document.querySelector('.cta-sub').innerText = t.ctS;
+            document.querySelector('.foot-copy').innerText = t.foot;
+            
+            document.querySelector('.form-header').innerText = t.fh; document.querySelector('.form-desc').innerText = t.fd;
+            document.querySelector('.lbl-1').innerText = t.l1; document.querySelector('.lbl-2').innerText = t.l2; document.querySelector('.lbl-3').innerText = t.l3;
+            document.getElementById('fname').placeholder = t.ph1; document.getElementById('fpain').placeholder = t.ph2;
+            document.getElementById('submitBtn').innerText = t.btn;
+            document.querySelector('.proc-text').innerText = t.proc;
         }
-    };
 
-    let lang = 'pt';
+        // Terminal Logic
+        const modal = document.getElementById('appModal');
+        const modalBox = document.getElementById('modalBox');
+        
+        function toggleModal() {
+            if(modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    modalBox.classList.remove('scale-[0.98]');
+                    document.getElementById('fname').focus();
+                }, 10);
+            } else {
+                modal.classList.add('opacity-0');
+                modalBox.classList.add('scale-[0.98]');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 300);
+            }
+        }
 
-    function setLang(l, e) {
-        lang = l;
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        e.target.classList.add('active');
-        const t = C[l];
-        document.querySelector('.headline').innerHTML = t.ht;
-        document.querySelector('.subheadline').innerText = t.hs;
-        document.querySelectorAll('.cta-main').forEach(b => { if (b.tagName==='BUTTON') b.innerText = t.cta; });
-        document.querySelector('.cta-soft').innerText = t.cta2;
-        document.querySelector('.manifesto-text').innerHTML = t.mani;
-        document.querySelector('.section-eye').innerText = t.secEye;
-        document.querySelector('.section-title').innerHTML = t.secTitle;
-        const cards = document.querySelectorAll('.card');
-        [[0,'c1n','c1t','c1d'],[1,'c2n','c2t','c2d'],[2,'c3n','c3t','c3d']].forEach(([i,n,ti,d]) => {
-            cards[i].querySelector('.card-num').innerText = t[n];
-            cards[i].querySelector('h3').innerText = t[ti];
-            cards[i].querySelector('p').innerText = t[d];
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) toggleModal();
         });
-        document.querySelector('.diff-eye').innerText = t.diffEye;
-        document.querySelector('.diff-headline').innerHTML = t.diffHead;
-        const dps = document.querySelectorAll('.diff-point-text');
-        [[0,'dp1t','dp1d'],[1,'dp2t','dp2d'],[2,'dp3t','dp3d']].forEach(([i,a,b]) => {
-            dps[i].querySelector('strong').innerText = t[a];
-            dps[i].querySelector('p').innerText = t[b];
-        });
-        document.querySelector('.faq-title').innerText = t.faqTitle;
-        document.querySelectorAll('.faq-item').forEach((item, i) => {
-            item.querySelector('.faq-q').childNodes[0].textContent = t.fq[i] + ' ';
-            item.querySelector('.faq-a').innerText = t.fa[i];
-        });
-        document.querySelector('.cta-eye').innerText = t.ctaEye;
-        document.querySelector('.cta-heading').innerHTML = t.ctaHead;
-        document.querySelector('.cta-sub').innerText = t.ctaSub;
-        const tr = document.querySelectorAll('.trust-item');
-        [[0,'t1l','t1t'],[1,'t2l','t2t'],[2,'t3l','t3t']].forEach(([i,a,b]) => {
-            tr[i].querySelector('.trust-label').innerText = t[a];
-            tr[i].querySelector('.trust-text').innerText = t[b];
-        });
-        document.querySelector('.form-kicker').innerText = t.mk;
-        document.querySelector('.form-header').innerHTML = t.mh.replace('\n','<br>');
-        document.querySelector('.form-desc').innerText = t.md;
-        const labels = document.querySelectorAll('.fgroup label');
-        labels[0].innerText = t.l1; labels[1].innerText = t.l2; labels[2].innerText = t.l3;
-        document.getElementById('fname').placeholder = t.p1;
-        document.getElementById('fpain').placeholder = t.p2;
-        document.getElementById('submitBtn').innerText = t.submit;
-    }
 
-    function toggleModal() { document.getElementById('appModal').classList.toggle('active'); }
+        function sendForm(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const loader = document.getElementById('loader');
+            
+            btn.disabled = true;
+            loader.classList.remove('hidden');
+            loader.classList.add('flex');
 
-    function sendForm(e) {
-        e.preventDefault();
-        const t = C[lang];
-        const loader = document.getElementById('formLoader');
-        const btn = document.getElementById('submitBtn');
-        loader.classList.add('active'); btn.disabled = true; btn.textContent = t.proc;
-        const name   = document.getElementById('fname').value;
-        const pain   = document.getElementById('fpain').value;
-        const budget = document.getElementById('fbudget').value;
-        const phone  = "5521987587047";
-        const msg    = `*L.H.E.X.® — nova mensagem*%0A%0A👤 *Nome/Empresa:* ${name}%0A💬 *O que preocupa:* ${pain}%0A💰 *Investimento:* ${budget}`;
-        setTimeout(() => {
-            loader.classList.remove('active');
-            toggleModal();
-            const ov = document.getElementById('successOverlay');
-            document.querySelector('.success-text').innerText = t.sText;
-            document.querySelector('.success-sub').innerText  = t.sSub;
-            ov.classList.add('active');
-            setTimeout(() => { window.location.href = `https://wa.me/${phone}?text=${msg}`; }, 2000);
-        }, 1400);
-    }
+            const name = document.getElementById('fname').value;
+            const pain = document.getElementById('fpain').value;
+            const budget = document.getElementById('fbudget').value;
+            const phone = "5521987587047";
+            const msg = `*L.H.E.X.® | Contexto Operacional Transmitido*%0A%0A👤 *Entidade:* ${name}%0A⚙️ *Gargalo Identificado:* ${pain}%0A📊 *Escopo:* ${budget}`;
 
-    /* ── EASTER EGG ─────────────────────────────────────── */
-    const eIds  = ['eL','eH','eE','eX'];
-    const eDels = [0,175,350,525];
-    const eFls  = ['fv','fh','fv','fv'];
-    let eTimer;
-    function openEgg() {
-        eIds.forEach(id => document.getElementById(id).classList.remove('show'));
-        document.getElementById('lhexEgg').classList.add('active');
-        eIds.forEach((id,i) => setTimeout(() => {
-            const f = document.getElementById('eggFlash');
-            f.className='egg-flash'; void f.offsetWidth;
-            f.className='egg-flash '+eFls[i];
-            document.getElementById(id).classList.add('show');
-        }, eDels[i]));
-        eTimer = setTimeout(closeEgg, 6000);
-    }
-    function closeEgg() {
-        clearTimeout(eTimer);
-        document.getElementById('lhexEgg').classList.remove('active');
-        eIds.forEach(id => document.getElementById(id).classList.remove('show'));
-    }
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                loader.classList.remove('flex');
+                toggleModal();
+                window.location.href = `https://wa.me/${phone}?text=${msg}`;
+                btn.disabled = false;
+                document.getElementById('fname').value = '';
+                document.getElementById('fpain').value = '';
+            }, 1000);
+        }
     </script>
 </body>
 </html>
