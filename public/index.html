@@ -387,6 +387,69 @@
         @keyframes flv { 0% { opacity: 0.16; background: #2EFFD5; } 100% { opacity: 0; } }
         @keyframes flh { 0% { opacity: 0.16; background: #D080FF; } 100% { opacity: 0; } }
 
+        /* ── MOCKUP DASHBOARD ────────────────────────────── */
+        .hero-visual { display: none; }
+        @media (min-width: 960px) { .hero-visual { display: flex !important; flex: 0.9; justify-content: center; align-items: center; } }
+
+        .mock-panel {
+            background: rgba(255,255,255,0.97);
+            border: 1px solid rgba(0,168,150,0.14);
+            border-radius: 24px;
+            padding: 26px 24px;
+            box-shadow: 0 32px 80px rgba(8,61,110,0.13), 0 4px 16px rgba(0,168,150,0.07);
+            width: 100%; max-width: 420px;
+            animation: floatMock 7s ease-in-out infinite;
+        }
+        @keyframes floatMock {
+            0%,100% { transform: translateY(0px) rotate(-0.4deg); }
+            50%      { transform: translateY(-10px) rotate(0.3deg); }
+        }
+        .mock-topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(0,168,150,0.09); }
+        .mock-topbar-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean); }
+        .mock-dots { display: flex; gap: 5px; }
+        .mock-dot2 { width: 8px; height: 8px; border-radius: 50%; }
+        .mock-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 18px; }
+        .mock-mc { background: var(--sky); border-radius: 12px; padding: 13px 8px; text-align: center; border: 1px solid rgba(0,168,150,0.07); }
+        .mock-mv { font-size: 1.2rem; font-weight: 700; color: var(--ocean); line-height: 1; margin-bottom: 4px; }
+        .mock-mv.green { color: var(--verde); }
+        .mock-ml { font-size: 0.62rem; color: var(--muted); }
+        .mock-chart-hdr { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 9px; font-weight: 500; }
+        .mock-bars { display: flex; align-items: flex-end; gap: 5px; height: 58px; margin-bottom: 18px; }
+        .mock-b { flex: 1; border-radius: 3px 3px 2px 2px; }
+        .mock-b-dim { background: rgba(0,168,150,0.12); }
+        .mock-b-hi  { background: linear-gradient(180deg, var(--verde) 0%, rgba(0,168,150,0.25) 100%); }
+        .mock-b-acc { background: linear-gradient(180deg, var(--ocean) 0%, rgba(8,61,110,0.25) 100%); }
+        .mock-rows-hdr { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; font-weight: 500; }
+        .mock-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid rgba(0,168,150,0.06); }
+        .mock-row:last-child { border-bottom: none; }
+        .mock-av { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 700; color: #fff; }
+        .mock-rt { flex: 1; }
+        .mock-rn { font-size: 0.79rem; font-weight: 500; color: var(--text); }
+        .mock-rs { font-size: 0.66rem; color: var(--muted); margin-top: 1px; }
+        .mock-bg { font-size: 0.62rem; font-weight: 600; padding: 3px 8px; border-radius: 20px; white-space: nowrap; }
+        .mock-bg-ok   { background: rgba(0,168,150,0.1); color: var(--verde); }
+        .mock-bg-live { background: rgba(8,61,110,0.1);  color: var(--ocean); }
+
+        /* ── ANTES / DEPOIS ──────────────────────────────── */
+        .ad-section { background: var(--white); padding: 80px 6% 72px; }
+        .ad-inner { max-width: 840px; margin: 0 auto; }
+        .ad-eye { text-align: center; font-size: 0.6rem; color: var(--verde); font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 44px; }
+        .ad-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: start; }
+        @media (max-width: 680px) { .ad-grid { grid-template-columns: 1fr; gap: 16px; } .ad-divider { display: none; } }
+        .ad-col { border-radius: 20px; padding: 32px 28px; }
+        .ad-antes { background: rgba(220,38,38,0.04); border: 1px solid rgba(220,38,38,0.1); }
+        .ad-depois { background: rgba(0,168,150,0.05); border: 1px solid rgba(0,168,150,0.15); }
+        .ad-col-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; }
+        .ad-antes .ad-col-label { color: rgba(180,50,50,0.7); }
+        .ad-depois .ad-col-label { color: var(--verde); }
+        .ad-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; font-size: 0.87rem; color: var(--text); font-weight: 300; line-height: 1.55; }
+        .ad-item:last-child { margin-bottom: 0; }
+        .ad-ic { font-size: 0.72rem; font-weight: 700; flex-shrink: 0; margin-top: 3px; }
+        .ad-ic-no { color: rgba(180,50,50,0.65); }
+        .ad-ic-ok  { color: var(--verde); }
+        .ad-divider { font-size: 1.6rem; color: var(--muted); align-self: center; padding: 0 4px; opacity: 0.3; }
+        .ad-quote { text-align: center; margin-top: 52px; font-size: 1.1rem; color: var(--ocean); font-weight: 300; letter-spacing: -0.2px; font-style: italic; }
+
         /* ── RESPONSIVE UTILS ────────────────────────────── */
         @media (max-width: 899px) {
             .trust-strip { flex-direction: column; }
@@ -447,24 +510,59 @@
                 <div class="hero-logo-mark r"></div>
                 <img src="logo.png" alt="L.H.E.X." class="hero-logo r" onclick="toggleModal()">
                 <h1 class="headline r rd1">
-                    Sua empresa<br>do jeito que<br><strong>deveria funcionar.</strong>
+                    Menos operação.<br><strong>Mais crescimento.</strong>
                 </h1>
                 <p class="subheadline r rd2">
-                    A gente cuida dos sistemas. Você fica livre para cuidar do que construiu.
+                    Sistemas, automações e inteligência operacional para clínicas e empresas que crescem com excelência.
                 </p>
                 <div class="cta-group r rd3">
                     <button class="cta-main" onclick="toggleModal()">Quero conversar</button>
-                    <button class="cta-soft" onclick="document.querySelector('.solutions-wrap').scrollIntoView({behavior:'smooth'})">Veja o que fazemos</button>
+                    <button class="cta-soft" onclick="document.querySelector('.solutions-wrap').scrollIntoView({behavior:'smooth'})">Como funciona</button>
                 </div>
             </div>
 
-            <!-- Visual desktop — logo com anéis -->
+            <!-- Visual desktop — mockup operacional -->
             <div class="hero-visual r r-right rd1">
-                <div class="hbv">
-                    <div class="hbv-ring hbv-ring-1"></div>
-                    <div class="hbv-ring hbv-ring-2"></div>
-                    <div class="hbv-ring hbv-ring-3"></div>
-                    <img src="logo.png" alt="L.H.E.X." class="hbv-logo" onclick="toggleModal()">
+                <div class="mock-panel">
+                    <div class="mock-topbar">
+                        <div class="mock-topbar-title">Painel Operacional</div>
+                        <div class="mock-dots">
+                            <div class="mock-dot2" style="background:rgba(255,100,80,0.5)"></div>
+                            <div class="mock-dot2" style="background:rgba(255,190,0,0.5)"></div>
+                            <div class="mock-dot2" style="background:var(--verde);opacity:0.7"></div>
+                        </div>
+                    </div>
+                    <div class="mock-metrics">
+                        <div class="mock-mc"><div class="mock-mv green">+34%</div><div class="mock-ml">Conversão</div></div>
+                        <div class="mock-mc"><div class="mock-mv">R$82k</div><div class="mock-ml">Receita/mês</div></div>
+                        <div class="mock-mc"><div class="mock-mv green">98%</div><div class="mock-ml">Satisfação</div></div>
+                    </div>
+                    <div class="mock-chart-hdr">Crescimento · últimas 7 semanas</div>
+                    <div class="mock-bars">
+                        <div class="mock-b mock-b-dim" style="height:38%"></div>
+                        <div class="mock-b mock-b-dim" style="height:52%"></div>
+                        <div class="mock-b mock-b-dim" style="height:44%"></div>
+                        <div class="mock-b mock-b-hi"  style="height:67%"></div>
+                        <div class="mock-b mock-b-hi"  style="height:58%"></div>
+                        <div class="mock-b mock-b-hi"  style="height:82%"></div>
+                        <div class="mock-b mock-b-acc" style="height:91%"></div>
+                    </div>
+                    <div class="mock-rows-hdr">Atividade recente</div>
+                    <div class="mock-row">
+                        <div class="mock-av" style="background:var(--verde)">CA</div>
+                        <div class="mock-rt"><div class="mock-rn">Clínica Aurora</div><div class="mock-rs">Agendamento automático · há 2min</div></div>
+                        <div class="mock-bg mock-bg-ok">✓ ok</div>
+                    </div>
+                    <div class="mock-row">
+                        <div class="mock-av" style="background:var(--jab)">RM</div>
+                        <div class="mock-rt"><div class="mock-rn">Dr. Rafael Mota</div><div class="mock-rs">Cobrança processada · há 9min</div></div>
+                        <div class="mock-bg mock-bg-ok">✓ ok</div>
+                    </div>
+                    <div class="mock-row">
+                        <div class="mock-av" style="background:var(--ocean)">IV</div>
+                        <div class="mock-rt"><div class="mock-rn">Instituto Vital</div><div class="mock-rs">Lead qualificado · há 14min</div></div>
+                        <div class="mock-bg mock-bg-live">● live</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -481,10 +579,35 @@
 
     <!-- Trust strip -->
     <div class="trust-strip">
-        <div class="trust-item r"><div class="trust-label">Feito para você</div><div class="trust-text">Nenhuma solução é igual à outra</div></div>
+        <div class="trust-item r"><div class="trust-label">Feito sob medida</div><div class="trust-text">Nenhuma solução é igual à outra</div></div>
         <div class="trust-item r rd1"><div class="trust-label">Sem complicação</div><div class="trust-text">Você não precisa entender de tecnologia</div></div>
-        <div class="trust-item r rd2"><div class="trust-label">Do início ao fim</div><div class="trust-text">Acompanhamos cada etapa com você</div></div>
+        <div class="trust-item r rd2"><div class="trust-label">Healthtech & high ticket</div><div class="trust-text">IA operacional para clínicas e negócios premium</div></div>
     </div>
+
+    <!-- Antes / Depois -->
+    <section class="ad-section">
+        <div class="ad-inner">
+            <div class="ad-eye r">O problema que resolvemos</div>
+            <div class="ad-grid">
+                <div class="ad-col ad-antes r rd1">
+                    <div class="ad-col-label">Antes</div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Leads chegam e somem sem acompanhamento</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Equipe apagando incêndio todos os dias</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Processos manuais que travam o crescimento</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-no">✗</span><span>Decisões no feeling, sem dados reais</span></div>
+                </div>
+                <div class="ad-divider r rd2">→</div>
+                <div class="ad-col ad-depois r rd2">
+                    <div class="ad-col-label">Depois</div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Cada lead acompanhado, nenhum perdido</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Operação rodando — equipe focada no estratégico</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Automações substituem o operacional repetitivo</span></div>
+                    <div class="ad-item"><span class="ad-ic ad-ic-ok">✓</span><span>Dados em tempo real para decisões mais rápidas</span></div>
+                </div>
+            </div>
+            <p class="ad-quote r rd3">"Tecnologia não é custo. É margem."</p>
+        </div>
+    </section>
 
     <!-- Wave: white → sand -->
     <div class="wsep" style="background:var(--white)">
@@ -499,19 +622,19 @@
         <h2 class="section-title r rd1">Para cada problema,<br><strong>uma solução própria.</strong></h2>
         <div class="solutions">
             <div class="card r">
-                <div class="card-num">01 — Gestão de Clientes</div>
-                <h3>Todos os seus contatos, organizados</h3>
-                <p>Pacientes, leads e clientes em um só lugar. Histórico completo, acompanhamento fácil, sem depender de planilha ou memória.</p>
+                <div class="card-num">01 — Growth com IA</div>
+                <h3>Automação + CRM + aquisição.</h3>
+                <p>Leads acompanhados do primeiro contato à venda. CRM inteligente, nutrição automática e dados que mostram o que converte.</p>
             </div>
             <div class="card r rd1">
-                <div class="card-num">02 — Processos Automáticos</div>
-                <h3>O trabalho repetitivo some</h3>
-                <p>Respostas, agendamentos, cobranças e lembretes acontecem sozinhos. Sua equipe ganha tempo de volta.</p>
+                <div class="card-num">02 — Operação Inteligente</div>
+                <h3>Menos caos operacional.</h3>
+                <p>Agendamentos, cobranças e lembretes acontecem sozinhos. Sua equipe para de apagar incêndio e começa a crescer.</p>
             </div>
             <div class="card r rd2">
-                <div class="card-num">03 — Crescimento com dados</div>
-                <h3>Decisões mais claras</h3>
-                <p>Entenda o que funciona, identifique o que trava e cresça com consistência — sem achismo, com informação.</p>
+                <div class="card-num">03 — Experiência Premium</div>
+                <h3>Clientes que voltam e indicam.</h3>
+                <p>Acompanhamento estruturado, comunicação personalizada e processos que geram confiança — em clínicas e negócios high ticket.</p>
             </div>
         </div>
     </section>
@@ -605,7 +728,7 @@
     <section class="cta-section">
         <div class="cta-inner">
             <div class="cta-eye r">Próximo passo</div>
-            <h2 class="cta-heading r rd1">E se tivesse alguém<br>cuidando disso <strong>por você?</strong></h2>
+            <h2 class="cta-heading r rd1">Empresas inteligentes<br><strong>crescem mais rápido.</strong></h2>
             <p class="cta-sub r rd2">Você conta, a gente cuida do resto.</p>
             <button class="cta-main r rd3" onclick="toggleModal()">Quero conversar</button>
         </div>
@@ -677,17 +800,17 @@
     /* ── CONTEÚDO BILÍNGUE ──────────────────────────────── */
     const C = {
         pt: {
-            ht: 'Sua empresa<br>do jeito que<br><strong>deveria funcionar.</strong>',
-            hs: 'A gente cuida dos sistemas. Você fica livre para cuidar do que construiu.',
-            cta: 'Quero conversar', cta2: 'Veja o que fazemos',
+            ht: 'Menos operação.<br><strong>Mais crescimento.</strong>',
+            hs: 'Sistemas, automações e inteligência operacional para clínicas e empresas que crescem com excelência.',
+            cta: 'Quero conversar', cta2: 'Como funciona',
             secEye: 'O que fazemos',
             secTitle: 'Para cada problema,<br><strong>uma solução própria.</strong>',
-            c1n:'01 — Gestão de Clientes', c1t:'Todos os seus contatos, organizados',
-            c1d:'Pacientes, leads e clientes em um só lugar. Histórico completo, acompanhamento fácil, sem depender de planilha ou memória.',
-            c2n:'02 — Processos Automáticos', c2t:'O trabalho repetitivo some',
-            c2d:'Respostas, agendamentos, cobranças e lembretes acontecem sozinhos. Sua equipe ganha tempo de volta.',
-            c3n:'03 — Crescimento com dados', c3t:'Decisões mais claras',
-            c3d:'Entenda o que funciona, identifique o que trava e cresça com consistência — sem achismo, com informação.',
+            c1n:'01 — Growth com IA', c1t:'Automação + CRM + aquisição.',
+            c1d:'Leads acompanhados do primeiro contato à venda. CRM inteligente, nutrição automática e dados que mostram o que converte.',
+            c2n:'02 — Operação Inteligente', c2t:'Menos caos operacional.',
+            c2d:'Agendamentos, cobranças e lembretes acontecem sozinhos. Sua equipe para de apagar incêndio e começa a crescer.',
+            c3n:'03 — Experiência Premium', c3t:'Clientes que voltam e indicam.',
+            c3d:'Acompanhamento estruturado, comunicação personalizada e processos que geram confiança — em clínicas e negócios high ticket.',
             diffEye:'Por que a L.H.E.X.',
             diffHead:'Cada cliente é único.<br>A solução <em>também é.</em>',
             dp1t:'Sem pacote pré-definido', dp1d:'Primeiro entendemos o que você tem, onde trava e o que falta. Depois construímos — sem fórmula pronta.',
@@ -697,11 +820,11 @@
             fq:['Para quem é a L.H.E.X.?','Preciso entender de tecnologia?','Em quanto tempo aparecem os primeiros resultados?','Como funciona o início?'],
             fa:['Para clínicas, consultórios e empresas que estão crescendo e precisam que a tecnologia acompanhe esse crescimento — sem virar um problema a mais.','Não precisa. Cuidamos de tudo isso. Você só usa o que construímos juntos, de forma simples e no dia a dia.','As primeiras mudanças aparecem nas primeiras semanas. Para resultados mais estruturados, trabalhamos em ciclos de 90 dias.','Começa com uma conversa. A gente entende o que trava, o que já funciona e propõe o que faz sentido construir a partir daí.'],
             ctaEye:'Próximo passo',
-            ctaHead:'E se tivesse alguém<br>cuidando disso <strong>por você?</strong>',
+            ctaHead:'Empresas inteligentes<br><strong>crescem mais rápido.</strong>',
             ctaSub:'Você conta, a gente cuida do resto.',
-            t1l:'Feito para você', t1t:'Nenhuma solução é igual à outra',
+            t1l:'Feito sob medida', t1t:'Nenhuma solução é igual à outra',
             t2l:'Sem complicação', t2t:'Você não precisa entender de tecnologia',
-            t3l:'Do início ao fim', t3t:'Acompanhamos cada etapa com você',
+            t3l:'Healthtech & high ticket', t3t:'IA operacional para clínicas e negócios premium',
             mk:'Vamos nos conhecer', mh:'Por onde\ncomeçar?',
             md:'Conta o que trava. A gente lê tudo e responde de verdade.',
             l1:'Seu nome e empresa', l2:'O que mais te preocupa hoje?', l3:'Investimento mensal',
@@ -710,17 +833,17 @@
             sText:'Mensagem recebida.', sSub:'Entramos em contato pelo WhatsApp em breve.'
         },
         en: {
-            ht: 'Your business<br>the way it<br><strong>should work.</strong>',
-            hs: 'We handle the systems. You stay free to focus on what you built.',
-            cta: 'Let\'s talk', cta2: 'See what we do',
+            ht: 'Less operation.<br><strong>More growth.</strong>',
+            hs: 'Systems, automation and operational intelligence for clinics and businesses that grow with excellence.',
+            cta: 'Let\'s talk', cta2: 'How it works',
             secEye: 'What we do',
             secTitle: 'For each problem,<br><strong>its own solution.</strong>',
-            c1n:'01 — Client Management', c1t:'All your contacts, organized',
-            c1d:'Patients, leads and clients in one place. Full history, easy follow-up, no spreadsheets or memory required.',
-            c2n:'02 — Automated Processes', c2t:'The repetitive work disappears',
-            c2d:'Replies, scheduling, billing and reminders happen automatically. Your team gets their time back.',
-            c3n:'03 — Growth with data', c3t:'Clearer decisions',
-            c3d:'Understand what works, identify what blocks you and grow consistently — with information, not guesswork.',
+            c1n:'01 — Growth with AI', c1t:'Automation + CRM + acquisition.',
+            c1d:'Leads tracked from first contact to sale. Smart CRM, automatic nurturing and data that shows what converts.',
+            c2n:'02 — Smart Operations', c2t:'Less operational chaos.',
+            c2d:'Scheduling, billing and reminders happen on their own. Your team stops firefighting and starts growing.',
+            c3n:'03 — Premium Experience', c3t:'Clients who return and refer.',
+            c3d:'Structured follow-up, personalized communication and processes that build trust — in clinics and high-ticket businesses.',
             diffEye:'Why L.H.E.X.',
             diffHead:'Every client is unique.<br>The solution <em>is too.</em>',
             dp1t:'No preset package', dp1d:'We start by understanding what you have, where it breaks, and what\'s missing. Then we build — no templates.',
@@ -730,11 +853,11 @@
             fq:['Who is L.H.E.X. for?','Do I need to understand technology?','How soon do the first results appear?','How does it start?'],
             fa:['For clinics, practices and companies that are growing and need technology to keep up — without becoming one more problem.','You don\'t need to. We take care of all that. You just use what we build together, simply and day to day.','The first changes appear in the first weeks. For more structured results, we work in 90-day cycles.','It starts with a conversation. We understand what\'s blocking you, what\'s already working, and propose what makes sense to build from there.'],
             ctaEye:'Next step',
-            ctaHead:'What if someone was<br>taking care of this <strong>for you?</strong>',
+            ctaHead:'Smart businesses<br><strong>grow faster.</strong>',
             ctaSub:'You tell us, we take care of the rest.',
             t1l:'Made for you', t1t:'No two solutions are the same',
             t2l:'No complexity', t2t:'You don\'t need to understand technology',
-            t3l:'Start to finish', t3t:'We follow each step together with you',
+            t3l:'Healthtech & high ticket', t3t:'Operational AI for clinics and premium businesses',
             mk:'Let\'s get to know each other', mh:'Where to\nstart?',
             md:'Tell us what\'s blocking you. We read everything and reply for real.',
             l1:'Your name and company', l2:'What worries you most today?', l3:'Monthly investment',
