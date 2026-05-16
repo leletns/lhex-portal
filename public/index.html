@@ -171,41 +171,31 @@
         }
         .cta-soft:hover { color: var(--verde); }
 
-        /* Hero visual — imagem direita (desktop) */
+        /* Hero visual — logo com anéis (desktop) */
         .hero-visual {
             display: none; position: relative;
-            justify-content: flex-end; align-items: center;
+            justify-content: center; align-items: center;
         }
-        .hero-img-frame {
-            width: 100%; max-width: 480px; height: 560px;
-            border-radius: 24px; overflow: hidden;
-            box-shadow: 0 40px 80px rgba(8,61,110,0.18), 0 0 0 1px rgba(0,168,150,0.1);
-            animation: float 8s ease-in-out infinite;
-            will-change: transform;
+        .hbv {
+            position: relative; width: 420px; height: 420px;
+            display: flex; align-items: center; justify-content: center;
         }
-        .hero-img-frame img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 6s ease;
+        .hbv-ring {
+            position: absolute; border-radius: 50%;
+            border: 1px solid rgba(0,168,150,0.18);
         }
-        .hero-img-frame:hover img { transform: scale(1.04); }
-        .hero-img-badge {
-            position: absolute; bottom: 32px; left: -24px;
-            background: var(--white); border-radius: 16px; padding: 16px 22px;
-            box-shadow: 0 12px 40px rgba(8,61,110,0.12);
-            display: flex; align-items: center; gap: 12px;
+        .hbv-ring-1 { width: 240px; height: 240px; animation: rpulse 4s ease-in-out infinite 0s; }
+        .hbv-ring-2 { width: 320px; height: 320px; animation: rpulse 4s ease-in-out infinite 0.9s; }
+        .hbv-ring-3 { width: 400px; height: 400px; animation: rpulse 4s ease-in-out infinite 1.8s; }
+        @keyframes rpulse {
+            0%,100% { opacity: 0.3; transform: scale(1); }
+            50%      { opacity: 0.8; transform: scale(1.015); }
         }
-        .hero-img-badge-dot {
-            width: 10px; height: 10px; border-radius: 50%;
-            background: var(--verde); flex-shrink: 0;
-            box-shadow: 0 0 0 4px rgba(0,168,150,0.15);
-            animation: pulse-dot 2s ease-in-out infinite;
+        .hbv-logo {
+            width: 160px; position: relative; z-index: 1;
+            filter: drop-shadow(0 8px 36px rgba(0,168,150,0.22));
+            animation: float 7s ease-in-out infinite;
         }
-        @keyframes pulse-dot {
-            0%,100% { box-shadow: 0 0 0 4px rgba(0,168,150,0.15); }
-            50%      { box-shadow: 0 0 0 8px rgba(0,168,150,0.08); }
-        }
-        .hero-img-badge-text { font-size: 0.75rem; font-weight: 500; color: var(--ocean); line-height: 1.3; }
-        .hero-img-badge-text span { display: block; font-weight: 300; color: var(--muted); font-size: 0.68rem; }
 
         /* Ondas do hero */
         .hero-waves { position: absolute; bottom: 0; left: 0; width: 100%; height: 70px; overflow: hidden; }
@@ -260,28 +250,26 @@
         /* ── DIFF SECTION ────────────────────────────────── */
         .diff-section { background: var(--white); padding: 96px 6%; }
         .diff-inner {
-            max-width: 1060px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr; gap: 64px; align-items: center;
+            max-width: 960px; margin: 0 auto;
         }
-        @media (min-width: 900px) { .diff-inner { grid-template-columns: 1fr 1fr; gap: 80px; } }
+        .diff-top { margin-bottom: 56px; }
+        @media (min-width: 900px) { .diff-top { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; } }
 
-        .diff-img-wrap {
-            border-radius: 20px; overflow: hidden;
-            box-shadow: 0 24px 64px rgba(8,61,110,0.13);
-            aspect-ratio: 4/3;
-        }
-        .diff-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 5s ease; }
-        .diff-img-wrap:hover img { transform: scale(1.04); }
+        .diff-body { display: grid; grid-template-columns: 1fr; gap: 0; }
+        @media (min-width: 700px) { .diff-body { grid-template-columns: repeat(3, 1fr); gap: 0; } }
 
         .diff-eye { font-size: 0.6rem; color: var(--verde); font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 20px; }
         .diff-headline { font-size: clamp(1.6rem, 2.8vw, 2.7rem); font-weight: 200; line-height: 1.18; letter-spacing: -0.8px; color: var(--ocean); margin-bottom: 40px; }
         .diff-headline em { font-style: italic; font-weight: 300; color: var(--verde); }
 
-        .diff-body { display: flex; flex-direction: column; gap: 28px; }
-        .diff-point { display: flex; gap: 18px; align-items: flex-start; }
-        .diff-icon { width: 38px; height: 38px; min-width: 38px; border-radius: 10px; background: var(--verde-s); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--verde); font-size: 0.82rem; margin-top: 2px; }
-        .diff-point-text strong { display: block; font-size: 0.93rem; font-weight: 500; color: var(--ocean); margin-bottom: 5px; }
-        .diff-point-text p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+        .diff-point { display: flex; flex-direction: column; }
+        .diff-icon { width: 40px; height: 40px; min-width: 40px; border-radius: 12px; background: var(--verde-s); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--verde); font-size: 0.85rem; }
+        .diff-point-text strong { display: block; font-size: 0.93rem; font-weight: 500; color: var(--ocean); margin-bottom: 6px; }
+        .diff-point-text p { font-size: 0.85rem; color: var(--muted); line-height: 1.72; font-weight: 300; }
+        @media (max-width: 699px) {
+            .diff-point { padding: 28px 0 !important; border-right: none !important; border-bottom: 1px solid rgba(0,168,150,0.1); }
+            .diff-point:last-child { border-bottom: none; }
+        }
 
         /* ── FAQ ─────────────────────────────────────────── */
         .faq-section { background: var(--sand); padding: 96px 40px; }
@@ -470,18 +458,13 @@
                 </div>
             </div>
 
-            <!-- Imagem desktop -->
+            <!-- Visual desktop — logo com anéis -->
             <div class="hero-visual r r-right rd1">
-                <div style="position:relative">
-                    <div class="hero-img-frame">
-                        <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=960&q=88&auto=format&fit=crop" alt="Rio de Janeiro" loading="eager">
-                    </div>
-                    <div class="hero-img-badge">
-                        <div class="hero-img-badge-dot"></div>
-                        <div class="hero-img-badge-text">
-                            Rio de Janeiro<span>sede da L.H.E.X.</span>
-                        </div>
-                    </div>
+                <div class="hbv">
+                    <div class="hbv-ring hbv-ring-1"></div>
+                    <div class="hbv-ring hbv-ring-2"></div>
+                    <div class="hbv-ring hbv-ring-3"></div>
+                    <img src="logo.png" alt="L.H.E.X." class="hbv-logo" onclick="toggleModal()">
                 </div>
             </div>
         </div>
@@ -543,36 +526,38 @@
     <!-- Diferenciador -->
     <section class="diff-section">
         <div class="diff-inner">
-            <div class="diff-img-wrap r r-left">
-                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=88&auto=format&fit=crop" alt="Espaço de trabalho limpo e organizado" loading="lazy">
+            <div class="diff-top">
+                <div class="r">
+                    <div class="diff-eye">Por que a L.H.E.X.</div>
+                    <h2 class="diff-headline">
+                        Cada cliente é único.<br>
+                        A solução <em>também é.</em>
+                    </h2>
+                </div>
+                <p class="r rd1" style="color:var(--muted);font-weight:300;font-size:0.97rem;line-height:1.8;align-self:center;">
+                    Não existe solução que funcione para todo mundo. Por isso começamos sempre ouvindo — e construímos a partir do que encontramos.
+                </p>
             </div>
-            <div class="r r-right">
-                <div class="diff-eye">Por que a L.H.E.X.</div>
-                <h2 class="diff-headline">
-                    Cada cliente é único.<br>
-                    A solução <em>também é.</em>
-                </h2>
-                <div class="diff-body">
-                    <div class="diff-point r rd1">
-                        <div class="diff-icon"><i class="fas fa-fingerprint"></i></div>
-                        <div class="diff-point-text">
-                            <strong>Sem pacote pré-definido</strong>
-                            <p>Primeiro entendemos o seu negócio. Depois construímos o que faz sentido para você — não para um cliente genérico.</p>
-                        </div>
+            <div class="diff-body">
+                <div class="diff-point r" style="padding:32px 40px 32px 0;border-right:1px solid rgba(0,168,150,0.1);">
+                    <div class="diff-icon" style="margin-bottom:24px;"><i class="fas fa-fingerprint"></i></div>
+                    <div class="diff-point-text">
+                        <strong>Sem pacote pré-definido</strong>
+                        <p>Primeiro entendemos o seu negócio. Depois construímos o que faz sentido para você — não para um cliente genérico.</p>
                     </div>
-                    <div class="diff-point r rd2">
-                        <div class="diff-icon"><i class="fas fa-feather-alt"></i></div>
-                        <div class="diff-point-text">
-                            <strong>Você não sente a tecnologia</strong>
-                            <p>Quando está funcionando bem, você nem percebe. É exatamente assim que deve ser.</p>
-                        </div>
+                </div>
+                <div class="diff-point r rd1" style="padding:32px 40px;border-right:1px solid rgba(0,168,150,0.1);">
+                    <div class="diff-icon" style="margin-bottom:24px;"><i class="fas fa-feather-alt"></i></div>
+                    <div class="diff-point-text">
+                        <strong>Você não sente a tecnologia</strong>
+                        <p>Quando está funcionando bem, você nem percebe. É exatamente assim que deve ser.</p>
                     </div>
-                    <div class="diff-point r rd3">
-                        <div class="diff-icon"><i class="fas fa-seedling"></i></div>
-                        <div class="diff-point-text">
-                            <strong>Crescimento sem perda de controle</strong>
-                            <p>Você acompanha tudo. Sabe o que foi feito, o que está funcionando e o que vem a seguir.</p>
-                        </div>
+                </div>
+                <div class="diff-point r rd2" style="padding:32px 0 32px 40px;">
+                    <div class="diff-icon" style="margin-bottom:24px;"><i class="fas fa-seedling"></i></div>
+                    <div class="diff-point-text">
+                        <strong>Crescimento sem perda de controle</strong>
+                        <p>Você acompanha tudo. Sabe o que foi feito, o que está funcionando e o que vem a seguir.</p>
                     </div>
                 </div>
             </div>
@@ -722,7 +707,6 @@
             l1:'Seu nome e empresa', l2:'O que mais te preocupa hoje?', l3:'Investimento mensal',
             p1:'Ex.: Ana, Clínica Vida', p2:'Pode ser simples: perco muito tempo com agendamentos...',
             submit:'Iniciar conversa', proc:'Enviando...',
-            badge:'Rio de Janeiro', badgeSub:'sede da L.H.E.X.',
             sText:'Mensagem recebida.', sSub:'Entramos em contato pelo WhatsApp em breve.'
         },
         en: {
@@ -756,7 +740,6 @@
             l1:'Your name and company', l2:'What worries you most today?', l3:'Monthly investment',
             p1:'E.g.: Ana, Vida Clinic', p2:'Keep it simple: I spend too much time on scheduling...',
             submit:'Start the conversation', proc:'Sending...',
-            badge:'Rio de Janeiro', badgeSub:'L.H.E.X. HQ',
             sText:'Message received.', sSub:'We\'ll reach out via WhatsApp shortly.'
         }
     };
@@ -808,11 +791,6 @@
         document.getElementById('fname').placeholder = t.p1;
         document.getElementById('fpain').placeholder = t.p2;
         document.getElementById('submitBtn').innerText = t.submit;
-        const badge = document.querySelector('.hero-img-badge-text');
-        if (badge) {
-            badge.childNodes[0].textContent = t.badge;
-            badge.querySelector('span').innerText = t.badgeSub;
-        }
     }
 
     function toggleModal() { document.getElementById('appModal').classList.toggle('active'); }
