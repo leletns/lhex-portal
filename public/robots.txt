@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lhexsystems.com/sitemap.xml
+Sitemap: https://www.lhexsystems.com/sitemap.xml

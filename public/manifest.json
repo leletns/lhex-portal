@@ -1,0 +1,15 @@
+{
+  "name": "L.H.E.X. Systems",
+  "short_name": "LHEX",
+  "description": "Infraestrutura Operacional de Crescimento para clínicas e operações high ticket.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F7FAFD",
+  "theme_color": "#F7FAFD",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
