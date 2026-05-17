@@ -124,6 +124,57 @@
         .brand-l, .brand-e, .brand-x { color: var(--verde); }
         .brand-h { color: var(--jab); font-size: 1.45rem; letter-spacing: 0; }
         .brand .reg { font-size: 0.6rem; color: var(--muted); vertical-align: super; margin-left: 1px; }
+        /* ── DELIVERABLES ───────────────────────────────────── */
+        .delivers-section {
+            background: var(--white);
+            padding: 96px 6%;
+        }
+        .delivers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 1060px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(12,35,64,0.1);
+        }
+        @media (max-width: 640px) { .delivers-grid { grid-template-columns: 1fr; } }
+        .deliver-card {
+            padding: 52px 60px 52px 0;
+            border-bottom: 1px solid rgba(12,35,64,0.07);
+            transition: opacity 0.3s;
+        }
+        .deliver-card:hover { opacity: 0.72; }
+        .deliver-card:nth-child(even) {
+            padding-left: 60px;
+            padding-right: 0;
+            border-left: 1px solid rgba(12,35,64,0.07);
+        }
+        .deliver-card:nth-child(5) {
+            grid-column: span 2;
+            border-bottom: none;
+            border-left: none !important;
+            padding: 52px 0 0;
+            display: flex;
+            gap: 80px;
+            align-items: flex-start;
+        }
+        .deliver-card:nth-child(5) .deliver-body { flex: 1; }
+        @media (max-width: 800px) {
+            .deliver-card:nth-child(5) { flex-direction: column; gap: 0; }
+        }
+        @media (max-width: 640px) {
+            .deliver-card,
+            .deliver-card:nth-child(even),
+            .deliver-card:nth-child(5) {
+                grid-column: span 1;
+                padding: 40px 0;
+                border-left: none;
+            }
+            .deliver-card:last-child { border-bottom: none; }
+        }
+        .deliver-num  { font-size: 0.58rem; color: var(--verde); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 16px; }
+        .deliver-name { font-size: 1.1rem; font-weight: 500; color: var(--deep); margin-bottom: 10px; letter-spacing: -0.2px; }
+        .deliver-card > p, .deliver-body > p { font-size: 0.84rem; color: var(--muted); font-weight: 300; line-height: 1.75; }
+
         /* ── NAV LINKS ──────────────────────────────────────── */
         .nav-links {
             display: flex;
@@ -1155,7 +1206,7 @@
                 <div class="hero-accent-bar"></div>
                 <img src="logo.png" alt="L.H.E.X." class="hero-logo r" onclick="toggleModal()">
                 <h1 class="headline r rd1">O que sustenta<br>uma operação<br><strong>raramente aparece.</strong></h1>
-                <p class="subheadline r rd2">A L.H.E.X. estrutura os bastidores para que atendimento, processos e rotina funcionem com mais consistência.</p>
+                <p class="subheadline r rd2">Estruturamos crescimento operacional para clínicas e operações que precisam escalar com clareza e continuidade.</p>
                 <div class="cta-group r rd3">
                     <button class="cta-main" onclick="toggleModal()">Conversar</button>
                     <button class="cta-soft" onclick="document.getElementById('servicos').scrollIntoView({behavior:'smooth'})">Como estruturamos</button>
@@ -1265,6 +1316,41 @@
         <p class="manifesto-text r">"Operações maduras não precisam parecer barulhentas<br>para <em>funcionar bem.</em>"</p>
     </section>
 
+    <!-- ── DELIVERABLES ─────────────────────────────────── -->
+    <section class="delivers-section" id="servicos">
+        <div class="section-eye r">O que entregamos</div>
+        <h2 class="section-title r rd1">Crescimento estruturado.<br><strong>De ponta a ponta.</strong></h2>
+        <div class="delivers-grid">
+            <div class="deliver-card r">
+                <div class="deliver-num">01</div>
+                <div class="deliver-name">Aquisição</div>
+                <p>Estratégias de captação e posicionamento alinhadas ao perfil da clínica e ao público que importa.</p>
+            </div>
+            <div class="deliver-card r rd1">
+                <div class="deliver-num">02</div>
+                <div class="deliver-name">Atendimento</div>
+                <p>Fluxos de WhatsApp, agendamento e relacionamento estruturados para mais consistência e menos desgaste.</p>
+            </div>
+            <div class="deliver-card r rd1">
+                <div class="deliver-num">03</div>
+                <div class="deliver-name">Operação</div>
+                <p>Processos internos desenhados para reduzir dependência operacional e aumentar capacidade de execução.</p>
+            </div>
+            <div class="deliver-card r rd2">
+                <div class="deliver-num">04</div>
+                <div class="deliver-name">Sistemas</div>
+                <p>Implantação e desenvolvimento de ferramentas adaptadas à rotina da equipe — sem excesso, sem desperdício.</p>
+            </div>
+            <div class="deliver-card r rd2">
+                <div class="deliver-num">05</div>
+                <div class="deliver-body">
+                    <div class="deliver-name">Growth Infrastructure</div>
+                    <p>Integração entre marketing, operação e experiência do paciente para crescimento sustentado e previsível.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Wave: white → sand -->
     <div class="wsep" style="background:var(--white)">
         <svg viewBox="0 0 1440 46" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -1272,10 +1358,10 @@
         </svg>
     </div>
 
-    <!-- ── SERVICES ───────────────────────────────────────── -->
-    <section class="solutions-wrap" id="servicos">
-        <div class="section-eye r">O que estruturamos</div>
-        <h2 class="section-title r rd1">Três frentes.<br><strong>Uma continuidade.</strong></h2>
+    <!-- ── APPROACH ───────────────────────────────────────── -->
+    <section class="solutions-wrap" id="pilares">
+        <div class="section-eye r">Nossa abordagem</div>
+        <h2 class="section-title r rd1">Como estruturamos.</h2>
         <div class="solutions">
             <div class="card r">
                 <div class="card-num">01 — Estrutura Operacional</div>
@@ -1412,7 +1498,7 @@
                 <div class="footer-brand-name">
                     <span class="brand-l">L.</span><span class="brand-h">H</span><span class="brand-e">.E.</span><span class="brand-x">X</span><span class="reg">®</span>
                 </div>
-                <div class="footer-tagline">Arquitetura operacional privada.</div>
+                <div class="footer-tagline">Operational Growth Infrastructure</div>
             </div>
             <div class="footer-email">
                 <a href="mailto:contato@lhexsystems.com">contato@lhexsystems.com</a>
@@ -1471,11 +1557,11 @@
     const C = {
         pt: {
             ht: 'O que sustenta<br>uma operação<br><strong>raramente aparece.</strong>',
-            hs: 'A L.H.E.X. estrutura os bastidores para que atendimento, processos e rotina funcionem com mais consistência.',
+            hs: 'Estruturamos crescimento operacional para clínicas e operações que precisam escalar com clareza e continuidade.',
             cta: 'Conversar', cta2: 'Como estruturamos',
             mani: '"Operações maduras não precisam parecer barulhentas<br>para <em>funcionar bem.</em>"',
-            secEye: 'O que estruturamos',
-            secTitle: 'Três frentes.<br><strong>Uma continuidade.</strong>',
+            secEye: 'Nossa abordagem',
+            secTitle: 'Como estruturamos.',
             c1n:'01 — Estrutura Operacional', c1t:'Fluidez no dia a dia.', c1d:'Organizamos fluxos e processos para que sua equipe trabalhe com clareza e sem desgaste.',
             c2n:'02 — Continuidade', c2t:'Operação que se sustenta.', c2d:'Processos estáveis, previsíveis, que funcionam com consistência independente da demanda.',
             c3n:'03 — Experiência Refinada', c3t:'Clientes que percebem a diferença.', c3d:'Atendimento estruturado que transmite maturidade e constrói confiança duradoura.',
@@ -1499,11 +1585,11 @@
         },
         en: {
             ht: 'What sustains<br>an operation<br><strong>rarely shows.</strong>',
-            hs: 'L.H.E.X. structures the backstage so that service, processes and daily routine run with more consistency.',
+            hs: 'We structure operational growth for clinics and businesses that need to scale with clarity and continuity.',
             cta: 'Let\'s talk', cta2: 'How we work',
             mani: '"Mature operations don\'t need to seem loud<br>to <em>work well.</em>"',
-            secEye: 'What we structure',
-            secTitle: 'Three fronts.<br><strong>One continuity.</strong>',
+            secEye: 'Our approach',
+            secTitle: 'How we structure.',
             c1n:'01 — Operational Structure', c1t:'Fluidity in the day to day.', c1d:'We organize flows and processes so your team works with clarity and less strain.',
             c2n:'02 — Continuity', c2t:'Operations that sustain themselves.', c2d:'Stable, predictable processes that work consistently regardless of demand.',
             c3n:'03 — Refined Experience', c3t:'Clients who notice the difference.', c3d:'Structured service that conveys maturity and builds lasting trust.',
