@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth bg-[#F6FBFF]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#F6FBFF">
+
+    <title>L.H.E.X.® | Operational Infrastructure</title>
+    <meta name="description" content="Organizamos sua operação para que sua empresa cresça sem caos. A tecnologia que trabalha em silêncio para você cuidar do que realmente importa.">
+
+    <link rel="icon" type="image/png" href="/logo.png">
+    
+    <link rel="preload" as="image" href="/logo.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+                    },
+                    colors: {
+                        base: '#F6FBFF',
+                        accent: '#7DD3E8',
+                        jabuticaba: '#5B2A86',
+                        textMain: '#0F172A',
+                        textSec: '#64748B',
+                        borderSubtle: 'rgba(15, 23, 42, 0.04)',
+                        borderStrong: 'rgba(15, 23, 42, 0.08)'
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(15, 23, 42, 0.03)',
+                        'glow-accent': '0 0 60px -10px rgba(125, 211, 232, 0.5)',
+                        'glow-jabuticaba': '0 0 60px -10px rgba(91, 42, 134, 0.4)',
+                        'soft-elevate': '0 20px 40px -15px rgba(15, 23, 42, 0.06)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #F6FBFF; color: #0F172A; overflow-x: hidden; }
+        
+        /* VisionOS / Apple Glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: var(--glass), inset 0 0 0 1px rgba(255,255,255,0.4);
+        }
+
+        /* Light Premium Custom Cursor */
+        @media (pointer: fine) {
+            body, a, button, .cursor-target, .faq-item { cursor: none !important; }
+            input, select, textarea { cursor: auto !important; }
+            
+            #custom-cursor {
+                position: fixed; top: 0; left: 0; width: 32px; height: 32px;
+                border: 1px solid rgba(15, 23, 42, 0.15); border-radius: 50%;
+                pointer-events: none; z-index: 9999;
+                box-shadow: 0 0 15px -5px rgba(125, 211, 232, 0.3);
+                transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s, border-color 0.4s;
+                will-change: transform, width, height;
+            }
+            #custom-cursor-dot {
+                position: fixed; top: 0; left: 0; width: 4px; height: 4px;
+                background: #5B2A86; border-radius: 50%;
+                pointer-events: none; z-index: 10000;
+                transition: opacity 0.3s;
+                will-change: transform, opacity;
+            }
+            
+            #custom-cursor.hover-active {
+                width: 56px; height: 56px;
+                background-color: rgba(255, 255, 255, 0.7);
+                backdrop-filter: blur(4px);
+                border-color: rgba(125, 211, 232, 0.5);
+            }
+            #custom-cursor-dot.hover-active { opacity: 0; }
+        }
+
+        /* Cinematic Motion System */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px) scale(0.99);
+            transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
+        .delay-100 { transition-delay: 150ms; }
+        .delay-200 { transition-delay: 300ms; }
+
+        /* Floating Ambient Lights */
+        @keyframes ambientDrift {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, -50px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        .ambient-light { animation: ambientDrift 25s ease-in-out infinite; will-change: transform; }
+
+        /* The Living Logo (Breathes & Floats) */
+        @keyframes breatheLogo {
+            0% { transform: translateY(0px) scale(1); filter: drop-shadow(0 15px 25px rgba(125, 211, 232, 0.2)); }
+            50% { transform: translateY(-12px) scale(1.03); filter: drop-shadow(0 25px 45px rgba(91, 42, 134, 0.25)); }
+            100% { transform: translateY(0px) scale(1); filter: drop-shadow(0 15px 25px rgba(125, 211, 232, 0.2)); }
+        }
+        .logo-alive { animation: breatheLogo 6s ease-in-out infinite; will-change: transform, filter; }
+
+        /* Cinematic Meaning Reveal (L.H.E.X.) */
+        .meaning-wrap { display: flex; align-items: center; justify-content: center; gap: 2rem; }
+        .meaning-item { display: flex; align-items: center; font-family: 'Outfit', sans-serif; font-size: 1rem; letter-spacing: 0.1em; color: #64748B; transition: color 0.4s; }
+        .meaning-item .hidden-text {
+            max-width: 0; opacity: 0; overflow: hidden;
+            transition: max-width 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+        }
+        .meaning-wrap:hover .meaning-item .hidden-text, 
+        .meaning-wrap:active .meaning-item .hidden-text {
+            max-width: 150px; opacity: 1; padding-left: 2px;
+        }
+        .meaning-wrap:hover .meaning-item { color: #0F172A; }
+
+        /* Micro Watermarks */
+        .bg-watermark {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 38vw; font-family: 'Outfit', sans-serif; font-weight: 200;
+            color: rgba(15, 23, 42, 0.015); pointer-events: none; z-index: 0;
+            white-space: nowrap; user-select: none;
+        }
+
+        /* Hover Physics */
+        .hover-physics { transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .hover-physics:hover { transform: translateY(-6px) scale(1.01); box-shadow: var(--soft-elevate); }
+
+        /* FAQ Accordion */
+        .faq-answer {
+            max-height: 0; overflow: hidden; opacity: 0;
+            transition: max-height 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .faq-item.active .faq-answer { max-height: 200px; opacity: 1; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); color: #5B2A86; }
+
+        /* Elegant Inputs */
+        input:focus, textarea:focus { 
+            outline: none; border-color: #7DD3E8; 
+            background: rgba(255,255,255,1);
+            box-shadow: 0 0 0 4px rgba(125, 211, 232, 0.15);
+        }
+        
+        /* Gradient Text */
+        .text-gradient {
+            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(135deg, #7DD3E8 0%, #5B2A86 100%);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent/20 selection:text-textMain relative font-sans">
+
+    <div id="custom-cursor" class="hidden md:block"></div>
+    <div id="custom-cursor-dot" class="hidden md:block"></div>
+
+    <div class="bg-watermark">L.H.E.X.</div>
+    <div class="fixed top-[-15%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-accent/15 blur-[140px] pointer-events-none z-0 ambient-light"></div>
+    <div class="fixed bottom-[-15%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-jabuticaba/10 blur-[140px] pointer-events-none z-0 ambient-light" style="animation-delay: -12s;"></div>
+
+    <nav class="fixed top-4 left-4 right-4 md:left-10 md:right-10 z-50 transition-all duration-700 glass-panel rounded-full px-6 py-3">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="font-display font-medium tracking-[0.2em] text-lg flex items-center cursor-target" onclick="window.scrollTo(0,0)">
+                <span class="text-accent">L.</span><span class="text-jabuticaba text-xl">H</span><span class="text-accent">.E.X.</span>
+            </div>
+            
+            <div class="flex items-center gap-6 md:gap-8">
+                <div class="flex gap-4 text-[10px] font-medium tracking-widest text-textSec">
+                    <button class="lang-btn text-textMain transition-colors duration-300 uppercase cursor-target" onclick="setLang('pt', event)">PT</button>
+                    <button class="lang-btn hover:text-textMain transition-colors duration-300 uppercase cursor-target" onclick="setLang('en', event)">EN</button>
+                </div>
+                <button onclick="toggleModal()" class="hidden md:flex items-center px-6 py-2.5 text-[11px] font-medium tracking-wide bg-white hover:bg-slate-50 border border-slate-200 rounded-full transition-all duration-500 text-textMain shadow-sm cursor-target">
+                    <span class="cta-nav">Vamos conversar</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-32 pb-20 z-10">
+        <div class="max-w-6xl mx-auto w-full relative z-10 flex flex-col items-center">
+            
+            <div class="reveal relative flex justify-center mb-12 cursor-target w-48 h-48 md:w-64 md:h-64" onclick="toggleModal()">
+                <div class="absolute inset-0 bg-accent/20 blur-[60px] rounded-full mx-auto pointer-events-none logo-alive"></div>
+                <div class="absolute inset-0 bg-jabuticaba/15 blur-[80px] rounded-full mx-auto pointer-events-none logo-alive delay-100 translate-y-4"></div>
+                
+                <img src="/logo.png" alt="L.H.E.X. Logo" class="relative z-10 w-full h-full object-contain logo-alive">
+            </div>
+
+            <div class="reveal delay-100 meaning-wrap cursor-target mb-16 px-6 py-3 rounded-full border border-borderStrong bg-white/30 backdrop-blur-md shadow-sm">
+                <div class="meaning-item"><span class="text-accent font-semibold">L</span><span class="hidden-text lowercase font-light">ogic</span></div>
+                <div class="meaning-item"><span class="text-jabuticaba font-semibold">H</span><span class="hidden-text lowercase font-light">uman</span></div>
+                <div class="meaning-item"><span class="text-accent font-semibold">E</span><span class="hidden-text lowercase font-light">xecution</span></div>
+                <div class="meaning-item"><span class="text-accent font-semibold">X</span><span class="hidden-text lowercase font-light">perience</span></div>
+            </div>
+            
+            <h1 class="headline reveal delay-200 font-display text-5xl md:text-7xl lg:text-[6.5rem] font-light tracking-tight text-textMain mb-8 leading-[1.05] max-w-5xl">
+                Organizamos sua operação para que sua empresa <span class="text-gradient font-medium">cresça sem caos.</span>
+            </h1>
+            
+            <p class="subheadline reveal delay-300 text-lg md:text-2xl text-textSec font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+                A tecnologia que trabalha em silêncio para você cuidar do que realmente importa.
+            </p>
+            
+            <div class="reveal delay-300 flex justify-center items-center">
+                <button onclick="toggleModal()" class="cta-main px-12 py-5 bg-textMain text-white rounded-full font-medium text-sm tracking-wide hover:bg-jabuticaba transition-all duration-500 shadow-soft-elevate cursor-target hover:shadow-glow-purple">
+                    Iniciar conversa
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-32 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="reveal mb-20 text-center">
+                <h2 class="sec1-title font-display text-4xl md:text-5xl font-light tracking-tight text-textMain">
+                    O alívio de ter <span class="font-medium text-jabuticaba">tudo no lugar.</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-panel p-12 md:p-16 rounded-[2.5rem] flex flex-col gap-10 reveal hover-physics border-dashed border-slate-300">
+                    <div class="flex items-center gap-3">
+                        <div class="w-3 h-3 rounded-full bg-slate-300"></div>
+                        <div class="text-xs font-medium tracking-widest text-textSec uppercase before-title">Sua operação hoje</div>
+                    </div>
+                    <ul class="flex flex-col gap-8 text-textMain font-light text-lg">
+                        <li class="flex items-start gap-4">
+                            <span class="text-slate-400 mt-1 font-medium">✕</span>
+                            <span class="p1-1">Mensagens esquecidas no WhatsApp. Pacientes ficam sem resposta.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-slate-400 mt-1 font-medium">✕</span>
+                            <span class="p1-2">Sua equipe gasta horas confirmando agendas manualmente.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-slate-400 mt-1 font-medium">✕</span>
+                            <span class="p1-3">Você não sabe exatamente de onde vêm seus melhores clientes.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-panel p-12 md:p-16 rounded-[2.5rem] flex flex-col gap-10 reveal delay-100 hover-physics relative overflow-hidden">
+                    <div class="absolute top-[-20%] right-[-20%] w-[70%] h-[70%] bg-accent/15 blur-[80px] rounded-full pointer-events-none"></div>
+                    <div class="absolute bottom-[-20%] left-[-20%] w-[60%] h-[60%] bg-jabuticaba/10 blur-[80px] rounded-full pointer-events-none"></div>
+                    
+                    <div class="flex items-center gap-3 relative z-10">
+                        <div class="w-3 h-3 rounded-full bg-accent shadow-glow-accent"></div>
+                        <div class="text-xs font-medium tracking-widest text-jabuticaba uppercase after-title">Com a L.H.E.X.</div>
+                    </div>
+                    <ul class="flex flex-col gap-8 text-textMain font-medium text-lg relative z-10">
+                        <li class="flex items-start gap-4">
+                            <span class="text-accent mt-1">✓</span>
+                            <span class="p2-1">Atendimento imediato e humano. Nenhum paciente fica esperando.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-accent mt-1">✓</span>
+                            <span class="p2-2">Agendamentos, lembretes e cobranças rodam sozinhos.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-jabuticaba mt-1">✓</span>
+                            <span class="p2-3">Dados claros no seu celular. Você no controle total da clínica.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-24 reveal text-center">
+                <h2 class="sec2-title font-display text-4xl md:text-5xl font-light tracking-tight text-textMain">
+                    Como funciona? <br/> <span class="text-textSec font-normal">Absurdamente simples.</span>
+                </h2>
+            </div>
+
+            <div class="flex flex-col gap-8">
+                <div class="reveal flex flex-col md:flex-row gap-8 items-start md:items-center glass-panel p-10 rounded-3xl hover-physics">
+                    <div class="text-6xl font-display font-light text-accent/50 w-20">1</div>
+                    <div>
+                        <h3 class="w1-t text-2xl font-medium text-textMain mb-3">Nós ouvimos você</h3>
+                        <p class="w1-d text-textSec font-light text-lg">Mapeamos exatamente o que tira sua paz hoje. Onde sua equipe perde tempo e onde você perde dinheiro.</p>
+                    </div>
+                </div>
+                
+                <div class="reveal delay-100 flex flex-col md:flex-row gap-8 items-start md:items-center glass-panel p-10 rounded-3xl hover-physics">
+                    <div class="text-6xl font-display font-light text-jabuticaba/40 w-20">2</div>
+                    <div>
+                        <h3 class="w2-t text-2xl font-medium text-textMain mb-3">Construímos seu sistema</h3>
+                        <p class="w2-d text-textSec font-light text-lg">Criamos automações silenciosas e sob medida. Sem que você precise aprender a usar ferramentas complicadas.</p>
+                    </div>
+                </div>
+
+                <div class="reveal delay-200 flex flex-col md:flex-row gap-8 items-start md:items-center glass-panel p-10 rounded-3xl hover-physics relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-accent/5 to-jabuticaba/5 opacity-80 pointer-events-none"></div>
+                    <div class="text-6xl font-display font-medium text-accent w-20 relative z-10">3</div>
+                    <div class="relative z-10">
+                        <h3 class="w3-t text-2xl font-medium text-textMain mb-3">Você vê a mágica acontecer</h3>
+                        <p class="w3-d text-textSec font-light text-lg">A clínica passa a rodar de forma leve. Clientes são bem atendidos, a agenda enche e sua equipe respira.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-20 reveal text-center">
+                <h2 class="sec3-title font-display text-4xl md:text-5xl font-light tracking-tight text-textMain">
+                    Automações que evitam <span class="font-medium text-gradient">trabalho manual.</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="reveal glass-panel rounded-[2rem] p-12 flex flex-col hover-physics md:col-span-2">
+                    <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mb-8 text-accent">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    </div>
+                    <h3 class="b1-t font-display text-3xl font-medium text-textMain mb-4">Atendimento Inicial Impecável</h3>
+                    <p class="b1-d text-textSec font-light text-lg leading-relaxed">
+                        Respondemos, acolhemos e triamos pacientes 24 horas por dia, mantendo o tom de voz elegante e acolhedor da sua clínica.
+                    </p>
+                </div>
+                
+                <div class="reveal delay-100 glass-panel rounded-[2rem] p-12 flex flex-col hover-physics">
+                    <div class="w-12 h-12 rounded-full bg-jabuticaba/10 flex items-center justify-center mb-8 text-jabuticaba">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </div>
+                    <h3 class="b2-t font-display text-3xl font-medium text-textMain mb-4">Agenda Autônoma</h3>
+                    <p class="b2-d text-textSec font-light text-lg leading-relaxed">
+                        Lembretes, confirmações e reagendamentos rodando sem intervenção humana.
+                    </p>
+                </div>
+
+                <div class="reveal glass-panel rounded-[2rem] p-12 flex flex-col hover-physics md:col-span-3">
+                    <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center mb-8 text-slate-500">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                    </div>
+                    <h3 class="b3-t font-display text-3xl font-medium text-textMain mb-4">Fidelização Invisível</h3>
+                    <p class="b3-d text-textSec font-light text-lg leading-relaxed max-w-4xl">
+                        Mensagens de pós-consulta, pedidos de avaliação e lembretes de retorno disparados no tempo certo. Seus pacientes sentem-se cuidados, enquanto o sistema faz todo o trabalho.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 relative z-10">
+        <div class="max-w-3xl mx-auto">
+            <div class="mb-16 reveal text-center">
+                <h2 class="faq-head font-display text-4xl font-light tracking-tight text-textMain">Perguntas Frequentes</h2>
+            </div>
+
+            <div class="glass-panel rounded-3xl p-8 reveal">
+                <div class="faq-item border-b border-borderStrong py-6 cursor-target group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center text-lg md:text-xl font-medium text-textMain transition-colors group-hover:text-jabuticaba">
+                        <span class="fq-1">Isso é automação?</span>
+                        <span class="faq-icon transform transition-transform duration-500 text-2xl font-light">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="fa-1 pt-4 text-textSec font-light text-lg leading-relaxed">Não. Arquitetamos infraestrutura operacional personalizada.</p>
+                    </div>
+                </div>
+                <div class="faq-item border-b border-borderStrong py-6 cursor-target group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center text-lg md:text-xl font-medium text-textMain transition-colors group-hover:text-jabuticaba">
+                        <span class="fq-2">Vocês atendem qualquer empresa?</span>
+                        <span class="faq-icon transform transition-transform duration-500 text-2xl font-light">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="fa-2 pt-4 text-textSec font-light text-lg leading-relaxed">Atendemos operações que exigem previsibilidade, controle e escala.</p>
+                    </div>
+                </div>
+                <div class="faq-item border-b border-borderStrong py-6 cursor-target group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center text-lg md:text-xl font-medium text-textMain transition-colors group-hover:text-jabuticaba">
+                        <span class="fq-3">Vocês substituem equipe?</span>
+                        <span class="faq-icon transform transition-transform duration-500 text-2xl font-light">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="fa-3 pt-4 text-textSec font-light text-lg leading-relaxed">Não. Eliminamos atrito operacional para que as equipes performem em alto nível e foquem no atendimento humano estratégico.</p>
+                    </div>
+                </div>
+                <div class="faq-item border-b border-borderStrong py-6 cursor-target group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center text-lg md:text-xl font-medium text-textMain transition-colors group-hover:text-jabuticaba">
+                        <span class="fq-4">Quanto tempo leva?</span>
+                        <span class="faq-icon transform transition-transform duration-500 text-2xl font-light">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="fa-4 pt-4 text-textSec font-light text-lg leading-relaxed">Cada arquitetura é implementada de forma personalizada, de acordo com a complexidade e a urgência da sua operação.</p>
+                    </div>
+                </div>
+                <div class="faq-item py-6 cursor-target group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center text-lg md:text-xl font-medium text-textMain transition-colors group-hover:text-jabuticaba">
+                        <span class="fq-5">Vocês trabalham com IA?</span>
+                        <span class="faq-icon transform transition-transform duration-500 text-2xl font-light">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="fa-5 pt-4 text-textSec font-light text-lg leading-relaxed">Utilizamos Inteligência Artificial apenas quando ela aumenta a precisão operacional e enriquece a experiência do seu cliente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-40 relative z-10" id="manifesto">
+        <div class="max-w-5xl mx-auto px-6 text-center reveal">
+            <div class="w-1 h-16 bg-gradient-to-b from-accent to-jabuticaba mx-auto mb-12 rounded-full opacity-60"></div>
+            <p class="mani-text font-display text-4xl md:text-6xl font-light text-textMain leading-[1.2] tracking-tight">
+                "Você não percebe a tecnologia.<br/>
+                <span class="text-textSec">Você sente o alívio.</span>"
+            </p>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 relative z-10 text-center mb-10">
+        <div class="max-w-4xl mx-auto reveal glass-panel rounded-[3rem] p-16 md:p-24 shadow-soft-elevate relative overflow-hidden">
+            <img src="/logo.png" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150%] opacity-[0.03] pointer-events-none" alt="" onerror="this.style.display='none'">
+            
+            <div class="relative z-10">
+                <h2 class="cta-head font-display text-4xl md:text-6xl font-light tracking-tight text-textMain mb-6">
+                    Sua clínica pronta para <span class="font-medium text-gradient">crescer em paz.</span>
+                </h2>
+                <p class="cta-sub text-lg md:text-xl text-textSec font-light mb-12 max-w-2xl mx-auto">
+                    Vamos desenhar como a L.H.E.X. pode tirar o peso da operação das suas costas hoje.
+                </p>
+                <button onclick="toggleModal()" class="cta-main px-14 py-6 bg-textMain text-white rounded-full font-medium tracking-wide hover:bg-jabuticaba transition-all duration-500 text-base cursor-target shadow-lg hover:shadow-glow-purple">
+                    Iniciar conversa
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 px-6 relative z-10 border-t border-borderStrong bg-white/30 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+            
+            <div class="flex flex-col gap-2">
+                <div class="font-display font-medium tracking-[0.2em] text-lg flex items-center cursor-target" onclick="window.scrollTo(0,0)">
+                    <span class="text-accent">L.</span><span class="text-jabuticaba text-xl">H</span><span class="text-accent">.E.X.</span><span class="text-textMain text-sm ml-1">®</span>
+                </div>
+                <div class="text-sm text-textSec font-light tracking-wide foot-copy">
+                    Operational Infrastructure Systems
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8 md:gap-16 text-sm text-textSec font-light">
+                <div class="flex flex-col gap-1">
+                    <span class="font-medium text-textMain uppercase tracking-widest text-[10px] mb-1 foot-f">Founder</span>
+                    <span>Letícia Nascimento Silva</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <span class="font-medium text-textMain uppercase tracking-widest text-[10px] mb-1">CNPJ</span>
+                    <span>65.004.150/0001-19</span>
+                </div>
+            </div>
+
+            <div class="text-xs text-textSec/60 font-light tracking-wide foot-rights">
+                &copy; 2026 — Todos os direitos reservados
+            </div>
+        </div>
+    </footer>
+
+    <div id="appModal" class="fixed inset-0 z-[100] hidden items-center justify-center px-4 bg-slate-900/10 backdrop-blur-xl transition-opacity duration-500 opacity-0 cursor-target">
+        <div class="bg-white/95 backdrop-blur-3xl border border-white w-full max-w-lg rounded-[2.5rem] shadow-2xl transform scale-[0.98] transition-all duration-500 flex flex-col cursor-auto overflow-hidden" id="modalBox">
+            
+            <div class="px-8 py-6 flex justify-between items-center bg-slate-50/50 border-b border-slate-100">
+                <div class="flex items-center gap-3">
+                    <span class="w-2 h-2 bg-accent rounded-full shadow-glow-accent"></span>
+                    <div class="text-xs font-medium tracking-wide text-textMain form-kicker">Convite Privado</div>
+                </div>
+                <button onclick="toggleModal()" class="text-slate-400 hover:text-jabuticaba transition-colors text-2xl font-light cursor-target px-2">&times;</button>
+            </div>
+
+            <div class="px-8 py-10">
+                <h3 class="form-header font-display text-3xl font-medium text-textMain mb-3">Vamos conversar.</h3>
+                <p class="form-desc text-textSec font-light text-base mb-8">Me conte um pouco sobre sua clínica. Nós retornamos pelo WhatsApp para entender como podemos ajudar.</p>
+                
+                <form onsubmit="sendForm(event)" class="flex flex-col gap-6">
+                    <div class="group relative">
+                        <label class="lbl-1 block text-xs font-medium text-textMain mb-2">Seu nome e Clínica</label>
+                        <input type="text" id="fname" required placeholder="Ex.: Ana, Clínica Aurora" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 text-textMain font-light text-base placeholder-slate-400 transition-all">
+                    </div>
+                    
+                    <div class="group relative">
+                        <label class="lbl-2 block text-xs font-medium text-textMain mb-2">O que mais toma seu tempo hoje?</label>
+                        <textarea id="fpain" rows="2" required placeholder="Falta de tempo, agenda bagunçada..." class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 text-textMain font-light text-base placeholder-slate-400 transition-all resize-none no-scrollbar"></textarea>
+                    </div>
+                    
+                    <button type="submit" id="submitBtn" class="cursor-target mt-4 w-full py-5 bg-textMain text-white rounded-xl font-medium text-base transition-colors hover:bg-jabuticaba tracking-wide shadow-md">
+                        Enviar mensagem
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="loader" class="fixed inset-0 z-[200] hidden items-center justify-center bg-white/90 backdrop-blur-xl cursor-target">
+        <div class="flex flex-col items-center gap-5">
+            <div class="w-10 h-10 border-2 border-accent border-t-jabuticaba rounded-full animate-spin"></div>
+            <div class="text-sm font-medium text-textMain animate-pulse proc-text tracking-wide">Preparando ambiente...</div>
+        </div>
+    </div>
+
+    <script>
+        // FAQ Toggle Logic
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            // Open clicked
+            if (!isActive) {
+                element.classList.add('active');
+            }
+        }
+
+        // Custom Light Cursor System
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const cursor = document.getElementById('custom-cursor');
+            const dot = document.getElementById('custom-cursor-dot');
+            
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let cursorX = mouseX;
+            let cursorY = mouseY;
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                dot.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
+            });
+
+            const renderCursor = () => {
+                cursorX += (mouseX - cursorX) * 0.12;
+                cursorY += (mouseY - cursorY) * 0.12;
+                cursor.style.transform = `translate3d(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%), 0)`;
+                requestAnimationFrame(renderCursor);
+            };
+            requestAnimationFrame(renderCursor);
+
+            const bindHoverEffects = () => {
+                document.querySelectorAll('a, button, .cursor-target, .faq-item').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursor.classList.add('hover-active');
+                        dot.classList.add('hover-active');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        cursor.classList.remove('hover-active');
+                        dot.classList.remove('hover-active');
+                    });
+                });
+            };
+            bindHoverEffects();
+        }
+
+        // Cinematic Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Bilingual Dictionary (Human, Simple, Premium)
+        const dict = {
+            pt: {
+                head: 'Organizamos sua operação para que sua empresa <span class="text-gradient font-medium">cresça sem caos.</span>',
+                sub: 'A tecnologia que trabalha em silêncio para você cuidar do que realmente importa.',
+                ctaM: 'Iniciar conversa', ctaS: 'Manifesto', 
+                
+                s1T: 'O alívio de ter <span class="font-medium text-jabuticaba">tudo no lugar.</span>',
+                befT: 'Sua operação hoje',
+                p11: 'Mensagens esquecidas no WhatsApp. Pacientes ficam sem resposta.',
+                p12: 'Sua equipe gasta horas confirmando agendas manualmente.',
+                p13: 'Você não sabe exatamente de onde vêm seus melhores clientes.',
+                aftT: 'Com a L.H.E.X.',
+                p21: 'Atendimento imediato e humano. Nenhum paciente fica esperando.',
+                p22: 'Agendamentos, lembretes e cobranças rodam sozinhos.',
+                p23: 'Dados claros no seu celular. Você no controle total da clínica.',
+
+                s2T: 'Como funciona? <br/> <span class="text-textSec font-normal">Absurdamente simples.</span>',
+                w1t: 'Nós ouvimos você', w1d: 'Mapeamos exatamente o que tira sua paz hoje. Onde sua equipe perde tempo e onde você perde dinheiro.',
+                w2t: 'Construímos seu sistema', w2d: 'Criamos automações silenciosas e sob medida. Sem que você precise aprender a usar ferramentas complicadas.',
+                w3t: 'Você vê a mágica acontecer', w3d: 'A clínica passa a rodar de forma leve. Clientes são bem atendidos, a agenda enche e sua equipe respira.',
+
+                s3T: 'Automações que evitam <span class="font-medium text-gradient">trabalho manual.</span>',
+                b1t: 'Atendimento Inicial Impecável', b1d: 'Respondemos, acolhemos e triamos pacientes 24 horas por dia, mantendo o tom de voz elegante e acolhedor da sua clínica.',
+                b2t: 'Agenda Autônoma', b2d: 'Lembretes, confirmações e reagendamentos rodando sem intervenção humana.',
+                b3t: 'Fidelização Invisível', b3d: 'Mensagens de pós-consulta, pedidos de avaliação e lembretes de retorno disparados no tempo certo. Seus pacientes sentem-se cuidados, enquanto o sistema faz todo o trabalho.',
+
+                faqH: 'Perguntas Frequentes',
+                fq1: 'Isso é automação?', fa1: 'Não. Arquitetamos infraestrutura operacional personalizada.',
+                fq2: 'Vocês atendem qualquer empresa?', fa2: 'Atendemos operações que exigem previsibilidade, controle e escala.',
+                fq3: 'Vocês substituem equipe?', fa3: 'Não. Eliminamos atrito operacional para que as equipes performem em alto nível e foquem no atendimento humano estratégico.',
+                fq4: 'Quanto tempo leva?', fa4: 'Cada arquitetura é implementada de forma personalizada, de acordo com a complexidade e a urgência da sua operação.',
+                fq5: 'Vocês trabalham com IA?', fa5: 'Utilizamos Inteligência Artificial apenas quando ela aumenta a precisão operacional e enriquece a experiência do seu cliente.',
+
+                mani: '"Você não percebe a tecnologia.<br/> <span class="text-textSec">Você sente o alívio.</span>"',
+                
+                ctH: 'Sua clínica pronta para <span class="font-medium text-gradient">crescer em paz.</span>',
+                ctS: 'Vamos desenhar como a L.H.E.X. pode tirar o peso da operação das suas costas hoje.',
+                
+                footC: 'Operational Infrastructure Systems',
+                footF: 'Founder',
+                footR: '© 2026 — Todos os direitos reservados',
+                
+                fk: 'Convite Privado', fh: 'Vamos conversar.', fd: 'Me conte um pouco sobre sua clínica. Nós retornamos pelo WhatsApp para entender como podemos ajudar.',
+                l1: 'Seu nome e Clínica', l2: 'O que mais toma seu tempo hoje?', btn: 'Enviar mensagem',
+                ph1: 'Ex.: Ana, Clínica Aurora', ph2: 'Falta de tempo, agenda bagunçada...', proc: 'Preparando ambiente...'
+            },
+            en: {
+                head: 'We organize your operations so your company can <span class="text-gradient font-medium">grow without chaos.</span>',
+                sub: 'The technology that works in silence, so you can focus on what truly matters.',
+                ctaM: 'Let\'s talk', ctaS: 'Manifesto', 
+                
+                s1T: 'The relief of having <span class="font-medium text-jabuticaba">everything in place.</span>',
+                befT: 'Your operations today',
+                p11: 'Forgotten WhatsApp messages. Patients left waiting for an answer.',
+                p12: 'Your team spends hours confirming appointments manually.',
+                p13: 'You don\'t know exactly where your best clients come from.',
+                aftT: 'With L.H.E.X.',
+                p21: 'Immediate, human-like responses. No patient is left waiting.',
+                p22: 'Scheduling, reminders, and billing run completely on their own.',
+                p23: 'Clear data on your phone. You have total control of your clinic.',
+
+                s2T: 'How it works? <br/> <span class="text-textSec font-normal">Absurdly simple.</span>',
+                w1t: 'We listen to you', w1d: 'We map exactly what steals your peace today. Where your team loses time and where you lose money.',
+                w2t: 'We build your system', w2d: 'We create silent, tailor-made automations. Without you having to learn complicated tools.',
+                w3t: 'You watch the magic happen', w3d: 'The clinic starts running effortlessly. Clients are well served, the schedule fills up, and your team breathes.',
+
+                s3T: 'Automations that prevent <span class="font-medium text-gradient">manual labor.</span>',
+                b1t: 'Flawless Initial Contact', b1d: 'We respond, welcome, and triage patients 24/7, keeping the exact same warm tone of your clinic.',
+                b2t: 'Autonomous Scheduling', b2d: 'Reminders, confirmations, and rescheduling running without human intervention.',
+                b3t: 'Invisible Loyalty', b3d: 'Post-visit messages, review requests, and return reminders sent exactly on time. Your patients feel cared for, while the system does the work.',
+
+                faqH: 'Frequently Asked Questions',
+                fq1: 'Is this just automation?', fa1: 'No. We architect personalized operational infrastructure.',
+                fq2: 'Do you work with any company?', fa2: 'We serve operations that demand predictability, control, and scale.',
+                fq3: 'Do you replace my team?', fa3: 'No. We eliminate operational friction so your team can perform at a high level and focus on strategic human care.',
+                fq4: 'How long does it take?', fa4: 'Each architecture is implemented in a personalized way, according to the complexity and urgency of your operation.',
+                fq5: 'Do you work with AI?', fa5: 'We only use Artificial Intelligence when it increases operational precision and enriches your client\'s experience.',
+
+                mani: '"You don\'t notice the technology.<br/> <span class="text-textSec">You feel the relief.</span>"',
+                
+                ctH: 'Your clinic ready to <span class="font-medium text-gradient">grow in peace.</span>',
+                ctS: 'Let\'s design how L.H.E.X. can lift the operational weight off your shoulders today.',
+                
+                footC: 'Operational Infrastructure Systems',
+                footF: 'Founder',
+                footR: '© 2026 — All rights reserved',
+                
+                fk: 'Private Invitation', fh: 'Let\'s talk.', fd: 'Tell me a bit about your clinic. We will get back to you via WhatsApp to understand how we can help.',
+                l1: 'Your name and Clinic', l2: 'What consumes most of your time today?', btn: 'Send message',
+                ph1: 'E.g.: Anna, Aurora Clinic', ph2: 'Lack of time, messy schedule...', proc: 'Preparing environment...'
+            }
+        };
+
+        function setLang(l, e) {
+            document.querySelectorAll('.lang-btn').forEach(b => { b.classList.remove('font-medium'); });
+            e.target.classList.add('font-medium');
+            
+            const t = dict[l];
+            document.querySelector('.headline').innerHTML = t.head;
+            document.querySelector('.subheadline').innerText = t.sub;
+            document.querySelectorAll('.cta-main').forEach(b => b.innerText = t.ctaM);
+            document.querySelector('.cta-soft').innerText = t.ctaS;
+            document.querySelector('.cta-nav').innerText = t.ctaM;
+
+            document.querySelector('.sec1-title').innerHTML = t.s1T;
+            document.querySelector('.before-title').innerText = t.befT;
+            document.querySelector('.p1-1').innerText = t.p11; document.querySelector('.p1-2').innerText = t.p12; document.querySelector('.p1-3').innerText = t.p13;
+            document.querySelector('.after-title').innerText = t.aftT;
+            document.querySelector('.p2-1').innerText = t.p21; document.querySelector('.p2-2').innerText = t.p22; document.querySelector('.p2-3').innerText = t.p23;
+
+            document.querySelector('.sec2-title').innerHTML = t.s2T;
+            document.querySelector('.w1-t').innerText = t.w1t; document.querySelector('.w1-d').innerText = t.w1d;
+            document.querySelector('.w2-t').innerText = t.w2t; document.querySelector('.w2-d').innerText = t.w2d;
+            document.querySelector('.w3-t').innerText = t.w3t; document.querySelector('.w3-d').innerText = t.w3d;
+
+            document.querySelector('.sec3-title').innerHTML = t.s3T;
+            document.querySelector('.b1-t').innerText = t.b1t; document.querySelector('.b1-d').innerText = t.b1d;
+            document.querySelector('.b2-t').innerText = t.b2t; document.querySelector('.b2-d').innerText = t.b2d;
+            document.querySelector('.b3-t').innerText = t.b3t; document.querySelector('.b3-d').innerText = t.b3d;
+
+            document.querySelector('.faq-head').innerText = t.faqH;
+            document.querySelector('.fq-1').innerText = t.fq1; document.querySelector('.fa-1').innerText = t.fa1;
+            document.querySelector('.fq-2').innerText = t.fq2; document.querySelector('.fa-2').innerText = t.fa2;
+            document.querySelector('.fq-3').innerText = t.fq3; document.querySelector('.fa-3').innerText = t.fa3;
+            document.querySelector('.fq-4').innerText = t.fq4; document.querySelector('.fa-4').innerText = t.fa4;
+            document.querySelector('.fq-5').innerText = t.fq5; document.querySelector('.fa-5').innerText = t.fa5;
+
+            document.querySelector('.mani-text').innerHTML = t.mani;
+            document.querySelector('.cta-head').innerHTML = t.ctH; document.querySelector('.cta-sub').innerText = t.ctS;
+            
+            document.querySelector('.foot-copy').innerText = t.footC;
+            document.querySelector('.foot-f').innerText = t.footF;
+            document.querySelector('.foot-rights').innerHTML = t.footR;
+
+            document.querySelector('.form-kicker').innerText = t.fk; document.querySelector('.form-header').innerText = t.fh; document.querySelector('.form-desc').innerText = t.fd;
+            document.querySelector('.lbl-1').innerText = t.l1; document.querySelector('.lbl-2').innerText = t.l2;
+            document.getElementById('fname').placeholder = t.ph1; document.getElementById('fpain').placeholder = t.ph2;
+            document.getElementById('submitBtn').innerText = t.btn;
+            document.querySelector('.proc-text').innerText = t.proc;
+        }
+
+        // Modal Logic
+        const modal = document.getElementById('appModal');
+        const modalBox = document.getElementById('modalBox');
+        
+        function toggleModal() {
+            if(modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    modalBox.classList.remove('scale-[0.98]');
+                    document.getElementById('fname').focus();
+                }, 10);
+            } else {
+                modal.classList.add('opacity-0');
+                modalBox.classList.add('scale-[0.98]');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 500);
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) toggleModal();
+        });
+
+        function sendForm(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const loader = document.getElementById('loader');
+            
+            btn.disabled = true;
+            loader.classList.remove('hidden');
+            loader.classList.add('flex');
+
+            const name = document.getElementById('fname').value;
+            const pain = document.getElementById('fpain').value;
+            const phone = "5521987587047";
+            const msg = `*L.H.E.X.® | Nova Conversa*%0A%0A👤 *Clínica:* ${name}%0A💬 *Desafio Atual:* ${pain}`;
+
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                loader.classList.remove('flex');
+                toggleModal();
+                window.location.href = `https://wa.me/${phone}?text=${msg}`;
+                btn.disabled = false;
+                document.getElementById('fname').value = '';
+                document.getElementById('fpain').value = '';
+            }, 1200);
+        }
+    </script>
+</body>
+</html>
