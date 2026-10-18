@@ -1,0 +1,11 @@
+# Acervo de mídia e dados de pacientes — nunca versionar (sigilo médico, Res. CFM 2.336/2023)
+media/
+drive_cases.local.json
+cookies.txt
+*.mov
+*.heic
+*.HEIC
+__pycache__/
+.venv/
+.DS_Store
+node_modules/

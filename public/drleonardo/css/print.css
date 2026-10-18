@@ -1,0 +1,30 @@
+/* Impressão: "exec" = PDF executivo do Módulo 1; "doc" = documento timbrado (orçamento, receita, orientações). */
+@media print {
+  @page { size: A4; margin: 14mm 14mm 16mm; }
+  html, body { background: #fff !important; color: #2A2925; font-size: 11pt; }
+  .rail, #toasts, #modal-root, #prompter, .no-print, .actions, .btn, .seg, input[type=range] { display: none !important; }
+  .shell { display: block; }
+  .main { padding: 0 !important; }
+  .card { box-shadow: none !important; backdrop-filter: none !important; background: #fff !important; border: 1px solid #DCD8D2 !important; break-inside: avoid; }
+  .card.ink { background: #2A2925 !important; color: #F4F3F0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; animation: none !important; }
+
+  body[data-print="exec"] .view { display: none !important; }
+  body[data-print="exec"] #view-plano { display: block !important; max-width: none; }
+  body[data-print="exec"] .print-only { display: block !important; }
+  body[data-print="exec"] .section { break-inside: avoid-page; margin-top: 26px; }
+  body[data-print="exec"] .section.page { break-before: page; }
+  body[data-print="exec"] .hero-exec { grid-template-columns: 1.3fr .7fr; }
+  body[data-print="exec"] .hero-exec .portrait { min-height: 300px; }
+  body[data-print="exec"] .g2 { grid-template-columns: 1fr; }
+  body[data-print="exec"] .h-display { font-size: 38pt; }
+  body[data-print="exec"] .kpi b { font-size: 26pt; }
+  body[data-print="exec"] .g3, body[data-print="exec"] .timeline { grid-template-columns: repeat(3, 1fr); }
+  body[data-print="exec"] .g4 { grid-template-columns: repeat(4, 1fr); }
+  body[data-print="exec"] .controls { display: none !important; }
+
+  body[data-print="doc"] .shell { display: none !important; }
+  body[data-print="doc"] .print-doc { display: block !important; }
+  body[data-print="doc"] .letter { padding: 0; min-height: calc(297mm - 30mm); max-width: none; }
+}
+.print-only { display: none; }

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portal Executivo · Dr. Leonardo Valadão</title>
+<meta name="description" content="Portal Executivo & Estúdio de Criação do Dr. Leonardo Valadão — plano 20K, cronograma editorial, destaques, teleprompter, tráfego pago e ERP cirúrgico.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#B7AFA2">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/portal.css">
+<link rel="stylesheet" href="css/art.css">
+<link rel="stylesheet" href="css/print.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="rail" aria-label="Módulos">
+    <a class="brand" href="#plano" aria-label="Início">
+      <img src="assets/logo-leonardo-valadao.svg" alt="Leonardo Valadão — Cirurgia Plástica">
+      <span>Portal Executivo &amp; Estúdio</span>
+    </a>
+    <nav class="nav">
+      <a href="#plano" data-route="plano"><i>01</i><span>Plano 20K</span></a>
+      <a href="#cronograma" data-route="cronograma"><i>02</i><span>Cronograma</span></a>
+      <a href="#destaques" data-route="destaques"><i>03</i><span>Destaques</span></a>
+      <a href="#roteiros" data-route="roteiros"><i>04</i><span>Teleprompter</span></a>
+      <a href="#ads" data-route="ads"><i>05</i><span>Meta &amp; Google</span></a>
+      <a href="#erp" data-route="erp"><i>06</i><span>CRM &amp; ERP</span></a>
+      <a href="#midia" data-route="midia"><i>+</i><span>Automação</span></a>
+    </nav>
+    <div class="rail-foot">
+      <span id="rail-crm"></span>
+      <span>Sigilo médico · Res. CFM 2.336/2023</span>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <section class="view" id="view-plano" data-view="plano"></section>
+    <section class="view" id="view-cronograma" data-view="cronograma"></section>
+    <section class="view" id="view-destaques" data-view="destaques"></section>
+    <section class="view" id="view-roteiros" data-view="roteiros"></section>
+    <section class="view" id="view-ads" data-view="ads"></section>
+    <section class="view" id="view-erp" data-view="erp"></section>
+    <section class="view" id="view-midia" data-view="midia"></section>
+  </main>
+</div>
+
+<div id="modal-root"></div>
+<div id="toasts" aria-live="polite"></div>
+<div id="prompter" class="prompter" hidden></div>
+<div id="print-doc" class="print-doc"></div>
+<div id="export-stage" aria-hidden="true"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
