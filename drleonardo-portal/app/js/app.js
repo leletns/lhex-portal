@@ -8,6 +8,7 @@ import { renderScripts } from './modules/m4-scripts.js';
 import { renderAds } from './modules/m5-ads.js';
 import { renderErp } from './modules/m6-erp.js';
 import { renderMedia } from './modules/m7-media.js';
+import { renderAcervo } from './modules/m8-acervo.js';
 
 const ROUTES = {
   plano: renderPlan,
@@ -16,6 +17,7 @@ const ROUTES = {
   roteiros: renderScripts,
   ads: renderAds,
   erp: renderErp,
+  acervo: renderAcervo,
   midia: renderMedia,
 };
 const rendered = new Set();

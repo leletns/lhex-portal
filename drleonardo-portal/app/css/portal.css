@@ -378,3 +378,23 @@ table.t input.input { min-height: 34px; padding: 6px 10px; }
 .grid > *, .camp > *, .hero-exec > * { min-width: 0; }
 .slides > *, .hl-grid > *, .stories > *, .creatives > *, .script-list > *, .timeline > * { min-width: 0; }
 .slide-col .btn { white-space: normal; text-align: center; height: auto; padding-top: 8px; padding-bottom: 8px; }
+
+/* ——— Acervo Oficial (@drleonardovaladao) · embeds oficiais + camada de plano ——— */
+.acv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-top: 18px; }
+.acv-card { display: flex; flex-direction: column; gap: 12px; padding: 14px; border: 1px solid var(--linha); border-radius: var(--r); background: var(--papel); box-shadow: var(--sombra); }
+.acv-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.acv-badge { font: 700 11px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; color: var(--tinta); background: var(--linho-claro); border: 1px solid var(--linha); }
+.acv-badge.reel { color: #7A5A1E; background: rgba(200,169,106,.16); border-color: rgba(200,169,106,.4); }
+.acv-ext { font: 600 12px/1 var(--sans); color: var(--tinta-fraca); text-decoration: none; }
+.acv-ext:hover { color: var(--tinta); }
+.acv-embed { position: relative; height: 560px; border-radius: var(--r-sm); overflow: hidden; background: #fff; border: 1px solid var(--linha); }
+.acv-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
+.acv-skel { position: absolute; inset: 0; display: grid; place-items: center; background: var(--marfim); color: var(--tinta-fraca); font: 500 13px var(--sans); transition: opacity .4s var(--ease); }
+.acv-embed.ready .acv-skel { opacity: 0; pointer-events: none; }
+.acv-ctrl { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.acv-ctrl .seg { flex-wrap: nowrap; }
+.acv-ctrl .seg button { padding: 7px 12px; font-size: 12px; }
+.acv-week { flex: 1; min-width: 120px; padding: 9px 12px; border-radius: var(--r-sm); border: 1px solid var(--linha); background: var(--papel); color: var(--tinta); font: 600 13px var(--sans); cursor: pointer; }
+.acv-note { width: 100%; padding: 10px 12px; border-radius: var(--r-sm); border: 1px solid var(--linha); background: var(--marfim); color: var(--tinta); font: 400 13px var(--sans); }
+.acv-note:focus, .acv-week:focus { outline: none; border-color: var(--pedra-escura); }
+@media (max-width: 560px) { .acv-embed { height: 500px; } .acv-grid { grid-template-columns: 1fr; } }
