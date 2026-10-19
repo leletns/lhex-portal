@@ -1,0 +1,9 @@
+/* Fontes estáticas auto-hospedadas (SIL Open Font License).
+   Versões estáticas evitam o bug de palavras grudadas em PDF (fontes variáveis viram "Type 3"). */
+@font-face { font-family: "Plus Jakarta Sans"; src: url(../assets/fonts/PlusJakartaSans-400.ttf) format("truetype"); font-weight: 300 400; font-display: swap; }
+@font-face { font-family: "Plus Jakarta Sans"; src: url(../assets/fonts/PlusJakartaSans-500.ttf) format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Plus Jakarta Sans"; src: url(../assets/fonts/PlusJakartaSans-600.ttf) format("truetype"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Plus Jakarta Sans"; src: url(../assets/fonts/PlusJakartaSans-700.ttf) format("truetype"); font-weight: 700 800; font-display: swap; }
+@font-face { font-family: "Cormorant Garamond"; src: url(../assets/fonts/CormorantGaramond-500.ttf) format("truetype"); font-weight: 400 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Cormorant Garamond"; src: url(../assets/fonts/CormorantGaramond-600.ttf) format("truetype"); font-weight: 600 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Cormorant Garamond"; src: url(../assets/fonts/CormorantGaramond-500i.ttf) format("truetype"); font-weight: 400 600; font-style: italic; font-display: swap; }

@@ -1,0 +1,129 @@
+{
+ "out": "../media/reels/reel-autoridade-blue-clinica.mp4",
+ "segments": [
+  {
+   "src": "../media/bastidores/corredor.mov",
+   "start": 0,
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.4
+   ]
+  },
+  {
+   "src": "../app/assets/photos/hospital.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.45
+   ],
+   "motion": "in"
+  },
+  {
+   "src": "../media/bastidores/caminhada-hospital.mov",
+   "start": 0,
+   "dur": 3.4,
+   "focus": [
+    0.5,
+    0.4
+   ]
+  },
+  {
+   "src": "../app/assets/photos/room-a.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "motion": "in"
+  },
+  {
+   "src": "../media/bastidores/paramentacao.mov",
+   "start": 0.8,
+   "dur": 3.4,
+   "focus": [
+    0.4,
+    0.3
+   ]
+  },
+  {
+   "src": "../media/bastidores/equipe-operando.mov",
+   "start": 0.3,
+   "dur": 3.2,
+   "focus": [
+    0.6,
+    0.3
+   ]
+  },
+  {
+   "src": "../app/assets/photos/dr-blue.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.2
+   ],
+   "motion": "out"
+  },
+  {
+   "src": "../app/assets/photos/dr-or-purple.jpg",
+   "dur": 4.0,
+   "focus": [
+    0.55,
+    0.25
+   ],
+   "motion": "out"
+  }
+ ],
+ "cards": [
+  {
+   "start": 0.3,
+   "end": 3.1,
+   "kicker": "Bastidores · Blue Clínica",
+   "title": "Um dia de centro cirúrgico começa muito antes da cirurgia"
+  },
+  {
+   "start": 3.4,
+   "end": 5.8,
+   "kicker": "Estrutura",
+   "title": "Hospital com UTI e equipe de plantão"
+  },
+  {
+   "start": 6.1,
+   "end": 8.5,
+   "kicker": "Planejamento",
+   "title": "Marcação individual, feita em pé, para cada caso"
+  },
+  {
+   "start": 8.8,
+   "end": 11.0,
+   "kicker": "Ambiente",
+   "title": "Sala estruturada, materiais conferidos peça por peça"
+  },
+  {
+   "start": 11.3,
+   "end": 13.6,
+   "kicker": "Paramentação",
+   "title": "Campo estéril: um protocolo que não se negocia"
+  },
+  {
+   "start": 13.9,
+   "end": 16.2,
+   "kicker": "Execução",
+   "title": "Planejamento antes. Precisão durante."
+  },
+  {
+   "start": 16.5,
+   "end": 18.6,
+   "kicker": "Quem conduz",
+   "title": "Dr. Leonardo Valadão",
+   "body": "Cirurgião Plástico · CRM-RJ 52991821 | RQE 46956 · Barra da Tijuca"
+  },
+  {
+   "start": 18.9,
+   "end": 23.5,
+   "kicker": "Barra da Tijuca · Rio de Janeiro",
+   "title": "Agende sua avaliação",
+   "body": "drleonardovaladao.vercel.app · atendimento no link da bio"
+  }
+ ]
+}

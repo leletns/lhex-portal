@@ -1,0 +1,114 @@
+{
+ "out": "../media/reels/reel-abdominoplastia-diastase.mp4",
+ "segments": [
+  {
+   "src": "../app/assets/photos/op-warm-a.jpg",
+   "dur": 3.4,
+   "focus": [
+    0.45,
+    0.26
+   ],
+   "motion": "in"
+  },
+  {
+   "src": "../media/bastidores/monitor.mov",
+   "start": 0.3,
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.35
+   ]
+  },
+  {
+   "src": "../app/assets/photos/op-mark-a.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.6,
+    0.32
+   ],
+   "motion": "in"
+  },
+  {
+   "src": "../media/bastidores/paramentacao.mov",
+   "start": 0.8,
+   "dur": 3.4,
+   "focus": [
+    0.4,
+    0.3
+   ]
+  },
+  {
+   "src": "../app/assets/photos/hands-a.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "motion": "out"
+  },
+  {
+   "src": "../media/bastidores/sala-cirurgica.mov",
+   "start": 0.5,
+   "dur": 2.8,
+   "focus": [
+    0.5,
+    0.4
+   ]
+  },
+  {
+   "src": "../app/assets/photos/dr-or-light.jpg",
+   "dur": 4.0,
+   "focus": [
+    0.55,
+    0.3
+   ],
+   "motion": "out"
+  }
+ ],
+ "cards": [
+  {
+   "start": 0.3,
+   "end": 3.1,
+   "kicker": "Abdome · Diástase",
+   "title": "A barriga que não volta com dieta nem abdominal"
+  },
+  {
+   "start": 3.4,
+   "end": 5.8,
+   "kicker": "O que acontece",
+   "title": "Na gestação, os músculos retos se afastam — é a diástase"
+  },
+  {
+   "start": 6.1,
+   "end": 8.4,
+   "kicker": "O teste",
+   "title": "Deitada, levante a cabeça e sinta a linha do umbigo"
+  },
+  {
+   "start": 8.7,
+   "end": 11.1,
+   "kicker": "A correção",
+   "title": "Plicatura reposiciona os músculos; a pele em excesso sai"
+  },
+  {
+   "start": 11.4,
+   "end": 13.7,
+   "kicker": "Recuperação real",
+   "title": "Semanas de cinta e postura; contorno estabiliza em meses"
+  },
+  {
+   "start": 14.0,
+   "end": 16.0,
+   "kicker": "Quem opera",
+   "title": "Dr. Leonardo Valadão",
+   "body": "Cirurgião Plástico · CRM-RJ 52991821 | RQE 46956"
+  },
+  {
+   "start": 16.3,
+   "end": 20.0,
+   "kicker": "Barra da Tijuca · Rio de Janeiro",
+   "title": "Agende sua avaliação",
+   "body": "drleonardovaladao.vercel.app · atendimento no link da bio"
+  }
+ ]
+}

@@ -1,0 +1,113 @@
+{
+ "out": "../media/reels/reel-lipedema-poupadora.mp4",
+ "segments": [
+  {
+   "src": "../app/assets/photos/op-warm-c.jpg",
+   "dur": 3.4,
+   "focus": [
+    0.45,
+    0.28
+   ],
+   "motion": "in"
+  },
+  {
+   "src": "../media/bastidores/sala-cirurgica.mov",
+   "start": 0.4,
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.4
+   ]
+  },
+  {
+   "src": "../app/assets/photos/op-light.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.45,
+    0.3
+   ],
+   "motion": "out"
+  },
+  {
+   "src": "../media/bastidores/equipamento-lipo.mov",
+   "start": 4.0,
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "src": "../app/assets/photos/op-focus-c.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.3
+   ],
+   "motion": "in"
+  },
+  {
+   "src": "../media/bastidores/equipe-operando.mov",
+   "start": 0.3,
+   "dur": 3.2,
+   "focus": [
+    0.6,
+    0.3
+   ]
+  },
+  {
+   "src": "../app/assets/photos/dr-or-green-3.jpg",
+   "dur": 4.0,
+   "focus": [
+    0.5,
+    0.3
+   ],
+   "motion": "out"
+  }
+ ],
+ "cards": [
+  {
+   "start": 0.3,
+   "end": 3.1,
+   "kicker": "Lipedema · Cirurgia",
+   "title": "Cirurgia de Lipedema não é lipo comum"
+  },
+  {
+   "start": 3.4,
+   "end": 5.7,
+   "kicker": "O que se protege",
+   "title": "Vasos linfáticos delicados, pertinho do tecido doente"
+  },
+  {
+   "start": 6.0,
+   "end": 8.3,
+   "kicker": "A técnica",
+   "title": "Cânula no sentido dos vasos, movimento controlado"
+  },
+  {
+   "start": 8.6,
+   "end": 11.0,
+   "kicker": "O objetivo",
+   "title": "Reduzir dor, peso e desproporção — não só \"afinar\""
+  },
+  {
+   "start": 11.3,
+   "end": 13.5,
+   "kicker": "Honestidade",
+   "title": "Não cura o Lipedema. É uma etapa do tratamento."
+  },
+  {
+   "start": 13.8,
+   "end": 16.0,
+   "kicker": "Continua depois",
+   "title": "Compressão, drenagem e acompanhamento"
+  },
+  {
+   "start": 16.3,
+   "end": 20.0,
+   "kicker": "Barra da Tijuca · Rio de Janeiro",
+   "title": "Agende sua avaliação",
+   "body": "drleonardovaladao.vercel.app · atendimento no link da bio"
+  }
+ ]
+}

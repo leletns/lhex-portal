@@ -1,0 +1,110 @@
+{
+ "out": "../media/reels/reel-lipedema-5-sinais.mp4",
+ "segments": [
+  {
+   "src": "../app/assets/photos/dr-or-green.jpg",
+   "dur": 3.6,
+   "focus": [
+    0.5,
+    0.25
+   ]
+  },
+  {
+   "src": "../app/assets/photos/dr-congress.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.2
+   ],
+   "motion": "out"
+  },
+  {
+   "src": "../media/bastidores/sala-cirurgica.mov",
+   "start": 0.5,
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "src": "../app/assets/photos/dr-or-light.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.55,
+    0.25
+   ]
+  },
+  {
+   "src": "../media/bastidores/monitor.mov",
+   "start": 0.5,
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.35
+   ]
+  },
+  {
+   "src": "../app/assets/photos/dr-blue.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.2
+   ],
+   "motion": "out"
+  },
+  {
+   "src": "../app/assets/photos/dr-or-green-3.jpg",
+   "dur": 4.0,
+   "focus": [
+    0.5,
+    0.3
+   ]
+  }
+ ],
+ "cards": [
+  {
+   "start": 0.3,
+   "end": 3.0,
+   "kicker": "Lipedema",
+   "title": "Não é gordura teimosa. Pode ser Lipedema."
+  },
+  {
+   "start": 3.4,
+   "end": 5.7,
+   "kicker": "Sinal 1",
+   "title": "Acúmulo simétrico em pernas ou braços"
+  },
+  {
+   "start": 6.0,
+   "end": 8.3,
+   "kicker": "Sinal 2",
+   "title": "Pés e mãos poupados: o “degrau” no tornozelo"
+  },
+  {
+   "start": 8.6,
+   "end": 10.9,
+   "kicker": "Sinal 3",
+   "title": "Dor ao toque e hematomas sem motivo aparente"
+  },
+  {
+   "start": 11.2,
+   "end": 13.5,
+   "kicker": "Sinal 4",
+   "title": "Pouca resposta à dieta e ao treino"
+  },
+  {
+   "start": 13.8,
+   "end": 16.0,
+   "kicker": "Sinal 5",
+   "title": "Piora em fases hormonais"
+  },
+  {
+   "start": 16.4,
+   "end": 20.1,
+   "kicker": "Barra da Tijuca · Rio de Janeiro",
+   "title": "Agende sua avaliação",
+   "body": "drleonardovaladao.vercel.app · atendimento no link da bio"
+  }
+ ]
+}

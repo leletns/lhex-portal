@@ -1,0 +1,6 @@
+# Dependências do auto_editor_drleonardo.py (o ffmpeg deve estar instalado no sistema)
+gdown>=5.2
+yt-dlp>=2025.1.1
+Pillow>=10.0
+pillow-heif>=0.16
+faster-whisper>=1.0

@@ -1,0 +1,14 @@
+{
+  "_leia-me": "Copie para drive_cases.local.json (ignorado pelo git) e cole os IDs das pastas. Nunca versione IDs de pastas com nomes de pacientes.",
+  "bastidores": ["COLE_AQUI_ID_AAA_MIDIAS_EM_HOSPITAL", "COLE_AQUI_ID_AAB_FOTOS_SEM_PASTA"],
+  "caso-01": ["COLE_AQUI_ID"],
+  "caso-02": ["COLE_AQUI_ID", "COLE_AQUI_ID"],
+  "caso-03": ["COLE_AQUI_ID"],
+  "caso-04": ["COLE_AQUI_ID"],
+  "caso-05": ["COLE_AQUI_ID"],
+  "caso-06": ["COLE_AQUI_ID", "COLE_AQUI_ID", "COLE_AQUI_ID"],
+  "caso-07": ["COLE_AQUI_ID", "COLE_AQUI_ID"],
+  "caso-08": ["COLE_AQUI_ID"],
+  "caso-09": ["COLE_AQUI_ID", "COLE_AQUI_ID"],
+  "caso-10": ["COLE_AQUI_ID"]
+}

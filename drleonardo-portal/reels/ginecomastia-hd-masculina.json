@@ -1,0 +1,113 @@
+{
+ "out": "../media/reels/reel-ginecomastia-hd-masculina.mp4",
+ "segments": [
+  {
+   "src": "../app/assets/photos/op-light.jpg",
+   "dur": 3.4,
+   "focus": [
+    0.45,
+    0.3
+   ],
+   "motion": "in"
+  },
+  {
+   "src": "../media/bastidores/dr-closeup.mov",
+   "start": 0,
+   "dur": 2.4,
+   "focus": [
+    0.5,
+    0.3
+   ]
+  },
+  {
+   "src": "../app/assets/photos/op-focus-d.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.3
+   ],
+   "motion": "in"
+  },
+  {
+   "src": "../media/bastidores/equipamento-lipo.mov",
+   "start": 4.5,
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "src": "../app/assets/photos/op-mark-b.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.55,
+    0.32
+   ],
+   "motion": "out"
+  },
+  {
+   "src": "../media/bastidores/sala-cirurgica.mov",
+   "start": 0.2,
+   "dur": 2.8,
+   "focus": [
+    0.5,
+    0.4
+   ]
+  },
+  {
+   "src": "../app/assets/photos/face-blue.jpg",
+   "dur": 4.0,
+   "focus": [
+    0.55,
+    0.26
+   ],
+   "motion": "out"
+  }
+ ],
+ "cards": [
+  {
+   "start": 0.3,
+   "end": 3.1,
+   "kicker": "Lipedefinition masculina",
+   "title": "Peitoral que não define com treino? Pode ser ginecomastia."
+  },
+  {
+   "start": 3.4,
+   "end": 5.6,
+   "kicker": "A causa",
+   "title": "Aumento da glândula mamária — e glândula não some com supino"
+  },
+  {
+   "start": 5.9,
+   "end": 8.2,
+   "kicker": "A correção",
+   "title": "Exérese glandular periareolar + lipoaspiração"
+  },
+  {
+   "start": 8.5,
+   "end": 10.8,
+   "kicker": "Lipo HD",
+   "title": "Valoriza a borda do peitoral, o abdome e os flancos"
+  },
+  {
+   "start": 11.1,
+   "end": 13.5,
+   "kicker": "O princípio",
+   "title": "Revelar o músculo que existe — não desenhar um que não existe"
+  },
+  {
+   "start": 13.8,
+   "end": 16.0,
+   "kicker": "Pré-requisito",
+   "title": "Peso estável e boa pele. Avaliação é individual."
+  },
+  {
+   "start": 16.3,
+   "end": 20.0,
+   "kicker": "Barra da Tijuca · Rio de Janeiro",
+   "title": "Agende sua avaliação",
+   "body": "drleonardovaladao.vercel.app · atendimento no link da bio"
+  }
+ ]
+}

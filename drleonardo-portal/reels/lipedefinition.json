@@ -1,0 +1,111 @@
+{
+ "out": "../media/reels/reel-lipedefinition.mp4",
+ "segments": [
+  {
+   "src": "../app/assets/photos/dr-lipedefinition.jpg",
+   "dur": 3.6,
+   "focus": [
+    0.6,
+    0.2
+   ]
+  },
+  {
+   "src": "../media/bastidores/dr-closeup.mov",
+   "start": 0,
+   "dur": 2.3,
+   "focus": [
+    0.5,
+    0.3
+   ]
+  },
+  {
+   "src": "../media/bastidores/equipamento-lipo.mov",
+   "start": 4.5,
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "src": "../media/bastidores/equipe-operando.mov",
+   "start": 0.3,
+   "dur": 3.2,
+   "focus": [
+    0.6,
+    0.3
+   ]
+  },
+  {
+   "src": "../app/assets/photos/dr-lipedefinition-2.jpg",
+   "dur": 3.2,
+   "focus": [
+    0.7,
+    0.2
+   ],
+   "motion": "out"
+  },
+  {
+   "src": "../media/bastidores/sala-cirurgica.mov",
+   "start": 0.2,
+   "dur": 2.8,
+   "focus": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "src": "../app/assets/photos/dr-or-green-2.jpg",
+   "dur": 4.0,
+   "focus": [
+    0.6,
+    0.3
+   ]
+  }
+ ],
+ "cards": [
+  {
+   "start": 0.3,
+   "end": 3.0,
+   "kicker": "Lipedefinition",
+   "title": "Lipo HD sem cara de “tanquinho desenhado”"
+  },
+  {
+   "start": 3.3,
+   "end": 5.0,
+   "kicker": "01 · Marcação",
+   "title": "Em pé, por zonas anatômicas"
+  },
+  {
+   "start": 5.4,
+   "end": 7.7,
+   "kicker": "02 · Camadas",
+   "title": "Profunda e superficial, com equipamento dedicado"
+  },
+  {
+   "start": 8.0,
+   "end": 10.4,
+   "kicker": "03 · Transições",
+   "title": "O segredo do natural está nas bordas"
+  },
+  {
+   "start": 10.8,
+   "end": 13.2,
+   "kicker": "O objetivo",
+   "title": "Parecer a melhor versão do seu próprio corpo"
+  },
+  {
+   "start": 13.6,
+   "end": 15.6,
+   "kicker": "Planejamento individual",
+   "title": "A intensidade da definição é escolhida com você"
+  },
+  {
+   "start": 16.0,
+   "end": 19.7,
+   "kicker": "Barra da Tijuca · Rio de Janeiro",
+   "title": "Agende sua avaliação",
+   "body": "drleonardovaladao.vercel.app · atendimento no link da bio"
+  }
+ ]
+}
