@@ -208,7 +208,7 @@ function renderSlides(post, el) {
   });
   // Clicar numa moldura "Antes/Depois" do slide abre o seletor de fotos do slot correspondente.
   pane.addEventListener('click', (e) => {
-    const slot = e.target.closest('.ba-fr[data-slot]')?.dataset.slot;
+    const slot = e.target.closest('.ba-fr[data-slot], .ba2-h[data-slot]')?.dataset.slot;
     if (slot) $(`input[data-file="${slot}"]`, pane)?.click();
     const pv = e.target.dataset.pv;
     if (pv) {
