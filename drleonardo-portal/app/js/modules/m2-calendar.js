@@ -161,11 +161,17 @@ function renderSlides(post, el) {
     <div class="slides"></div>
     ${c.guide ? '<p class="tiny" style="margin-top:14px">Guia visual educativo — sem foto de paciente.</p>' : `
     <div class="photo-tools card solid">
-      <div><span class="label">Encaixar foto real · pasta do Drive do ${esc(c.cover.kicker)}</span>
-      <p class="tiny" style="margin-top:4px">A foto é processada só neste navegador: não sai do seu aparelho e não é salva no portal. Par <b>frente</b> → vira o slide 2 (Antes | Depois). Par <b>perfil/costas</b> → vira o slide 3. Nunca use imagens com nome, rosto identificável ou tatuagens marcantes do paciente.</p></div>
+      <div><span class="label">Estúdio de antes e depois · ${esc(c.cover.kicker)}</span>
+      <p class="tiny" style="margin-top:4px"><b>Toque na moldura</b> "Antes" ou "Depois" no slide (ou use os campos abaixo) para escolher a foto do seu aparelho. A imagem é processada só neste navegador — não sai do celular/PC e não é salva no portal. Par <b>frente</b> → slide 2 · par <b>perfil/costas</b> → slide 3. Nunca use imagem com nome, rosto identificável ou tatuagem marcante.</p></div>
       <div class="row">
-        <label class="check"><input type="checkbox" id="band" ${o.band ? 'checked' : ''}> Tarja de privacidade no topo</label>
-        <div class="field" style="min-width:200px"><label for="after">Rótulo do depois</label><input class="input" id="after" value="${esc(o.after)}"></div>
+        <div><span class="label">Tarja de privacidade (CFM / Instagram)</span>
+          <div class="seg" id="privacy">
+            <button data-pv="none" class="${o.privacy === 'none' ? 'on' : ''}">Nenhuma</button>
+            <button data-pv="top" class="${o.privacy === 'band' && o.privacyPos === 'top' ? 'on' : ''}">Topo (olhos)</button>
+            <button data-pv="center" class="${o.privacy === 'band' && o.privacyPos === 'center' ? 'on' : ''}">Centro (linha mamária)</button>
+          </div>
+        </div>
+        <div class="field" style="min-width:180px"><label for="after">Rótulo do depois</label><input class="input" id="after" value="${esc(o.after)}"></div>
       </div>
       <div class="grid g2" id="slots"></div>
     </div>`}`;
@@ -199,7 +205,18 @@ function renderSlides(post, el) {
       };
       reader.readAsDataURL(e.target.files[0]);
     }
-    if (e.target.id === 'band') { o.band = e.target.checked; paint(); }
+  });
+  // Clicar numa moldura "Antes/Depois" do slide abre o seletor de fotos do slot correspondente.
+  pane.addEventListener('click', (e) => {
+    const slot = e.target.closest('.ba-fr[data-slot]')?.dataset.slot;
+    if (slot) $(`input[data-file="${slot}"]`, pane)?.click();
+    const pv = e.target.dataset.pv;
+    if (pv) {
+      o.privacy = pv === 'none' ? 'none' : 'band';
+      if (pv !== 'none') o.privacyPos = pv;
+      $$('#privacy button', pane).forEach((b) => b.classList.toggle('on', b.dataset.pv === pv));
+      paint();
+    }
   });
   pane.addEventListener('input', (e) => {
     const adj = e.target.dataset.adj;

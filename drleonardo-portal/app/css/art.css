@@ -77,16 +77,47 @@
 .lx-cmp td:first-child { font: 600 19px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,243,240,.6); width: 200px; }
 .lx-cmp td:last-child { color: #F4F3F0; font-weight: 600; }
 
-/* Antes e depois (fotos encaixadas no portal) */
-.lx-ba { position: relative; display: flex; gap: 20px; }
-.lx-ph { position: relative; width: 422px; height: 760px; border-radius: 20px; overflow: hidden; background-color: #1b1b1b; background-repeat: no-repeat; }
-.lx-tag { position: absolute; left: 16px; bottom: 16px; height: 46px; line-height: 46px; padding: 0 20px; border-radius: 999px; font: 700 19px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #0F0F0F; background: rgba(244,243,240,.94); }
-.lx-band { position: absolute; left: 0; right: 0; top: 0; height: 16%; background: #0F0F0F; }
-.lx-arrow { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; background: #C8A96A; color: #0F0F0F; font: 600 36px/76px "Plus Jakarta Sans", Arial, sans-serif; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
-.lx-areas { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-.lx-areas b { font: 700 18px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #C8A96A; margin-right: 6px; }
-.lx-areas span { font: 600 20px/1 "Plus Jakarta Sans", Arial, sans-serif; padding: 12px 16px; border-radius: 999px; border: 1px solid rgba(200,169,106,.55); }
-.art.is-export .lx-tag { line-height: 40px; }
+/* Infográfico "engenharia do procedimento" (slide 4) */
+.lx-spec { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 30px; }
+.lx-spec > div { border: 1px solid rgba(200,169,106,.32); border-radius: 16px; padding: 18px 20px; background: rgba(200,169,106,.06); }
+.lx-spec span { display: block; font: 700 16px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #C8A96A; margin-bottom: 6px; }
+.lx-spec b { font: 500 34px/1 "Cormorant Garamond", Georgia, serif; color: #F4F3F0; }
+
+/* ---------- Frame Anatômico Editorial — slides 2 e 3 (antes/depois) ---------- */
+.art.editorial { background: #0B0B0C; }
+.lx-grid { position: absolute; inset: 0; background:
+  linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 54px 54px; }
+.lx-gridglow { position: absolute; inset: 0; background: radial-gradient(900px 700px at 50% 42%, rgba(200,169,106,.10), transparent 70%); }
+.lx-kicker.gold { color: #C8A96A; }
+.ba-wrap { position: absolute; left: 64px; right: 64px; top: 168px; z-index: 2; }
+.ba-wrap .lx-kicker { margin-bottom: 26px; }
+.ba-stage { position: relative; display: flex; gap: 24px; justify-content: center; }
+.ba-fr { position: relative; width: 448px; height: 812px; border-radius: 14px; overflow: hidden;
+  border: 1px solid rgba(197,165,114,.4); background-color: #0D0D0E; background-repeat: no-repeat;
+  box-shadow: 0 30px 70px -36px rgba(0,0,0,.8), inset 0 0 70px rgba(0,0,0,.45); }
+.ba-fr.empty { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.ba-glow { position: absolute; inset: 0; background: radial-gradient(360px 440px at 50% 40%, rgba(197,165,114,.14), transparent 72%); }
+.ba-sil { width: 190px; color: rgba(197,165,114,.72); z-index: 1; }
+.ba-sil svg { width: 100%; height: auto; }
+.ba-view { position: absolute; top: 24px; left: 0; right: 0; text-align: center; font: 700 16px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(197,165,114,.7); z-index: 1; }
+.ba-tag { position: absolute; left: 18px; bottom: 18px; z-index: 3; height: 44px; line-height: 44px; padding: 0 20px; border-radius: 999px; font: 700 18px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #0B0B0C; background: rgba(244,243,240,.94); }
+.art.is-export .ba-tag { line-height: 38px; }
+.ba-seal { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 4;
+  width: 196px; padding: 22px 18px; border-radius: 18px; text-align: center;
+  background: rgba(13,13,14,.82); border: 1px solid rgba(197,165,114,.5);
+  box-shadow: 0 20px 50px -18px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.08); }
+.ba-seal img { width: 150px; height: auto; display: block; margin: 0 auto 12px; }
+.ba-cmp { display: inline-flex; width: 46px; height: 46px; border-radius: 50%; align-items: center; justify-content: center; font-size: 24px; color: #0B0B0C; background: #C8A96A; }
+.ba-pills { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 30px; }
+.ba-pills span { font: 600 20px/1 "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .04em; padding: 14px 20px; border-radius: 999px;
+  color: #Efe9dd; background: rgba(13,13,14,.7); border: 1px solid rgba(197,165,114,.45); }
+.lx-band { position: absolute; left: 0; right: 0; height: 15%; z-index: 2; background: #0D0D0D;
+  border-top: 1px solid rgba(197,165,114,.55); border-bottom: 1px solid rgba(197,165,114,.55);
+  display: flex; align-items: center; justify-content: center; }
+.lx-band.top { top: 4%; } .lx-band.center { top: 42%; }
+.lx-band span { font: 700 15px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .3em; text-transform: uppercase; color: rgba(197,165,114,.85); }
 
 /* CTA */
 .lx-cta { font-size: 84px !important; line-height: 1 !important; margin-bottom: 22px !important; white-space: nowrap; }
@@ -110,3 +141,4 @@
 .lx-ring { width: 600px; height: 600px; border-radius: 50%; border: 3px solid #C8A96A; display: flex; align-items: center; justify-content: center; color: #C8A96A; background: rgba(14,14,14,.55); box-shadow: inset 0 0 0 14px rgba(200,169,106,.08); }
 .lx-ring svg { width: 300px; height: 300px; }
 .lx-hl-label { font: 500 88px/1 "Cormorant Garamond", Georgia, serif; color: #F4F3F0; letter-spacing: .02em; }
+.ba-fr { cursor: pointer; }

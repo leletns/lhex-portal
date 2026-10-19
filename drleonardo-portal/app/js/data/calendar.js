@@ -2,6 +2,7 @@
 import { CALENDAR_START, SIGNATURE, DOCTOR } from '../config.js';
 import { SCRIPTS } from './scripts.js';
 import { CASES } from './cases.js';
+import { COPY } from './copy.js';
 import { kwLabel } from '../lib/art.js';
 
 // [roteiro, caso] por semana — temas da terça e da quinta conversam entre si.
@@ -74,8 +75,9 @@ export const POSTS = PAIRING.flatMap(([sid, cid], w) => {
   const c = CASES.find((x) => x.id === cid);
   const tue = addDays(CALENDAR_START, w * 7);
   const thu = addDays(CALENDAR_START, w * 7 + 2);
+  const copy = COPY[w + 1] || {}; // legendas/Stories revisados; cai no gerador se faltar
   return [
-    { key: `w${w + 1}-reel`, week: w + 1, kind: 'reel', date: tue, dateLabel: fmt(tue), title: s.title, pillar: s.pillar, script: s, caption: reelCaption(s), stories: reelStories(s) },
-    { key: `w${w + 1}-carrossel`, week: w + 1, kind: 'carousel', date: thu, dateLabel: fmt(thu), title: c.short, pillar: c.pillar, caseData: c, caption: carouselCaption(c), stories: carouselStories(c) },
+    { key: `w${w + 1}-reel`, week: w + 1, kind: 'reel', date: tue, dateLabel: fmt(tue), title: s.title, pillar: s.pillar, script: s, caption: copy.reelCaption || reelCaption(s), stories: copy.reelStories || reelStories(s) },
+    { key: `w${w + 1}-carrossel`, week: w + 1, kind: 'carousel', date: thu, dateLabel: fmt(thu), title: c.short, pillar: c.pillar, caseData: c, caption: copy.carouselCaption || carouselCaption(c), stories: copy.carouselStories || carouselStories(c) },
   ];
 });

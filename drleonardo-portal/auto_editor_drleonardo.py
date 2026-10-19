@@ -479,8 +479,39 @@ def xfade_concat(parts: list[Path], durs: list[float], out: Path, fade: float = 
     return sum(durs) - fade * (len(parts) - 1)
 
 
+def build_ambient(work: Path, total: float, cues: list[float]) -> Path:
+    """Trilha ambiente sofisticada (pad quente/deep chord) + whoosh suave em cada troca de cena.
+    Gerada 100% via FFmpeg — nenhum arquivo externo. Substitui o vídeo mudo."""
+    pad, whoosh, out = work / "pad.wav", work / "whoosh.wav", work / "audio.wav"
+    fade = min(2.5, total / 3)
+    run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
+         "-f", "lavfi", "-i", f"sine=frequency=110:duration={total}",       # A2
+         "-f", "lavfi", "-i", f"sine=frequency=164.81:duration={total}",     # E3
+         "-f", "lavfi", "-i", f"sine=frequency=220:duration={total}",        # A3
+         "-f", "lavfi", "-i", f"sine=frequency=277.18:duration={total}",     # C#4 (acorde maior suave)
+         "-filter_complex",
+         "[0][1][2][3]amix=inputs=4:normalize=0,tremolo=f=0.12:d=0.4,lowpass=f=820,"
+         f"aecho=0.8:0.88:70|150:0.3|0.2,volume=0.16,afade=t=in:d={fade:.2f},afade=t=out:st={max(0, total - fade):.2f}:d={fade:.2f}[a]",
+         "-map", "[a]", str(pad)])
+    run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
+         "-f", "lavfi", "-i", "anoisesrc=color=brown:duration=0.8:amplitude=0.7",
+         "-af", "bandpass=f=1500:width_type=h:w=1800,afade=t=in:d=0.4,afade=t=out:st=0.4:d=0.4,volume=0.20",
+         "-ar", "44100", str(whoosh)])
+    cues = [c for c in cues if c > 0.1]
+    inputs, fc, labels = ["-i", str(pad)], [], ["[0:a]"]
+    for i, t in enumerate(cues):
+        inputs += ["-i", str(whoosh)]
+        ms = int(t * 1000)
+        fc.append(f"[{i + 1}:a]adelay={ms}|{ms}[w{i}]")
+        labels.append(f"[w{i}]")
+    fc.append("".join(labels) + f"amix=inputs={len(labels)}:normalize=0,alimiter=limit=0.9[a]")
+    run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", *inputs,
+         "-filter_complex", ";".join(fc), "-map", "[a]", "-ar", "44100", "-ac", "2", str(out)])
+    return out
+
+
 def apply_design(base_video: Path, cards: list[Card], out: Path, total: float, work: Path,
-                 keep_audio: bool = False) -> None:
+                 keep_audio: bool = False, audio_path: Path | None = None) -> None:
     """Sobrepõe as tarjas de vidro (desfoque real do vídeo por baixo + painel escuro), logo, rodapé e barra de progresso."""
     chrome = render_chrome(work)
     inputs = ["-i", str(base_video), "-loop", "1", "-t", f"{total}", "-i", str(chrome)]
@@ -505,11 +536,12 @@ def apply_design(base_video: Path, cards: list[Card], out: Path, total: float, w
         cur = f"[v{i}]"
     graph.append(f"{cur}[1:v]overlay=0:0,drawbox=x=0:y=0:w='iw*t/{total:.3f}':h=6:color=0xC8A96A@0.95:t=fill,format=yuv420p[vout]")
     cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", *inputs]
-    if keep_audio:
+    if keep_audio:  # vídeo falado: preserva a voz original do Dr. Leonardo
         cmd += ["-filter_complex", ";".join(graph), "-map", "[vout]", "-map", "0:a?", "-c:a", "aac", "-b:a", "160k"]
-    else:  # trilha silenciosa: a música é escolhida no app do Instagram (biblioteca licenciada)
-        cmd += ["-f", "lavfi", "-t", f"{total}", "-i", "anullsrc=r=44100:cl=stereo",
-                "-filter_complex", ";".join(graph), "-map", "[vout]", "-map", f"{n}:a", "-c:a", "aac", "-b:a", "96k"]
+    else:  # vídeo visual: trilha ambiente + whoosh gerados por FFmpeg (nunca mudo)
+        audio = audio_path or build_ambient(work, total, [c.start for c in cards])
+        cmd += ["-i", str(audio),
+                "-filter_complex", ";".join(graph), "-map", "[vout]", "-map", f"{n}:a", "-c:a", "aac", "-b:a", "160k"]
     cmd += ["-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-movflags", "+faststart", str(out)]
     run(cmd)
 
