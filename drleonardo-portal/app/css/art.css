@@ -1,99 +1,112 @@
-/* Peças em pixels nativos (1080x1350 / 1080x1920). A pré-visualização aplica scale() no contêiner .fit. */
+/* Peças em pixels nativos (1080x1350 / 1080x1920). A pré-visualização aplica scale() no contêiner .fit.
+   Direção de arte: dark luxury — foto real ao fundo, vidro escuro, dourado champanhe. */
 
 .art {
-  position: relative; width: 1080px; overflow: hidden; display: flex; flex-direction: column;
-  font-family: "Plus Jakarta Sans", Arial, sans-serif; color: #2A2925; background: #F4F3F0;
+  position: relative; width: 1080px; overflow: hidden;
+  font-family: "Plus Jakarta Sans", Arial, sans-serif; color: #F4F3F0; background: #0F0F0F;
+  letter-spacing: normal; word-spacing: normal; font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
 }
 .art-45 { height: 1350px; }
 .art-916 { height: 1920px; }
-.art.t-dark { background: #2A2925; color: #F4F3F0; }
-.art.t-ivory { background: #F4F3F0; }
-.art.t-linen { background: #E4E0DA; }
-.art.t-stone { background: #B7AFA2; }
 
-.art-head { display: flex; justify-content: space-between; align-items: center; padding: 64px 76px 0; flex: none; }
-.art-logo { width: 360px; height: auto; }
-.art-count { font: 600 22px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .2em; opacity: .7; }
+.lx-bg { position: absolute; inset: 0; background-repeat: no-repeat; }
+.lx-shade { position: absolute; inset: 0; }
+.shade-cover { background: linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,0) 20%, rgba(10,10,10,.08) 40%, rgba(10,10,10,.82) 64%, rgba(10,10,10,.97) 100%); }
+.shade-full { background: linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,.30) 40%, rgba(10,10,10,.70) 100%); }
+.shade-cta { background: linear-gradient(180deg, rgba(10,10,10,.45) 0%, rgba(10,10,10,0) 25%, rgba(10,10,10,.15) 50%, rgba(10,10,10,.85) 100%); }
+.shade-story { background: linear-gradient(180deg, rgba(10,10,10,.5) 0%, rgba(10,10,10,.05) 25%, rgba(10,10,10,.2) 50%, rgba(10,10,10,.8) 100%); }
+.shade-deep { background: radial-gradient(circle at 50% 46%, rgba(10,10,10,.35) 0%, rgba(10,10,10,.82) 70%); }
 
-.art-body { flex: 1; padding: 56px 76px 36px; display: flex; flex-direction: column; min-height: 0; }
-.art .kicker { font: 700 22px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .3em; text-transform: uppercase; opacity: .72; margin-bottom: 30px; }
-.art h1 { font: 500 112px/1.0 "Cormorant Garamond", Georgia, serif; letter-spacing: -.01em; }
-.art h2 { font: 500 92px/1.02 "Cormorant Garamond", Georgia, serif; letter-spacing: -.01em; margin-bottom: 48px; }
-.art h1 em, .art h2 em { font-style: italic; }
-.art.t-dark h1 em, .art.t-dark h2 em { color: #B7AFA2; }
-.art.t-ivory h2 em, .art.t-linen h2 em, .art.t-ivory h1 em, .art.t-linen h1 em { color: #7A7368; }
-.art .sub { font: 400 36px/1.4 "Plus Jakarta Sans", Arial, sans-serif; opacity: .78; margin-top: 34px; max-width: 860px; }
-.art .note { margin-top: auto; font-size: 22px; opacity: .6; padding-top: 24px; }
+.lx-head { position: absolute; left: 72px; right: 72px; top: 64px; display: flex; justify-content: space-between; align-items: center; z-index: 3; }
+.lx-logo { width: 330px; height: auto; }
+.lx-count { font: 600 22px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .18em; color: #C8A96A; }
+.lx-count i { font-style: normal; opacity: .55; }
 
-.art-foot {
-  flex: none; margin: 0 76px; padding: 26px 0 50px; border-top: 1px solid currentColor;
-  font: 400 19px/1.45 "Plus Jakarta Sans", Arial, sans-serif; opacity: .72; letter-spacing: .01em;
+.lx-foot {
+  position: absolute; left: 72px; right: 72px; bottom: 34px; z-index: 3;
+  padding-top: 16px; border-top: 1px solid rgba(200,169,106,.45);
+  font: 400 17px/1.45 "Plus Jakarta Sans", Arial, sans-serif; color: rgba(244,243,240,.72);
 }
 
+.lx-glass {
+  position: absolute; z-index: 2; box-sizing: border-box; padding: 54px 56px 50px;
+  border-radius: 34px; border: 1px solid rgba(244,243,240,.16); background-repeat: no-repeat;
+  box-shadow: 0 40px 80px -30px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.lx-glass.pad-sm { padding: 40px 44px 40px; }
+
+.lx-kicker { font: 700 21px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .26em; text-transform: uppercase; color: #C8A96A; margin-bottom: 24px; }
+.art h1, .art h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; color: #F4F3F0; letter-spacing: -.005em; }
+.art h1 em, .art h2 em { font-style: italic; color: #D9BE86; }
+.art h2 { font-size: 72px; line-height: 1.04; margin-bottom: 30px; }
+.lx-body { font: 400 29px/1.5 "Plus Jakarta Sans", Arial, sans-serif; color: rgba(244,243,240,.86); }
+.lx-note { margin-top: 30px; font-size: 21px; color: rgba(244,243,240,.6); }
+
 /* Capa */
-.art-body.cover { justify-content: center; }
-.art-body.cover h1 { font-size: 128px; }
-.art .swipe { margin-top: 70px; font: 600 24px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .3em; text-transform: uppercase; opacity: .7; }
-.art .swipe span { display: inline-block; margin-left: 12px; }
-.art.reel .art-body.cover h1 { font-size: 118px; }
-.art.art-45.reel .art-body.cover h1 { font-size: 100px; }
-.art .play { margin-top: 70px; width: 120px; height: 120px; border-radius: 50%; border: 2px solid #B7AFA2; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #B7AFA2; padding-left: 8px; }
+.lx-cover { position: absolute; left: 76px; right: 76px; bottom: 150px; z-index: 2; text-shadow: 0 2px 22px rgba(0,0,0,.45); }
+.lx-cover h1 { font-size: 106px; line-height: .98; }
+.lx-sub { margin-top: 36px; font: 400 32px/1.4 "Plus Jakarta Sans", Arial, sans-serif; color: rgba(244,243,240,.86); max-width: 860px; }
+.lx-swipe { margin-top: 40px; font: 700 21px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .3em; text-transform: uppercase; color: #C8A96A; }
+.lx-swipe span { margin-left: 10px; }
 
-/* Antes e depois */
-.art-body.ba { padding-top: 40px; }
-.ba-top { margin-bottom: 30px; }
-.ba-top .kicker { margin-bottom: 14px; }
-.ba-proc { font: 500 44px/1.15 "Cormorant Garamond", Georgia, serif; }
-.ba-photos { display: flex; gap: 16px; }
-.ph { position: relative; border-radius: 6px; background-color: #DCD8D2; background-repeat: no-repeat; overflow: hidden; }
-.ph-empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 26px; color: #5B5850; line-height: 1.5; border: 3px dashed rgba(42,41,37,.25); border-radius: 6px; }
-.ph-empty span { font-size: 64px; line-height: 1; margin-bottom: 12px; }
-.ph-tag { position: absolute; left: 18px; bottom: 18px; line-height: 1; background: rgba(244,243,240,.94); color: #2A2925; font: 700 20px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .22em; text-transform: uppercase; padding: 0 18px; height: 48px; line-height: 48px; border-radius: 999px; }
-.ph-band { position: absolute; left: 0; right: 0; top: 0; height: 17%; background: #2A2925; }
+.lx-chips { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; }
+.lx-chips span { font: 600 22px/1 "Plus Jakarta Sans", Arial, sans-serif; padding: 16px 22px; border-radius: 999px; border: 1px solid rgba(200,169,106,.6); color: #F4F3F0; background: rgba(200,169,106,.12); }
 
-/* Listas */
-.art .steps { list-style: none; counter-reset: s; display: flex; flex-direction: column; gap: 34px; }
-.art .steps li { counter-increment: s; display: flex; gap: 34px; align-items: baseline; font-size: 38px; line-height: 1.32; }
-.art .steps li::before { content: counter(s, decimal-leading-zero); font: 500 56px/1 "Cormorant Garamond", Georgia, serif; opacity: .55; flex: none; width: 70px; }
-.art .cols { display: flex; gap: 48px; }
-.art .cols > div { flex: 1; }
-.art .cols h3 { font: 700 22px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .22em; text-transform: uppercase; padding-bottom: 18px; margin-bottom: 22px; border-bottom: 1px solid rgba(42,41,37,.3); }
-.art .cols ul { list-style: none; display: flex; flex-direction: column; gap: 24px; }
-.art .cols li { font-size: 32px; line-height: 1.35; padding-left: 30px; position: relative; }
-.art .cols li::before { content: ""; position: absolute; left: 0; top: 21px; width: 14px; height: 2px; background: currentColor; opacity: .6; }
+.lx-steps { list-style: none; counter-reset: s; display: flex; flex-direction: column; gap: 26px; }
+.lx-steps li { counter-increment: s; display: flex; gap: 28px; align-items: baseline; font-size: 32px; line-height: 1.32; color: rgba(244,243,240,.92); padding-bottom: 24px; border-bottom: 1px solid rgba(244,243,240,.12); }
+.lx-steps li:last-child { border-bottom: 0; padding-bottom: 0; }
+.lx-steps li::before { content: counter(s, decimal-leading-zero); font: italic 500 52px/1 "Cormorant Garamond", Georgia, serif; color: #C8A96A; flex: none; width: 64px; }
 
-/* Guias */
-.art .grades { display: flex; gap: 22px; flex: 1; }
-.art .grade { flex: 1; display: flex; flex-direction: column; gap: 16px; }
-.art .g-bar { height: 360px; border-radius: 8px; background: #E4E0DA; display: flex; align-items: flex-end; overflow: hidden; }
-.art .g-bar i { display: block; width: 100%; background: #2A2925; border-radius: 8px 8px 0 0; }
-.art .grade b { font: 500 46px/1 "Cormorant Garamond", Georgia, serif; }
-.art .grade p { font-size: 25px; line-height: 1.4; opacity: .8; }
-.art table.cmp { width: 100%; border-collapse: collapse; font-size: 30px; }
-.art table.cmp th { text-align: left; font: 700 20px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .16em; text-transform: uppercase; padding: 0 16px 22px; opacity: .7; }
-.art table.cmp td { padding: 26px 16px; border-top: 1px solid rgba(42,41,37,.2); line-height: 1.3; }
-.art table.cmp td:first-child { font: 600 22px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; opacity: .65; width: 230px; }
-.art table.cmp td:last-child { font-weight: 600; }
+.lx-cols { display: flex; gap: 40px; }
+.lx-cols > div { flex: 1; }
+.lx-cols h3 { font: 700 20px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #C8A96A; padding-bottom: 16px; margin-bottom: 20px; border-bottom: 1px solid rgba(200,169,106,.4); }
+.lx-cols ul { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+.lx-cols li { font-size: 28px; line-height: 1.35; padding-left: 28px; position: relative; color: rgba(244,243,240,.9); }
+.lx-cols li::before { content: ""; position: absolute; left: 0; top: 17px; width: 12px; height: 2px; background: #C8A96A; }
+
+.lx-grades { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.lx-grades > div { border: 1px solid rgba(244,243,240,.14); border-radius: 22px; padding: 26px; background: rgba(244,243,240,.04); }
+.lx-num { display: block; font: italic 500 46px/1 "Cormorant Garamond", Georgia, serif; color: #C8A96A; margin-bottom: 8px; }
+.lx-grades b { display: block; font: 500 40px/1.1 "Cormorant Garamond", Georgia, serif; margin-bottom: 8px; }
+.lx-grades p { font-size: 23px; line-height: 1.4; color: rgba(244,243,240,.82); }
+
+.lx-cmp { width: 100%; border-collapse: collapse; font-size: 27px; }
+.lx-cmp th { text-align: left; font: 700 18px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #C8A96A; padding: 0 12px 18px; }
+.lx-cmp td { padding: 22px 12px; border-top: 1px solid rgba(244,243,240,.14); line-height: 1.3; color: rgba(244,243,240,.82); }
+.lx-cmp td:first-child { font: 600 19px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,243,240,.6); width: 200px; }
+.lx-cmp td:last-child { color: #F4F3F0; font-weight: 600; }
+
+/* Antes e depois (fotos encaixadas no portal) */
+.lx-ba { position: relative; display: flex; gap: 20px; }
+.lx-ph { position: relative; width: 422px; height: 760px; border-radius: 20px; overflow: hidden; background-color: #1b1b1b; background-repeat: no-repeat; }
+.lx-tag { position: absolute; left: 16px; bottom: 16px; height: 46px; line-height: 46px; padding: 0 20px; border-radius: 999px; font: 700 19px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #0F0F0F; background: rgba(244,243,240,.94); }
+.lx-band { position: absolute; left: 0; right: 0; top: 0; height: 16%; background: #0F0F0F; }
+.lx-arrow { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; background: #C8A96A; color: #0F0F0F; font: 600 36px/76px "Plus Jakarta Sans", Arial, sans-serif; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+.lx-areas { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.lx-areas b { font: 700 18px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #C8A96A; margin-right: 6px; }
+.lx-areas span { font: 600 20px/1 "Plus Jakarta Sans", Arial, sans-serif; padding: 12px 16px; border-radius: 999px; border: 1px solid rgba(200,169,106,.55); }
+.art.is-export .lx-tag { line-height: 40px; }
 
 /* CTA */
-.art-body.cta h2 { font-size: 150px; line-height: .95; margin-bottom: 0; }
-.art-body.cta h2 em { color: #2A2925; }
-.art .doc-card { margin-top: auto; display: flex; align-items: center; gap: 30px; background: rgba(244,243,240,.55); border-radius: 24px; padding: 28px; }
-.art .doc-card img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; object-position: 50% 15%; flex: none; }
-.art .doc-card b { display: block; font: 500 46px/1.1 "Cormorant Garamond", Georgia, serif; margin-bottom: 8px; }
-.art .doc-card span { display: block; font-size: 23px; opacity: .78; line-height: 1.5; }
+.lx-cta { font-size: 84px !important; line-height: 1 !important; margin-bottom: 22px !important; white-space: nowrap; }
+.lx-sign { padding-top: 24px; border-top: 1px solid rgba(200,169,106,.4); }
+.lx-sign b { display: block; font: 500 38px/1.1 "Cormorant Garamond", Georgia, serif; margin-bottom: 8px; }
+.lx-sign span { display: block; font-size: 22px; line-height: 1.5; color: rgba(244,243,240,.78); }
 
-/* Stories / destaques */
-.art.story .art-body { justify-content: center; padding-top: 80px; }
-.art.story h1 { font-size: 118px; }
-.art.story .sub { font-size: 42px; margin-top: 56px; }
-.art .hl-mini { display: flex; align-items: center; gap: 18px; margin-bottom: 60px; font: 700 22px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .3em; text-transform: uppercase; opacity: .7; }
-.art .hl-mini svg { width: 64px; height: 64px; }
-.art .sticker-slot { margin-top: 90px; border: 3px dashed rgba(244,243,240,.4); border-radius: 28px; padding: 46px; text-align: center; font-size: 28px; opacity: .7; }
-.art.hl-cover { align-items: center; justify-content: center; gap: 70px; }
-.art .hl-ring { width: 560px; height: 560px; border-radius: 50%; border: 3px solid #2A2925; display: flex; align-items: center; justify-content: center; color: #2A2925; background: #DCD8D2; }
-.art .hl-ring svg { width: 300px; height: 300px; }
-.art .hl-label { font: 500 92px/1 "Cormorant Garamond", Georgia, serif; letter-spacing: .02em; }
-.art.t-stone h1 em, .art.t-stone h2 em { color: #5B5850; }
-.art.is-export .ph-tag span { position: relative; top: -8px; }
-.art-body.cover .sub { margin-top: 44px; }
+/* Reel */
+.lx-tarja { font-size: 92px; line-height: 1.02; }
+.art-45 .lx-tarja { font-size: 80px; }
+.lx-play { margin-top: 30px; display: flex; align-items: center; gap: 18px; font: 700 20px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: #C8A96A; }
+.lx-play span { width: 64px; height: 64px; border-radius: 50%; border: 2px solid #C8A96A; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; letter-spacing: 0; padding-left: 4px; box-sizing: border-box; }
+
+/* Stories e destaques */
+.lx-story { font-size: 88px; line-height: 1.02; margin-bottom: 26px; }
+.lx-hl-mini { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; font: 700 20px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(244,243,240,.75); }
+.lx-hl-mini svg { width: 52px; height: 52px; color: #C8A96A; }
+.lx-sticker { margin-top: 34px; border: 2px dashed rgba(200,169,106,.75); border-radius: 26px; padding: 30px; text-align: center; font: 700 24px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #D9BE86; }
+.lx-bg-blur { transform: scale(1.04); }
+.lx-hl { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 64px; z-index: 2; }
+.lx-ring { width: 600px; height: 600px; border-radius: 50%; border: 3px solid #C8A96A; display: flex; align-items: center; justify-content: center; color: #C8A96A; background: rgba(14,14,14,.55); box-shadow: inset 0 0 0 14px rgba(200,169,106,.08); }
+.lx-ring svg { width: 300px; height: 300px; }
+.lx-hl-label { font: 500 88px/1 "Cormorant Garamond", Georgia, serif; color: #F4F3F0; letter-spacing: .02em; }

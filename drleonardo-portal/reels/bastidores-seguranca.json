@@ -1,0 +1,129 @@
+{
+ "out": "../media/reels/reel-bastidores-seguranca.mp4",
+ "segments": [
+  {
+   "src": "../media/bastidores/caminhada-hospital.mov",
+   "start": 0,
+   "dur": 3.6,
+   "focus": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "src": "../media/bastidores/sala-cirurgica.mov",
+   "start": 0.4,
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "src": "../media/bastidores/monitor.mov",
+   "start": 0.2,
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.35
+   ]
+  },
+  {
+   "src": "../media/bastidores/paramentacao.mov",
+   "start": 0.8,
+   "dur": 4.2,
+   "focus": [
+    0.4,
+    0.3
+   ]
+  },
+  {
+   "src": "../media/bastidores/instrumental.mov",
+   "start": 0,
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "src": "../media/bastidores/equipe-operando.mov",
+   "start": 0.3,
+   "dur": 3.4,
+   "focus": [
+    0.6,
+    0.3
+   ]
+  },
+  {
+   "src": "../app/assets/photos/dr-blue.jpg",
+   "dur": 3.2,
+   "focus": [
+    0.5,
+    0.2
+   ]
+  },
+  {
+   "src": "../app/assets/photos/dr-or-purple.jpg",
+   "dur": 4.0,
+   "focus": [
+    0.55,
+    0.25
+   ],
+   "motion": "out"
+  }
+ ],
+ "cards": [
+  {
+   "start": 0.3,
+   "end": 3.1,
+   "kicker": "Bastidores · Segurança",
+   "title": "O que acontece antes da primeira incisão"
+  },
+  {
+   "start": 3.4,
+   "end": 5.7,
+   "kicker": "01 · Estrutura",
+   "title": "Hospital com UTI e centro cirúrgico completo"
+  },
+  {
+   "start": 6.0,
+   "end": 8.3,
+   "kicker": "02 · Monitorização",
+   "title": "Anestesista dedicado e sinais vitais em tempo real"
+  },
+  {
+   "start": 8.6,
+   "end": 12.0,
+   "kicker": "03 · Paramentação",
+   "title": "Campo estéril: um protocolo que não se negocia"
+  },
+  {
+   "start": 12.4,
+   "end": 14.7,
+   "kicker": "04 · Instrumental",
+   "title": "Conferido peça por peça antes de começar"
+  },
+  {
+   "start": 15.0,
+   "end": 17.6,
+   "kicker": "05 · Execução",
+   "title": "Planejamento feito antes. Precisão durante."
+  },
+  {
+   "start": 18.0,
+   "end": 20.4,
+   "kicker": "Quem opera",
+   "title": "Dr. Leonardo Valadão",
+   "body": "Cirurgião Plástico · CRM-RJ 52991821 | RQE 46956"
+  },
+  {
+   "start": 20.8,
+   "end": 24.5,
+   "kicker": "Checklist no direct",
+   "title": "Comente",
+   "accent": "SEGURANÇA",
+   "body": "e receba as 5 perguntas para levar na sua consulta."
+  }
+ ]
+}

@@ -4,7 +4,7 @@
 
 export const CASES = [
   {
-    id: 1, pillar: 'Lipedefinition', short: 'LipoAbdominoplastia HD + Mastopexia + Glúteo',
+    id: 1, areas: ['Linha alba', 'Cintura', 'Polo superior mamário', 'Projeção glútea'], pillar: 'Lipedefinition', short: 'LipoAbdominoplastia HD + Mastopexia + Glúteo',
     procedures: ['LipoAbdominoplastia HD', 'Mastopexia submuscular com implantes de 295 ml', 'Enxerto de gordura glútea'],
     keyword: 'CONTORNO',
     cover: { kicker: 'Caso Clínico Educativo #01', title: 'Um planejamento,<br><em>três regiões</em> em harmonia', sub: 'Abdome, mamas e glúteos pensados como um só contorno.' },
@@ -14,7 +14,7 @@ export const CASES = [
     explain: 'Neste caso educativo, a cirurgia combinada foi planejada para tratar flacidez abdominal com diástase, queda mamária e perda de projeção glútea no mesmo tempo cirúrgico. A gordura retirada na lipoaspiração de alta definição foi tratada e reaproveitada nos glúteos — um recurso que só faz sentido quando há boa indicação e segurança hospitalar para um procedimento mais longo.',
   },
   {
-    id: 2, pillar: 'Lipedefinition', short: 'Lipo HD Masculina — Definição Atlética',
+    id: 2, areas: ['Linha alba', 'Semilunares', 'Borda do peitoral', 'Flancos'], pillar: 'Lipedefinition', short: 'Lipo HD Masculina — Definição Atlética',
     procedures: ['Lipoaspiração de alta definição masculina', 'Definição de peitoral, abdome e flancos'],
     keyword: 'DEFINICAO',
     cover: { kicker: 'Caso Clínico Educativo #02', title: 'Definição <em>atlética</em>,<br>sem exagero', sub: 'Lipo HD masculina planejada a partir da musculatura real.' },
@@ -24,7 +24,7 @@ export const CASES = [
     explain: 'A Lipo HD masculina parte da anatomia de cada paciente: a marcação é feita em pé, com contração, para identificar os sulcos verdadeiros. O objetivo é revelar a musculatura existente — não desenhar uma que não existe — preservando transições naturais no abdome, peitoral e flancos.',
   },
   {
-    id: 3, pillar: 'Cirurgia Mamária', short: 'Lipoescultura + Implante 355 ml',
+    id: 3, areas: ['Sulco mamário', 'Cintura', 'Flancos'], pillar: 'Cirurgia Mamária', short: 'Lipoescultura + Implante 355 ml',
     procedures: ['Lipoescultura de tronco', 'Implante mamário de 355 ml'],
     keyword: 'MAMA',
     cover: { kicker: 'Caso Clínico Educativo #03', title: 'Cintura e colo<br><em>no mesmo desenho</em>', sub: 'Lipoescultura associada a implante de 355 ml.' },
@@ -34,7 +34,7 @@ export const CASES = [
     explain: 'Aqui, a lipoescultura do tronco e o implante mamário foram planejados em conjunto. A escolha dos 355 ml considerou a largura do tórax, a qualidade da pele e a proporção com o quadril — o tamanho do implante não é uma escolha isolada.',
   },
   {
-    id: 4, pillar: 'Cirurgia Mamária', short: 'Lipoescultura + Prótese 375 cc',
+    id: 4, areas: ['Sulco mamário', 'Contorno lateral', 'Flancos'], pillar: 'Cirurgia Mamária', short: 'Lipoescultura + Prótese 375 cc',
     procedures: ['Lipoescultura', 'Prótese mamária de 375 cc'],
     keyword: 'MAMA',
     cover: { kicker: 'Caso Clínico Educativo #04', title: 'Proporção é<br><em>a palavra-chave</em>', sub: 'Lipoescultura com prótese de 375 cc.' },
@@ -44,7 +44,7 @@ export const CASES = [
     explain: 'Neste caso educativo, a prótese de 375 cc foi escolhida pela medida da base mamária, e a lipoescultura afinou a cintura para equilibrar o novo volume. Proporção, e não só tamanho, é o que torna o resultado harmonioso.',
   },
   {
-    id: 5, pillar: 'Lipedefinition', short: 'Lipo de Definição + Enxerto Glúteo',
+    id: 5, areas: ['Flancos', 'Curva lombar', 'Projeção glútea'], pillar: 'Lipedefinition', short: 'Lipo de Definição + Enxerto Glúteo',
     procedures: ['Lipoaspiração de definição', 'Enxerto de gordura nos glúteos'],
     keyword: 'DEFINICAO',
     cover: { kicker: 'Caso Clínico Educativo #05', title: 'Tirar de onde sobra,<br><em>levar para onde falta</em>', sub: 'Lipo de definição com enxerto glúteo.' },
@@ -54,7 +54,7 @@ export const CASES = [
     explain: 'O enxerto glúteo com gordura própria aproveita o que foi aspirado no tronco. A segurança depende da técnica: a gordura é injetada apenas no plano subcutâneo, nunca no músculo, seguindo as recomendações das sociedades de cirurgia plástica.',
   },
   {
-    id: 6, pillar: 'Diástase / Abdominoplastia', short: 'Abdominoplastia + Lipo de Contorno',
+    id: 6, areas: ['Parede abdominal', 'Cicatriz baixa', 'Flancos'], pillar: 'Diástase / Abdominoplastia', short: 'Abdominoplastia + Lipo de Contorno',
     procedures: ['Abdominoplastia com plicatura', 'Lipoaspiração de contorno'],
     keyword: 'ABDOMINO',
     cover: { kicker: 'Caso Clínico Educativo #06', title: 'Quando o abdome<br><em>precisa de mais</em> que lipo', sub: 'Abdominoplastia com lipo de contorno.' },
@@ -64,7 +64,7 @@ export const CASES = [
     explain: 'Quando há excesso de pele e diástase, a lipoaspiração sozinha não entrega o contorno desejado. A abdominoplastia corrige a parede muscular e retira a pele excedente; a lipo de contorno complementa o desenho da cintura.',
   },
   {
-    id: 7, pillar: 'Cirurgia Mamária', short: 'Lipo + Prótese Mamária',
+    id: 7, areas: ['Sulco mamário', 'Cintura', 'Abdome'], pillar: 'Cirurgia Mamária', short: 'Lipo + Prótese Mamária',
     procedures: ['Lipoaspiração', 'Prótese mamária'],
     keyword: 'MAMA',
     cover: { kicker: 'Caso Clínico Educativo #07', title: 'Silhueta inteira,<br><em>não partes soltas</em>', sub: 'Lipoaspiração com prótese mamária.' },
@@ -74,7 +74,7 @@ export const CASES = [
     explain: 'A combinação de lipoaspiração com prótese permite ajustar volume e contorno em uma única recuperação. A indicação de cirurgia combinada depende de exames, tempo cirúrgico seguro e avaliação individual.',
   },
   {
-    id: 8, pillar: 'Lipedefinition', short: 'Lipo HD + Ginecomastia',
+    id: 8, areas: ['Borda do peitoral', 'Linha alba', 'Flancos'], pillar: 'Lipedefinition', short: 'Lipo HD + Ginecomastia',
     procedures: ['Lipoaspiração HD', 'Tratamento cirúrgico de ginecomastia'],
     keyword: 'DEFINICAO',
     cover: { kicker: 'Caso Clínico Educativo #08', title: 'Glândula não<br><em>diminui com supino</em>', sub: 'Lipo HD com correção de ginecomastia.' },
@@ -84,7 +84,7 @@ export const CASES = [
     explain: 'Na ginecomastia, a glândula mamária masculina aumentada não regride com exercício. A correção combina a retirada da glândula com lipoaspiração, e a Lipo HD complementa o desenho de tórax e abdome.',
   },
   {
-    id: 9, pillar: 'Cirurgia Mamária', short: 'Mastopexia com Prótese 285 / 330 ml',
+    id: 9, areas: ['Posição da aréola', 'Polo superior', 'Simetria'], pillar: 'Cirurgia Mamária', short: 'Mastopexia com Prótese 285 / 330 ml',
     procedures: ['Mastopexia', 'Implantes de 285 ml e 330 ml'],
     keyword: 'MAMA',
     cover: { kicker: 'Caso Clínico Educativo #09', title: 'Levantar e preencher<br><em>no mesmo tempo</em>', sub: 'Mastopexia com implantes de 285 e 330 ml.' },
@@ -94,7 +94,7 @@ export const CASES = [
     explain: 'Neste caso educativo, a assimetria foi tratada com implantes de volumes diferentes — 285 e 330 ml — associados à mastopexia, que reposiciona a mama e retira a pele excedente.',
   },
   {
-    id: 10, pillar: 'Cirurgia Mamária', short: 'Aumento Mamário — Prótese 450 cc',
+    id: 10, areas: ['Base mamária', 'Sulco mamário', 'Polo superior'], pillar: 'Cirurgia Mamária', short: 'Aumento Mamário — Prótese 450 cc',
     procedures: ['Mamoplastia de aumento com prótese de 450 cc'],
     keyword: 'MAMA',
     cover: { kicker: 'Caso Clínico Educativo #10', title: 'Volume escolhido<br><em>com medida</em>, não no olho', sub: 'Mamoplastia de aumento com prótese de 450 cc.' },

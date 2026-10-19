@@ -152,7 +152,7 @@ function renderSlides(post, el) {
     fitFrames(pane);
   };
 
-  const slotsFor = () => (c.guide ? [] : o.layout === 'single' ? [['single', 'Foto única (antes e depois)']] : [['a', 'Antes'], ['b', 'Depois']]);
+  const slotsFor = () => (c.guide ? [] : [['a', 'Antes · frente'], ['b', 'Depois · frente'], ['c', 'Antes · perfil/costas'], ['d', 'Depois · perfil/costas']]);
 
   pane.innerHTML = `
     <div class="actions" style="margin-bottom:14px">
@@ -162,9 +162,8 @@ function renderSlides(post, el) {
     ${c.guide ? '<p class="tiny" style="margin-top:14px">Guia visual educativo — sem foto de paciente.</p>' : `
     <div class="photo-tools card solid">
       <div><span class="label">Encaixar foto real · pasta do Drive do ${esc(c.cover.kicker)}</span>
-      <p class="tiny" style="margin-top:4px">A foto é processada só neste navegador: não sai do seu aparelho e não é salva no portal. Nunca use imagens com nome, rosto identificável ou tatuagens marcantes do paciente.</p></div>
+      <p class="tiny" style="margin-top:4px">A foto é processada só neste navegador: não sai do seu aparelho e não é salva no portal. Par <b>frente</b> → vira o slide 2 (Antes | Depois). Par <b>perfil/costas</b> → vira o slide 3. Nunca use imagens com nome, rosto identificável ou tatuagens marcantes do paciente.</p></div>
       <div class="row">
-        <div class="seg" id="layout"><button data-l="split">Antes | Depois</button><button data-l="single">Imagem única</button></div>
         <label class="check"><input type="checkbox" id="band" ${o.band ? 'checked' : ''}> Tarja de privacidade no topo</label>
         <div class="field" style="min-width:200px"><label for="after">Rótulo do depois</label><input class="input" id="after" value="${esc(o.after)}"></div>
       </div>
@@ -184,8 +183,6 @@ function renderSlides(post, el) {
         ${p ? '<button class="btn sm ghost" data-clear>Remover foto</button>' : ''}
       </div>`;
     }).join('');
-    const lay = $('#layout', pane);
-    if (lay) $$('button', lay).forEach((b) => b.classList.toggle('on', b.dataset.l === o.layout));
   };
 
   pane.addEventListener('change', (e) => {
@@ -217,7 +214,6 @@ function renderSlides(post, el) {
     if (e.target.id === 'after') { o.after = e.target.value; paint(); }
   });
   pane.addEventListener('click', (e) => {
-    if (e.target.dataset.l) { o.layout = e.target.dataset.l; drawSlots(); paint(); }
     if (e.target.hasAttribute('data-clear')) {
       PHOTOS.delete(`${post.key}:${e.target.closest('[data-slot]').dataset.slot}`); drawSlots(); paint();
     }

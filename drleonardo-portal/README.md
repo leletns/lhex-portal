@@ -25,6 +25,17 @@ Rodar localmente: `cd drleonardo-portal/app && python3 -m http.server 8080` → 
 
 Dados institucionais (CRM, RQE, endereço, WhatsApp, rodapé CFM): `app/js/config.js`.
 
+## Direção de arte (v2 · dark luxury)
+
+- Todas as peças (carrosséis, capas de Reel, destaques) usam **fotos reais do Dr. Leonardo e do centro cirúrgico**
+  (`app/assets/photos/`, sem pacientes) com painéis de vidro escuro e acentos dourados.
+- O vidro não depende de `backdrop-filter`: cada painel recebe a versão desfocada da mesma foto
+  (`app/assets/photos/blur/`), alinhada pixel a pixel — o resultado é igual no navegador, no PNG e no PDF.
+- Fontes **estáticas** auto-hospedadas (`app/assets/fonts/`, licença OFL). Fontes variáveis do Google eram
+  embutidas no PDF como "Type 3", o que fazia palavras aparecerem grudadas em alguns leitores.
+- **Antes e depois:** fotos de pacientes nunca são versionadas. No portal, em Cronograma → carrossel, o par
+  "frente" vira o slide 2 e o par "perfil/costas" vira o slide 3 (processado só no navegador).
+
 **Sigilo médico (Res. CFM 2.336/2023):** nenhuma foto, nome ou ID de pasta de paciente é versionado.
 Fotos encaixadas nos slides são lidas só no navegador. O acervo baixado pelo script vai para `media/` (no `.gitignore`).
 
@@ -36,5 +47,11 @@ pip install -r requirements-media.txt        # + ffmpeg no sistema
 export DRIVE_ROOT_ID="<id da pasta raiz>"
 python auto_editor_drleonardo.py drive --out media
 python auto_editor_drleonardo.py instagram --cookies cookies.txt
-python auto_editor_drleonardo.py process --in media --out media/editados
+python auto_editor_drleonardo.py montage reels/bastidores-seguranca.json   # Reels a partir de roteiro
+python auto_editor_drleonardo.py process --in media/instagram --out media/editados --subs   # gera .srt p/ revisão
 ```
+
+- `montage`: cenas de vídeo/foto + tarjas de vidro escuro definidas em `reels/*.json` (sem legenda automática).
+  Os roteiros esperam os clipes de bastidor em `media/bastidores/` (fora do git).
+- `process`: só legenda vídeo com fala real (validação de confiança e ritmo de fala); o `.srt` fica para revisão e
+  só é queimado com `--burn-subs`. B-roll com ruído ambiente nunca recebe legenda.
