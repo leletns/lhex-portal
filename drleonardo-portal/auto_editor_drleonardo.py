@@ -321,6 +321,7 @@ GOLD = (200, 169, 106, 255)
 IVORY = (244, 243, 240, 255)
 IVORY_SOFT = (244, 243, 240, 215)
 PANEL_X, PANEL_W, PAD = 64, 952, 44
+MARGIN = 80          # recuo lateral do texto flutuante (estética editorial, sem caixote)
 FADE = 0.35
 
 
@@ -364,73 +365,79 @@ class Card:
     pos: str = "bottom"  # bottom | center | top
 
 
-def render_card(card: Card, work: Path, idx: int) -> tuple[Path, Path, int, int, int, int]:
-    """Gera o painel (PNG RGBA 1080x1920) e a máscara arredondada usada para desfocar o vídeo por baixo."""
-    from PIL import Image, ImageDraw
+def render_card(card: Card, work: Path, idx: int) -> Path:
+    """Tipografia FLUTUANTE sobre a imagem (sem caixote): título em Jakarta bold,
+    palavra-chave em Cormorant itálico dourado, com sombra cinematográfica suave
+    para legibilidade — direção editorial @dr.joaopedroestima / @drromeroalmeida."""
+    from PIL import Image, ImageDraw, ImageFilter
     probe = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
-    inner = PANEL_W - 2 * PAD
-    f_kick = brand_font("PlusJakartaSans-700", 24)
-    f_title = brand_font("CormorantGaramond-500", 74 if len(card.title) < 70 else 64)
-    f_acc = brand_font("CormorantGaramond-500i", 84)
-    f_body = brand_font("PlusJakartaSans-400", 31)
+    inner = W - 2 * MARGIN
+    f_kick = brand_font("PlusJakartaSans-700", 25)
+    f_title = brand_font("PlusJakartaSans-700", 72 if len(card.title) < 60 else 60)
+    f_acc = brand_font("CormorantGaramond-500i", 86)
+    f_body = brand_font("PlusJakartaSans-400", 30)
     title_lines = wrap_px(probe, card.title, f_title, inner) if card.title else []
     acc_lines = wrap_px(probe, card.accent, f_acc, inner) if card.accent else []
     body_lines = wrap_px(probe, card.body, f_body, inner) if card.body else []
-    lh_t, lh_a, lh_b = int(f_title.size * 1.06), int(f_acc.size * 1.02), int(f_body.size * 1.45)
-    h = PAD + (46 if card.kicker else 0) + lh_t * len(title_lines) + lh_a * len(acc_lines)
-    h += (22 + lh_b * len(body_lines)) if body_lines else 0
-    h += PAD - 6
-    h += h % 2  # yuv420p exige dimensões pares no recorte desfocado
-    y = {"top": 300, "center": (H - h) // 2}.get(card.pos, H - 230 - h)
-    y -= y % 2
+    lh_t, lh_a, lh_b = int(f_title.size * 1.08), int(f_acc.size * 1.0), int(f_body.size * 1.42)
+    block = (46 if card.kicker else 0) + lh_t * len(title_lines) + lh_a * len(acc_lines)
+    block += (18 + lh_b * len(body_lines)) if body_lines else 0
+    y0 = {"top": 380, "center": (H - block) // 2}.get(card.pos, H - 320 - block)
 
-    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    d.rounded_rectangle((PANEL_X, y, PANEL_X + PANEL_W, y + h), radius=34, fill=(14, 14, 14, 178),
-                        outline=(244, 243, 240, 46), width=2)
-    cy = y + PAD
-    if card.kicker:
-        text_tracked(d, PANEL_X + PAD, cy, card.kicker.upper(), f_kick, GOLD, 5.5)
-        cy += 46
-    for line in title_lines:
-        d.text((PANEL_X + PAD, cy - 6), line, font=f_title, fill=IVORY)
-        cy += lh_t
-    for line in acc_lines:
-        d.text((PANEL_X + PAD, cy - 6), line, font=f_acc, fill=(217, 190, 134, 255))
-        cy += lh_a
-    if body_lines:
-        cy += 22
-        for line in body_lines:
-            d.text((PANEL_X + PAD, cy), line, font=f_body, fill=IVORY_SOFT)
-            cy += lh_b
+    def paint(d, ox, oy, kick_c, title_c, acc_c, body_c):
+        cy, x = y0 + oy, MARGIN + ox
+        if card.kicker:
+            text_tracked(d, x, cy, card.kicker.upper(), f_kick, kick_c, 5.0)
+            cy += 46
+        for line in title_lines:
+            d.text((x, cy), line, font=f_title, fill=title_c)
+            cy += lh_t
+        for line in acc_lines:
+            d.text((x, cy), line, font=f_acc, fill=acc_c)
+            cy += lh_a
+        if body_lines:
+            cy += 18
+            for line in body_lines:
+                d.text((x, cy), line, font=f_body, fill=body_c)
+                cy += lh_b
+
+    # Sombra suave desfocada (halo cinematográfico), sem caixa: garante leitura sobre qualquer foto.
+    shadow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dark = (5, 6, 9, 210)
+    paint(ImageDraw.Draw(shadow), 0, 6, dark, dark, dark, dark)
+    shadow = shadow.filter(ImageFilter.GaussianBlur(9))
+    img = Image.alpha_composite(Image.new("RGBA", (W, H), (0, 0, 0, 0)), shadow)
+    paint(ImageDraw.Draw(img), 0, 0, GOLD, IVORY, (217, 190, 134, 255), IVORY_SOFT)
     card_png = work / f"card{idx:02d}.png"
     img.save(card_png)
-    mask = Image.new("L", (PANEL_W, h), 0)
-    ImageDraw.Draw(mask).rounded_rectangle((0, 0, PANEL_W - 1, h - 1), radius=34, fill=255)
-    mask_png = work / f"mask{idx:02d}.png"
-    mask.save(mask_png)
-    return card_png, mask_png, PANEL_X, y, PANEL_W, h
+    return card_png
+
+
+def _centered_tracked(d, y: float, text: str, font, fill, tracking: float) -> None:
+    width = sum(d.textlength(c, font=font) + tracking for c in text) - tracking
+    text_tracked(d, (W - width) / 2, y, text, font, fill, tracking)
 
 
 def render_chrome(work: Path) -> Path:
-    """Camada fixa: degradês de leitura, logo no topo e rodapé CFM."""
+    """Camada fixa: assinatura LEONARDO VALADÃO + filete dourado no topo,
+    degradês cinematográficos de leitura e rodapé ético CFM centralizado."""
     from PIL import Image, ImageDraw
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
-    for i in range(300):  # degradê superior
-        d.line([(0, i), (W, i)], fill=(10, 10, 10, int(120 * (1 - i / 300))))
-    for i in range(520):  # degradê inferior
-        d.line([(0, H - i), (W, H - i)], fill=(10, 10, 10, int(170 * (1 - i / 520))))
-    logo_path = ASSETS / "logo-leonardo-valadao-light.png"
-    if logo_path.exists():
-        logo = Image.open(logo_path).convert("RGBA")
-        logo = logo.resize((340, int(logo.height * 340 / logo.width)))
-        img.alpha_composite(logo, (72, 78))
-    f = brand_font("PlusJakartaSans-400", 21)
-    y = H - 150
-    d.line([(72, y), (W - 72, y)], fill=(200, 169, 106, 120), width=1)
+    for i in range(240):  # degradê superior (legibilidade da assinatura)
+        d.line([(0, i), (W, i)], fill=(8, 8, 10, int(150 * (1 - i / 240))))
+    for i in range(660):  # degradê inferior (texto flutuante + rodapé)
+        d.line([(0, H - i), (W, H - i)], fill=(8, 8, 10, int(205 * (1 - i / 660))))
+    # Assinatura oficial no topo (wordmark + especialidade + filete dourado).
+    _centered_tracked(d, 70, "LEONARDO VALADÃO", brand_font("PlusJakartaSans-600", 30), IVORY, 6.0)
+    d.line([(W / 2 - 128, 116), (W / 2 + 128, 116)], fill=(200, 169, 106, 190), width=1)
+    _centered_tracked(d, 126, "CIRURGIA PLÁSTICA", brand_font("PlusJakartaSans-500", 17), (200, 169, 106, 235), 5.0)
+    # Rodapé ético CFM, centralizado e discreto.
+    f = brand_font("PlusJakartaSans-400", 20)
+    y = H - 128
     for k, line in enumerate(CFM_FOOTER.split("\n")):
-        d.text((72, y + 16 + k * 30), line, font=f, fill=(244, 243, 240, 190))
+        lw = d.textlength(line, font=f)
+        d.text(((W - lw) / 2, y + k * 28), line, font=f, fill=(244, 243, 240, 180))
     out = work / "chrome.png"
     img.save(out)
     return out
@@ -444,7 +451,12 @@ def normalize_segment(seg: dict, base: Path, out: Path) -> float:
     src = (base / seg["src"]).resolve() if not os.path.isabs(seg["src"]) else Path(seg["src"])
     dur = float(seg.get("dur", 3.0))
     fx, fy = seg.get("focus", [0.5, 0.4])
-    grade = "eq=contrast=1.06:saturation=0.9:brightness=-0.015,vignette=PI/5"
+    # Color grading cinematográfico: sombras frias (azul), pele/altas quentes (dourado),
+    # leve S-curve de contraste e vinheta — inspirado na referência editorial.
+    grade = ("eq=contrast=1.12:saturation=1.05:brightness=-0.01:gamma=0.98,"
+             "colorbalance=rs=-0.06:gs=-0.02:bs=0.06:rm=0.02:bm=-0.02:rh=0.06:gh=0.01:bh=-0.05,"
+             "curves=master='0/0 0.25/0.21 0.5/0.52 0.75/0.8 1/1',"
+             "vignette=PI/4.5")
     if src.suffix.lower() in IMAGE_EXT:
         frames = int(dur * 30)
         zoom = f"min(1+0.10*on/{frames},1.10)" if seg.get("motion", "in") == "in" else f"max(1.10-0.10*on/{frames},1)"
@@ -480,31 +492,37 @@ def xfade_concat(parts: list[Path], durs: list[float], out: Path, fade: float = 
 
 
 def build_ambient(work: Path, total: float, cues: list[float]) -> Path:
-    """Trilha ambiente sofisticada (pad quente/deep chord) + whoosh suave em cada troca de cena.
-    Gerada 100% via FFmpeg — nenhum arquivo externo. Substitui o vídeo mudo."""
-    pad, whoosh, out = work / "pad.wav", work / "whoosh.wav", work / "audio.wav"
+    """Sound design cinematográfico 100% FFmpeg (sem arquivo externo): pad quente em acorde
+    maior + drone sub-grave contínuo, impacto sub-bass no 0.0s e whoosh suave em cada corte."""
+    pad, whoosh, sub, out = work / "pad.wav", work / "whoosh.wav", work / "sub.wav", work / "audio.wav"
     fade = min(2.5, total / 3)
     run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
-         "-f", "lavfi", "-i", f"sine=frequency=110:duration={total}",       # A2
+         "-f", "lavfi", "-i", f"sine=frequency=55:duration={total}",         # sub-drone A1 (peso cinema)
+         "-f", "lavfi", "-i", f"sine=frequency=110:duration={total}",        # A2
          "-f", "lavfi", "-i", f"sine=frequency=164.81:duration={total}",     # E3
          "-f", "lavfi", "-i", f"sine=frequency=220:duration={total}",        # A3
          "-f", "lavfi", "-i", f"sine=frequency=277.18:duration={total}",     # C#4 (acorde maior suave)
          "-filter_complex",
-         "[0][1][2][3]amix=inputs=4:normalize=0,tremolo=f=0.12:d=0.4,lowpass=f=820,"
-         f"aecho=0.8:0.88:70|150:0.3|0.2,volume=0.30,afade=t=in:d={fade:.2f},afade=t=out:st={max(0, total - fade):.2f}:d={fade:.2f}[a]",
+         "[0]volume=0.5[sb];[sb][1][2][3][4]amix=inputs=5:normalize=0,tremolo=f=0.12:d=0.4,lowpass=f=900,"
+         f"aecho=0.8:0.88:70|150:0.3|0.2,volume=0.32,afade=t=in:d={fade:.2f},afade=t=out:st={max(0, total - fade):.2f}:d={fade:.2f}[a]",
          "-map", "[a]", str(pad)])
     run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
          "-f", "lavfi", "-i", "anoisesrc=color=brown:duration=0.8:amplitude=0.7",
-         "-af", "bandpass=f=1500:width_type=h:w=1800,afade=t=in:d=0.4,afade=t=out:st=0.4:d=0.4,volume=0.38",
+         "-af", "bandpass=f=1500:width_type=h:w=1800,afade=t=in:d=0.4,afade=t=out:st=0.4:d=0.4,volume=0.36",
          "-ar", "44100", str(whoosh)])
+    # Impacto sub-bass: ataque rápido, cauda grave — assina a abertura (0.0s).
+    run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
+         "-f", "lavfi", "-i", "sine=frequency=52:duration=0.75",
+         "-af", "afade=t=in:d=0.008,afade=t=out:st=0.1:d=0.62,lowpass=f=95,volume=0.62",
+         "-ar", "44100", str(sub)])
     cues = [c for c in cues if c > 0.1]
-    inputs, fc, labels = ["-i", str(pad)], [], ["[0:a]"]
+    inputs, fc, labels = ["-i", str(pad), "-i", str(sub)], ["[1:a]adelay=0|0[imp]"], ["[0:a]", "[imp]"]
     for i, t in enumerate(cues):
         inputs += ["-i", str(whoosh)]
         ms = int(t * 1000)
-        fc.append(f"[{i + 1}:a]adelay={ms}|{ms}[w{i}]")
+        fc.append(f"[{i + 2}:a]adelay={ms}|{ms}[w{i}]")
         labels.append(f"[w{i}]")
-    fc.append("".join(labels) + f"amix=inputs={len(labels)}:normalize=0,alimiter=limit=0.9,loudnorm=I=-20:TP=-2[a]")
+    fc.append("".join(labels) + f"amix=inputs={len(labels)}:normalize=0,alimiter=limit=0.95,loudnorm=I=-16:TP=-1.5[a]")
     run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", *inputs,
          "-filter_complex", ";".join(fc), "-map", "[a]", "-ar", "44100", "-ac", "2", str(out)])
     return out
@@ -512,29 +530,23 @@ def build_ambient(work: Path, total: float, cues: list[float]) -> Path:
 
 def apply_design(base_video: Path, cards: list[Card], out: Path, total: float, work: Path,
                  keep_audio: bool = False, audio_path: Path | None = None) -> None:
-    """Sobrepõe as tarjas de vidro (desfoque real do vídeo por baixo + painel escuro), logo, rodapé e barra de progresso."""
+    """Sobrepõe a assinatura/rodapé, a tipografia flutuante (fade + leve subida) e a barra de progresso."""
     chrome = render_chrome(work)
     inputs = ["-i", str(base_video), "-loop", "1", "-t", f"{total}", "-i", str(chrome)]
-    graph, cur, n = [], "[0:v]", 2
+    graph = [f"[0:v][1:v]overlay=0:0[bg]"]
+    cur, n = "[bg]", 2
     for i, card in enumerate(cards):
-        card_png, mask_png, x, y, w, h = render_card(card, work, i)
-        inputs += ["-loop", "1", "-t", f"{total}", "-i", str(card_png), "-loop", "1", "-t", f"{total}", "-i", str(mask_png)]
-        ci, mi = n, n + 1
-        n += 2
+        card_png = render_card(card, work, i)
+        inputs += ["-loop", "1", "-t", f"{total}", "-i", str(card_png)]
+        ci = n
+        n += 1
         s, e = card.start, card.end
-        slide = f"if(lt(t,{s}),40,if(lt(t,{s}+0.5),40*(1-(t-{s})/0.5),0))"
+        rise = f"if(lt(t,{s}),22,if(lt(t,{s}+0.5),22*(1-(t-{s})/0.5),0))"  # sobe suave ao entrar
         fades = f"fade=t=in:st={s}:d={FADE}:alpha=1,fade=t=out:st={max(s, e - FADE)}:d={FADE}:alpha=1"
-        graph += [
-            f"{cur}split[a{i}][b{i}]",
-            f"[b{i}]crop={w}:{h}:{x}:{y},boxblur=26:2,eq=brightness=-0.05,format=rgba[bc{i}]",
-            f"[{mi}:v]format=gray[mk{i}]",
-            f"[bc{i}][mk{i}]alphamerge,{fades}[bl{i}]",
-            f"[a{i}][bl{i}]overlay=x={x}:y='{y}+{slide}':eval=frame[o{i}]",
-            f"[{ci}:v]format=rgba,{fades}[c{i}]",
-            f"[o{i}][c{i}]overlay=x=0:y='{slide}':eval=frame[v{i}]",
-        ]
+        graph.append(f"[{ci}:v]format=rgba,{fades}[c{i}]")
+        graph.append(f"{cur}[c{i}]overlay=x=0:y='{rise}':eval=frame[v{i}]")
         cur = f"[v{i}]"
-    graph.append(f"{cur}[1:v]overlay=0:0,drawbox=x=0:y=0:w='iw*t/{total:.3f}':h=6:color=0xC8A96A@0.95:t=fill,format=yuv420p[vout]")
+    graph.append(f"{cur}drawbox=x=0:y=0:w='iw*t/{total:.3f}':h=6:color=0xC8A96A@0.95:t=fill,format=yuv420p[vout]")
     cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", *inputs]
     if keep_audio:  # vídeo falado: preserva a voz original do Dr. Leonardo
         cmd += ["-filter_complex", ";".join(graph), "-map", "[vout]", "-map", "0:a?", "-c:a", "aac", "-b:a", "160k"]
@@ -544,6 +556,21 @@ def apply_design(base_video: Path, cards: list[Card], out: Path, total: float, w
                 "-filter_complex", ";".join(graph), "-map", "[vout]", "-map", f"{n}:a", "-c:a", "aac", "-b:a", "160k"]
     cmd += ["-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-movflags", "+faststart", str(out)]
     run(cmd)
+
+
+def apply_pace(segments: list[dict], window: float = 6.0, cap: float = 2.2, floor: float = 1.5) -> list[dict]:
+    """Cortes mais rápidos na abertura (ritmo cinema): limita a duração dos planos dentro
+    dos primeiros ~6s. O miolo/fechamento do Reel mantém a respiração do roteiro."""
+    out, t = [], 0.0
+    for seg in segments:
+        seg = dict(seg)
+        d = float(seg.get("dur", 3.0))
+        if t < window:
+            d = max(floor, min(d, cap))
+            seg["dur"] = d
+        out.append(seg)
+        t += d
+    return out
 
 
 def cmd_montage(args) -> None:
@@ -564,14 +591,23 @@ def cmd_montage(args) -> None:
         out = spec_path.parent / out
     work = Path(tempfile.mkdtemp(prefix="dlv-montage-"))
     try:
+        segments = spec["segments"] if spec.get("pace") is False else apply_pace(spec["segments"])
         parts, durs = [], []
-        for i, seg in enumerate(spec["segments"]):
+        for i, seg in enumerate(segments):
             p = work / f"seg{i:02d}.mp4"
             durs.append(normalize_segment(seg, spec_path.parent, p))
             parts.append(p)
         base = work / "base.mp4"
-        total = xfade_concat(parts, durs, base, float(spec.get("fade", 0.4)))
-        cards = [Card(**c) for c in spec.get("cards", [])]
+        total = xfade_concat(parts, durs, base, float(spec.get("fade", 0.35)))
+        # Clampa as tarjas ao tempo real (a aceleração da abertura encurta o Reel).
+        cards = []
+        for c in spec.get("cards", []):
+            card = Card(**c)
+            if card.start >= total - 0.3:
+                continue
+            card.end = min(card.end, total - 0.05)
+            if card.end - card.start >= 0.6:
+                cards.append(card)
         out.parent.mkdir(parents=True, exist_ok=True)
         apply_design(base, cards, out, total, work)
         log(f"✓ {out.name}: {total:.1f}s · {len(parts)} cenas · {len(cards)} tarjas")
