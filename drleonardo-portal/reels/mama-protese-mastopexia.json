@@ -1,0 +1,114 @@
+{
+ "out": "../media/reels/reel-mama-protese-mastopexia.mp4",
+ "segments": [
+  {
+   "src": "../app/assets/photos/op-focus-a.jpg",
+   "dur": 3.4,
+   "focus": [
+    0.5,
+    0.3
+   ],
+   "motion": "in"
+  },
+  {
+   "src": "../media/bastidores/instrumental.mov",
+   "start": 0,
+   "dur": 3.0,
+   "focus": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "src": "../app/assets/photos/op-warm-d.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.48,
+    0.3
+   ],
+   "motion": "in"
+  },
+  {
+   "src": "../media/bastidores/equipe-operando.mov",
+   "start": 0.3,
+   "dur": 3.2,
+   "focus": [
+    0.6,
+    0.3
+   ]
+  },
+  {
+   "src": "../app/assets/photos/room-b.jpg",
+   "dur": 2.8,
+   "focus": [
+    0.45,
+    0.5
+   ],
+   "motion": "out"
+  },
+  {
+   "src": "../app/assets/photos/op-warm-b.jpg",
+   "dur": 3.0,
+   "focus": [
+    0.45,
+    0.28
+   ],
+   "motion": "in"
+  },
+  {
+   "src": "../app/assets/photos/dr-or-green-2.jpg",
+   "dur": 4.0,
+   "focus": [
+    0.6,
+    0.3
+   ],
+   "motion": "out"
+  }
+ ],
+ "cards": [
+  {
+   "start": 0.3,
+   "end": 3.1,
+   "kicker": "Cirurgia mamária",
+   "title": "Prótese, mastopexia ou as duas?"
+  },
+  {
+   "start": 3.4,
+   "end": 5.7,
+   "kicker": "Prótese",
+   "title": "Aumenta volume. Não levanta uma mama caída."
+  },
+  {
+   "start": 6.0,
+   "end": 8.3,
+   "kicker": "Mastopexia",
+   "title": "Reposiciona a mama e a aréola; retira o excesso de pele"
+  },
+  {
+   "start": 8.6,
+   "end": 10.9,
+   "kicker": "As duas juntas",
+   "title": "Queda + perda de volume (pós-amamentação, emagrecimento)"
+  },
+  {
+   "start": 11.2,
+   "end": 13.6,
+   "kicker": "O tamanho",
+   "title": "Definido pela base, pela pele e pelo tórax — não pela vontade"
+  },
+  {
+   "start": 13.9,
+   "end": 16.0,
+   "kicker": "Individual",
+   "title": "Não existe \"a melhor\". Existe a indicada para você."
+  },
+  {
+   "start": 16.3,
+   "end": 20.0,
+   "kicker": "Guia no direct",
+   "title": "Comente",
+   "accent": "MAMA",
+   "body": "e receba o guia de prótese × mastopexia."
+  }
+ ]
+}

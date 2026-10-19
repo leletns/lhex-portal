@@ -491,11 +491,11 @@ def build_ambient(work: Path, total: float, cues: list[float]) -> Path:
          "-f", "lavfi", "-i", f"sine=frequency=277.18:duration={total}",     # C#4 (acorde maior suave)
          "-filter_complex",
          "[0][1][2][3]amix=inputs=4:normalize=0,tremolo=f=0.12:d=0.4,lowpass=f=820,"
-         f"aecho=0.8:0.88:70|150:0.3|0.2,volume=0.16,afade=t=in:d={fade:.2f},afade=t=out:st={max(0, total - fade):.2f}:d={fade:.2f}[a]",
+         f"aecho=0.8:0.88:70|150:0.3|0.2,volume=0.30,afade=t=in:d={fade:.2f},afade=t=out:st={max(0, total - fade):.2f}:d={fade:.2f}[a]",
          "-map", "[a]", str(pad)])
     run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
          "-f", "lavfi", "-i", "anoisesrc=color=brown:duration=0.8:amplitude=0.7",
-         "-af", "bandpass=f=1500:width_type=h:w=1800,afade=t=in:d=0.4,afade=t=out:st=0.4:d=0.4,volume=0.20",
+         "-af", "bandpass=f=1500:width_type=h:w=1800,afade=t=in:d=0.4,afade=t=out:st=0.4:d=0.4,volume=0.38",
          "-ar", "44100", str(whoosh)])
     cues = [c for c in cues if c > 0.1]
     inputs, fc, labels = ["-i", str(pad)], [], ["[0:a]"]
@@ -504,7 +504,7 @@ def build_ambient(work: Path, total: float, cues: list[float]) -> Path:
         ms = int(t * 1000)
         fc.append(f"[{i + 1}:a]adelay={ms}|{ms}[w{i}]")
         labels.append(f"[w{i}]")
-    fc.append("".join(labels) + f"amix=inputs={len(labels)}:normalize=0,alimiter=limit=0.9[a]")
+    fc.append("".join(labels) + f"amix=inputs={len(labels)}:normalize=0,alimiter=limit=0.9,loudnorm=I=-20:TP=-2[a]")
     run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", *inputs,
          "-filter_complex", ";".join(fc), "-map", "[a]", "-ar", "44100", "-ac", "2", str(out)])
     return out

@@ -5,7 +5,7 @@ const STEPS = [
   ['Instalar dependências', 'pip install -r requirements-media.txt   # gdown, yt-dlp, Pillow, pillow-heif, faster-whisper\n# ffmpeg: brew install ffmpeg (Mac) · sudo apt install ffmpeg (Linux)'],
   ['Baixar o acervo do Drive (anonimizado)', 'export DRIVE_ROOT_ID="<ID da pasta raiz do Drive>"\npython auto_editor_drleonardo.py drive --out media'],
   ['Baixar Reels do Instagram', 'python auto_editor_drleonardo.py instagram --cookies cookies.txt --out media'],
-  ['Montar Reels de bastidor / estudo de caso (roteiros em reels/*.json)', 'python auto_editor_drleonardo.py montage reels/bastidores-seguranca.json\npython auto_editor_drleonardo.py montage reels/lipedefinition.json\npython auto_editor_drleonardo.py montage reels/lipedema-5-sinais.json'],
+  ['Montar os 8 Reels com som (roteiros em reels/*.json)', 'for r in reels/*.json; do python auto_editor_drleonardo.py montage "$r"; done\n# trilha ambiente + whoosh gerados por FFmpeg (nenhum Reel mudo)'],
   ['Vídeos falados: legenda só depois de revisada', '# 1) gera o .srt para revisão (vídeos sem fala real são recusados)\npython auto_editor_drleonardo.py process --in media/instagram --out media/editados --subs\n# 2) depois de conferir o .srt, queima a legenda aprovada\npython auto_editor_drleonardo.py process --in media/instagram --out media/editados --burn-subs --overwrite'],
   ['Tudo de uma vez', 'python auto_editor_drleonardo.py all --out media'],
 ];

@@ -39,6 +39,25 @@ Dados institucionais (CRM, RQE, endereço, WhatsApp, rodapé CFM): `app/js/confi
 **Sigilo médico (Res. CFM 2.336/2023):** nenhuma foto, nome ou ID de pasta de paciente é versionado.
 Fotos encaixadas nos slides são lidas só no navegador. O acervo baixado pelo script vai para `media/` (no `.gitignore`).
 
+## Reels com som (montagem a partir de roteiro)
+
+8 Reels prontos em `media/reels/` (fora do git), montados de `reels/*.json`:
+
+```bash
+python auto_editor_drleonardo.py montage reels/bastidores-seguranca.json
+```
+
+- Cenas de vídeo real (bastidores do centro cirúrgico, sem pacientes) + fotos com Ken Burns,
+  transições, tarjas de vidro escuro, logo, rodapé CFM e barra de progresso dourada.
+- **Áudio sempre ativo:** trilha ambiente (pad quente) + *whoosh* por transição, gerados por
+  FFmpeg e normalizados (loudnorm). A trilha licenciada final pode entrar pelo app do Instagram.
+- Vídeos em que o Dr. Leonardo fala: `process --subs` gera `.srt` para revisão; a voz original é
+  preservada e a legenda só é queimada com `--burn-subs`.
+
+Instagram do próprio perfil: baixe os Reels originais em qualidade cheia por
+Instagram → "Baixar suas informações" ou Meta Business Suite, e coloque em `media/instagram/`.
+Não use sites de "anonymous viewer"/downloader de terceiros.
+
 ## Pipeline de mídia
 
 ```bash
