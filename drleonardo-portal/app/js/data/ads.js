@@ -23,7 +23,7 @@ export const CAMPAIGNS = [
       {
         id: 'cr1', name: 'Criativo 1 · Lipedema — "Não é falta de esforço"', format: 'Reel 9:16 · 25–35 s (Roteiro #1 recortado)',
         visual: 'Dr. Leonardo no consultório, tarja superior "Não é gordura teimosa." Legendas grandes. Últimos 3 s: logo + CFM.',
-        primary: 'Dieta, treino, drenagem… e as pernas continuam iguais?\n\nO lipedema é uma doença do tecido gorduroso, reconhecida pela OMS, e merece uma avaliação especializada — sem julgamentos.\n\nNa consulta, o Dr. Leonardo Valadão avalia sintomas, grau e as opções de tratamento clínico e cirúrgico para o seu caso.\n\n📍 Blue Clínica · Barra da Tijuca',
+        primary: 'Dieta, treino, drenagem… e as pernas continuam iguais?\n\nO Lipedema é uma doença do tecido gorduroso, reconhecida pela OMS, e merece uma avaliação especializada — sem julgamentos.\n\nNa consulta, o Dr. Leonardo Valadão avalia sintomas, grau e as opções de tratamento clínico e cirúrgico para o seu caso.\n\n📍 Blue Clínica · Barra da Tijuca',
         headline: 'Consulta especializada em Lipedema', description: `${DOCTOR.crm} | ${DOCTOR.rqe}`, cta: 'Enviar mensagem', destination: `wa.me/${DOCTOR.whatsappLipedema}`,
       },
       {
@@ -61,7 +61,7 @@ export const CAMPAIGNS = [
 export const ADS_COMPLIANCE = [
   'Sem antes/depois em anúncios pagos — antes/depois só no feed orgânico, educativo e com rodapé CFM',
   'Sem preço, desconto, parcelamento ou "promoção" (Res. CFM 2.336/2023)',
-  'Sem perguntas que afirmem atributos pessoais ("Você tem lipedema?") — política de anúncios da Meta',
+  'Sem perguntas que afirmem atributos pessoais ("Você tem Lipedema?") — política de anúncios da Meta',
   'Sem superlativos ("o melhor", "o único") e sem promessa de resultado',
   'CRM e RQE visíveis em todo criativo',
 ];

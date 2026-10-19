@@ -20,7 +20,7 @@ export const HIGHLIGHTS = [
       { kicker: '03 · Graus', title: 'Do grau 1 ao 4: <em>pele, nódulos e volume</em>.', body: 'A classificação orienta o tratamento — feita em consulta.' },
       { kicker: '04 · Tratamento clínico', title: 'Compressão, drenagem e alimentação <em>anti-inflamatória</em>.', body: 'É a base do cuidado e controla sintomas.' },
       { kicker: '05 · Cirurgia', title: 'Técnica <em>poupadora linfática</em> em casos selecionados.', body: 'Foco em reduzir dor, peso e desproporção.' },
-      { kicker: '06 · Próximo passo', title: 'Agende sua <em>consulta de lipedema</em>.', body: 'Toque no link para falar com a equipe no WhatsApp.', cta: true },
+      { kicker: '06 · Próximo passo', title: 'Agende sua <em>consulta de Lipedema</em>.', body: 'Toque no link para falar com a equipe no WhatsApp.', cta: true },
     ],
   },
 ];

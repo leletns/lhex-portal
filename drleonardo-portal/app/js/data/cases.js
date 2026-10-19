@@ -105,13 +105,13 @@ export const CASES = [
   },
   {
     id: 11, pillar: 'Lipedema', short: 'Guia Clínico Visual — Lipedema', guide: 'lipedema',
-    procedures: ['Diagnóstico clínico', 'Graus do lipedema', 'Cirurgia poupadora linfática'],
+    procedures: ['Diagnóstico clínico', 'Graus do Lipedema', 'Cirurgia poupadora linfática'],
     keyword: 'LIPEDEMA',
     cover: { kicker: 'Guia Clínico Educativo #11', title: 'Lipedema:<br><em>não é falta de esforço</em>', sub: 'Diagnóstico, graus e tratamento em 5 telas.' },
     technique: ['Acúmulo simétrico de gordura em pernas e/ou braços', 'Pés e mãos poupados ("sinal do degrau")', 'Dor ao toque e hematomas fáceis', 'Pouca resposta a dieta e exercício'],
     indication: { for: ['Tratamento clínico: compressão, drenagem, alimentação anti-inflamatória', 'Atividade física de baixo impacto', 'Acompanhamento multidisciplinar'], recovery: ['Cirurgia poupadora linfática quando há dor, progressão ou limitação', 'Compressão e drenagem no pós-operatório', 'Seguimento a longo prazo'] },
     hook: 'Se as suas pernas não respondem à dieta como o resto do corpo, este guia é para você.',
-    explain: 'O lipedema é uma doença crônica do tecido gorduroso, reconhecida pela OMS (CID-11 EF02.2), que afeta principalmente mulheres. O diagnóstico é clínico, feito em consulta, e o tratamento começa com medidas conservadoras. A cirurgia poupadora linfática pode ser indicada em casos selecionados.',
+    explain: 'O Lipedema é uma doença crônica do tecido gorduroso, reconhecida pela OMS (CID-11 EF02.2), que afeta principalmente mulheres. O diagnóstico é clínico, feito em consulta, e o tratamento começa com medidas conservadoras. A cirurgia poupadora linfática pode ser indicada em casos selecionados.',
   },
   {
     id: 12, pillar: 'Lipedefinition', short: 'Lipedefinition × Lipo Tradicional', guide: 'compare',

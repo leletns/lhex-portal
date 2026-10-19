@@ -6,7 +6,7 @@ export const PROCEDURES = [
   { id: 'lipo', name: 'Lipoaspiração / Lipoescultura', hours: 3, stay: 1, surgeon: 16000, materials: 1500 },
   { id: 'abdomino', name: 'Abdominoplastia', hours: 3.5, stay: 1, surgeon: 18000, materials: 1500 },
   { id: 'lipoabdomino', name: 'LipoAbdominoplastia HD', hours: 5, stay: 2, surgeon: 28000, materials: 2200 },
-  { id: 'lipedema', name: 'Cirurgia de Lipedema (poupadora linfática)', hours: 4, stay: 1, surgeon: 24000, materials: 2000 },
+  { id: 'Lipedema', name: 'Cirurgia de Lipedema (poupadora linfática)', hours: 4, stay: 1, surgeon: 24000, materials: 2000 },
   { id: 'protese', name: 'Mamoplastia de aumento (prótese)', hours: 2, stay: 1, surgeon: 14000, materials: 600, implant: 6500 },
   { id: 'mastopexia', name: 'Mastopexia', hours: 3, stay: 1, surgeon: 16000, materials: 800 },
   { id: 'mastoprotese', name: 'Mastopexia com prótese', hours: 3.5, stay: 1, surgeon: 20000, materials: 800, implant: 6500 },
@@ -36,7 +36,7 @@ export const STAGES = [
 
 // Leads fictícios para demonstração (nenhum dado real de paciente).
 export const SEED_LEADS = [
-  { id: 'l1', name: 'Mariana (demo)', phone: '5521900000001', interest: 'Lipedema', origin: 'Meta C1 · Criativo 1', stage: 'novo', note: 'Perguntou se a consulta avalia o grau do lipedema.', createdAt: Date.now() - 1000 * 60 * 18 },
+  { id: 'l1', name: 'Mariana (demo)', phone: '5521900000001', interest: 'Lipedema', origin: 'Meta C1 · Criativo 1', stage: 'novo', note: 'Perguntou se a consulta avalia o grau do Lipedema.', createdAt: Date.now() - 1000 * 60 * 18 },
   { id: 'l2', name: 'Rafael (demo)', phone: '5521900000002', interest: 'Lipo HD masculina', origin: 'Orgânico · Reel #11', stage: 'conversa', note: 'Treina 5×/semana, quer definição de abdome.', createdAt: Date.now() - 1000 * 60 * 60 * 3 },
   { id: 'l3', name: 'Juliana (demo)', phone: '5521900000003', interest: 'Abdominoplastia', origin: 'ManyChat · DIASTASE', stage: 'qualificado', note: 'Pós-gestação há 2 anos, autoteste positivo.', createdAt: Date.now() - 1000 * 60 * 60 * 26 },
   { id: 'l4', name: 'Patrícia (demo)', phone: '5521900000004', interest: 'Mastopexia com prótese', origin: 'Indicação', stage: 'agenda', note: 'Prefere sábado pela manhã.', createdAt: Date.now() - 1000 * 60 * 60 * 30 },

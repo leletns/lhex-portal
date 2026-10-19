@@ -100,9 +100,9 @@ function cover(name, FW, FH) {
 }
 
 // Fundo fotográfico full-bleed: foto + grade cinematográfico + vinhetas + fio de continuidade.
-const fullbg = (g, { seam = true } = {}) => `
+const fullbg = (g, { seam = true, dark = false } = {}) => `
   <div class="lx-bg" style="background-image:url('assets/photos/${g.name}.jpg');background-size:${g.w}px ${g.h}px;background-position:${g.x}px ${g.y}px"></div>
-  <div class="lx-grade"></div><div class="lx-vtop"></div><div class="lx-vbot"></div>${seam ? '<div class="lx-seam"></div>' : ''}`;
+  <div class="lx-grade"></div><div class="lx-vtop"></div><div class="lx-vbot"></div>${dark ? '<div class="lx-vdark"></div>' : ''}${seam ? '<div class="lx-seam"></div>' : ''}`;
 
 const head = (n, total) => `
   <div class="lx-head"><img class="lx-logo" src="${LOGO}" alt="">
@@ -221,11 +221,11 @@ export function carouselSlides(post) {
       <div class="lx-specrow">${spec.map(([k, v]) => `<span><i>${esc(k)}</i>${esc(v)}</span>`).join('')}</div>
     </div>`);
 
-  const s5 = frame('45', `${fullbg(g5, { seam: false })}${head(5, T)}
+  const s5 = frame('45', `${fullbg(cover('dr-blue', 1080, 1350), { seam: false, dark: true })}${head(5, T)}
     <div class="lx-cover cta">
-      <div class="lx-kicker">Material completo no direct</div>
-      <h1 class="lx-cta">Comente <em>${esc(kwLabel(c.keyword))}</em></h1>
-      <div class="lx-sign"><b>${esc(DOCTOR.name)}</b><span>${esc(DOCTOR.crm)} | ${esc(DOCTOR.rqe)} · ${esc(DOCTOR.city)}</span><span>${esc(DOCTOR.site.replace('https://', ''))}</span></div>
+      <h1 class="lx-cta">Agende sua <em>avaliação</em></h1>
+      <p class="lx-sub">${esc(DOCTOR.title)} · ${esc(DOCTOR.city)}</p>
+      <div class="lx-sign"><span>${esc(DOCTOR.site.replace('https://', ''))}</span><span>Atendimento pelo link da bio</span></div>
     </div>`);
 
   return [s1, s2, s3, s4, s5];

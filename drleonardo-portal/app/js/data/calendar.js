@@ -3,7 +3,6 @@ import { CALENDAR_START, SIGNATURE, DOCTOR } from '../config.js';
 import { SCRIPTS } from './scripts.js';
 import { CASES } from './cases.js';
 import { COPY } from './copy.js';
-import { kwLabel } from '../lib/art.js';
 
 // [roteiro, caso] por semana — temas da terça e da quinta conversam entre si.
 const PAIRING = [[1, 11], [2, 5], [3, 6], [4, 1], [5, 7], [6, 12], [7, 3], [8, 4], [9, 9], [10, 10], [11, 8], [12, 2]];
@@ -31,8 +30,7 @@ function reelCaption(s) {
   return [
     s.hook, '',
     s.body.slice(0, 3).join(' '), '',
-    `💬 ${s.cta}`, '',
-    'Salve para consultar depois e envie para quem precisa ouvir isso.', '',
+    s.cta, '',
     SIGNATURE, '',
     HASHTAGS[s.pillar],
   ].join('\n');
@@ -44,8 +42,7 @@ function carouselCaption(c) {
     c.explain, '',
     'O que foi planejado neste caso educativo:',
     ...c.procedures.map((p) => `• ${p}`), '',
-    `💬 Comente ${kwLabel(c.keyword)} que eu te envio o material completo no direct.`,
-    `Para avaliação individual, o link do WhatsApp está na bio.`, '',
+    'Para avaliar o seu caso individualmente, agende pelo link da bio ou chame no WhatsApp. Atendimento na Barra da Tijuca, sem promessa de resultado.', '',
     SIGNATURE, '',
     HASHTAGS[c.pillar],
   ].join('\n');
@@ -56,7 +53,7 @@ function reelStories(s) {
     { time: '09h', type: 'Bastidor + enquete', text: `Bastidor do consultório. Texto: "Hoje sai vídeo novo sobre ${s.pillar.toLowerCase()}." Enquete: "Você já ouviu falar disso?" Sim / Quero entender`, sticker: 'Enquete' },
     { time: '12h', type: 'Repost do Reel', text: `Compartilhar o Reel "${s.title}" com o texto: "${s.tarja}" + sticker de seta apontando para o vídeo.`, sticker: 'Menção ao Reel' },
     { time: '17h', type: 'Caixinha de perguntas', text: `Fundo pedra liso. "Me pergunte qualquer coisa sobre ${s.pillar.toLowerCase()}. Respondo amanhã."`, sticker: 'Caixinha' },
-    { time: '20h', type: 'CTA ManyChat', text: `Selfie ou print do Reel: "Quem comentou ${kwLabel(s.keyword)} já recebeu o material no direct. Ainda não comentou? Corre lá."`, sticker: 'Link para o Reel' },
+    { time: '20h', type: 'Convite à consulta', text: `Foto sóbria do Dr. Leonardo no centro cirúrgico. Texto: "Quer avaliar o seu caso de ${s.pillar.toLowerCase()}? Toque no link da bio e agende sua avaliação na Barra da Tijuca."`, sticker: 'Link para WhatsApp / bio' },
   ];
 }
 

@@ -40,7 +40,7 @@ function openScript(s) {
       <div class="blk"><span class="label">Tarja na tela</span><p>“${esc(s.tarja)}”</p></div>
       <div class="blk"><span class="label">Gancho · 0–3 s</span><p>${esc(s.hook)}</p></div>
       <div class="blk"><span class="label">Desenvolvimento</span>${s.body.map((b) => `<p>${esc(b)}</p>`).join('')}</div>
-      <div class="blk"><span class="label">CTA (ManyChat: ${esc(s.keyword)})</span><p>${esc(s.cta)}</p></div>
+      <div class="blk"><span class="label">CTA · Convite à consulta</span><p>${esc(s.cta)}</p></div>
       <div class="blk"><span class="label">Direção de cena</span><p class="muted" style="font-size:17px">${esc(s.direction.frame)}</p>
         <ul class="list muted small" style="margin-top:8px">${s.direction.broll.map((b) => `<li>${esc(b)}</li>`).join('')}</ul></div>
     </div>`, { wide: false });

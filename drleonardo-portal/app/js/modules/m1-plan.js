@@ -13,8 +13,8 @@ const CONTROLS = [
   ['reels', 'Reels por semana (calendário + trial reels)', 1, 5, 1, (v) => v],
   ['views', 'Views de não seguidores por Reel', 5000, 250000, 5000, (v) => num(v)],
   ['follow', 'Taxa de follow por view (%)', 0.1, 1.5, 0.05, (v) => num(v, 2) + '%'],
-  ['comments', 'Comentários-isca por post (ManyChat)', 0, 1500, 10, (v) => num(v)],
-  ['gate', 'Comentaristas que seguem p/ receber (%)', 0, 70, 1, (v) => v + '%'],
+  ['comments', 'Cliques no link da bio por post', 0, 1500, 10, (v) => num(v)],
+  ['gate', 'Visitantes do perfil que seguem (%)', 0, 70, 1, (v) => v + '%'],
   ['carReach', 'Alcance não seguidor por carrossel', 0, 60000, 1000, (v) => num(v)],
   ['paid', 'Verba C2 visita ao perfil (R$/dia)', 0, 50, 1, (v) => brl(v)],
   ['cpv', 'Custo por visita ao perfil (R$)', 0.08, 0.8, 0.01, (v) => 'R$ ' + num(v, 2)],
@@ -109,7 +109,7 @@ export function renderPlan(el) {
       <div>
         <span class="eyebrow">${esc(DOCTOR.title)} · ${esc(DOCTOR.city)}</span>
         <h2 class="h-display" style="margin:14px 0 18px">De <em>9 mil</em> a 20 mil seguidores qualificados — e o dobro de consultas.</h2>
-        <p class="lead">Um sistema de 12 semanas que transforma autoridade técnica em demanda: conteúdo educativo de Lipedema e Lipedefinition para crescer, ManyChat para capturar, tráfego pago enxuto para converter e um CRM com decisão humana na hora de agendar e cobrar.</p>
+        <p class="lead">Um sistema de 12 semanas que transforma autoridade técnica em demanda: conteúdo educativo de Lipedema e Lipedefinition para crescer, captura pelo link da bio e WhatsApp para converter, tráfego pago enxuto para amplificar e um CRM com decisão humana na hora de agendar e cobrar.</p>
       </div>
       <div class="grid g4">
         <div class="kpi"><span>Seguidores hoje</span><b>~9K</b></div>
@@ -138,7 +138,7 @@ export function renderPlan(el) {
         <li>Conteúdo sem mecanismo de captura (comentário → direct → WhatsApp)</li>
         <li>Destaques não conduzem a decisão de agendar</li>
         <li>Lead do WhatsApp sem SLA e sem etapa formal de agenda + pagamento</li></ul></div>
-      <div class="card ink"><h3 class="h3">A tese</h3><p class="muted">Lipedema gera alcance (dor real, identificação imediata, alto compartilhamento). Lipedefinition e cirurgia mamária geram ticket. Segurança cirúrgica gera confiança. O calendário alterna os três, e cada post tem um CTA de comentário que alimenta o ManyChat e o CRM.</p></div>
+      <div class="card ink"><h3 class="h3">A tese</h3><p class="muted">Lipedema gera alcance (dor real, identificação imediata, alto compartilhamento). Lipedefinition e cirurgia mamária geram ticket. Segurança cirúrgica gera confiança. O calendário alterna os três, e cada post direciona para a avaliação pelo link da bio e WhatsApp, alimentando o CRM.</p></div>
     </div>
     <p class="tiny" style="margin-top:12px">Diagnóstico qualitativo a partir dos dados fornecidos. Validar com Instagram Insights (últimos 90 dias) na reunião: alcance de não seguidores, retenção 3 s dos Reels e visitas ao perfil.</p>
   </section>
@@ -160,7 +160,7 @@ export function renderPlan(el) {
     <div class="grid g4" id="levers" style="margin-top:16px"></div>
     <div class="grid g3" style="margin-top:16px">
       <div class="card"><span class="tag ink">Alavanca 1</span><h3 class="h3" style="margin-top:12px">Reels virais de Lipedema</h3><p class="muted small">1 Reel fixo na terça (roteiros do Módulo 4) + 1 "trial reel" exibido só para não seguidores. Gancho nos primeiros 2 s, legenda grande, CTA de comentário.</p></div>
-      <div class="card"><span class="tag ink">Alavanca 2</span><h3 class="h3" style="margin-top:12px">Iscas de comentário ManyChat</h3><p class="muted small">Toda peça termina com "Comente LIPEDEMA / DEFINIÇÃO / MAMA…". O ManyChat responde no direct com o guia e pede o follow para liberar o material — cada comentário vira seguidor e lead.</p></div>
+      <div class="card"><span class="tag ink">Alavanca 2</span><h3 class="h3" style="margin-top:12px">Convite à consulta · link na bio</h3><p class="muted small">Toda peça fecha com um convite sóbrio para avaliação no link da bio ou WhatsApp, com rastreio por campanha. Sem isca de comentário — o posicionamento é de consultório de alto padrão, e cada contato chega direto ao CRM.</p></div>
       <div class="card"><span class="tag ink">Alavanca 3</span><h3 class="h3" style="margin-top:12px">Tráfego de visita ao perfil</h3><p class="muted small">R$ 15/dia distribuindo apenas Reels já validados no orgânico (retenção 3 s &gt; 35%). Custo-alvo ≤ R$ 0,25 por visita.</p></div>
     </div>
   </section>
@@ -178,9 +178,9 @@ export function renderPlan(el) {
     <span class="eyebrow">04 · Roadmap</span>
     <h2 class="h2">12 semanas, três fases</h2>
     <div class="timeline">
-      <div class="card"><span class="tiny">Semanas 1–4 · 20/10 → 13/11</span><h3 class="h3">Fundação</h3><ul class="list muted small"><li>Destaques Lipedefinition e Lipedema no ar</li><li>ManyChat com 6 palavras-chave</li><li>C1 rodando com 3 criativos</li><li>CRM com SLA de 5 min</li></ul></div>
-      <div class="card"><span class="tiny">Semanas 5–8 · 17/11 → 11/12</span><h3 class="h3">Tração</h3><ul class="list muted small"><li>Escala +20% no criativo campeão</li><li>Trial reels 2×/semana</li><li>Collab com fisioterapeuta / nutricionista de lipedema</li><li>Revisão do roteiro de atendimento</li></ul></div>
-      <div class="card"><span class="tiny">Semanas 9–12 · 15/12 → 08/01</span><h3 class="h3">Aceleração</h3><ul class="list muted small"><li>Reels de maior retenção na C2</li><li>Live de perguntas sobre lipedema</li><li>Campanha de agenda de janeiro</li><li>Relatório final 20K e plano 2027</li></ul></div>
+      <div class="card"><span class="tiny">Semanas 1–4 · 20/10 → 13/11</span><h3 class="h3">Fundação</h3><ul class="list muted small"><li>Destaques Lipedefinition e Lipedema no ar</li><li>Link na bio + WhatsApp com rastreio por campanha</li><li>C1 rodando com 3 criativos</li><li>CRM com SLA de 5 min</li></ul></div>
+      <div class="card"><span class="tiny">Semanas 5–8 · 17/11 → 11/12</span><h3 class="h3">Tração</h3><ul class="list muted small"><li>Escala +20% no criativo campeão</li><li>Trial reels 2×/semana</li><li>Collab com fisioterapeuta / nutricionista de Lipedema</li><li>Revisão do roteiro de atendimento</li></ul></div>
+      <div class="card"><span class="tiny">Semanas 9–12 · 15/12 → 08/01</span><h3 class="h3">Aceleração</h3><ul class="list muted small"><li>Reels de maior retenção na C2</li><li>Live de perguntas sobre Lipedema</li><li>Campanha de agenda de janeiro</li><li>Relatório final 20K e plano 2027</li></ul></div>
     </div>
   </section>
 
@@ -192,7 +192,7 @@ export function renderPlan(el) {
       <tbody>
         <tr><td>Novos seguidores líquidos</td><td>Instagram Insights</td><td class="num">≥ 1.000</td></tr>
         <tr><td>Retenção 3 s dos Reels</td><td>Insights do Reel</td><td class="num">≥ 35%</td></tr>
-        <tr><td>Comentários-isca (ManyChat)</td><td>ManyChat</td><td class="num">≥ 500</td></tr>
+        <tr><td>Contatos pelo link da bio / WhatsApp</td><td>Bio + WhatsApp</td><td class="num">≥ 500</td></tr>
         <tr><td>Conversas WhatsApp (C1)</td><td>Gerenciador de Anúncios</td><td class="num">≥ 11</td></tr>
         <tr><td>Custo por conversa</td><td>Gerenciador de Anúncios</td><td class="num">≤ R$ 25</td></tr>
         <tr><td>Tempo de 1ª resposta</td><td>CRM (Módulo 6)</td><td class="num">≤ 5 min</td></tr>
@@ -233,7 +233,7 @@ export function renderPlan(el) {
       <div class="kpi"><span>20K atingido</span><b style="font-size:30px">${hit == null ? 'após 12 sem.' : dLabel(weekDate(hit))}</b></div>`;
     const total = parts.reels + parts.manychat + parts.carrossel + parts.pago;
     $('#levers', el).innerHTML = [
-      ['Reels', parts.reels], ['ManyChat', parts.manychat], ['Carrosséis', parts.carrossel], ['Tráfego C2', parts.pago],
+      ['Reels', parts.reels], ['Link na bio', parts.manychat], ['Carrosséis', parts.carrossel], ['Tráfego C2', parts.pago],
     ].map(([n, v]) => `<div class="card"><div class="kpi"><span>${n}</span><b>+${num(v)}</b></div><p class="tiny">${num((v / total) * 100)}% do crescimento bruto em 12 semanas</p></div>`).join('');
 
     $$('[data-f]', el).forEach((i) => { i.value = f[i.dataset.f]; });

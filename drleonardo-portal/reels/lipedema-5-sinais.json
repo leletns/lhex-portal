@@ -67,7 +67,7 @@
    "start": 0.3,
    "end": 3.0,
    "kicker": "Lipedema",
-   "title": "Não é gordura teimosa. Pode ser lipedema."
+   "title": "Não é gordura teimosa. Pode ser Lipedema."
   },
   {
    "start": 3.4,
@@ -102,10 +102,9 @@
   {
    "start": 16.4,
    "end": 20.1,
-   "kicker": "Guia no direct",
-   "title": "Comente",
-   "accent": "LIPEDEMA",
-   "body": "Doença reconhecida pela OMS. Diagnóstico em consulta especializada."
+   "kicker": "Barra da Tijuca · Rio de Janeiro",
+   "title": "Agende sua avaliação",
+   "body": "drleonardovaladao.vercel.app · atendimento no link da bio"
   }
  ]
 }

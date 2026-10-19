@@ -6,7 +6,7 @@ import { DOCTOR } from '../config.js';
 export const SCRIPTS = [
   {
     id: 1, pillar: 'Lipedema', title: '5 sinais de que não é "gordura teimosa"', duration: '55s', keyword: 'LIPEDEMA',
-    tarja: 'Não é gordura teimosa. Pode ser lipedema.',
+    tarja: 'Não é gordura teimosa. Pode ser Lipedema.',
     hook: 'Se você faz dieta, treina, emagrece no rosto e no abdome, mas as pernas continuam iguais… presta atenção nesses cinco sinais.',
     body: [
       'Primeiro: o acúmulo é simétrico. As duas pernas, ou os dois braços, do mesmo jeito.',
@@ -14,9 +14,9 @@ export const SCRIPTS = [
       'Terceiro: dor ao toque. Muitas pacientes me contam que até um abraço ou o encosto da mesa incomoda.',
       'Quarto: hematomas que aparecem sem você lembrar de ter batido.',
       'Quinto: começou ou piorou em fases hormonais — puberdade, gestação, uso de anticoncepcional ou menopausa.',
-      'Isso tem nome: lipedema. É uma doença do tecido gorduroso, reconhecida pela Organização Mundial da Saúde, e não é falta de esforço seu.',
+      'Isso tem nome: Lipedema. É uma doença do tecido gorduroso, reconhecida pela Organização Mundial da Saúde, e não é falta de esforço seu.',
     ],
-    cta: 'Comenta LIPEDEMA aqui embaixo que eu te mando o guia com os graus da doença e as opções de tratamento. E se você se identificou, salva esse vídeo.',
+    cta: 'Agende sua avaliação pelo link da bio — atendimento na Barra da Tijuca. Sem promessa de resultado; cada caso é avaliado pessoalmente.',
     direction: { frame: 'Plano médio, consultório, luz lateral suave. Olhar direto para a lente.', broll: ['Mão apontando o tornozelo em modelo anatômico', 'Ilustração dos 5 sinais em texto na tela', 'Dr. Leonardo escrevendo no prontuário'] },
   },
   {
@@ -29,7 +29,7 @@ export const SCRIPTS = [
       'O planejamento é feito com você em pé, com marcação individual, e a intensidade da definição é escolhida junto com você na consulta.',
       'O objetivo não é parecer operado. É parecer a melhor versão do seu próprio corpo — em movimento, de biquíni, de camiseta.',
     ],
-    cta: 'Comenta DEFINIÇÃO que eu te envio o comparativo entre Lipedefinition e a lipo tradicional.',
+    cta: 'Agende sua avaliação pelo link da bio — atendimento na Barra da Tijuca. Sem promessa de resultado; cada caso é avaliado pessoalmente.',
     direction: { frame: 'Close médio, fundo neutro da clínica. Movimento de mão desenhando o contorno no ar.', broll: ['Caneta dermográfica fazendo marcação em manequim', 'Slide comparativo natural × artificial (sem paciente identificável)'] },
   },
   {
@@ -42,7 +42,7 @@ export const SCRIPTS = [
       'Um teste simples: deitada, joelhos dobrados, levante só a cabeça e sinta a linha do umbigo com os dedos. Se os dedos afundam entre os músculos, vale avaliar.',
       'Quando há excesso de pele e diástase importante, a abdominoplastia com plicatura reposiciona os músculos e retira a pele que sobrou.',
     ],
-    cta: 'Comenta DIÁSTASE que eu te mando o passo a passo do autoteste e quando a cirurgia é indicada.',
+    cta: 'Agende sua avaliação pelo link da bio — atendimento na Barra da Tijuca. Sem promessa de resultado; cada caso é avaliado pessoalmente.',
     direction: { frame: 'Plano médio sentado. Demonstrar o autoteste com as mãos em modelo/ilustração.', broll: ['Animação simples dos músculos se afastando', 'Prancheta com desenho da plicatura'] },
   },
   {
@@ -57,20 +57,20 @@ export const SCRIPTS = [
       'Cinco: como vai ser o acompanhamento depois? Quem me atende se eu tiver uma dúvida às dez da noite?',
       'Se alguma resposta for vaga, pare e reavalie.',
     ],
-    cta: 'Comenta SEGURANÇA que eu te mando o checklist completo para levar na sua consulta.',
+    cta: 'Agende sua avaliação pelo link da bio — atendimento na Barra da Tijuca. Sem promessa de resultado; cada caso é avaliado pessoalmente.',
     direction: { frame: 'Plano americano, corredor do hospital (com autorização). Contagem nos dedos.', broll: ['Tela do site do CFM com busca de médico', 'Centro cirúrgico vazio', 'Equipe de jaleco caminhando (sem pacientes)'] },
   },
   {
-    id: 5, pillar: 'Lipedema', title: 'Por que a dieta não resolve o lipedema', duration: '50s', keyword: 'LIPEDEMA',
-    tarja: 'Fechar a boca não resolve lipedema. Entenda.',
-    hook: 'Você já ouviu que era só fechar a boca? No lipedema, essa frase é injusta.',
+    id: 5, pillar: 'Lipedema', title: 'Por que a dieta não resolve o Lipedema', duration: '50s', keyword: 'LIPEDEMA',
+    tarja: 'Fechar a boca não resolve Lipedema. Entenda.',
+    hook: 'Você já ouviu que era só fechar a boca? No Lipedema, essa frase é injusta.',
     body: [
-      'A gordura do lipedema é diferente: ela é inflamada, dolorosa e responde muito pouco à restrição calórica.',
+      'A gordura do Lipedema é diferente: ela é inflamada, dolorosa e responde muito pouco à restrição calórica.',
       'Por isso a paciente emagrece no rosto, no tronco, nos seios… e as pernas continuam desproporcionais.',
       'Alimentação anti-inflamatória, atividade física e drenagem ajudam muito a controlar sintomas. Fazem parte do tratamento e eu sempre indico.',
-      'Mas, quando há dor, dificuldade para andar ou progressão, a cirurgia específica para lipedema pode ser uma etapa do tratamento.',
+      'Mas, quando há dor, dificuldade para andar ou progressão, a cirurgia específica para Lipedema pode ser uma etapa do tratamento.',
     ],
-    cta: 'Comenta LIPEDEMA e eu te envio o guia com os quatro graus da doença.',
+    cta: 'Agende sua avaliação pelo link da bio — atendimento na Barra da Tijuca. Sem promessa de resultado; cada caso é avaliado pessoalmente.',
     direction: { frame: 'Close, tom acolhedor, pausa depois da primeira frase.', broll: ['Prato de alimentação anti-inflamatória', 'Fita métrica na coxa (modelo, sem rosto)'] },
   },
   {
@@ -83,7 +83,7 @@ export const SCRIPTS = [
       'Terceira: a transição. O segredo de um resultado natural está nas bordas, onde uma área encontra a outra. É aí que se evita o aspecto "pintado".',
       'Não existe técnica melhor para todo mundo. Existe a técnica indicada para o seu corpo — e isso se decide em consulta.',
     ],
-    cta: 'Comenta DEFINIÇÃO e eu te mando o comparativo completo em imagem.',
+    cta: 'Agende sua avaliação pelo link da bio — atendimento na Barra da Tijuca. Sem promessa de resultado; cada caso é avaliado pessoalmente.',
     direction: { frame: 'Split screen: Dr. Leonardo à esquerda, texto das diferenças à direita.', broll: ['Desenho de zonas anatômicas em manequim', 'Gráfico de camadas de gordura superficial × profunda'] },
   },
   {
@@ -97,7 +97,7 @@ export const SCRIPTS = [
       'Depois de três meses: a cicatriz começa a amadurecer e o contorno fica mais estável. O resultado final leva de seis meses a um ano.',
       'Cada organismo responde de um jeito. Por isso o acompanhamento próximo faz tanta diferença.',
     ],
-    cta: 'Comenta ABDOMINO e eu te mando o guia de recuperação para imprimir.',
+    cta: 'Agende sua avaliação pelo link da bio — atendimento na Barra da Tijuca. Sem promessa de resultado; cada caso é avaliado pessoalmente.',
     direction: { frame: 'Plano médio. Linha do tempo aparece na tela conforme as semanas.', broll: ['Cinta pós-operatória sobre a mesa', 'Calendário sendo virado'] },
   },
   {
@@ -110,20 +110,20 @@ export const SCRIPTS = [
       'Durante a cirurgia, usamos meias e botas de compressão pneumática e controlamos o tempo cirúrgico.',
       'Depois, o mais importante é você: caminhar cedo, se hidratar e seguir à risca a medicação quando ela é indicada.',
     ],
-    cta: 'Comenta SEGURANÇA e eu te envio o checklist de prevenção para o pós-operatório.',
+    cta: 'Agende sua avaliação pelo link da bio — atendimento na Barra da Tijuca. Sem promessa de resultado; cada caso é avaliado pessoalmente.',
     direction: { frame: 'Close, tom sério e tranquilo. Fundo do consultório.', broll: ['Bota de compressão pneumática', 'Paciente-modelo caminhando no corredor (sem rosto)'] },
   },
   {
-    id: 9, pillar: 'Lipedema', title: 'Cirurgia de lipedema poupadora linfática: como funciona', duration: '60s', keyword: 'LIPEDEMA',
-    tarja: 'Cirurgia de lipedema não é lipo comum.',
-    hook: 'Cirurgia de lipedema não é uma lipo comum. E essa diferença protege uma coisa muito importante: o seu sistema linfático.',
+    id: 9, pillar: 'Lipedema', title: 'Cirurgia de Lipedema poupadora linfática: como funciona', duration: '60s', keyword: 'LIPEDEMA',
+    tarja: 'Cirurgia de Lipedema não é lipo comum.',
+    hook: 'Cirurgia de Lipedema não é uma lipo comum. E essa diferença protege uma coisa muito importante: o seu sistema linfático.',
     body: [
-      'O tecido do lipedema fica próximo de vasos linfáticos delicados. Uma técnica agressiva pode piorar o inchaço no futuro.',
+      'O tecido do Lipedema fica próximo de vasos linfáticos delicados. Uma técnica agressiva pode piorar o inchaço no futuro.',
       'Na abordagem poupadora linfática, a cânula trabalha no sentido desses vasos, com movimentos controlados e infiltração adequada.',
       'O objetivo principal é reduzir dor, peso e desproporção — e, como consequência, melhorar o contorno.',
       'O tratamento continua depois: compressão, drenagem e acompanhamento fazem parte do resultado.',
     ],
-    cta: 'Comenta LIPEDEMA e eu te mando o guia com o passo a passo do tratamento.',
+    cta: 'Agende sua avaliação pelo link da bio — atendimento na Barra da Tijuca. Sem promessa de resultado; cada caso é avaliado pessoalmente.',
     direction: { frame: 'Plano médio com ilustração do sistema linfático no tablet.', broll: ['Ilustração dos vasos linfáticos na perna', 'Meias de compressão'] },
   },
   {
@@ -136,7 +136,7 @@ export const SCRIPTS = [
       'Quando existe queda e também perda de volume — comum depois da amamentação ou do emagrecimento — a gente combina as duas no mesmo tempo cirúrgico.',
       'O tamanho do implante não é escolhido só pela vontade: depende da largura do seu tórax, da qualidade da pele e do resultado que você quer em roupa e sem roupa.',
     ],
-    cta: 'Comenta MAMA e eu te mando o guia para entender qual caminho faz sentido para o seu caso.',
+    cta: 'Agende sua avaliação pelo link da bio — atendimento na Barra da Tijuca. Sem promessa de resultado; cada caso é avaliado pessoalmente.',
     direction: { frame: 'Plano médio. Implantes de demonstração sobre a mesa (sem pacientes).', broll: ['Mão segurando implantes de tamanhos diferentes', 'Desenho da mastopexia no papel'] },
   },
   {
@@ -149,7 +149,7 @@ export const SCRIPTS = [
       'Na Lipo HD masculina, o planejamento valoriza a borda do peitoral, a linha do abdome e os flancos, sem exageros.',
       'A ideia é um resultado atlético que combine com o seu corpo e com a sua rotina de treino.',
     ],
-    cta: 'Comenta DEFINIÇÃO que eu te mando como funciona a avaliação para homens.',
+    cta: 'Agende sua avaliação pelo link da bio — atendimento na Barra da Tijuca. Sem promessa de resultado; cada caso é avaliado pessoalmente.',
     direction: { frame: 'Plano médio, postura firme. Linguagem direta.', broll: ['Halteres na academia (sem rosto)', 'Marcação em manequim masculino'] },
   },
   {
@@ -163,7 +163,7 @@ export const SCRIPTS = [
       `O meu é ${DOCTOR.crm.replace('CRM-RJ', 'CRM do Rio de Janeiro')}, ${DOCTOR.rqe}. Pode conferir.`,
       'Especialista não é garantia de nada sozinho, mas é o primeiro filtro. E é um direito seu checar.',
     ],
-    cta: 'Comenta SEGURANÇA que eu te mando o passo a passo com o link oficial.',
+    cta: 'Agende sua avaliação pelo link da bio — atendimento na Barra da Tijuca. Sem promessa de resultado; cada caso é avaliado pessoalmente.',
     direction: { frame: 'Gravação de tela do celular + Dr. Leonardo em picture-in-picture.', broll: ['Tela do portal do CFM', 'Diploma/certificado na parede'] },
   },
 ];
