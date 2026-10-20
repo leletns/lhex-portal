@@ -104,8 +104,10 @@ const fullbg = (g, { seam = true, dark = false } = {}) => `
   <div class="lx-bg" style="background-image:url('assets/photos/${g.name}.jpg');background-size:${g.w}px ${g.h}px;background-position:${g.x}px ${g.y}px"></div>
   <div class="lx-grade"></div><div class="lx-vtop"></div><div class="lx-vbot"></div>${dark ? '<div class="lx-vdark"></div>' : ''}${seam ? '<div class="lx-seam"></div>' : ''}`;
 
+// Assinatura de grife oficial (reprodução fiel em CSS: adapta cor claro/escuro).
+const wordmark = (light = false) => `<div class="lx-wm${light ? ' light' : ''}"><b>LEONARDO VALADÃO</b><span>CIRURGIA PLÁSTICA</span></div>`;
 const head = (n, total) => `
-  <div class="lx-head"><img class="lx-logo" src="${LOGO}" alt="">
+  <div class="lx-head">${wordmark()}
   ${total ? `<span class="lx-count">${String(n).padStart(2, '0')} <i>/</i> ${String(total).padStart(2, '0')}</span>` : ''}</div>`;
 
 const foot = () => `<div class="lx-foot">${esc(CFM_FOOTER)}</div>`;
@@ -145,9 +147,9 @@ function beforeAfter(post, n, pair, view, halfBgName) {
   const spec = specBlocks(c);
   return frame('45', `
     <div class="ba2">${half(A, 'Antes', 'l', sa)}${half(B, o.after || 'Depois', 'r', sb)}</div>
-    <div class="ba2-div"><span class="ba2-mono"><img src="${LOGO}" alt=""></span></div>
+    <div class="ba2-div"><span class="ba2-mono">${wordmark()}</span></div>
     <div class="lx-vtop"></div><div class="lx-vbot"></div>
-    <div class="lx-topbar"><span>Estudo anatômico ${String(c.id).padStart(2, '0')} — ${esc(c.pillar)}</span><img class="lx-logo sm" src="${LOGO}" alt=""><span class="lx-pag">${String(n).padStart(2, '0')} / 05</span></div>
+    <div class="lx-topbar"><span>Estudo anatômico ${String(c.id).padStart(2, '0')} — ${esc(c.pillar)}</span><span class="lx-pag">${String(n).padStart(2, '0')} / 05</span></div>
     <div class="lx-botbar">
       <div class="lx-tpills"><span><i>Tempo</i>${esc(spec[0][1])}</span><span><i>Técnica</i>${esc(CASE_TECH[c.id] || 'Contorno')}</span><span><i>Plano</i>Multicamadas</span></div>
       ${foot()}
