@@ -2,7 +2,7 @@
  "out": "../media/reels/reel-lipedema-5-sinais.mp4",
  "segments": [
   {
-   "src": "../app/assets/photos/dr-or-green.jpg",
+   "src": "../app/assets/photos/op-stand.jpg",
    "dur": 3.6,
    "focus": [
     0.5,
@@ -10,7 +10,7 @@
    ]
   },
   {
-   "src": "../app/assets/photos/dr-congress.jpg",
+   "src": "../app/assets/photos/dr-gowning.jpg",
    "dur": 3.0,
    "focus": [
     0.5,
@@ -54,7 +54,7 @@
    "motion": "out"
   },
   {
-   "src": "../app/assets/photos/dr-or-green-3.jpg",
+   "src": "../app/assets/photos/op-focus-c.jpg",
    "dur": 4.0,
    "focus": [
     0.5,

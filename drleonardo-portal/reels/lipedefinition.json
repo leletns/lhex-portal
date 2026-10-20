@@ -2,7 +2,7 @@
  "out": "../media/reels/reel-lipedefinition.mp4",
  "segments": [
   {
-   "src": "../app/assets/photos/dr-lipedefinition.jpg",
+   "src": "../app/assets/photos/op-warm-b.jpg",
    "dur": 3.6,
    "focus": [
     0.6,
@@ -37,7 +37,7 @@
    ]
   },
   {
-   "src": "../app/assets/photos/dr-lipedefinition-2.jpg",
+   "src": "../app/assets/photos/op-focus-d.jpg",
    "dur": 3.2,
    "focus": [
     0.7,
@@ -55,7 +55,7 @@
    ]
   },
   {
-   "src": "../app/assets/photos/dr-or-green-2.jpg",
+   "src": "../app/assets/photos/op-focus-a.jpg",
    "dur": 4.0,
    "focus": [
     0.6,
