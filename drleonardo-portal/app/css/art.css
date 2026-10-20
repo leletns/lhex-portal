@@ -136,3 +136,15 @@
 .lx-cover.cta .lx-sub { margin-top: 22px; color: rgba(244,243,240,.82); font-size: 27px; }
 .lx-cover.cta .lx-sign { margin-top: 40px; border-top: 1px solid rgba(197,179,150,.4); display: inline-block; padding: 20px 0 0; }
 .lx-cover.cta .lx-sign span { font-size: 23px; letter-spacing: .02em; }
+
+/* ——— Assinatura minimalista: @handle serifado + CFM micro (sem CTA/URL) ——— */
+.lx-foot { position: absolute; left: 0; right: 0; bottom: 42px; z-index: 5; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 0 60px; }
+.lx-handle { font: italic 400 31px "Cormorant Garamond", Georgia, serif; color: rgba(244,243,240,.92); letter-spacing: .02em; text-shadow: 0 2px 14px rgba(0,0,0,.6); }
+.lx-cfm { font: 400 15px "Plus Jakarta Sans", Arial, sans-serif; letter-spacing: .035em; color: rgba(244,243,240,.6); text-shadow: 0 1px 8px rgba(0,0,0,.6); }
+.lx-handle-hero { position: absolute; left: 0; right: 0; bottom: 318px; text-align: center; font: italic 400 60px "Cormorant Garamond", Georgia, serif; color: rgba(244,243,240,.95); letter-spacing: .02em; text-shadow: 0 3px 22px rgba(0,0,0,.6); }
+/* antes/depois mantém o rodapé em fluxo dentro da botbar */
+.lx-botbar .lx-foot { position: static; padding: 0; gap: 4px; }
+.lx-botbar .lx-handle { font-size: 24px; }
+.lx-botbar .lx-cfm { font-size: 12.5px; }
+/* a title dos slides de conteúdo sobe um pouco para dar respiro ao rodapé */
+.art.ed .lx-cover:not(.cta) { bottom: 300px; }

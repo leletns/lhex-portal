@@ -110,7 +110,7 @@ const head = (n, total) => `
   <div class="lx-head">${wordmark()}
   ${total ? `<span class="lx-count">${String(n).padStart(2, '0')} <i>/</i> ${String(total).padStart(2, '0')}</span>` : ''}</div>`;
 
-const foot = () => `<div class="lx-foot">${esc(CFM_FOOTER)}</div>`;
+const foot = (handle = true) => `<div class="lx-foot">${handle ? `<span class="lx-handle">${esc(DOCTOR.handle)}</span>` : ''}<span class="lx-cfm">${esc(DOCTOR.name)} • ${esc(DOCTOR.title)} • ${esc(DOCTOR.crm)} | ${esc(DOCTOR.rqe)} • Conteúdo educativo (Res. CFM 2.336/2023)</span></div>`;
 const frame = (ratio, inner, cls = '') => `<div class="art lx ed art-${ratio} ${cls}">${inner}</div>`;
 
 // Callout anatômico: fio dourado + ponto, apontando para a figura. side 'l' | 'r'.
@@ -182,7 +182,7 @@ export function carouselSlides(post) {
       <h1>${c.cover.title}</h1>
       <p class="lx-sub">${esc(c.cover.sub)}</p>
       <div class="lx-swipe">Arraste <span>→</span></div>
-    </div>`);
+    </div>${foot()}`);
 
   let s2;
   if (lip) {
@@ -192,7 +192,7 @@ export function carouselSlides(post) {
         <div class="lx-kicker">Classificação clínica</div>
         <h2>Os 4 <em>graus</em></h2>
         <div class="lx-rows">${graus.map(([k, v]) => `<div><b>${k}</b><span>${esc(v)}</span></div>`).join('')}</div>
-      </div>`);
+      </div>${foot()}`);
   } else if (cmp) {
     const rows = [['Objetivo', 'Volume + sombras anatômicas'], ['Marcação', 'Zonas musculares e camadas'], ['Transições', 'Prioridade do planejamento'], ['Aspecto', 'Contorno natural, não "desenhado"']];
     s2 = frame('45', `${fullbg(cover(P[1], 1080, 1350))}${head(2, T)}
@@ -200,7 +200,7 @@ export function carouselSlides(post) {
         <div class="lx-kicker">Tradicional × Lipedefinition</div>
         <h2>O que <em>muda</em></h2>
         <div class="lx-rows">${rows.map(([k, v]) => `<div><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}</div>
-      </div>`);
+      </div>${foot()}`);
   } else {
     s2 = beforeAfter(post, 2, ['a', 'b'], 'front', P[1]);
   }
@@ -211,7 +211,7 @@ export function carouselSlides(post) {
         <div class="lx-kicker">${lip ? 'Como reconhecer' : 'Na prática'}</div>
         <h2>${lip ? 'Sinais <em>clínicos</em>' : 'Luz e <em>sombra</em>'}</h2>
         <div class="lx-rows slim">${c.technique.slice(0, 4).map((t, i) => `<div><b>0${i + 1}</b><span>${esc(t)}</span></div>`).join('')}</div>
-      </div>`)
+      </div>${foot()}`)
     : beforeAfter(post, 3, ['c', 'd'], 'side', P[2]);
 
   const spec = specBlocks(c);
@@ -221,14 +221,10 @@ export function carouselSlides(post) {
       <h2>${guide ? 'O que <em>planejo</em>' : 'Como <em>é planejado</em>'}</h2>
       ${guide ? '' : `<p class="lx-sub">${esc(c.indication.for.slice(0, 2).join(' · '))}.</p>`}
       <div class="lx-specrow">${spec.map(([k, v]) => `<span><i>${esc(k)}</i>${esc(v)}</span>`).join('')}</div>
-    </div>`);
+    </div>${foot()}`);
 
   const s5 = frame('45', `${fullbg(cover('dr-blue', 1080, 1350), { seam: false, dark: true })}${head(5, T)}
-    <div class="lx-cover cta">
-      <h1 class="lx-cta">Agende sua <em>avaliação</em></h1>
-      <p class="lx-sub">${esc(DOCTOR.title)} · ${esc(DOCTOR.city)}</p>
-      <div class="lx-sign"><span>${esc(DOCTOR.site.replace('https://', ''))}</span><span>Atendimento pelo link da bio</span></div>
-    </div>`);
+    <div class="lx-cover cta"><div class="lx-handle-hero">${esc(DOCTOR.handle)}</div></div>${foot(false)}`);
 
   return [s1, s2, s3, s4, s5];
 }

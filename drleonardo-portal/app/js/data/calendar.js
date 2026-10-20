@@ -30,7 +30,6 @@ function reelCaption(s) {
   return [
     s.hook, '',
     s.body.slice(0, 3).join(' '), '',
-    s.cta, '',
     SIGNATURE, '',
     HASHTAGS[s.pillar],
   ].join('\n');
@@ -42,7 +41,6 @@ function carouselCaption(c) {
     c.explain, '',
     'O que foi planejado neste caso educativo:',
     ...c.procedures.map((p) => `• ${p}`), '',
-    'Para avaliar o seu caso individualmente, agende pelo link da bio ou chame no WhatsApp. Atendimento na Barra da Tijuca, sem promessa de resultado.', '',
     SIGNATURE, '',
     HASHTAGS[c.pillar],
   ].join('\n');
@@ -53,7 +51,7 @@ function reelStories(s) {
     { time: '09h', type: 'Bastidor + enquete', text: `Bastidor do consultório. Texto: "Hoje sai vídeo novo sobre ${s.pillar.toLowerCase()}." Enquete: "Você já ouviu falar disso?" Sim / Quero entender`, sticker: 'Enquete' },
     { time: '12h', type: 'Repost do Reel', text: `Compartilhar o Reel "${s.title}" com o texto: "${s.tarja}" + sticker de seta apontando para o vídeo.`, sticker: 'Menção ao Reel' },
     { time: '17h', type: 'Caixinha de perguntas', text: `Fundo pedra liso. "Me pergunte qualquer coisa sobre ${s.pillar.toLowerCase()}. Respondo amanhã."`, sticker: 'Caixinha' },
-    { time: '20h', type: 'Convite à consulta', text: `Foto sóbria do Dr. Leonardo no centro cirúrgico. Texto: "Quer avaliar o seu caso de ${s.pillar.toLowerCase()}? Toque no link da bio e agende sua avaliação na Barra da Tijuca."`, sticker: 'Link para WhatsApp / bio' },
+    { time: '20h', type: 'Fechamento editorial', text: `Foto sóbria do Dr. Leonardo no centro cirúrgico, de máscara. Texto discreto e educativo sobre ${s.pillar.toLowerCase()}, assinado apenas com @drleonardovaladao.`, sticker: 'Localização · Barra da Tijuca' },
   ];
 }
 
@@ -63,7 +61,7 @@ function carouselStories(c) {
     { time: '08h', type: 'Bastidor de autoridade', text: 'Vídeo curto chegando ao hospital ou no centro cirúrgico (sem pacientes visíveis). Texto: "Dia de centro cirúrgico. Segurança começa muito antes da cirurgia."', sticker: 'Localização' },
     { time: '12h', type: 'Quiz', text: `${quiz.q} — opções: ${quiz.opts.join(' / ')}`, sticker: 'Quiz' },
     { time: '16h', type: 'Repost do carrossel', text: `Compartilhar o carrossel "${c.short}" com o texto: "Arrasta até o final: o slide 4 explica para quem é indicado."`, sticker: 'Menção ao post' },
-    { time: '19h', type: 'Convite à consulta', text: `Fundo marfim, foto do Dr. Leonardo. "Quer entender se esse caminho faz sentido para você? Agende sua avaliação."`, sticker: `Link WhatsApp wa.me/${c.pillar === 'Lipedema' ? DOCTOR.whatsappLipedema : DOCTOR.whatsappCirurgia}` },
+    { time: '19h', type: 'Fechamento editorial', text: `Fundo marfim, foto sóbria do Dr. Leonardo. Mensagem educativa e elegante, assinada apenas com @drleonardovaladao — sem chamada de ação.`, sticker: 'Localização · Barra da Tijuca' },
   ];
 }
 
