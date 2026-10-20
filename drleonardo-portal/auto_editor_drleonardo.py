@@ -317,7 +317,7 @@ def cmd_instagram(args) -> Path:
 # 3) Design das tarjas — vidro escuro (sem caixa branca), fontes da marca
 # --------------------------------------------------------------------------- #
 ASSETS = Path(__file__).resolve().parent / "app" / "assets"
-GOLD = (200, 169, 106, 255)
+GOLD = (197, 179, 150, 255)   # Champagne #C5B396 (quiet luxury, substitui o dourado)
 IVORY = (244, 243, 240, 255)
 IVORY_SOFT = (244, 243, 240, 215)
 PANEL_X, PANEL_W, PAD = 64, 952, 44
@@ -429,9 +429,9 @@ def render_chrome(work: Path) -> Path:
     for i in range(660):  # degradê inferior (texto flutuante + rodapé)
         d.line([(0, H - i), (W, H - i)], fill=(8, 8, 10, int(205 * (1 - i / 660))))
     # Assinatura oficial no topo (wordmark + especialidade + filete dourado).
-    _centered_tracked(d, 70, "LEONARDO VALADÃO", brand_font("PlusJakartaSans-600", 30), IVORY, 6.0)
-    d.line([(W / 2 - 128, 116), (W / 2 + 128, 116)], fill=(200, 169, 106, 190), width=1)
-    _centered_tracked(d, 126, "CIRURGIA PLÁSTICA", brand_font("PlusJakartaSans-500", 17), (200, 169, 106, 235), 5.0)
+    _centered_tracked(d, 68, "LEONARDO VALADÃO", brand_font("PlusJakartaSans-400", 30), (245, 244, 240, 235), 8.4)
+    d.line([(W / 2 - 152, 116), (W / 2 + 152, 116)], fill=(245, 244, 240, 110), width=1)  # filete fino marfim
+    _centered_tracked(d, 126, "CIRURGIA PLÁSTICA", brand_font("PlusJakartaSans-400", 16), (245, 244, 240, 210), 7.7)
     # Rodapé ético CFM, centralizado e discreto.
     f = brand_font("PlusJakartaSans-400", 20)
     y = H - 128
@@ -546,7 +546,7 @@ def apply_design(base_video: Path, cards: list[Card], out: Path, total: float, w
         graph.append(f"[{ci}:v]format=rgba,{fades}[c{i}]")
         graph.append(f"{cur}[c{i}]overlay=x=0:y='{rise}':eval=frame[v{i}]")
         cur = f"[v{i}]"
-    graph.append(f"{cur}drawbox=x=0:y=0:w='iw*t/{total:.3f}':h=6:color=0xC8A96A@0.95:t=fill,format=yuv420p[vout]")
+    graph.append(f"{cur}drawbox=x=0:y=0:w='iw*t/{total:.3f}':h=6:color=0xC5B396@0.95:t=fill,format=yuv420p[vout]")
     cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", *inputs]
     if keep_audio:  # vídeo falado: preserva a voz original do Dr. Leonardo
         cmd += ["-filter_complex", ";".join(graph), "-map", "[vout]", "-map", "0:a?", "-c:a", "aac", "-b:a", "160k"]
