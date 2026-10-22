@@ -23,7 +23,7 @@ export const CFM_FOOTER =
   'Resultados variam conforme o biotipo de cada paciente.';
 
 export const SIGNATURE =
-  `${DOCTOR.handle}\n${DOCTOR.name} • ${DOCTOR.title}\n${DOCTOR.crm} | ${DOCTOR.rqe} • Barra da Tijuca, RJ\n` +
+  `—\n${DOCTOR.handle} | ${DOCTOR.name} • ${DOCTOR.title} | ${DOCTOR.crm} • ${DOCTOR.rqe}\n` +
   'Conteúdo educativo (Res. CFM 2.336/2023). A indicação cirúrgica é individual e definida em consulta.';
 
 // Paleta extraída de drleonardovaladao.vercel.app
